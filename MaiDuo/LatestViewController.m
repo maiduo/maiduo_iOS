@@ -35,6 +35,17 @@
     
     [[self navigationItem] setRightBarButtonItem: btnAdd];
 //    [btnAdd release];
+    
+    activities = [[NSArray alloc] initWithObjects:
+                  [NSArray arrayWithObjects: @"1", @"CJ", @"CJ和他的朋友门。",
+                   @"各位请主意，聚会改为晚上8点。", nil],
+                  [NSArray arrayWithObjects: @"2", @"KiKi", @"KiKi最爱的2B",
+                   @"可怜的2B嘴巴一直好不鸟。", nil],
+                  [NSArray arrayWithObjects: @"3", @"沈江", @"江总的婚礼现场",
+                   @"请大家用热烈的掌声欢迎新人", nil],
+                  [NSArray arrayWithObjects: @"4", @"王文彪", @"已婚老男人俱乐部",
+                   @"王文彪作为已婚老男人先锋，以发表长篇博文《我是已婚老疙瘩》。", nil],
+                  nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -58,26 +69,48 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView
+numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [activities count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"%ld",
+                                (long)[indexPath row]];
+    UITableViewCell *cell = [tableView
+                             dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
+    if (cell != nil) {
+        return cell;
+    }
     
+    cell = [[UITableViewCell alloc]
+                   initWithStyle: UITableViewCellStyleSubtitle
+                   reuseIdentifier: CellIdentifier];
+    
+    NSArray*  item   = (NSArray  *)[activities objectAtIndex: [indexPath row]];
+    NSString* title  = (NSString *)[item objectAtIndex: 2];
+    NSString* detail = (NSString *)[item objectAtIndex: 3];
+    
+    cell.textLabel.text = title;
+    cell.detailTextLabel.text = detail;
+    cell.detailTextLabel.numberOfLines = 2;
+    cell.detailTextLabel.lineBreakMode = UILineBreakModeCharacterWrap;
+    
+    NSLog(@"%f", cell.detailTextLabel.frame.origin.y);
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80.0;
 }
 
 /*

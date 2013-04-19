@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LatestViewController : UITableViewController
-
+@interface LatestViewController : UITableViewController<UITableViewDataSource,
+UITableViewDelegate> {
+    NSArray* activities;
+}
 @end
