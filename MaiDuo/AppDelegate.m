@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LatestViewController.h"
 
 @implementation AppDelegate
 
@@ -16,6 +17,11 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    latestView = [[LatestViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    navigation = [[UINavigationController alloc] initWithRootViewController:latestView];
+
+    [self.window addSubview:[navigation view]];
     return YES;
 }
 

@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
+    UITableViewController*  latestView;
+    UINavigationController* navigation;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 
