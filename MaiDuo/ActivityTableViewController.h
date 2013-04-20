@@ -8,10 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+#define VIEW_STATE_ACTIVITY 0
+#define VIEW_STATE_MESSAGE  1
+#define VIEW_STATE_CONTACT  2
+
+typedef enum viewState {
+    ACTIVITY,
+    MESSAGE,
+    CONTACT
+    } ViewState;
+
 @interface SkeletonViewController : UITableViewController {
     NSMutableArray* activities;
     NSMutableArray* messages;
     NSMutableArray* contacts;
+    NSArray* data;
+    
+    NSInteger viewState;
 }
 
 @end

@@ -26,6 +26,7 @@
 {
     self = [super init];
     if (self) {
+        activity = [NSMutableArray array]
     }
     
     return self;
@@ -46,23 +47,24 @@
                                    initWithItems:@[@"活动", @"消息", @"通讯录"]];
     segment.segmentedControlStyle = UISegmentedControlSegmentCenter;
     segment.selectedSegmentIndex = 0;
+    viewState = ACTIVITY;
+    
     [segment addTarget:self
                 action:@selector(segmentedChanged:forEvent:)
              forControlEvents:UIControlEventValueChanged];
 
     self.navigationItem.titleView = segment;
     self.navigationItem.rightBarButtonItem = btnAddActivity;
-    
 }
 
 - (void)addActivity
 {
-    
 }
 
 - (void)segmentedChanged:(id)sender forEvent:(UIEvent *)event
 {
     UISegmentedControl* segmented = (UISegmentedControl *)sender;
+    viewState = segmented.selectedSegmentIndex;
 }
 
 - (void)didReceiveMemoryWarning
