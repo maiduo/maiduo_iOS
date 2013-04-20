@@ -10,6 +10,7 @@
 
 @interface SkeletonViewController : UIViewController {
     NSMutableArray* activity;
+    NSArray* segmentedViews;
 }
 
 @end

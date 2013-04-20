@@ -31,6 +31,13 @@
     self = [super init];
     if (self) {
 //        self.activity = activity;
+        segmentedViews = [NSArray arrayWithObjects:
+                          [[ActivityViewController alloc]
+                           initWithStyle: UITableViewStylePlain],
+                          [[MessageViewController  alloc]
+                           initWithStyle: UITableViewStylePlain],
+                          [[ContactViewController  alloc]
+                           initWithStyle: UITableViewStylePlain], nil];
     }
     
     return self;
@@ -40,25 +47,49 @@
 {
     [super viewDidLoad];
     
-//	skeleton = [[UITabBarController alloc] init];
-//    [skeleton setViewControllers:
-//     [NSArray arrayWithObjects:
-//      [[ActivityViewController alloc] init],
-//      [[MessageViewController  alloc] init],
-//      [[ContactViewController  alloc] init], nil]];
+    UIBarButtonItem* btnAddActivity;
+    btnAddActivity = [[UIBarButtonItem alloc]
+                      initWithTitle:@"新增活动"
+                      style:UIBarButtonItemStyleBordered
+                      target:self
+                      action:@selector(addActivity)];
     
-//    UISegmentedControl* segment = [[UISegmentedControl alloc]
-//                                   initWithItems:@[@"活动", @"消息", @"通讯录"]];
-//    segment.segmentedControlStyle = UISegmentedControlSegmentCenter;
-//    self.navigationItem.titleView = segment;
-//    [self.view addSubview:skeleton.view];
+    UISegmentedControl* segment = [[UISegmentedControl alloc]
+                                   initWithItems:@[@"活动", @"消息", @"通讯录"]];
+    segment.segmentedControlStyle = UISegmentedControlSegmentCenter;
+    segment.selectedSegmentIndex = 0;
+    [segment addTarget:self
+                action:@selector(segmentedChanged:forEvent:)
+             forControlEvents:UIControlEventValueChanged];
+
+    self.navigationItem.titleView = segment;
+    self.navigationItem.rightBarButtonItem = btnAddActivity;
     
+    UITableViewController* viewController = [self findViewController:0];
+}
+
+- (void)addActivity
+{
+    
+}
+
+- (UITableViewController *)findViewController:(NSInteger)index
+{
+    UITableViewController* segmentViewController;
+    segmentViewController = (UITableViewController *)[segmentedViews
+                                                      objectAtIndex: index];
+    
+    return segmentViewController;
+}
+
+- (void)segmentedChanged:(id)sender forEvent:(UIEvent *)event
+{
+    UISegmentedControl* segmented = (UISegmentedControl *)sender;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
