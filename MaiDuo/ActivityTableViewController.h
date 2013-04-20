@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SkeletonViewController : UIViewController {
-    NSMutableArray* activity;
-    NSArray* segmentedViews;
+@interface SkeletonViewController : UITableViewController {
+    NSMutableArray* activities;
+    NSMutableArray* messages;
+    NSMutableArray* contacts;
 }
 
 @end

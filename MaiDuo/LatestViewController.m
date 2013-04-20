@@ -9,7 +9,7 @@
 #import "LatestViewController.h"
 #import "AsyncImageView/AsyncImageView.h"
 #import <QuartzCore/QuartzCore.h>
-#import "SkeletonViewController.h"
+#import "ActivityTableViewController.h"
 
 @interface LatestViewController ()
 
@@ -21,7 +21,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
