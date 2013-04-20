@@ -7,6 +7,8 @@
 //
 
 #import "LatestViewController.h"
+#import "AsyncImageView/AsyncImageView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface LatestViewController ()
 
@@ -86,25 +88,83 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell != nil) {
-        return cell;
-    }
-    
-    cell = [[UITableViewCell alloc]
-                   initWithStyle: UITableViewCellStyleSubtitle
-                   reuseIdentifier: CellIdentifier];
-    
+    AsyncImageView* imageView;
     NSArray*  item   = (NSArray  *)[activities objectAtIndex: [indexPath row]];
+    NSString* uid    = (NSString *)[item objectAtIndex: 0];
     NSString* title  = (NSString *)[item objectAtIndex: 2];
     NSString* detail = (NSString *)[item objectAtIndex: 3];
+#define IMAGE_VIEW_TAG 99
     
-    cell.textLabel.text = title;
-    cell.detailTextLabel.text = detail;
-    cell.detailTextLabel.numberOfLines = 2;
-    cell.detailTextLabel.lineBreakMode = UILineBreakModeCharacterWrap;
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]
+                initWithStyle: UITableViewCellStyleSubtitle
+                reuseIdentifier: CellIdentifier];
+        
+        imageView = [[AsyncImageView alloc]
+                     initWithFrame: CGRectMake(0.0f, 0.0f, 80.0f, 80.0f)];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+        imageView.tag = IMAGE_VIEW_TAG;
+        
+        [cell addSubview: imageView];
+
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.text = title;
+        cell.detailTextLabel.text = detail;
+        cell.detailTextLabel.numberOfLines = 2;
+        cell.indentationLevel = 1;
+        cell.indentationWidth = 80;
+    }
+    
+    imageView = (AsyncImageView *)[cell viewWithTag: IMAGE_VIEW_TAG];
+    [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
+    
+    static NSString* image_url;
+    image_url = @"http://oss.aliyuncs.com/bukaopu/maoduo/%@.jpg";
+    imageView.imageURL = [NSURL URLWithString:
+                          [NSString stringWithFormat:image_url, uid]];
     
     NSLog(@"%f", cell.detailTextLabel.frame.origin.y);
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView
+willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    /*
+    if (0 == [indexPath row]) {
+        CGRect cellRect = cell.contentView.bounds;
+        CGMutablePathRef firstRowPath = CGPathCreateMutable();
+        CGPathMoveToPoint(firstRowPath, NULL, CGRectGetMinX(cellRect), CGRectGetMaxY(cellRect));
+        CGPathAddLineToPoint(firstRowPath, NULL, CGRectGetMinX(cellRect), 8.f);
+        CGPathAddArcToPoint(firstRowPath, NULL, CGRectGetMinX(cellRect), CGRectGetMinY(cellRect), 8.f, CGRectGetMinY(cellRect), 8.f);
+        CGPathAddLineToPoint(firstRowPath, NULL, CGRectGetMaxX(cellRect) - 8.f, 0.f);
+        CGPathAddArcToPoint(firstRowPath, NULL, CGRectGetMaxX(cellRect), CGRectGetMinY(cellRect), CGRectGetMaxX(cellRect), 8.f, 8.f);
+        CGPathAddLineToPoint(firstRowPath, NULL, CGRectGetMaxX(cellRect), CGRectGetMaxY(cellRect));
+        CGPathCloseSubpath(firstRowPath);
+        CAShapeLayer *newSharpLayer = [[CAShapeLayer alloc] init];
+        newSharpLayer.path = firstRowPath;
+        newSharpLayer.fillColor = [[UIColor whiteColor] colorWithAlphaComponent:1.f].CGColor;
+        CFRelease(firstRowPath);
+        cell.contentView.layer.mask = newSharpLayer;
+    } else if (indexPath.row == 2){
+        CGRect cellRect = cell.contentView.bounds;
+        CGMutablePathRef lastRowPath = CGPathCreateMutable();
+        CGPathMoveToPoint(lastRowPath, NULL, CGRectGetMinX(cellRect), CGRectGetMinY(cellRect));
+        CGPathAddLineToPoint(lastRowPath, NULL, CGRectGetMaxX(cellRect), CGRectGetMinY(cellRect));
+        CGPathAddLineToPoint(lastRowPath, NULL, CGRectGetMaxX(cellRect), CGRectGetMaxY(cellRect) - 8.f);
+        CGPathAddArcToPoint(lastRowPath, NULL, CGRectGetMaxX(cellRect), CGRectGetMaxY(cellRect), CGRectGetMaxX(cellRect)- 8.f, CGRectGetMaxY(cellRect), 8.f);
+        CGPathAddLineToPoint(lastRowPath, NULL, 8.f, CGRectGetMaxY(cellRect));
+        CGPathAddArcToPoint(lastRowPath, NULL, CGRectGetMinX(cellRect), CGRectGetMaxY(cellRect), CGRectGetMinX(cellRect), CGRectGetMaxY(cellRect) - 8.f, 8.f);
+        CGPathCloseSubpath(lastRowPath);
+        CAShapeLayer *newSharpLayer = [[CAShapeLayer alloc] init];
+        newSharpLayer.path = lastRowPath;
+        newSharpLayer.fillColor = [[UIColor whiteColor] colorWithAlphaComponent:1.f].CGColor;
+        CFRelease(lastRowPath);
+        cell.contentView.layer.mask = newSharpLayer;
+    }
+     */
 }
 
 - (CGFloat)tableView:(UITableView *)tableView

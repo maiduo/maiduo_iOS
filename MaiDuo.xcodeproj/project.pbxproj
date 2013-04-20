@@ -22,6 +22,7 @@
 		90F342E317217C8E005BC944 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90F342E117217C8E005BC944 /* InfoPlist.strings */; };
 		90F342E617217C8E005BC944 /* MaiDuoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342E517217C8E005BC944 /* MaiDuoTests.m */; };
 		90F342F417217DD6005BC944 /* LatestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342F317217DD6005BC944 /* LatestViewController.m */; };
+		90F342F81721A706005BC944 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342F71721A706005BC944 /* AsyncImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		90F342E517217C8E005BC944 /* MaiDuoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaiDuoTests.m; sourceTree = "<group>"; };
 		90F342F217217DD6005BC944 /* LatestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatestViewController.h; sourceTree = "<group>"; };
 		90F342F317217DD6005BC944 /* LatestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatestViewController.m; sourceTree = "<group>"; };
+		90F342F61721A706005BC944 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
+		90F342F71721A706005BC944 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,7 @@
 		90F342AE17217C8E005BC944 = {
 			isa = PBXGroup;
 			children = (
+				90F342F51721A706005BC944 /* AsyncImageView */,
 				90F342C017217C8E005BC944 /* MaiDuo */,
 				90F342DE17217C8E005BC944 /* MaiDuoTests */,
 				90F342B917217C8E005BC944 /* Frameworks */,
@@ -117,9 +121,9 @@
 			children = (
 				90F342C917217C8E005BC944 /* AppDelegate.h */,
 				90F342CA17217C8E005BC944 /* AppDelegate.m */,
-				90F342C117217C8E005BC944 /* Supporting Files */,
 				90F342F217217DD6005BC944 /* LatestViewController.h */,
 				90F342F317217DD6005BC944 /* LatestViewController.m */,
+				90F342C117217C8E005BC944 /* Supporting Files */,
 			);
 			path = MaiDuo;
 			sourceTree = "<group>";
@@ -155,6 +159,16 @@
 				90F342E117217C8E005BC944 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		90F342F51721A706005BC944 /* AsyncImageView */ = {
+			isa = PBXGroup;
+			children = (
+				90F342F61721A706005BC944 /* AsyncImageView.h */,
+				90F342F71721A706005BC944 /* AsyncImageView.m */,
+			);
+			name = AsyncImageView;
+			path = MaiDuo/AsyncImageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +283,7 @@
 				90F342C717217C8E005BC944 /* main.m in Sources */,
 				90F342CB17217C8E005BC944 /* AppDelegate.m in Sources */,
 				90F342F417217DD6005BC944 /* LatestViewController.m in Sources */,
+				90F342F81721A706005BC944 /* AsyncImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +458,7 @@
 				90F342EB17217C8E005BC944 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		90F342EC17217C8E005BC944 /* Build configuration list for PBXNativeTarget "MaiDuoTests" */ = {
 			isa = XCConfigurationList;
@@ -451,6 +467,7 @@
 				90F342EE17217C8E005BC944 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -18,7 +18,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    latestView = [[LatestViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    latestView = [[LatestViewController alloc] initWithStyle:UITableViewStylePlain];
     navigation = [[UINavigationController alloc] initWithRootViewController:latestView];
 
     [self.window addSubview:[navigation view]];
