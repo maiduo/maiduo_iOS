@@ -22,6 +22,9 @@
 @synthesize contacts;
 @synthesize data;
 
+@synthesize compose;
+@synthesize add;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -57,13 +60,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    UIBarButtonItem* btnAddActivity;
-    btnAddActivity = [[UIBarButtonItem alloc]
-                      initWithTitle:@"新增活动"
-                      style:UIBarButtonItemStyleBordered
-                      target:self
-                      action:@selector(addActivity)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
     
     UISegmentedControl* segment = [[UISegmentedControl alloc]
                                    initWithItems:@[@"活动", @"消息", @"通讯录"]];
@@ -72,11 +69,42 @@
     viewState = ACTIVITY;
     
     [segment addTarget:self
-                action:@selector(segmentedChanged:forEvent:)
+             action:@selector(segmentedChanged:forEvent:)
              forControlEvents:UIControlEventValueChanged];
 
     self.navigationItem.titleView = segment;
-    self.navigationItem.rightBarButtonItem = btnAddActivity;
+    self.navigationItem.rightBarButtonItem = [self createButton];
+}
+
+- (UIBarButtonItem *)createButton
+{
+    switch (viewState) {
+    case ACTIVITY:
+        if (nil == compose) {
+            self.compose = [[UIBarButtonItem alloc]
+                       initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                       target:self
+                       action:@selector(back)];
+        }
+        return self.compose;
+    case CONTACT:
+        if (nil == add) {
+            self.add = [[UIBarButtonItem alloc]
+                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                   target:self
+                   action:@selector(back)];
+        }
+        return self.add;
+    default:
+        break;
+    }
+    
+    return nil;
+}
+
+- (void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)addActivity
@@ -86,7 +114,12 @@
 - (void)segmentedChanged:(id)sender forEvent:(UIEvent *)event
 {
     UISegmentedControl* segmented = (UISegmentedControl *)sender;
-    viewState = segmented.selectedSegmentIndex;
+//    NSLog(@"Segmented selected %d", segmented.selectedSegmentIndex);
+//    NSLog(@"ACTIVITY %d", ACTIVITY);
+//    NSLog(@"MESSAGE %d", MESSAGE);
+//    NSLog(@"CONTACT %d", CONTACT);
+    self.viewState = segmented.selectedSegmentIndex;
+    self.navigationItem.rightBarButtonItem = [self createButton];
 }
 
 - (void)didReceiveMemoryWarning

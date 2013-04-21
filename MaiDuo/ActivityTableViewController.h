@@ -27,10 +27,16 @@ typedef enum viewState {
     NSArray* data;
     
     NSInteger viewState;
+    
+    UIBarButtonItem* compose;
+    UIBarButtonItem* add;
 }
 @property (assign, nonatomic) NSInteger viewState;
 @property (strong, nonatomic) NSMutableArray* activities;
 @property (strong, nonatomic) NSMutableArray* messages;
 @property (strong, nonatomic) NSMutableArray* contacts;
 @property (strong, nonatomic) NSArray* data;
+
+@property (strong, nonatomic) UIBarButtonItem* compose;
+@property (strong, nonatomic) UIBarButtonItem* add;
 @end
