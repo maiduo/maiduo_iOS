@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		90BBC8FC1722AFE800674C2C /* ActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BBC8FB1722AFE800674C2C /* ActivityTableViewController.m */; };
 		90BBC9081722E16F00674C2C /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BBC9071722E16E00674C2C /* Message.m */; };
+		90E1F4E017242ED2009A578C /* InviteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1F4DF17242ED2009A578C /* InviteTableViewController.m */; };
+		90E1F4E217242FF1009A578C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E1F4E117242FF1009A578C /* AddressBook.framework */; };
 		90F342BB17217C8E005BC944 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
 		90F342BD17217C8E005BC944 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BC17217C8E005BC944 /* Foundation.framework */; };
 		90F342BF17217C8E005BC944 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BE17217C8E005BC944 /* CoreGraphics.framework */; };
@@ -42,6 +44,9 @@
 		90BBC8FB1722AFE800674C2C /* ActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewController.m; sourceTree = "<group>"; };
 		90BBC9061722E16E00674C2C /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		90BBC9071722E16E00674C2C /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		90E1F4DE17242ED2009A578C /* InviteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteTableViewController.h; sourceTree = "<group>"; };
+		90E1F4DF17242ED2009A578C /* InviteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteTableViewController.m; sourceTree = "<group>"; };
+		90E1F4E117242FF1009A578C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		90F342B717217C8E005BC944 /* MaiDuo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaiDuo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F342BA17217C8E005BC944 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		90F342BC17217C8E005BC944 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -72,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90E1F4E217242FF1009A578C /* AddressBook.framework in Frameworks */,
 				90F342BB17217C8E005BC944 /* UIKit.framework in Frameworks */,
 				90F342BD17217C8E005BC944 /* Foundation.framework in Frameworks */,
 				90F342BF17217C8E005BC944 /* CoreGraphics.framework in Frameworks */,
@@ -114,6 +120,7 @@
 		90F342B917217C8E005BC944 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90E1F4E117242FF1009A578C /* AddressBook.framework */,
 				90F342BA17217C8E005BC944 /* UIKit.framework */,
 				90F342BC17217C8E005BC944 /* Foundation.framework */,
 				90F342BE17217C8E005BC944 /* CoreGraphics.framework */,
@@ -133,6 +140,8 @@
 				90F342F317217DD6005BC944 /* LatestViewController.m */,
 				90BBC8FA1722AFE800674C2C /* ActivityTableViewController.h */,
 				90BBC8FB1722AFE800674C2C /* ActivityTableViewController.m */,
+				90E1F4DE17242ED2009A578C /* InviteTableViewController.h */,
+				90E1F4DF17242ED2009A578C /* InviteTableViewController.m */,
 				90F342C117217C8E005BC944 /* Supporting Files */,
 			);
 			path = MaiDuo;
@@ -296,6 +305,7 @@
 				90F342F81721A706005BC944 /* AsyncImageView.m in Sources */,
 				90BBC8FC1722AFE800674C2C /* ActivityTableViewController.m in Sources */,
 				90BBC9081722E16F00674C2C /* Message.m in Sources */,
+				90E1F4E017242ED2009A578C /* InviteTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

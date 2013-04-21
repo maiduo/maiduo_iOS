@@ -7,6 +7,7 @@
 //
 
 #import "ActivityTableViewController.h"
+#import "InviteTableViewController.h"
 #import "AsyncImageView/AsyncImageView.h"
 #import "Message.h"
 
@@ -60,7 +61,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                                             initWithTitle:@"返回"
+                                             style:UIBarButtonItemStylePlain
+                                             target:self
+                                             action:@selector(back)];
     
     UISegmentedControl* segment = [[UISegmentedControl alloc]
                                    initWithItems:@[@"活动", @"消息", @"通讯录"]];
@@ -92,7 +97,7 @@
             self.add = [[UIBarButtonItem alloc]
                    initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                    target:self
-                   action:@selector(back)];
+                   action:@selector(invite)];
         }
         return self.add;
     default:
@@ -105,6 +110,16 @@
 - (void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)invite
+{
+    UITableViewController* inviteViewController;
+    inviteViewController = [[InviteTableViewController alloc]
+                            initWithStyle: UITableViewStylePlain];
+    
+    [self.navigationController pushViewController:
+     inviteViewController animated:YES];
 }
 
 - (void)addActivity
