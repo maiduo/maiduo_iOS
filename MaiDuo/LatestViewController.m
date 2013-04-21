@@ -120,11 +120,10 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
     
     static NSString* image_url;
-    image_url = @"http://oss.aliyuncs.com/bukaopu/maoduo/%@.jpg";
+    image_url = @"http://192.168.4.106:8000/%@.jpg";
     imageView.imageURL = [NSURL URLWithString:
                           [NSString stringWithFormat:image_url, uid]];
     
-    NSLog(@"%f", cell.detailTextLabel.frame.origin.y);
     return cell;
 }
 
@@ -183,10 +182,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SkeletonViewController* skeleton = [[SkeletonViewController alloc] init];
-    skeleton.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
+    ActivityTableViewController* activityViewController;
+    activityViewController = [[ActivityTableViewController alloc] init];
+    activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
                                      self.view.frame.size.height);
-    [self.navigationController pushViewController:skeleton animated:YES];
+    [self.navigationController pushViewController:activityViewController animated:YES];
 }
 
 @end

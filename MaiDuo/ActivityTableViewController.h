@@ -12,13 +12,15 @@
 #define VIEW_STATE_MESSAGE  1
 #define VIEW_STATE_CONTACT  2
 
+#define CELL_IMAGE_VIEW 100
+
 typedef enum viewState {
     ACTIVITY,
     MESSAGE,
     CONTACT
     } ViewState;
 
-@interface SkeletonViewController : UITableViewController {
+@interface ActivityTableViewController : UITableViewController {
     NSMutableArray* activities;
     NSMutableArray* messages;
     NSMutableArray* contacts;
@@ -26,5 +28,9 @@ typedef enum viewState {
     
     NSInteger viewState;
 }
-
+@property (assign, nonatomic) NSInteger viewState;
+@property (strong, nonatomic) NSMutableArray* activities;
+@property (strong, nonatomic) NSMutableArray* messages;
+@property (strong, nonatomic) NSMutableArray* contacts;
+@property (strong, nonatomic) NSArray* data;
 @end

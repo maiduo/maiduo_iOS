@@ -7,12 +7,20 @@
 //
 
 #import "ActivityTableViewController.h"
+#import "AsyncImageView/AsyncImageView.h"
+#import "Message.h"
 
-@interface SkeletonViewController ()
+@interface ActivityTableViewController ()
 
 @end
 
-@implementation SkeletonViewController
+@implementation ActivityTableViewController
+
+@synthesize viewState;
+@synthesize activities;
+@synthesize messages;
+@synthesize contacts;
+@synthesize data;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -22,11 +30,25 @@
     return self;
 }
 
-- (id)initWithActivity:(NSMutableArray *)activity
+- (id)init
 {
     self = [super init];
     if (self) {
-        activity = [NSMutableArray array]
+        self.activities = [NSMutableArray arrayWithObjects:
+                           [[Message alloc]
+                            initWithBody:@""
+                            messageForId:5
+                            messageForType:VideoMessage],
+                           [[Message alloc]
+                            initWithBody:@""
+                            messageForId:6
+                            messageForType:ImageMessage],
+                           [[Message alloc]
+                            initWithBody:@"牙疼。。。"
+                            messageForId:7
+                            messageForType:TextMessage],nil];
+        
+        self.data = [NSArray arrayWithObjects: activities, nil];
     }
     
     return self;
@@ -76,24 +98,172 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView
+numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    NSMutableArray* list = (NSMutableArray *)[self.data objectAtIndex:self.viewState];
+    return [list count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSMutableArray* list = (NSMutableArray *)[data objectAtIndex:self.viewState];
+    Message* msg = (Message *)[list objectAtIndex:[indexPath row]];
+    return [self createCell:msg
+            tableView:tableView
+            cellForRowAtIndexPath:indexPath];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableArray* list = (NSMutableArray *)[data objectAtIndex:self.viewState];
+    Message* msg = (Message *)[list objectAtIndex:[indexPath row]];
+    NSInteger height;
+    switch(viewState) {
+        case ACTIVITY:
+            switch (msg.type) {
+                case ImageMessage:
+                    height = 300.0f;
+                    break;
+                case VideoMessage:
+                    height = 169.0f;
+                    break;
+                case TextMessage:
+                    height = 70.0f;
+                    break;
+                default:
+                    break;
+            }
+            break;
+    }
+    return height + 20.0f;
+}
+
+- (UITableViewCell *)createCell:(Message *)message
+tableView:(UITableView *)tableView
+cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell* cell;
+    switch (message.type) {
+        case TextMessage:
+            cell = [self createCellWithText:message tableView: tableView
+                    cellForRowAtIndexPath:indexPath];
+            break;
+        case ImageMessage:
+            cell = [self createCellWithImage:message tableView: tableView
+                    cellForRowAtIndexPath:indexPath];
+            break;
+        case VideoMessage:
+            cell = [self createCellWithVideo:message tableView: tableView
+                    cellForRowAtIndexPath:indexPath];
+            break;
+        default:
+            break;
+    }
     
-    // Configure the cell...
+    return cell;
+}
+
+- (UITableViewCell *)createCellWithVideo:(Message *)message
+tableView:(UITableView *)tableView
+cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = [NSString stringWithFormat:@"%ld",
+                                (long)[indexPath row]];
+    UITableViewCell *cell = [tableView
+                             dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    AsyncImageView* imageView;    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]
+                initWithStyle: UITableViewCellStyleSubtitle
+                reuseIdentifier: CellIdentifier];
+        
+        cell.indentationWidth = 10;
+        cell.indentationLevel = 1;
+
+        
+        imageView = [[AsyncImageView alloc]
+                     initWithFrame: CGRectMake(10.0f, 10.0f, 300.0f, 169.0f)];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+        imageView.tag = CELL_IMAGE_VIEW;
+        
+        [cell addSubview: imageView];
+    }
+    
+    imageView = (AsyncImageView *)[cell viewWithTag: CELL_IMAGE_VIEW];
+    [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
+    
+    static NSString* image_url;
+    image_url = @"http://192.168.4.106:8000/%d.png";
+    imageView.imageURL = [NSURL URLWithString:
+                          [NSString stringWithFormat:image_url,
+                           message.messageId]];
+    
+    return cell;
+}
+
+- (UITableViewCell *)createCellWithImage:(Message *)message
+tableView:(UITableView *)tableView
+cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = [NSString stringWithFormat:@"%ld",
+                                (long)[indexPath row]];
+    UITableViewCell *cell = [tableView
+                             dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    AsyncImageView* imageView;
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]
+                initWithStyle: UITableViewCellStyleSubtitle
+                reuseIdentifier: CellIdentifier];
+        cell.indentationWidth = 10;
+        cell.indentationLevel = 1;
+        imageView = [[AsyncImageView alloc]
+                     initWithFrame: CGRectMake(10.0f, 10.0f, 300.0f, 300.0f)];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+        imageView.tag = CELL_IMAGE_VIEW;
+        
+        [cell addSubview: imageView];
+    }
+    
+    imageView = (AsyncImageView *)[cell viewWithTag: CELL_IMAGE_VIEW];
+    [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
+    
+    static NSString* image_url;
+    image_url = @"http://192.168.4.106:8000/%d.png";
+    imageView.imageURL = [NSURL URLWithString:
+                          [NSString stringWithFormat:image_url,
+                           message.messageId]];
+    
+    return cell;
+}
+
+- (UITableViewCell *)createCellWithText:(Message *)message
+tableView:(UITableView *)tableView
+cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = [NSString stringWithFormat:@"%ld",
+                                (long)[indexPath row]];
+    UITableViewCell *cell = [tableView
+                             dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]
+                initWithStyle: UITableViewCellStyleSubtitle
+                reuseIdentifier: CellIdentifier];
+        cell.indentationWidth = 10;
+        cell.indentationLevel = 1;
+
+        cell.textLabel.text = message.body;
+    }
     
     return cell;
 }
