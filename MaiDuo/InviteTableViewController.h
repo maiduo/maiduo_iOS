@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InviteTableViewController : UITableViewController
+@interface InviteTableViewController : UITableViewController {
+    NSMutableArray* group;
+    NSArray* letters;
+}
+
+@property (nonatomic, strong) NSArray* addresses;
 
 @end

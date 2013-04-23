@@ -6,17 +6,16 @@
 //  Copyright (c) 2013年 魏琮举. All rights reserved.
 //
 
-#import "Message.h"
+#import "MDMessage.h"
 
-@implementation Message
+@implementation MDMessage
 @synthesize body;
 @synthesize type;
 @synthesize messageId;
 
-- (id) initWithBody:
-(NSString *)_body
-messageForId:(NSInteger)_messageId
-messageForType:(MessageType)_type
+- (id) initWithBody:(NSString *)_body
+       messageForId:(NSInteger)_messageId
+     messageForType:(MessageType)_type
 {
     self = [self init];
     if (self) {

@@ -9,7 +9,7 @@
 #import "ActivityTableViewController.h"
 #import "InviteTableViewController.h"
 #import "AsyncImageView/AsyncImageView.h"
-#import "Message.h"
+#import "MDMessage.h"
 
 @interface ActivityTableViewController ()
 
@@ -39,15 +39,15 @@
     self = [super init];
     if (self) {
         self.activities = [NSMutableArray arrayWithObjects:
-                           [[Message alloc]
+                           [[MDMessage alloc]
                             initWithBody:@""
                             messageForId:5
                             messageForType:VideoMessage],
-                           [[Message alloc]
+                           [[MDMessage alloc]
                             initWithBody:@""
                             messageForId:6
                             messageForType:ImageMessage],
-                           [[Message alloc]
+                           [[MDMessage alloc]
                             initWithBody:@"牙疼。。。"
                             messageForId:7
                             messageForType:TextMessage],nil];
@@ -160,7 +160,7 @@ numberOfRowsInSection:(NSInteger)section
 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableArray* list = (NSMutableArray *)[data objectAtIndex:self.viewState];
-    Message* msg = (Message *)[list objectAtIndex:[indexPath row]];
+    MDMessage* msg = (MDMessage *)[list objectAtIndex:[indexPath row]];
     return [self createCell:msg
             tableView:tableView
             cellForRowAtIndexPath:indexPath];
@@ -170,7 +170,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
 heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableArray* list = (NSMutableArray *)[data objectAtIndex:self.viewState];
-    Message* msg = (Message *)[list objectAtIndex:[indexPath row]];
+    MDMessage* msg = (MDMessage *)[list objectAtIndex:[indexPath row]];
     NSInteger height;
     switch(viewState) {
         case ACTIVITY:
@@ -192,7 +192,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     return height + 20.0f;
 }
 
-- (UITableViewCell *)createCell:(Message *)message
+- (UITableViewCell *)createCell:(MDMessage *)message
 tableView:(UITableView *)tableView
 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -217,7 +217,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
     return cell;
 }
 
-- (UITableViewCell *)createCellWithVideo:(Message *)message
+- (UITableViewCell *)createCellWithVideo:(MDMessage *)message
 tableView:(UITableView *)tableView
 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -257,7 +257,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
     return cell;
 }
 
-- (UITableViewCell *)createCellWithImage:(Message *)message
+- (UITableViewCell *)createCellWithImage:(MDMessage *)message
 tableView:(UITableView *)tableView
 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -294,7 +294,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
     return cell;
 }
 
-- (UITableViewCell *)createCellWithText:(Message *)message
+- (UITableViewCell *)createCellWithText:(MDMessage *)message
 tableView:(UITableView *)tableView
 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

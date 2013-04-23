@@ -8,18 +8,26 @@
 
 #import "AppDelegate.h"
 #import "LatestViewController.h"
+#import "InviteTableViewController.h"
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc]
+                   initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    latestView = [[LatestViewController alloc] initWithStyle:UITableViewStylePlain];
-    navigation = [[UINavigationController alloc] initWithRootViewController:latestView];
+    latestView = [[LatestViewController alloc]
+                  initWithStyle:UITableViewStylePlain];
+    
+    InviteTableViewController* inviteViewController;
+    inviteViewController = [[InviteTableViewController alloc]
+                            initWithStyle:UITableViewStylePlain];
+    navigation = [[UINavigationController alloc]
+                  initWithRootViewController:inviteViewController];
 
     [self.window addSubview:[navigation view]];
     return YES;

@@ -14,7 +14,7 @@ enum {
     TextMessage
 } typedef MessageType;
 
-@interface Message : NSObject {
+@interface MDMessage : NSObject {
     
 }
 
@@ -22,8 +22,7 @@ enum {
 @property(nonatomic, strong) NSString* body;
 @property(nonatomic, assign) MessageType type;
 
-- (id) initWithBody:
-(NSString *)_body
-messageForId:(NSInteger)_messageId
+- (id) initWithBody:(NSString *)_body
+       messageForId:(NSInteger)_messageId
      messageForType:(MessageType)_type;
 @end

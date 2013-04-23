@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		90BBC8FC1722AFE800674C2C /* ActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BBC8FB1722AFE800674C2C /* ActivityTableViewController.m */; };
-		90BBC9081722E16F00674C2C /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BBC9071722E16E00674C2C /* Message.m */; };
+		90BBC9081722E16F00674C2C /* MDMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BBC9071722E16E00674C2C /* MDMessage.m */; };
 		90E1F4E017242ED2009A578C /* InviteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1F4DF17242ED2009A578C /* InviteTableViewController.m */; };
 		90E1F4E217242FF1009A578C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E1F4E117242FF1009A578C /* AddressBook.framework */; };
+		90E1F4E517243EF7009A578C /* MDContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1F4E417243EF7009A578C /* MDContact.m */; };
+		90EF5CB517257DF000AFE074 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 90EF5CB017257DF000AFE074 /* pinyin.c */; };
 		90F342BB17217C8E005BC944 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
 		90F342BD17217C8E005BC944 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BC17217C8E005BC944 /* Foundation.framework */; };
 		90F342BF17217C8E005BC944 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BE17217C8E005BC944 /* CoreGraphics.framework */; };
@@ -42,11 +44,15 @@
 /* Begin PBXFileReference section */
 		90BBC8FA1722AFE800674C2C /* ActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTableViewController.h; sourceTree = "<group>"; };
 		90BBC8FB1722AFE800674C2C /* ActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewController.m; sourceTree = "<group>"; };
-		90BBC9061722E16E00674C2C /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		90BBC9071722E16E00674C2C /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		90BBC9061722E16E00674C2C /* MDMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMessage.h; sourceTree = "<group>"; };
+		90BBC9071722E16E00674C2C /* MDMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMessage.m; sourceTree = "<group>"; };
 		90E1F4DE17242ED2009A578C /* InviteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteTableViewController.h; sourceTree = "<group>"; };
 		90E1F4DF17242ED2009A578C /* InviteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteTableViewController.m; sourceTree = "<group>"; };
 		90E1F4E117242FF1009A578C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		90E1F4E317243EF7009A578C /* MDContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDContact.h; sourceTree = "<group>"; };
+		90E1F4E417243EF7009A578C /* MDContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDContact.m; sourceTree = "<group>"; };
+		90EF5CB017257DF000AFE074 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
+		90EF5CB117257DF000AFE074 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		90F342B717217C8E005BC944 /* MaiDuo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaiDuo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F342BA17217C8E005BC944 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		90F342BC17217C8E005BC944 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -97,6 +103,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90EF5CA917257DC500AFE074 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				90EF5CB017257DF000AFE074 /* pinyin.c */,
+				90EF5CB117257DF000AFE074 /* pinyin.h */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		90F342AE17217C8E005BC944 = {
 			isa = PBXGroup;
 			children = (
@@ -132,8 +147,11 @@
 		90F342C017217C8E005BC944 /* MaiDuo */ = {
 			isa = PBXGroup;
 			children = (
-				90BBC9061722E16E00674C2C /* Message.h */,
-				90BBC9071722E16E00674C2C /* Message.m */,
+				90EF5CA917257DC500AFE074 /* Data */,
+				90BBC9061722E16E00674C2C /* MDMessage.h */,
+				90BBC9071722E16E00674C2C /* MDMessage.m */,
+				90E1F4E317243EF7009A578C /* MDContact.h */,
+				90E1F4E417243EF7009A578C /* MDContact.m */,
 				90F342C917217C8E005BC944 /* AppDelegate.h */,
 				90F342CA17217C8E005BC944 /* AppDelegate.m */,
 				90F342F217217DD6005BC944 /* LatestViewController.h */,
@@ -304,8 +322,10 @@
 				90F342F417217DD6005BC944 /* LatestViewController.m in Sources */,
 				90F342F81721A706005BC944 /* AsyncImageView.m in Sources */,
 				90BBC8FC1722AFE800674C2C /* ActivityTableViewController.m in Sources */,
-				90BBC9081722E16F00674C2C /* Message.m in Sources */,
+				90BBC9081722E16F00674C2C /* MDMessage.m in Sources */,
 				90E1F4E017242ED2009A578C /* InviteTableViewController.m in Sources */,
+				90E1F4E517243EF7009A578C /* MDContact.m in Sources */,
+				90EF5CB517257DF000AFE074 /* pinyin.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +392,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -397,7 +417,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -411,6 +431,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -422,6 +443,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
