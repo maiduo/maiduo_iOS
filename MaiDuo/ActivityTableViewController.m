@@ -23,6 +23,7 @@
 @synthesize contacts;
 @synthesize data;
 
+@synthesize segmented;
 @synthesize compose;
 @synthesize add;
 
@@ -53,9 +54,51 @@
                             messageForType:TextMessage],nil];
         
         self.data = [NSArray arrayWithObjects: activities, nil];
+        
+        segmented = [[UISegmentedControl alloc]
+                     initWithItems:@[@"消息", @"聊天", @"通讯录"]];
+        segmented.segmentedControlStyle = UISegmentedControlSegmentCenter;
+        segmented.selectedSegmentIndex = 0;
+        [segmented addTarget:self
+                      action:@selector(segmentedChanged:forEvent:)
+            forControlEvents:UIControlEventValueChanged];
     }
     
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSArray *toolbarItems = [NSArray
+                             arrayWithObjects:segmented, nil];
+    UIBarButtonItem *flexibleLeft, *flexibleRight;
+    flexibleLeft = [[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                    target:nil
+                    action:nil];
+    flexibleRight = [[UIBarButtonItem alloc]
+                     initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                     target:nil
+                     action:nil];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:segmented];
+    [self setToolbarItems:@[flexibleLeft, item, flexibleRight] animated:YES];
+//    [self.navigationController setToolbarItems:toolbarItems animated:YES];
+//    [self.navigationController setToolbarHidden:NO animated:NO];
+    self.navigationController.toolbarHidden = NO;
+//    self.navigationController.toolbar.tag = 111;
+//    self.toolbarItems = [NSArray arrayWithObjects:segmented, nil];
+//    self.navigationController.toolbarItems = [NSArray
+//                                              arrayWithObjects:segmented, nil];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    self.navigationController.toolbarHidden = YES;
 }
 
 - (void)viewDidLoad
@@ -66,19 +109,10 @@
                                              style:UIBarButtonItemStylePlain
                                              target:self
                                              action:@selector(back)];
-    
-    UISegmentedControl* segment = [[UISegmentedControl alloc]
-                                   initWithItems:@[@"活动", @"消息", @"通讯录"]];
-    segment.segmentedControlStyle = UISegmentedControlSegmentCenter;
-    segment.selectedSegmentIndex = 0;
     viewState = ACTIVITY;
-    
-    [segment addTarget:self
-             action:@selector(segmentedChanged:forEvent:)
-             forControlEvents:UIControlEventValueChanged];
-
-    self.navigationItem.titleView = segment;
     self.navigationItem.rightBarButtonItem = [self createButton];
+    self.navigationItem.title = @"各位请主意，聚会改为晚上8点。";
+    NSLog(@"frame height %f", self.navigationController.navigationBar.frame.size.height);
 }
 
 - (UIBarButtonItem *)createButton
@@ -128,7 +162,6 @@
 
 - (void)segmentedChanged:(id)sender forEvent:(UIEvent *)event
 {
-    UISegmentedControl* segmented = (UISegmentedControl *)sender;
 //    NSLog(@"Segmented selected %d", segmented.selectedSegmentIndex);
 //    NSLog(@"ACTIVITY %d", ACTIVITY);
 //    NSLog(@"MESSAGE %d", MESSAGE);
@@ -249,7 +282,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
     
     static NSString* image_url;
-    image_url = @"http://192.168.4.106:8000/%d.png";
+    image_url = @"http://oss.aliyuncs.com/maiduo/%d.jpg";
     imageView.imageURL = [NSURL URLWithString:
                           [NSString stringWithFormat:image_url,
                            message.messageId]];

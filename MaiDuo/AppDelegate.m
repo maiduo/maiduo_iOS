@@ -27,7 +27,15 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     inviteViewController = [[InviteTableViewController alloc]
                             initWithStyle:UITableViewStylePlain];
     navigation = [[UINavigationController alloc]
-                  initWithRootViewController:inviteViewController];
+                  initWithRootViewController:latestView];
+    
+    UISegmentedControl *segmented = [[UISegmentedControl alloc]
+                 initWithItems:@[@"消息", @"聊天", @"通讯录"]];
+    segmented.segmentedControlStyle = UISegmentedControlSegmentCenter;
+    segmented.selectedSegmentIndex = 0;
+    
+//        [self.window setToolbarItems:@[segmented] animated:YES];
+//    navigation.toolbarHidden = NO;
 
     [self.window addSubview:[navigation view]];
     return YES;

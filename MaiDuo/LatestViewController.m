@@ -120,7 +120,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
     
     static NSString* image_url;
-    image_url = @"http://192.168.4.103:8000/%@.jpg";
+    image_url = @"http://oss.aliyuncs.com/maiduo/%@.jpg";
     imageView.imageURL = [NSURL URLWithString:
                           [NSString stringWithFormat:image_url, uid]];
     

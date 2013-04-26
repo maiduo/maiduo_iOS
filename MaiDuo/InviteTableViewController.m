@@ -70,6 +70,7 @@
     }
     
     CFArrayRef peoples = ABAddressBookCopyArrayOfAllPeople(addressBook);
+    // peoples等于空，被拒绝访问通讯录
     NSInteger numberOfPeople = CFArrayGetCount(peoples);
     NSInteger i = 0;
     MDContact* contact;
@@ -109,7 +110,7 @@
                    middleName:middleName
                    phones: nil];
         
-        NSLog(@"%c %@ %@ %@", first_letter, lastName, firstName, middleName);
+//        NSLog(@"%c %@ %@ %@", first_letter, lastName, firstName, middleName);
 //
 //
         if (65 > first_letter || 90 < first_letter)
@@ -123,12 +124,20 @@
 //            NSLog(@"%@", value);
         }
     }
+    
+    self.tableView.allowsMultipleSelection = YES;
+    [self.tableView setEditing:YES animated:YES];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void) didInvited
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (NSMutableArray *)valuesWithProperty:(ABPropertyID)property peopel:(ABRecordRef)people
@@ -172,6 +181,11 @@
 titleForHeaderInSection:(NSInteger)section
 {
     NSInteger character = section;
+//    NSLog(@"%d", [group count]);
+    NSArray* contacts = (NSArray *)[group objectAtIndex:section];
+    if (0 == [contacts count]) {
+        return nil;
+    }
 //    NSLog(@"%d", section);
     if (25 < section) {
         character = -30;
@@ -205,14 +219,18 @@ titleForHeaderInSection:(NSInteger)section
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)tableView:(UITableView *)tableView
+canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete|UITableViewCellEditingStyleInsert;
+}
+
 
 /*
 // Override to support editing the table view.

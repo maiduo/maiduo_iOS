@@ -28,6 +28,7 @@ typedef enum viewState {
     
     NSInteger viewState;
     
+    UISegmentedControl* segmented;
     UIBarButtonItem* compose;
     UIBarButtonItem* add;
 }
@@ -37,6 +38,7 @@ typedef enum viewState {
 @property (strong, nonatomic) NSMutableArray* contacts;
 @property (strong, nonatomic) NSArray* data;
 
+@property (strong, nonatomic) UISegmentedControl* segmented;
 @property (strong, nonatomic) UIBarButtonItem* compose;
 @property (strong, nonatomic) UIBarButtonItem* add;
 @end
