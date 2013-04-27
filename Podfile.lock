@@ -1,0 +1,13 @@
+PODS:
+  - RHAddressBook (1.0.2)
+  - TITokenField (0.9.0)
+
+DEPENDENCIES:
+  - RHAddressBook
+  - TITokenField
+
+SPEC CHECKSUMS:
+  RHAddressBook: 64f78a4058e0a7849275c970bf19fe195edf94d0
+  TITokenField: 867c0ede174519726ed58456ab337328d12e9c1b
+
+COCOAPODS: 0.18.1
