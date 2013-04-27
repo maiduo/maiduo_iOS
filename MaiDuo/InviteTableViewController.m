@@ -12,9 +12,6 @@
 #import "pinyin.h"
 #import "ctype.h"
 
-// TODO 仅仅做了一个样子，还需要完成对通讯录的上传和其他处理，把查询的代码逻辑转移到专门到
-// MDContact做一个充血的领域模型
-
 @interface InviteTableViewController ()
 @end
 @implementation InviteTableViewController
@@ -29,10 +26,22 @@
                     action:@selector(didInvited)];
     self.navigationItem.rightBarButtonItem = buttonInvite;
     self.navigationItem.title = @"邀请好友";
-    self.navigationItem.backBarButtonItem.title = @"返回";
+    
+    UIBarButtonItem *back;
+    back = [[UIBarButtonItem alloc]
+            initWithTitle:@"返回"
+            style:UIBarButtonItemStyleBordered
+            target:self
+            action:@selector(didBack)];
+    self.navigationItem.leftBarButtonItem = back;
     
     self.tableView.allowsMultipleSelection = YES;
     [self.tableView setEditing:YES animated:YES];
+}
+
+-(void) didBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) didInvited
