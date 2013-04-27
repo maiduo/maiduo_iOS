@@ -12,6 +12,7 @@
 		90153977172BDC2300DBB64B /* Yaab.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153971172BDC2300DBB64B /* Yaab.m */; };
 		90153978172BDC2300DBB64B /* YaabUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* YaabUser.m */; };
 		90153979172BDC2300DBB64B /* YContactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153975172BDC2300DBB64B /* YContactTableViewController.m */; };
+		909CB398172BFA7F008B7B5A /* YMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CB397172BFA7E008B7B5A /* YMessageViewController.m */; };
 		90BBC8FC1722AFE800674C2C /* ActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BBC8FB1722AFE800674C2C /* ActivityTableViewController.m */; };
 		90BBC9081722E16F00674C2C /* MDMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BBC9071722E16E00674C2C /* MDMessage.m */; };
 		90E1F4E017242ED2009A578C /* InviteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1F4DF17242ED2009A578C /* InviteTableViewController.m */; };
@@ -58,6 +59,8 @@
 		90153973172BDC2300DBB64B /* YaabUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaabUser.m; sourceTree = "<group>"; };
 		90153974172BDC2300DBB64B /* YContactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YContactTableViewController.h; sourceTree = "<group>"; };
 		90153975172BDC2300DBB64B /* YContactTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YContactTableViewController.m; sourceTree = "<group>"; };
+		909CB396172BFA7E008B7B5A /* YMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMessageViewController.h; sourceTree = "<group>"; };
+		909CB397172BFA7E008B7B5A /* YMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMessageViewController.m; sourceTree = "<group>"; };
 		90BBC8FA1722AFE800674C2C /* ActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTableViewController.h; sourceTree = "<group>"; };
 		90BBC8FB1722AFE800674C2C /* ActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewController.m; sourceTree = "<group>"; };
 		90BBC9061722E16E00674C2C /* MDMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMessage.h; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 				90153973172BDC2300DBB64B /* YaabUser.m */,
 				90153974172BDC2300DBB64B /* YContactTableViewController.h */,
 				90153975172BDC2300DBB64B /* YContactTableViewController.m */,
+				909CB396172BFA7E008B7B5A /* YMessageViewController.h */,
+				909CB397172BFA7E008B7B5A /* YMessageViewController.m */,
 			);
 			name = Yaab;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 				90153977172BDC2300DBB64B /* Yaab.m in Sources */,
 				90153978172BDC2300DBB64B /* YaabUser.m in Sources */,
 				90153979172BDC2300DBB64B /* YContactTableViewController.m in Sources */,
+				909CB398172BFA7F008B7B5A /* YMessageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

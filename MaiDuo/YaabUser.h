@@ -14,7 +14,8 @@
 }
 
 @property (nonatomic, strong) NSMutableArray *group;
-
+@property (nonatomic, strong) NSMutableArray *names;
+@property (nonatomic, strong) NSMutableArray *description;
 +(YaabUser *)default;
 
 @end

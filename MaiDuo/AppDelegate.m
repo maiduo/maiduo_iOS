@@ -24,19 +24,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
                   initWithStyle:UITableViewStylePlain];
     
     InviteTableViewController* inviteViewController;
-    inviteViewController = [[InviteTableViewController alloc]
-                            initWithStyle:UITableViewStylePlain];
+    inviteViewController = [[InviteTableViewController alloc] init];
     navigation = [[UINavigationController alloc]
-                  initWithRootViewController:latestView];
-    
-    UISegmentedControl *segmented = [[UISegmentedControl alloc]
-                 initWithItems:@[@"消息", @"聊天", @"通讯录"]];
-    segmented.segmentedControlStyle = UISegmentedControlSegmentCenter;
-    segmented.selectedSegmentIndex = 0;
-    
-//        [self.window setToolbarItems:@[segmented] animated:YES];
-//    navigation.toolbarHidden = NO;
-
+                  initWithRootViewController:inviteViewController];
     [self.window addSubview:[navigation view]];
     return YES;
 }
