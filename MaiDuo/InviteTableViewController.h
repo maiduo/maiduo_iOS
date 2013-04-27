@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YContactTableViewController.h"
 
-@interface InviteTableViewController : UITableViewController {
-    NSMutableArray* group;
-    NSArray* letters;
+@interface InviteTableViewController : YContactTableViewController {
 }
-
-@property (nonatomic, strong) NSArray* addresses;
-
 @end

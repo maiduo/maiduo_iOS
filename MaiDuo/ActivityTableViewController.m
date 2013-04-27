@@ -149,8 +149,7 @@
 - (void)invite
 {
     UITableViewController* inviteViewController;
-    inviteViewController = [[InviteTableViewController alloc]
-                            initWithStyle: UITableViewStylePlain];
+    inviteViewController = [[InviteTableViewController alloc] init];
     
     [self.navigationController pushViewController:
      inviteViewController animated:YES];
