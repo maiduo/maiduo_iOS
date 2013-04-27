@@ -163,9 +163,9 @@
 				90BBC8FB1722AFE800674C2C /* ActivityTableViewController.m */,
 				90E1F4DE17242ED2009A578C /* InviteTableViewController.h */,
 				90E1F4DF17242ED2009A578C /* InviteTableViewController.m */,
-				90F342C117217C8E005BC944 /* Supporting Files */,
 				90EF5B80172A49F30032F736 /* SendMessageTableViewController.h */,
 				90EF5B81172A49F30032F736 /* SendMessageTableViewController.m */,
+				90F342C117217C8E005BC944 /* Supporting Files */,
 			);
 			path = MaiDuo;
 			sourceTree = "<group>";
@@ -385,8 +385,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jing Jia (264A9Z65HZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jing Jia (264A9Z65HZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -420,8 +420,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jing Jia (264A9Z65HZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jing Jia (264A9Z65HZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
