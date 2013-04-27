@@ -66,11 +66,10 @@
         for (int j = 0, c = [phoneNumbers count]; j < c; j++) {
             [names addObject: [person getFullName]];
             [description addObject:[NSString stringWithFormat:@"%@:%@",
-                                    [phoneNumbers labelAtIndex: j],
+                                    [self formatLabel:[phoneNumbers
+                                                       labelAtIndex:j]],
                                     [phoneNumbers valueAtIndex: j]]];
             
-            NSLog(@"['%@', '%@'", [self formatLabel: [phoneNumbers labelAtIndex:j]], [phoneNumbers valueAtIndex:j]);
-            NSLog(@"%@", [description objectAtIndex:j]);
         }
     }
     return _group;
