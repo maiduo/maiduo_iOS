@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <TITokenField/TITokenField.h>
+#import <YaabUser.h>
 
 @interface YMessageViewController : UIViewController <TITokenFieldDelegate, UITextViewDelegate> {
-TITokenFieldView * tokenFieldView;
-UITextView * messageView;
+    
+    TITokenFieldView * tokenFieldView;
+    UITextView * messageView;
+    YaabUser *user;
 
 CGFloat keyboardHeight;
 }

@@ -8,7 +8,7 @@
 
 #import "LatestViewController.h"
 #import "ActivityTableViewController.h"
-#import "SendMessageTableViewController.h"
+#import "SendMessageViewController.h"
 #import "AsyncImageView/AsyncImageView.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -59,9 +59,8 @@
 
 - (void)addActivity
 {
-    SendMessageTableViewController *sendMessage;
-    sendMessage = [[SendMessageTableViewController alloc]
-                   initWithStyle:UITableViewStylePlain];
+    SendMessageViewController *sendMessage;
+    sendMessage = [[SendMessageViewController alloc] initWithMode:ACTIVITY_MODE];
     [self.navigationController pushViewController:sendMessage animated:YES];
 }
 

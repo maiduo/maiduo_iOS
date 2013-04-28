@@ -66,8 +66,7 @@
         for (int j = 0, c = [phoneNumbers count]; j < c; j++) {
             [names addObject: [person getFullName]];
             [description addObject:[NSString stringWithFormat:@"%@:%@",
-                                    [self formatLabel:[phoneNumbers
-                                                       labelAtIndex:j]],
+                                    [phoneNumbers localizedLabelAtIndex:j],
                                     [phoneNumbers valueAtIndex: j]]];
             
         }

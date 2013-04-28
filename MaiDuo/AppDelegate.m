@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LatestViewController.h"
 #import "InviteTableViewController.h"
+#import "SendMessageViewController.h"
 
 @implementation AppDelegate
 
@@ -25,8 +26,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     
     InviteTableViewController* inviteViewController;
     inviteViewController = [[InviteTableViewController alloc] init];
+    
+    SendMessageViewController *sendMessageController;
+    sendMessageController = [[SendMessageViewController alloc] initWithMode: ACTIVITY_MODE];
+    
     navigation = [[UINavigationController alloc]
-                  initWithRootViewController:inviteViewController];
+                  initWithRootViewController:sendMessageController];
     [self.window addSubview:[navigation view]];
     return YES;
 }

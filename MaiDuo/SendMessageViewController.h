@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <YMessageViewController.h>
 
 typedef enum {
     ACTIVITY_MODE,
     MESSAGE_MODE
 } SendMode;
 
-@interface SendMessageTableViewController : UITableViewController {
+@interface SendMessageViewController : YMessageViewController {
     SendMode sendMode;
 }
 
