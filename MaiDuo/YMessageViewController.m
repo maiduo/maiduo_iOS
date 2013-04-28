@@ -93,15 +93,13 @@
 	CGRect kbRect = [[[notification userInfo]
                         objectForKey:UIKeyboardFrameEndUserInfoKey]
                        CGRectValue];
-//	keyboardHeight = keyboardRect.size.height > keyboardRect.size.width ? keyboardRect.size.width : keyboardRect.size.height;
     keyboardHeight = kbRect.size.height;
     
-//    NSLog(@"Keyboard height:%f", keyboardHeight);
-//    NSLog(@"Application height:%f", [[UIScreen mainScreen] applicationFrame].size.height);
 	[self resizeViews];
 }
 
-- (void)keyboardWillHide:(NSNotification *)notification {
+- (void)keyboardWillHide:(NSNotification *)notification
+{
 	keyboardHeight = 0;
 	[self resizeViews];
 }
@@ -117,27 +115,19 @@
     CGFloat messageViewHeight = applicationHeight - keyboardHeight -
                                 toolbarHeight + statusBarHeight;
     
-    CGFloat tokenFieldHeight = tokenFieldView.tokenField.bounds.size.height;
-    int tabBarOffset = self.tabBarController == nil ?  0 : self.tabBarController.tabBar.frame.size.height;
-    CGFloat navigationBarHeight = 0.0f;
-    if (! self.navigationController.navigationBarHidden)
-        navigationBarHeight = self.navigationController.navigationBar.bounds.size.height;
+    int tabBarOffset = self.tabBarController == nil ? 0 :
+                       self.tabBarController.tabBar.frame.size.height;
     
-    CGFloat contentHeight = applicationHeight - navigationBarHeight
-    - toolbarHeight - tokenFieldHeight - keyboardHeight;
     [toolbar setFrame:CGRectMake(0.0f, messageViewHeight, toolbarWidth,
                                  toolbarHeight)];
     
-    [tokenFieldView setFrame:((CGRect){tokenFieldView.frame.origin, {self.view.bounds.size.width, self.view.bounds.size.height + tabBarOffset - keyboardHeight}})];
+    [tokenFieldView setFrame:((CGRect){
+        tokenFieldView.frame.origin,
+        {
+            self.view.bounds.size.width,
+            self.view.bounds.size.height + tabBarOffset - keyboardHeight
+        }})];
 	[messageView setFrame:tokenFieldView.contentView.bounds];
-    
-    NSLog(@"Token field content view height:%f", messageView.frame.size.height);
-    NSLog(@"YMessage view height:%f", self.view.bounds.size.height);
-    NSLog(@"Navigation bar height:%f", navigationBarHeight);
-    NSLog(@"Token field height:%f", tokenFieldHeight);
-    NSLog(@"Token field content height:%f", tokenFieldView.contentView.bounds.size.height);
-    NSLog(@"Token view height:%f", tokenFieldView.bounds.size.height);
-    NSLog(@"Message view height:%f", messageView.bounds.size.height);
 }
 
 - (BOOL)tokenField:(TITokenField *)tokenField willRemoveToken:(TIToken *)token {
