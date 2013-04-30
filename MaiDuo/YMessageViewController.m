@@ -7,6 +7,7 @@
 //
 
 #import "YMessageViewController.h"
+#import "YMessageContactViewController.h"
 
 @interface YMessageViewController ()
 @end
@@ -46,7 +47,7 @@
 	[messageView setAutoresizingMask:UIViewAutoresizingNone];
 	[messageView setDelegate:self];
 	[messageView setFont:[UIFont systemFontOfSize:15]];
-	[messageView setText:@"\n\n\n\n\n\n\n\n活动的第一条消息"];
+	[messageView setText:@"活动的第一条消息"];
 	[tokenFieldView.contentView addSubview:messageView];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -77,15 +78,18 @@
 	// Show some kind of contacts picker in here.
 	// For now, here's how to add and customize tokens.
 	
-	NSArray * names = user.names;
-	
-	TIToken * token = [tokenFieldView.tokenField addTokenWithTitle:[names objectAtIndex:(arc4random() % names.count)]];
-	[token setAccessoryType:TITokenAccessoryTypeDisclosureIndicator];
-	// If the size of the token might change, it's a good idea to layout again.
-	[tokenFieldView.tokenField layoutTokensAnimated:YES];
-	
-	NSUInteger tokenCount = tokenFieldView.tokenField.tokens.count;
-	[token setTintColor:((tokenCount % 3) == 0 ? [TIToken redTintColor] : ((tokenCount % 2) == 0 ? [TIToken greenTintColor] : [TIToken blueTintColor]))];
+    YMessageContactViewController *contact;
+    contact = [[YMessageContactViewController alloc] init];
+    [self.navigationController pushViewController:contact animated:YES];
+//	NSArray * names = user.names;
+//	
+//	TIToken * token = [tokenFieldView.tokenField addTokenWithTitle:[names objectAtIndex:(arc4random() % names.count)]];
+//	[token setAccessoryType:TITokenAccessoryTypeDisclosureIndicator];
+//	// If the size of the token might change, it's a good idea to layout again.
+//	[tokenFieldView.tokenField layoutTokensAnimated:YES];
+//	
+//	NSUInteger tokenCount = tokenFieldView.tokenField.tokens.count;
+//	[token setTintColor:((tokenCount % 3) == 0 ? [TIToken redTintColor] : ((tokenCount % 2) == 0 ? [TIToken greenTintColor] : [TIToken blueTintColor]))];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
