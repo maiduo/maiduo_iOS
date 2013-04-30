@@ -14,12 +14,18 @@
 @synthesize group;
 @synthesize names;
 @synthesize description;
+@synthesize deviceToken=_deviceToken;
 
 -(id)init
 {
     self = [super init];
     if (self) {
         RHAddressBook *ab = [[RHAddressBook alloc] init];
+        [[NSUserDefaults standardUserDefaults]
+         registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
+                           @"deviceToken", @"0", nil]];
+        
+        nsUser = [NSUserDefaults standardUserDefaults];
         
         //if not yet authorized, force an auth.
         if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusNotDetermined){
@@ -74,36 +80,6 @@
     return _group;
 }
 
--(NSString *)formatLabel:(NSString *)label
-{
-    if ([label isEqualToString:@"_$!<Anniversary>!$_"]) return @"anniversary";
-    if ([label isEqualToString:@"_$!<Assistant>!$_"]) return @"assistant";
-    if ([label isEqualToString:@"_$!<AssistantPhone>!$_"]) return @"assistant";
-    if ([label isEqualToString:@"_$!<Brother>!$_"]) return @"brother";
-    if ([label isEqualToString:@"_$!<Car>!$_"]) return @"car";
-    if ([label isEqualToString:@"_$!<Child>!$_"]) return @"child";
-    if ([label isEqualToString:@"_$!<CompanyMain>!$_"]) return @"company main";
-    if ([label isEqualToString:@"_$!<Father>!$_"]) return @"father";
-    if ([label isEqualToString:@"_$!<Friend>!$_"]) return @"friend";
-    if ([label isEqualToString:@"_$!<Home>!$_"]) return @"家";
-    if ([label isEqualToString:@"_$!<HomeFAX>!$_"]) return @"home fax";
-    if ([label isEqualToString:@"_$!<HomePage>!$_"]) return @"home page";
-    if ([label isEqualToString:@"_$!<Main>!$_"]) return @"主要";
-    if ([label isEqualToString:@"_$!<Manager>!$_"]) return @"manager";
-    if ([label isEqualToString:@"_$!<Mobile>!$_"]) return @"移动电话";
-    if ([label isEqualToString:@"_$!<Mother>!$_"]) return @"mother";
-    if ([label isEqualToString:@"_$!<Other>!$_"]) return @"other";
-    if ([label isEqualToString:@"_$!<Pager>!$_"]) return @"pager";
-    if ([label isEqualToString:@"_$!<Parent>!$_"]) return @"parent";
-    if ([label isEqualToString:@"_$!<Partner>!$_"]) return @"partner";
-    if ([label isEqualToString:@"_$!<Radio>!$_"]) return @"radio";
-    if ([label isEqualToString:@"_$!<Sister>!$_"]) return @"sister";
-    if ([label isEqualToString:@"_$!<Spouse>!$_"]) return @"spouse";
-    if ([label isEqualToString:@"_$!<Work>!$_"]) return @"work";
-    if ([label isEqualToString:@"_$!<WorkFAX>!$_"]) return @"work fax";
-    return label;
-}
-
 -(int)indexOfGroupWithPerson:(RHPerson *)person
 {
     int firstLetter;
@@ -118,6 +94,23 @@
     
     
     return firstLetter - 65;
+}
+
+-(void)setDeviceToken:(NSString *)deviceToken
+{
+    _deviceToken = deviceToken;
+    [nsUser setObject:deviceToken forKey:@"deviceToken"];
+}
+
+-(NSString *)getDeviceTokenWithData:(NSData *)nsdataToken
+{
+    NSString* token = [nsdataToken description];
+	token = [token stringByTrimmingCharactersInSet:
+                [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+	token = [token stringByReplacingOccurrencesOfString:@" "
+                                                   withString:@""];
+    
+    return token;
 }
 
 +(YaabUser *)default

@@ -39,13 +39,51 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
      (UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|
       UIRemoteNotificationTypeSound)];
     
+    user = [[YaabUser alloc] init];
     return YES;
 }
 
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
+    NSString *token = [user getDeviceTokenWithData:deviceToken];
     
+    if ([token isEqualToString:[user deviceToken]])
+        return;
+    
+    NSString *registerTokenURL;
+    registerTokenURL = @"http://192.168.3.201:8000/aps/device/";
+    
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          token, @"token", @"1", @"service", nil];
+    
+    AFHTTPClient *client = [[AFHTTPClient alloc]
+                                    initWithBaseURL:[NSURL URLWithString:@"http://192.168.3.108:8000/aps/"]];
+    NSMutableURLRequest *request = [client requestWithMethod:@"POST" path:@"device/" parameters:data];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"%@", [JSON objectForKey:@"token"]);
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"%@", error);
+    }];
+    [operation start];
+    
+//    [[AFHTTPClient alloc] postPath:registerTokenURL parameters:data success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"requested");
+//        NSError *error;
+//        NSDictionary *JSON = [NSJSONSerialization
+//                              JSONObjectWithData:operation.responseData
+//                              options:NSJSONReadingMutableContainers
+//                              error:&error];
+//        NSLog(@"%@", [JSON objectForKey:@"token"]);
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//    }];
+}
+
+- (void)application:(UIApplication *)application
+didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"注册失败，无法获取设备ID, 具体错误: %@", error);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -11,11 +11,17 @@
 
 @interface YaabUser : NSObject
 {
+    NSUserDefaults *nsUser;
 }
 
 @property (nonatomic, strong) NSMutableArray *group;
 @property (nonatomic, strong) NSMutableArray *names;
 @property (nonatomic, strong) NSMutableArray *description;
+@property (nonatomic, strong) NSString *deviceToken;
+
+-(void)setDeviceToken:(NSString *)deviceToken;
+-(NSString *)getDeviceTokenWithData:(NSData *)nsdataToken;
+
 +(YaabUser *)default;
 
 @end
