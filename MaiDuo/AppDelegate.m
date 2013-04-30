@@ -28,12 +28,24 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     inviteViewController = [[InviteTableViewController alloc] init];
     
     SendMessageViewController *sendMessageController;
-    sendMessageController = [[SendMessageViewController alloc] initWithMode: ACTIVITY_MODE];
+    sendMessageController = [[SendMessageViewController alloc]
+                             initWithMode:ACTIVITY_MODE];
     
     navigation = [[UINavigationController alloc]
-                  initWithRootViewController:sendMessageController];
+                  initWithRootViewController:latestView];
     [self.window addSubview:[navigation view]];
+    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|
+      UIRemoteNotificationTypeSound)];
+    
     return YES;
+}
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
