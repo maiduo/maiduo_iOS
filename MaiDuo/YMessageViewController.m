@@ -25,7 +25,8 @@
 - (void)viewDidLoad {
 	[self.view setBackgroundColor:[UIColor whiteColor]];
 	[self.navigationItem setTitle:@"新活动"];
-
+    user = [YaabUser default];
+    msg = [[YMessage alloc] init];
 	
 	tokenFieldView = [[TITokenFieldView alloc] initWithFrame:self.view.bounds];
 	[tokenFieldView setSourceArray:user.names];
@@ -78,9 +79,12 @@
 	// Show some kind of contacts picker in here.
 	// For now, here's how to add and customize tokens.
 	
-    YMessageContactViewController *contact;
-    contact = [[YMessageContactViewController alloc] init];
-    [self.navigationController pushViewController:contact animated:YES];
+    ABPeoplePickerNavigationController *picker;
+    picker = [[ABPeoplePickerNavigationController alloc] init];
+    picker.addressBook = user.addressBookRef;
+    picker.peoplePickerDelegate = self;
+    [self presentViewController:picker animated:YES completion:nil];
+    
 //	NSArray * names = user.names;
 //	
 //	TIToken * token = [tokenFieldView.tokenField addTokenWithTitle:[names objectAtIndex:(arc4random() % names.count)]];
@@ -194,5 +198,40 @@
 {
     [super viewWillDisappear:animated];
     self.navigationController.toolbarHidden = YES;
+}
+
+#pragma mark - ABPeoplePickerNavigationController Delegate -
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+      shouldContinueAfterSelectingPerson:(ABRecordRef)person
+                                property:(ABPropertyID)property
+                              identifier:(ABMultiValueIdentifier)identifier
+{
+    RHPerson *aPerson = [user.addressbook personForABRecordRef: person];
+    YSelectedContact *contact = [[YSelectedContact alloc]
+                                 initWithPerson:aPerson
+                                 property:property
+                                 identifier:identifier];
+    [msg addContact:contact];
+    [tokenFieldView.tokenField addTokenWithTitle: [aPerson getFullName]];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    return NO;
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+      shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+    RHPerson *rh_person = [user.addressbook personForABRecordRef:person];
+    // rh_person = [user.addressbook personForABRecordID: record_id];
+    BOOL hasManyPhoneNumber = [rh_person.phoneNumbers count] > 1;
+    if (hasManyPhoneNumber) {
+        return YES;
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return NO;
+    }
 }
 @end

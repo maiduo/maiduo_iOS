@@ -9,12 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <TITokenField/TITokenField.h>
 #import <YaabUser.h>
+#import <AddressBookUI/AddressBookUI.h>
+#import <YMessage.h>
+#import <YSelectedContact.h>
 
-@interface YMessageViewController : UIViewController <TITokenFieldDelegate, UITextViewDelegate> {
+@interface YMessageViewController : UIViewController <TITokenFieldDelegate, UITextViewDelegate, ABPeoplePickerNavigationControllerDelegate> {
     
     TITokenFieldView * tokenFieldView;
     UITextView * messageView;
     YaabUser *user;
+    YMessage *msg;
 
 CGFloat keyboardHeight;
 }

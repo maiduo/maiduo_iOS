@@ -15,12 +15,14 @@
 @synthesize names;
 @synthesize description;
 @synthesize deviceToken=_deviceToken;
+@synthesize addressbook;
+@synthesize addressBookRef;
 
 -(id)init
 {
     self = [super init];
     if (self) {
-        RHAddressBook *ab = [[RHAddressBook alloc] init];
+        self.addressbook = [[RHAddressBook alloc] init];
         [[NSUserDefaults standardUserDefaults]
          registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
                            @"deviceToken", @"0", nil]];
@@ -29,11 +31,12 @@
         
         //if not yet authorized, force an auth.
         if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusNotDetermined){
-            [ab requestAuthorizationWithCompletion:^(bool granted, NSError *error) {
-                group = [self groupingWithPeople:[ab peopleOrderedByLastName]];
+            [addressbook requestAuthorizationWithCompletion:^(bool granted, NSError *error) {
+                [self setup];
             }];
+        } else {
+            [self setup];
         }
-        
         // warn re being denied access to contacts
         if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusDenied){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"RHAuthorizationStatusDenied" message:@"Access to the addressbook is currently denied." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -45,9 +48,16 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"RHAuthorizationStatusRestricted" message:@"Access to the addressbook is currently restricted." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
-        group = [self groupingWithPeople:[ab peopleOrderedByLastName]];
     }
     return self;
+}
+
+-(void) setup
+{
+    group = [self groupingWithPeople:[addressbook peopleOrderedByLastName]];
+    [self.addressbook performAddressBookAction:^(ABAddressBookRef _addressBookRef) {
+        self.addressBookRef = _addressBookRef;
+    } waitUntilDone:YES];
 }
 
 -(NSMutableArray *)groupingWithPeople:(NSArray *)people
