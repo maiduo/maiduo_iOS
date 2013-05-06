@@ -14,12 +14,7 @@
     NSUserDefaults *nsUser;
 }
 
-@property (nonatomic, strong) RHAddressBook *addressbook;
-@property (nonatomic, strong) NSMutableArray *group;
-@property (nonatomic, strong) NSMutableArray *names;
-@property (nonatomic, strong) NSMutableArray *description;
 @property (nonatomic, strong) NSString *deviceToken;
-@property (nonatomic, assign) ABAddressBookRef addressBookRef;
 
 -(void)setDeviceToken:(NSString *)deviceToken;
 -(NSString *)getDeviceTokenWithData:(NSData *)nsdataToken;

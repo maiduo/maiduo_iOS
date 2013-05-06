@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 魏琮举. All rights reserved.
 //
 
-#import "YSelectedContact.h"
+#import "YPlainContact.h"
 
-@implementation YSelectedContact
+@implementation YPlainContact
 @synthesize person;
 @synthesize property;
 @synthesize identifier;

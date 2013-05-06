@@ -21,7 +21,7 @@
     return self;
 }
 
--(void)addContact:(YSelectedContact *)contact
+-(void)addContact:(YPlainContact *)contact
 {
     [contacts addObject: contact];
 }

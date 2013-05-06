@@ -11,7 +11,7 @@
 #import <YaabUser.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import <YMessage.h>
-#import <YSelectedContact.h>
+#import <YPlainContact.h>
 
 @interface YMessageViewController : UIViewController <TITokenFieldDelegate, UITextViewDelegate, ABPeoplePickerNavigationControllerDelegate> {
     
@@ -19,7 +19,9 @@
     UITextView * messageView;
     YaabUser *user;
     YMessage *msg;
-
-CGFloat keyboardHeight;
+    RHAddressBook *addressBook;
+    ABAddressBookRef addressBookRef;
+    NSMutableArray *names;
+    CGFloat keyboardHeight;
 }
 @end

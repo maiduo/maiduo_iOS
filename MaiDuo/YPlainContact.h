@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <RHAddressBook/AddressBook.h>
 
-@interface YSelectedContact : NSObject
+@interface YPlainContact : NSObject
 @property (nonatomic,strong) RHPerson *person;
 @property (nonatomic,assign) ABPropertyID property;
 @property (nonatomic,assign) ABMultiValueIdentifier identifier;

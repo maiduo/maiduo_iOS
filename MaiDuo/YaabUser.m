@@ -11,99 +11,21 @@
 #import "RHPerson+RHPersonCategory.h"
 
 @implementation YaabUser
-@synthesize group;
-@synthesize names;
-@synthesize description;
 @synthesize deviceToken=_deviceToken;
-@synthesize addressbook;
-@synthesize addressBookRef;
 
 -(id)init
 {
     self = [super init];
     if (self) {
-        self.addressbook = [[RHAddressBook alloc] init];
         [[NSUserDefaults standardUserDefaults]
          registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
                            @"deviceToken", @"0", nil]];
         
         nsUser = [NSUserDefaults standardUserDefaults];
         
-        //if not yet authorized, force an auth.
-        if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusNotDetermined){
-            [addressbook requestAuthorizationWithCompletion:^(bool granted, NSError *error) {
-                [self setup];
-            }];
-        } else {
-            [self setup];
-        }
-        // warn re being denied access to contacts
-        if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusDenied){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"RHAuthorizationStatusDenied" message:@"Access to the addressbook is currently denied." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
-        
-        // warn re restricted access to contacts
-        if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusRestricted){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"RHAuthorizationStatusRestricted" message:@"Access to the addressbook is currently restricted." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
+
     }
     return self;
-}
-
--(void) setup
-{
-    group = [self groupingWithPeople:[addressbook peopleOrderedByLastName]];
-    [self.addressbook performAddressBookAction:^(ABAddressBookRef _addressBookRef) {
-        self.addressBookRef = _addressBookRef;
-    } waitUntilDone:YES];
-}
-
--(NSMutableArray *)groupingWithPeople:(NSArray *)people
-{    
-    NSMutableArray *_group = [NSMutableArray arrayWithCapacity:27];
-    for (int i = 0; i < 27; i++) {
-        _group[i] = [NSMutableArray array];
-    }
-    int count = [people count];
-    NSMutableArray *_people;
-    int index;
-    names = [NSMutableArray array];
-    description = [NSMutableArray array];
-    
-    for (int i = 0; i < count; i++) {
-        RHPerson *person = (RHPerson *)[people objectAtIndex: i];
-        index = [self indexOfGroupWithPerson:person];
-        _people = (NSMutableArray *)[_group objectAtIndex:index];
-        [_people addObject: person];
-        
-        RHMultiStringValue *phoneNumbers = [person phoneNumbers];
-        for (int j = 0, c = [phoneNumbers count]; j < c; j++) {
-            [names addObject: [person getFullName]];
-            [description addObject:[NSString stringWithFormat:@"%@:%@",
-                                    [phoneNumbers localizedLabelAtIndex:j],
-                                    [phoneNumbers valueAtIndex: j]]];
-            
-        }
-    }
-    return _group;
-}
-
--(int)indexOfGroupWithPerson:(RHPerson *)person
-{
-    int firstLetter;
-    NSString *name = [person getFullName];
-    if (0 == name.length)
-        firstLetter = 35;
-    else
-        firstLetter = toupper(pinyinFirstLetter([name characterAtIndex:0]));
-    
-    if (65 > firstLetter || 90 < firstLetter)
-        firstLetter = 91;
-    
-    
-    return firstLetter - 65;
 }
 
 -(void)setDeviceToken:(NSString *)deviceToken

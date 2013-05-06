@@ -17,19 +17,32 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)loadView
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super loadView];
+    [super viewWillAppear:animated];
+    UIBarButtonItem *camera;
+    camera = [[UIBarButtonItem alloc]
+              initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
+              target:nil
+              action:nil];
+    [self setToolbarItems:@[camera] animated:YES];
+    self.navigationController.toolbarHidden = NO;
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.toolbarHidden = YES;
 }
 
 - (void)viewDidLoad {
+    [self setupAddressBook];
 	[self.view setBackgroundColor:[UIColor whiteColor]];
 	[self.navigationItem setTitle:@"新活动"];
     user = [YaabUser default];
     msg = [[YMessage alloc] init];
 	
 	tokenFieldView = [[TITokenFieldView alloc] initWithFrame:self.view.bounds];
-	[tokenFieldView setSourceArray:user.names];
+	[tokenFieldView setSourceArray:names];
 	[self.view addSubview:tokenFieldView];
 	
 	[tokenFieldView.tokenField setDelegate:self];
@@ -55,11 +68,66 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
     if (version >= 5.0) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillShow:)
+                                                     name:UIKeyboardWillChangeFrameNotification
+                                                   object:nil];
     }
-	// You can call this on either the view on the field.
-	// They both do the same thing.
 	[tokenFieldView becomeFirstResponder];
+}
+
+- (void)setupAddressBook
+{
+    addressBook = [[RHAddressBook alloc] init];
+    //if not yet authorized, force an auth.
+    if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusNotDetermined){
+        [addressBook requestAuthorizationWithCompletion:^(bool granted, NSError *error) {
+            [self setupPeople];
+        }];
+    } else {
+        [self setupPeople];
+    }
+    // warn re being denied access to contacts
+    if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusDenied){
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"RHAuthorizationStatusDenied"
+                              message:@"Access to the addressbook is currently denied."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    // warn re restricted access to contacts
+    if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusRestricted){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"RHAuthorizationStatusRestricted" message:@"Access to the addressbook is currently restricted." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void)setupPeople
+{
+    NSArray *people = [addressBook peopleOrderedByLastName];
+    [addressBook performAddressBookAction:^(ABAddressBookRef _addressBookRef) {
+        addressBookRef = _addressBookRef;
+    } waitUntilDone:YES];
+    
+    int count = [people count];
+    names = [NSMutableArray array];
+    
+    for (int i = 0; i < count; i++) {
+        RHPerson *person = (RHPerson *)[people objectAtIndex: i];
+        
+        RHMultiStringValue *phoneNumbers = [person phoneNumbers];
+        for (int j = 0, c = [phoneNumbers count]; j < c; j++) {
+            YPlainContact *contact;
+            contact = [[YPlainContact alloc] initWithPerson:person
+                                                   property:kABPersonPhoneProperty
+                                                 identifier:i];
+            [names addObject: contact];
+        }
+    }
+    NSLog(@"Names length: %d", names.count);
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -81,19 +149,9 @@
 	
     ABPeoplePickerNavigationController *picker;
     picker = [[ABPeoplePickerNavigationController alloc] init];
-    picker.addressBook = user.addressBookRef;
+    picker.addressBook = addressBookRef;
     picker.peoplePickerDelegate = self;
     [self presentViewController:picker animated:YES completion:nil];
-    
-//	NSArray * names = user.names;
-//	
-//	TIToken * token = [tokenFieldView.tokenField addTokenWithTitle:[names objectAtIndex:(arc4random() % names.count)]];
-//	[token setAccessoryType:TITokenAccessoryTypeDisclosureIndicator];
-//	// If the size of the token might change, it's a good idea to layout again.
-//	[tokenFieldView.tokenField layoutTokensAnimated:YES];
-//	
-//	NSUInteger tokenCount = tokenFieldView.tokenField.tokens.count;
-//	[token setTintColor:((tokenCount % 3) == 0 ? [TIToken redTintColor] : ((tokenCount % 2) == 0 ? [TIToken greenTintColor] : [TIToken blueTintColor]))];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -178,31 +236,40 @@
 	[tokenFieldView updateContentSize];
 }
 
+# pragma mark - TITokenField Delegate methods -
+
 - (NSString *)tokenField:(TITokenField *)tokenField searchResultSubtitleForRepresentedObject:(id)object
 {
-    return @"移动电话： 13900000000";
+    YPlainContact *contact = (YPlainContact *)object;
+    RHPerson *person = contact.person;
+    NSString *label, *value;
+    if ( kABPersonPhoneProperty == contact.property) {
+        label = [[person phoneNumbers]
+                           localizedLabelAtIndex:contact.identifier];
+        value = (NSString *)[[person phoneNumbers]
+                                             valueAtIndex:contact.identifier];
+    }
+    return [NSString stringWithFormat:@"%@ %@", label, value];
 }
 
--(void)viewWillAppear:(BOOL)animated
+- (NSString *)tokenField:(TITokenField *)tokenField
+displayStringForRepresentedObject:(id)object
 {
-    [super viewWillAppear:animated];
-    UIBarButtonItem *camera;
-    camera = [[UIBarButtonItem alloc]
-              initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
-              target:nil
-              action:nil];
-    [self setToolbarItems:@[camera] animated:YES];
-    self.navigationController.toolbarHidden = NO;
+    YPlainContact *contact = (YPlainContact *)object;
+    return [contact.person getFullName];
 }
--(void)viewWillDisappear:(BOOL)animated
+
+- (NSString *)tokenField:(TITokenField *)tokenField
+searchResultStringForRepresentedObject:(id)object
 {
-    [super viewWillDisappear:animated];
-    self.navigationController.toolbarHidden = YES;
+    return [self tokenField:tokenField
+displayStringForRepresentedObject:object];
 }
 
 #pragma mark - ABPeoplePickerNavigationController Delegate -
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
 {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
@@ -210,11 +277,10 @@
                                 property:(ABPropertyID)property
                               identifier:(ABMultiValueIdentifier)identifier
 {
-    RHPerson *aPerson = [user.addressbook personForABRecordRef: person];
-    YSelectedContact *contact = [[YSelectedContact alloc]
-                                 initWithPerson:aPerson
-                                 property:property
-                                 identifier:identifier];
+    RHPerson *aPerson = [addressBook personForABRecordRef:person];
+    YPlainContact *contact = [[YPlainContact alloc] initWithPerson:aPerson
+                                                          property:property
+                                                        identifier:identifier];
     [msg addContact:contact];
     [tokenFieldView.tokenField addTokenWithTitle: [aPerson getFullName]];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -224,8 +290,7 @@
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
       shouldContinueAfterSelectingPerson:(ABRecordRef)person
 {
-    RHPerson *rh_person = [user.addressbook personForABRecordRef:person];
-    // rh_person = [user.addressbook personForABRecordID: record_id];
+    RHPerson *rh_person = [addressBook personForABRecordRef:person];
     BOOL hasManyPhoneNumber = [rh_person.phoneNumbers count] > 1;
     if (hasManyPhoneNumber) {
         return YES;

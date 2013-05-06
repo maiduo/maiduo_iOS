@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <YSelectedContact.h>
+#import <YPlainContact.h>
 
 @interface YMessage : NSObject
 @property (nonatomic, strong) NSString *body;
 @property (nonatomic, strong) NSMutableArray *contacts;
--(void)addContact:(YSelectedContact *)contact;
+-(void)addContact:(YPlainContact *)contact;
 @end
