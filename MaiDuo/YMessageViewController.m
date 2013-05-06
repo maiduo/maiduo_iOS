@@ -46,15 +46,24 @@
 	[self.view addSubview:tokenFieldView];
 	
 	[tokenFieldView.tokenField setDelegate:self];
-	[tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldFrameDidChange:) forControlEvents:TITokenFieldControlEventFrameDidChange];
-	[tokenFieldView.tokenField setTokenizingCharacters:[NSCharacterSet characterSetWithCharactersInString:@",;."]]; // Default is a comma
+	[tokenFieldView.tokenField addTarget:self
+                                  action:@selector(tokenFieldFrameDidChange:)
+                        forControlEvents:TITokenFieldControlEventFrameDidChange];
+	[tokenFieldView.tokenField setTokenizingCharacters:
+     [NSCharacterSet characterSetWithCharactersInString:@""]];
 	
 	UIButton * addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-	[addButton addTarget:self action:@selector(showContactsPicker:) forControlEvents:UIControlEventTouchUpInside];
+	[addButton addTarget:self
+                  action:@selector(showContactsPicker:)
+        forControlEvents:UIControlEventTouchUpInside];
 	[tokenFieldView.tokenField setRightView:addButton];
     
-	[tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldChangedEditing:) forControlEvents:UIControlEventEditingDidBegin];
-	[tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldChangedEditing:) forControlEvents:UIControlEventEditingDidEnd];
+	[tokenFieldView.tokenField addTarget:self
+                                  action:@selector(tokenFieldChangedEditing:)
+                        forControlEvents:UIControlEventEditingDidBegin];
+	[tokenFieldView.tokenField addTarget:self
+                                  action:@selector(tokenFieldChangedEditing:)
+                        forControlEvents:UIControlEventEditingDidEnd];
 	
 	messageView = [[UITextView alloc] initWithFrame:tokenFieldView.contentView.bounds];
 	[messageView setScrollEnabled:NO];
@@ -64,14 +73,21 @@
 	[messageView setText:@"活动的第一条消息"];
 	[tokenFieldView.contentView addSubview:messageView];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    id center = [NSNotificationCenter defaultCenter];
+	[center addObserver:self
+               selector:@selector(keyboardWillShow:)
+                   name:UIKeyboardWillShowNotification
+                 object:nil];
+	[center addObserver:self
+               selector:@selector(keyboardWillHide:)
+                   name:UIKeyboardWillHideNotification
+                 object:nil];
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
     if (version >= 5.0) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardWillShow:)
-                                                     name:UIKeyboardWillChangeFrameNotification
-                                                   object:nil];
+        [center addObserver:self
+                   selector:@selector(keyboardWillShow:)
+                       name:UIKeyboardWillChangeFrameNotification
+                     object:nil];
     }
 	[tokenFieldView becomeFirstResponder];
 }
@@ -123,7 +139,7 @@
             YPlainContact *contact;
             contact = [[YPlainContact alloc] initWithPerson:person
                                                    property:kABPersonPhoneProperty
-                                                 identifier:i];
+                                                 identifier:j];
             [names addObject: contact];
         }
     }
@@ -236,7 +252,48 @@
 	[tokenFieldView updateContentSize];
 }
 
+- (YPlainContact *)contactByPerson:(RHPerson *)person
+                        identifier:(int)identifier
+{
+    __block YPlainContact *contact;
+    [names enumerateObjectsUsingBlock:^(YPlainContact* _contact, NSUInteger idx,
+                                        BOOL *stop) {
+        if (_contact.identifier == identifier && _contact.person == person) {
+            contact = _contact;
+            *stop = YES;
+        }
+    }];
+    
+    return contact;
+}
+
+// FIXME 每次都会得到一个复制的副本
+- (BOOL)hasContact:(YPlainContact *)contact
+{
+    NSArray *copy = [[tokenFieldView tokenField] tokenObjects];
+    YPlainContact *_contact;
+    BOOL found = NO;
+    for (NSInteger i=0, size = [copy count]; i < size; i++) {
+        _contact = (YPlainContact *)[copy objectAtIndex:i];
+        if (_contact == contact) {
+            found = YES;
+        }
+    };
+    
+    return found;
+}
+
 # pragma mark - TITokenField Delegate methods -
+- (BOOL)tokenField:(TITokenField *)tokenField willAddToken:(TIToken *)token
+{
+    if (nil == token.representedObject)
+        return NO;
+    // FIXME 给TITokenField增加取消Tokenize的功能的开关
+    // 处理重复的联系人，暂时在上传数据时筛选。
+//    if ([self hasContact:token.representedObject])
+//        return NO;
+    return YES;
+}
 
 - (NSString *)tokenField:(TITokenField *)tokenField searchResultSubtitleForRepresentedObject:(id)object
 {
@@ -278,11 +335,13 @@ displayStringForRepresentedObject:object];
                               identifier:(ABMultiValueIdentifier)identifier
 {
     RHPerson *aPerson = [addressBook personForABRecordRef:person];
-    YPlainContact *contact = [[YPlainContact alloc] initWithPerson:aPerson
-                                                          property:property
-                                                        identifier:identifier];
+//    YPlainContact *contact = [[YPlainContact alloc] initWithPerson:aPerson
+//                                                          property:property
+//                                                        identifier:identifier];
+    YPlainContact *contact = [self contactByPerson:aPerson
+                                        identifier:identifier];
     [msg addContact:contact];
-    [tokenFieldView.tokenField addTokenWithTitle: [aPerson getFullName]];
+    [tokenFieldView.tokenField addTokenWithTitle:[aPerson getFullName] representedObject:contact];
     [self dismissViewControllerAnimated:YES completion:nil];
     return NO;
 }
