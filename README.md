@@ -4,14 +4,6 @@
 
 唯一的依赖`cocoapods`请安装。
 
-<del>TITokenField库官方默认版本0.9.0比较旧，但是又没有新版本的Tag，所以我的处理方式是fork了新的仓库来处理。
-
-```shell
-mkdir -p ~/.cocoapods/master/TITokenField/1.0/
-curl -o ~/.cocoapods/master/TITokenField/1.0/TITokenField.podspec https://gist.github.com/imcj/5530847/raw/812900d704236189c646745e8529b5096f866852/TITokenField.podspec
-```
-</del>
-
 ## 关于比赛
 
 从5月7日星期二开始一直到5月15日共计9天，用于开发完成参赛项目。
@@ -29,7 +21,8 @@ curl -o ~/.cocoapods/master/TITokenField/1.0/TITokenField.podspec https://gist.g
 
 排名无先后顺序
 
-魏琮举 TEL:18621068396 EMAIL:imcj@live.cn               QQ:15084690（夏天）         
+魏琮举 TEL:18621068396 EMAIL:imcj@live.cn               QQ:15084690（夏天）
+
 王开民 TEL:15874456669 EMAIL:benjamin90etw@gmail.com    QQ:397814372(未命名)
 
 袁巍 TEL:18680337681 EMAIL:yuanwei_hit@163.com    QQ:1025570002
