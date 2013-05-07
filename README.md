@@ -4,12 +4,13 @@
 
 唯一的依赖`cocoapods`请安装。
 
-TITokenField库官方默认版本0.9.0比较旧，但是又没有新版本的Tag，所以我的处理方式是fork了新的仓库来处理。
+<del>TITokenField库官方默认版本0.9.0比较旧，但是又没有新版本的Tag，所以我的处理方式是fork了新的仓库来处理。
 
 ```shell
 mkdir -p ~/.cocoapods/master/TITokenField/1.0/
 curl -o ~/.cocoapods/master/TITokenField/1.0/TITokenField.podspec https://gist.github.com/imcj/5530847/raw/812900d704236189c646745e8529b5096f866852/TITokenField.podspec
 ```
+</del>
 
 ## 关于比赛
 
