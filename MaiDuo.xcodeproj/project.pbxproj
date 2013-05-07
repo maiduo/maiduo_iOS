@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7EB9B2F3E69F4709B59DA87A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8189D765038C4B9FB2F1D493 /* libPods.a */; };
+		90153976172BDC2300DBB64B /* RHPerson+RHPersonCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9015396F172BDC2300DBB64B /* RHPerson+RHPersonCategory.m */; };
+		90153977172BDC2300DBB64B /* Yaab.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153971172BDC2300DBB64B /* Yaab.m */; };
+		90153978172BDC2300DBB64B /* YaabUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* YaabUser.m */; };
+		90153979172BDC2300DBB64B /* YContactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153975172BDC2300DBB64B /* YContactTableViewController.m */; };
+		905876E4172D45AD00690DC3 /* YMessageContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 905876E3172D45AD00690DC3 /* YMessageContactViewController.m */; };
+		906B96E21736A16100A7C20E /* YMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 906B96E11736A16100A7C20E /* YMessage.m */; };
+		906B96E51736A6D400A7C20E /* YPlainContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 906B96E41736A6D400A7C20E /* YPlainContact.m */; };
+		9083C48C1736897100E87B4A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9083C48B1736897100E87B4A /* AddressBookUI.framework */; };
+		909CB398172BFA7F008B7B5A /* YMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CB397172BFA7E008B7B5A /* YMessageViewController.m */; };
+		90BBC8FC1722AFE800674C2C /* ActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BBC8FB1722AFE800674C2C /* ActivityTableViewController.m */; };
+		90BBC9081722E16F00674C2C /* MDMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BBC9071722E16E00674C2C /* MDMessage.m */; };
+		90E1F4E017242ED2009A578C /* InviteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1F4DF17242ED2009A578C /* InviteTableViewController.m */; };
+		90E1F4E217242FF1009A578C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E1F4E117242FF1009A578C /* AddressBook.framework */; };
+		90E1F4E517243EF7009A578C /* MDContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1F4E417243EF7009A578C /* MDContact.m */; };
+		90EF5B82172A49F30032F736 /* SendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EF5B81172A49F30032F736 /* SendMessageViewController.m */; };
+		90EF5CB517257DF000AFE074 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 90EF5CB017257DF000AFE074 /* pinyin.c */; };
 		90F342BB17217C8E005BC944 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
 		90F342BD17217C8E005BC944 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BC17217C8E005BC944 /* Foundation.framework */; };
 		90F342BF17217C8E005BC944 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BE17217C8E005BC944 /* CoreGraphics.framework */; };
@@ -36,6 +53,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19CCBF954E574D39AED92D14 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		8189D765038C4B9FB2F1D493 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9015396E172BDC2300DBB64B /* RHPerson+RHPersonCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RHPerson+RHPersonCategory.h"; sourceTree = "<group>"; };
+		9015396F172BDC2300DBB64B /* RHPerson+RHPersonCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RHPerson+RHPersonCategory.m"; sourceTree = "<group>"; };
+		90153970172BDC2300DBB64B /* Yaab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Yaab.h; sourceTree = "<group>"; };
+		90153971172BDC2300DBB64B /* Yaab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Yaab.m; sourceTree = "<group>"; };
+		90153972172BDC2300DBB64B /* YaabUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaabUser.h; sourceTree = "<group>"; };
+		90153973172BDC2300DBB64B /* YaabUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaabUser.m; sourceTree = "<group>"; };
+		90153974172BDC2300DBB64B /* YContactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YContactTableViewController.h; sourceTree = "<group>"; };
+		90153975172BDC2300DBB64B /* YContactTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YContactTableViewController.m; sourceTree = "<group>"; };
+		905876E2172D45AD00690DC3 /* YMessageContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMessageContactViewController.h; sourceTree = "<group>"; };
+		905876E3172D45AD00690DC3 /* YMessageContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMessageContactViewController.m; sourceTree = "<group>"; };
+		906B96E01736A16100A7C20E /* YMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMessage.h; sourceTree = "<group>"; };
+		906B96E11736A16100A7C20E /* YMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMessage.m; sourceTree = "<group>"; };
+		906B96E31736A6D400A7C20E /* YPlainContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPlainContact.h; sourceTree = "<group>"; };
+		906B96E41736A6D400A7C20E /* YPlainContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPlainContact.m; sourceTree = "<group>"; };
+		9083C48B1736897100E87B4A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		909CB396172BFA7E008B7B5A /* YMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMessageViewController.h; sourceTree = "<group>"; };
+		909CB397172BFA7E008B7B5A /* YMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMessageViewController.m; sourceTree = "<group>"; };
+		90BBC8FA1722AFE800674C2C /* ActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTableViewController.h; sourceTree = "<group>"; };
+		90BBC8FB1722AFE800674C2C /* ActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewController.m; sourceTree = "<group>"; };
+		90BBC9061722E16E00674C2C /* MDMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMessage.h; sourceTree = "<group>"; };
+		90BBC9071722E16E00674C2C /* MDMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMessage.m; sourceTree = "<group>"; };
+		90E1F4DE17242ED2009A578C /* InviteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteTableViewController.h; sourceTree = "<group>"; };
+		90E1F4DF17242ED2009A578C /* InviteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteTableViewController.m; sourceTree = "<group>"; };
+		90E1F4E117242FF1009A578C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		90E1F4E317243EF7009A578C /* MDContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDContact.h; sourceTree = "<group>"; };
+		90E1F4E417243EF7009A578C /* MDContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDContact.m; sourceTree = "<group>"; };
+		90EF5B80172A49F30032F736 /* SendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMessageViewController.h; sourceTree = "<group>"; };
+		90EF5B81172A49F30032F736 /* SendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageViewController.m; sourceTree = "<group>"; };
+		90EF5CB017257DF000AFE074 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
+		90EF5CB117257DF000AFE074 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		90F342B717217C8E005BC944 /* MaiDuo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaiDuo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F342BA17217C8E005BC944 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		90F342BC17217C8E005BC944 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -66,9 +115,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9083C48C1736897100E87B4A /* AddressBookUI.framework in Frameworks */,
+				90E1F4E217242FF1009A578C /* AddressBook.framework in Frameworks */,
 				90F342BB17217C8E005BC944 /* UIKit.framework in Frameworks */,
 				90F342BD17217C8E005BC944 /* Foundation.framework in Frameworks */,
 				90F342BF17217C8E005BC944 /* CoreGraphics.framework in Frameworks */,
+				7EB9B2F3E69F4709B59DA87A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +137,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9015396D172BDC1600DBB64B /* Yaab */ = {
+			isa = PBXGroup;
+			children = (
+				9015396E172BDC2300DBB64B /* RHPerson+RHPersonCategory.h */,
+				9015396F172BDC2300DBB64B /* RHPerson+RHPersonCategory.m */,
+				90153970172BDC2300DBB64B /* Yaab.h */,
+				90153971172BDC2300DBB64B /* Yaab.m */,
+				90153972172BDC2300DBB64B /* YaabUser.h */,
+				90153973172BDC2300DBB64B /* YaabUser.m */,
+				90153974172BDC2300DBB64B /* YContactTableViewController.h */,
+				90153975172BDC2300DBB64B /* YContactTableViewController.m */,
+				909CB396172BFA7E008B7B5A /* YMessageViewController.h */,
+				909CB397172BFA7E008B7B5A /* YMessageViewController.m */,
+				905876E2172D45AD00690DC3 /* YMessageContactViewController.h */,
+				905876E3172D45AD00690DC3 /* YMessageContactViewController.m */,
+				906B96E01736A16100A7C20E /* YMessage.h */,
+				906B96E11736A16100A7C20E /* YMessage.m */,
+				906B96E31736A6D400A7C20E /* YPlainContact.h */,
+				906B96E41736A6D400A7C20E /* YPlainContact.m */,
+			);
+			name = Yaab;
+			sourceTree = "<group>";
+		};
+		90EF5CA917257DC500AFE074 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				90EF5CB017257DF000AFE074 /* pinyin.c */,
+				90EF5CB117257DF000AFE074 /* pinyin.h */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		90F342AE17217C8E005BC944 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +177,7 @@
 				90F342DE17217C8E005BC944 /* MaiDuoTests */,
 				90F342B917217C8E005BC944 /* Frameworks */,
 				90F342B817217C8E005BC944 /* Products */,
+				19CCBF954E574D39AED92D14 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,10 +193,13 @@
 		90F342B917217C8E005BC944 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9083C48B1736897100E87B4A /* AddressBookUI.framework */,
+				90E1F4E117242FF1009A578C /* AddressBook.framework */,
 				90F342BA17217C8E005BC944 /* UIKit.framework */,
 				90F342BC17217C8E005BC944 /* Foundation.framework */,
 				90F342BE17217C8E005BC944 /* CoreGraphics.framework */,
 				90F342D817217C8E005BC944 /* SenTestingKit.framework */,
+				8189D765038C4B9FB2F1D493 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -119,10 +207,22 @@
 		90F342C017217C8E005BC944 /* MaiDuo */ = {
 			isa = PBXGroup;
 			children = (
+				9015396D172BDC1600DBB64B /* Yaab */,
+				90EF5CA917257DC500AFE074 /* Data */,
+				90BBC9061722E16E00674C2C /* MDMessage.h */,
+				90BBC9071722E16E00674C2C /* MDMessage.m */,
+				90E1F4E317243EF7009A578C /* MDContact.h */,
+				90E1F4E417243EF7009A578C /* MDContact.m */,
 				90F342C917217C8E005BC944 /* AppDelegate.h */,
 				90F342CA17217C8E005BC944 /* AppDelegate.m */,
 				90F342F217217DD6005BC944 /* LatestViewController.h */,
 				90F342F317217DD6005BC944 /* LatestViewController.m */,
+				90BBC8FA1722AFE800674C2C /* ActivityTableViewController.h */,
+				90BBC8FB1722AFE800674C2C /* ActivityTableViewController.m */,
+				90E1F4DE17242ED2009A578C /* InviteTableViewController.h */,
+				90E1F4DF17242ED2009A578C /* InviteTableViewController.m */,
+				90EF5B80172A49F30032F736 /* SendMessageViewController.h */,
+				90EF5B81172A49F30032F736 /* SendMessageViewController.m */,
 				90F342C117217C8E005BC944 /* Supporting Files */,
 			);
 			path = MaiDuo;
@@ -178,9 +278,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90F342E917217C8E005BC944 /* Build configuration list for PBXNativeTarget "MaiDuo" */;
 			buildPhases = (
+				B2F037BCAA4F4650AE2A852E /* Check Pods Manifest.lock */,
 				90F342B317217C8E005BC944 /* Sources */,
 				90F342B417217C8E005BC944 /* Frameworks */,
 				90F342B517217C8E005BC944 /* Resources */,
+				DD0180B152624E5CBC74A9AC /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,6 +375,34 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		B2F037BCAA4F4650AE2A852E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
+		};
+		DD0180B152624E5CBC74A9AC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -284,6 +414,20 @@
 				90F342CB17217C8E005BC944 /* AppDelegate.m in Sources */,
 				90F342F417217DD6005BC944 /* LatestViewController.m in Sources */,
 				90F342F81721A706005BC944 /* AsyncImageView.m in Sources */,
+				90BBC8FC1722AFE800674C2C /* ActivityTableViewController.m in Sources */,
+				90BBC9081722E16F00674C2C /* MDMessage.m in Sources */,
+				90E1F4E017242ED2009A578C /* InviteTableViewController.m in Sources */,
+				90E1F4E517243EF7009A578C /* MDContact.m in Sources */,
+				90EF5CB517257DF000AFE074 /* pinyin.c in Sources */,
+				90EF5B82172A49F30032F736 /* SendMessageViewController.m in Sources */,
+				90153976172BDC2300DBB64B /* RHPerson+RHPersonCategory.m in Sources */,
+				90153977172BDC2300DBB64B /* Yaab.m in Sources */,
+				90153978172BDC2300DBB64B /* YaabUser.m in Sources */,
+				90153979172BDC2300DBB64B /* YContactTableViewController.m in Sources */,
+				909CB398172BFA7F008B7B5A /* YMessageViewController.m in Sources */,
+				905876E4172D45AD00690DC3 /* YMessageContactViewController.m in Sources */,
+				906B96E21736A16100A7C20E /* YMessage.m in Sources */,
+				906B96E51736A6D400A7C20E /* YPlainContact.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +481,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -350,8 +495,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "C9551779-42FB-4772-AF6C-F8071479025D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -369,14 +516,17 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -385,10 +535,12 @@
 		};
 		90F342EA17217C8E005BC944 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19CCBF954E574D39AED92D14 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -396,10 +548,12 @@
 		};
 		90F342EB17217C8E005BC944 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19CCBF954E574D39AED92D14 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

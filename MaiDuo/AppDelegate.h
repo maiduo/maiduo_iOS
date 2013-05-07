@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <YaabUser.h>
+#import <AFNetworking.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     UITableViewController*  latestView;
     UINavigationController* navigation;
+    YaabUser *user;
 }
 
 @property (strong, nonatomic) UIWindow *window;

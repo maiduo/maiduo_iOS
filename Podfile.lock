@@ -1,0 +1,16 @@
+PODS:
+  - AFNetworking (1.2.1)
+  - RHAddressBook (1.0.2)
+  - TITokenField (1.0)
+
+DEPENDENCIES:
+  - AFNetworking (~> 1.0)
+  - RHAddressBook
+  - TITokenField
+
+SPEC CHECKSUMS:
+  AFNetworking: 616da0028916ce296f5c3cef74e5552eb4e10e13
+  RHAddressBook: 64f78a4058e0a7849275c970bf19fe195edf94d0
+  TITokenField: ff51af502a2480f1b71754e2cfbef0e30c85773e
+
+COCOAPODS: 0.18.1

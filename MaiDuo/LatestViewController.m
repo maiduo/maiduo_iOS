@@ -7,6 +7,8 @@
 //
 
 #import "LatestViewController.h"
+#import "ActivityTableViewController.h"
+#import "SendMessageViewController.h"
 #import "AsyncImageView/AsyncImageView.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -20,7 +22,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -58,7 +59,9 @@
 
 - (void)addActivity
 {
-    
+    SendMessageViewController *sendMessage;
+    sendMessage = [[SendMessageViewController alloc] initWithMode:ACTIVITY_MODE];
+    [self.navigationController pushViewController:sendMessage animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -108,7 +111,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
         
         [cell addSubview: imageView];
 
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.text = title;
         cell.detailTextLabel.text = detail;
         cell.detailTextLabel.numberOfLines = 2;
@@ -120,11 +123,10 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
     
     static NSString* image_url;
-    image_url = @"http://oss.aliyuncs.com/bukaopu/maoduo/%@.jpg";
+    image_url = @"http://oss.aliyuncs.com/maiduo/%@.jpg";
     imageView.imageURL = [NSURL URLWithString:
                           [NSString stringWithFormat:image_url, uid]];
     
-    NSLog(@"%f", cell.detailTextLabel.frame.origin.y);
     return cell;
 }
 
@@ -132,39 +134,6 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
 willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    if (0 == [indexPath row]) {
-        CGRect cellRect = cell.contentView.bounds;
-        CGMutablePathRef firstRowPath = CGPathCreateMutable();
-        CGPathMoveToPoint(firstRowPath, NULL, CGRectGetMinX(cellRect), CGRectGetMaxY(cellRect));
-        CGPathAddLineToPoint(firstRowPath, NULL, CGRectGetMinX(cellRect), 8.f);
-        CGPathAddArcToPoint(firstRowPath, NULL, CGRectGetMinX(cellRect), CGRectGetMinY(cellRect), 8.f, CGRectGetMinY(cellRect), 8.f);
-        CGPathAddLineToPoint(firstRowPath, NULL, CGRectGetMaxX(cellRect) - 8.f, 0.f);
-        CGPathAddArcToPoint(firstRowPath, NULL, CGRectGetMaxX(cellRect), CGRectGetMinY(cellRect), CGRectGetMaxX(cellRect), 8.f, 8.f);
-        CGPathAddLineToPoint(firstRowPath, NULL, CGRectGetMaxX(cellRect), CGRectGetMaxY(cellRect));
-        CGPathCloseSubpath(firstRowPath);
-        CAShapeLayer *newSharpLayer = [[CAShapeLayer alloc] init];
-        newSharpLayer.path = firstRowPath;
-        newSharpLayer.fillColor = [[UIColor whiteColor] colorWithAlphaComponent:1.f].CGColor;
-        CFRelease(firstRowPath);
-        cell.contentView.layer.mask = newSharpLayer;
-    } else if (indexPath.row == 2){
-        CGRect cellRect = cell.contentView.bounds;
-        CGMutablePathRef lastRowPath = CGPathCreateMutable();
-        CGPathMoveToPoint(lastRowPath, NULL, CGRectGetMinX(cellRect), CGRectGetMinY(cellRect));
-        CGPathAddLineToPoint(lastRowPath, NULL, CGRectGetMaxX(cellRect), CGRectGetMinY(cellRect));
-        CGPathAddLineToPoint(lastRowPath, NULL, CGRectGetMaxX(cellRect), CGRectGetMaxY(cellRect) - 8.f);
-        CGPathAddArcToPoint(lastRowPath, NULL, CGRectGetMaxX(cellRect), CGRectGetMaxY(cellRect), CGRectGetMaxX(cellRect)- 8.f, CGRectGetMaxY(cellRect), 8.f);
-        CGPathAddLineToPoint(lastRowPath, NULL, 8.f, CGRectGetMaxY(cellRect));
-        CGPathAddArcToPoint(lastRowPath, NULL, CGRectGetMinX(cellRect), CGRectGetMaxY(cellRect), CGRectGetMinX(cellRect), CGRectGetMaxY(cellRect) - 8.f, 8.f);
-        CGPathCloseSubpath(lastRowPath);
-        CAShapeLayer *newSharpLayer = [[CAShapeLayer alloc] init];
-        newSharpLayer.path = lastRowPath;
-        newSharpLayer.fillColor = [[UIColor whiteColor] colorWithAlphaComponent:1.f].CGColor;
-        CFRelease(lastRowPath);
-        cell.contentView.layer.mask = newSharpLayer;
-    }
-     */
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
@@ -216,13 +185,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    ActivityTableViewController* activityViewController;
+    activityViewController = [[ActivityTableViewController alloc] init];
+    activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
+                                     self.view.frame.size.height);
+    [self.navigationController pushViewController:activityViewController animated:YES];
 }
 
 @end
