@@ -30,3 +30,4 @@ curl -o ~/.cocoapods/master/TITokenField/1.0/TITokenField.podspec https://gist.g
 
 魏琮举 TEL:18621068396 EMAIL:imcj@live.cn               QQ:15084690（夏天）         
 王开民 TEL:15874456669 EMAIL:benjamin90etw@gmail.com    QQ:397814372(未命名)
+袁巍 TEL:18680337681 EMAIL:yuanwei_hit@163.com    QQ:1025570002
