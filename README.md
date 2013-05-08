@@ -37,3 +37,5 @@
 袁巍 TEL:18680337681 EMAIL:yuanwei_hit@163.com    QQ:1025570002
 
 何盛华 TEL:13761907958 EMAIL:enderhe@sina.com   QQ:417142872
+
+高欣 TEL:18017339609  EMAIL:knight731@hotmail.com  QQ:1124031089 (可乐)
