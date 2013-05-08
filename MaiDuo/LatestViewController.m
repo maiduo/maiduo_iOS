@@ -39,6 +39,11 @@
     [[self navigationItem] setRightBarButtonItem: btnAdd];
 //    [btnAdd release];
     
+    //箭头的返回
+    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
+    temporaryBarButtonItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+    
     activities = [[NSArray alloc] initWithObjects:
                   [NSArray arrayWithObjects: @"1", @"CJ", @"CJ和他的朋友门。",
                    @"各位请主意，聚会改为晚上8点。", nil],
