@@ -12,8 +12,8 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import <YMessage.h>
 #import <YPlainContact.h>
-
-@interface YMessageViewController : UIViewController <TITokenFieldDelegate, UITextViewDelegate, ABPeoplePickerNavigationControllerDelegate> {
+#import "PhotoStackView.h"
+@interface YMessageViewController : UIViewController <TITokenFieldDelegate, UITextViewDelegate, ABPeoplePickerNavigationControllerDelegate,PhotoStackViewDataSource, PhotoStackViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate> {
     
     TITokenFieldView * tokenFieldView;
     UITextView * messageView;

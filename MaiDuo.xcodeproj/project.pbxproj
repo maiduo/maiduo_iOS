@@ -40,6 +40,12 @@
 		90F342E617217C8E005BC944 /* MaiDuoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342E517217C8E005BC944 /* MaiDuoTests.m */; };
 		90F342F417217DD6005BC944 /* LatestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342F317217DD6005BC944 /* LatestViewController.m */; };
 		90F342F81721A706005BC944 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342F71721A706005BC944 /* AsyncImageView.m */; };
+		C8CEFB271739E7DF0021D371 /* PhotoBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB231739E7DF0021D371 /* PhotoBorder.png */; };
+		C8CEFB281739E7DF0021D371 /* PhotoBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB241739E7DF0021D371 /* PhotoBorder@2x.png */; };
+		C8CEFB291739E7DF0021D371 /* PhotoStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CEFB261739E7DF0021D371 /* PhotoStackView.m */; };
+		C8CEFB2D1739EEA00021D371 /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CEFB2C1739EEA00021D371 /* UIView+Animation.m */; };
+		C8CEFB31173A0DFD0021D371 /* garbage_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */; };
+		C8CEFB32173A0DFD0021D371 /* garbage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB30173A0DFD0021D371 /* garbage@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +114,14 @@
 		90F342F317217DD6005BC944 /* LatestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatestViewController.m; sourceTree = "<group>"; };
 		90F342F61721A706005BC944 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		90F342F71721A706005BC944 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
+		C8CEFB231739E7DF0021D371 /* PhotoBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoBorder.png; sourceTree = "<group>"; };
+		C8CEFB241739E7DF0021D371 /* PhotoBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoBorder@2x.png"; sourceTree = "<group>"; };
+		C8CEFB251739E7DF0021D371 /* PhotoStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoStackView.h; sourceTree = "<group>"; };
+		C8CEFB261739E7DF0021D371 /* PhotoStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoStackView.m; sourceTree = "<group>"; };
+		C8CEFB2B1739EEA00021D371 /* UIView+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animation.h"; sourceTree = "<group>"; };
+		C8CEFB2C1739EEA00021D371 /* UIView+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
+		C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "garbage_s@2x.png"; sourceTree = "<group>"; };
+		C8CEFB30173A0DFD0021D371 /* garbage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "garbage@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +221,9 @@
 		90F342C017217C8E005BC944 /* MaiDuo */ = {
 			isa = PBXGroup;
 			children = (
+				C8CEFB2E173A0DE90021D371 /* Resource */,
+				C8CEFB2A1739EE840021D371 /* Extension */,
+				C8CEFB221739E7B00021D371 /* PhotoStack */,
 				9015396D172BDC1600DBB64B /* Yaab */,
 				90EF5CA917257DC500AFE074 /* Data */,
 				90BBC9061722E16E00674C2C /* MDMessage.h */,
@@ -269,6 +286,35 @@
 			);
 			name = AsyncImageView;
 			path = MaiDuo/AsyncImageView;
+			sourceTree = "<group>";
+		};
+		C8CEFB221739E7B00021D371 /* PhotoStack */ = {
+			isa = PBXGroup;
+			children = (
+				C8CEFB231739E7DF0021D371 /* PhotoBorder.png */,
+				C8CEFB241739E7DF0021D371 /* PhotoBorder@2x.png */,
+				C8CEFB251739E7DF0021D371 /* PhotoStackView.h */,
+				C8CEFB261739E7DF0021D371 /* PhotoStackView.m */,
+			);
+			name = PhotoStack;
+			sourceTree = "<group>";
+		};
+		C8CEFB2A1739EE840021D371 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C8CEFB2B1739EEA00021D371 /* UIView+Animation.h */,
+				C8CEFB2C1739EEA00021D371 /* UIView+Animation.m */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		C8CEFB2E173A0DE90021D371 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */,
+				C8CEFB30173A0DFD0021D371 /* garbage@2x.png */,
+			);
+			name = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,6 +394,10 @@
 				90F342CD17217C8E005BC944 /* Default.png in Resources */,
 				90F342CF17217C8E005BC944 /* Default@2x.png in Resources */,
 				90F342D117217C8E005BC944 /* Default-568h@2x.png in Resources */,
+				C8CEFB271739E7DF0021D371 /* PhotoBorder.png in Resources */,
+				C8CEFB281739E7DF0021D371 /* PhotoBorder@2x.png in Resources */,
+				C8CEFB31173A0DFD0021D371 /* garbage_s@2x.png in Resources */,
+				C8CEFB32173A0DFD0021D371 /* garbage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +478,8 @@
 				905876E4172D45AD00690DC3 /* YMessageContactViewController.m in Sources */,
 				906B96E21736A16100A7C20E /* YMessage.m in Sources */,
 				906B96E51736A6D400A7C20E /* YPlainContact.m in Sources */,
+				C8CEFB291739E7DF0021D371 /* PhotoStackView.m in Sources */,
+				C8CEFB2D1739EEA00021D371 /* UIView+Animation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
