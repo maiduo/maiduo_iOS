@@ -185,6 +185,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ActivityTableViewController* activityViewController;
     activityViewController = [[ActivityTableViewController alloc] init];
     activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
