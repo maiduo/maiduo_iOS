@@ -1,0 +1,20 @@
+PODS:
+  - AFNetworking (1.2.1)
+  - RHAddressBook (1.0.2)
+  - TITokenField (1.0)
+
+DEPENDENCIES:
+  - AFNetworking
+  - RHAddressBook
+  - TITokenField (from `https://github.com/imcj/TITokenField.git`)
+
+EXTERNAL SOURCES:
+  TITokenField:
+    :git: https://github.com/imcj/TITokenField.git
+
+SPEC CHECKSUMS:
+  AFNetworking: 616da0028916ce296f5c3cef74e5552eb4e10e13
+  RHAddressBook: 64f78a4058e0a7849275c970bf19fe195edf94d0
+  TITokenField: 4174761389eff89f3c722316b9bcdd1dfbbfed2f
+
+COCOAPODS: 0.19.1
