@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7EB9B2F3E69F4709B59DA87A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8189D765038C4B9FB2F1D493 /* libPods.a */; };
+		7F77B85A173BF2A0000973BD /* PersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F77B859173BF2A0000973BD /* PersonDetailViewController.m */; };
+		7F77B85B173BF2A0000973BD /* PersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F77B859173BF2A0000973BD /* PersonDetailViewController.m */; };
 		90153976172BDC2300DBB64B /* RHPerson+RHPersonCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9015396F172BDC2300DBB64B /* RHPerson+RHPersonCategory.m */; };
 		90153977172BDC2300DBB64B /* Yaab.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153971172BDC2300DBB64B /* Yaab.m */; };
 		90153978172BDC2300DBB64B /* YaabUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* YaabUser.m */; };
@@ -60,6 +62,8 @@
 
 /* Begin PBXFileReference section */
 		19CCBF954E574D39AED92D14 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		7F77B858173BF2A0000973BD /* PersonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDetailViewController.h; sourceTree = "<group>"; };
+		7F77B859173BF2A0000973BD /* PersonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDetailViewController.m; sourceTree = "<group>"; };
 		8189D765038C4B9FB2F1D493 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9015396E172BDC2300DBB64B /* RHPerson+RHPersonCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RHPerson+RHPersonCategory.h"; sourceTree = "<group>"; };
 		9015396F172BDC2300DBB64B /* RHPerson+RHPersonCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RHPerson+RHPersonCategory.m"; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 				C8CEFB221739E7B00021D371 /* PhotoStack */,
 				9015396D172BDC1600DBB64B /* Yaab */,
 				90EF5CA917257DC500AFE074 /* Data */,
+				7F77B858173BF2A0000973BD /* PersonDetailViewController.h */,
+				7F77B859173BF2A0000973BD /* PersonDetailViewController.m */,
 				90BBC9061722E16E00674C2C /* MDMessage.h */,
 				90BBC9071722E16E00674C2C /* MDMessage.m */,
 				90E1F4E317243EF7009A578C /* MDContact.h */,
@@ -480,6 +486,7 @@
 				906B96E51736A6D400A7C20E /* YPlainContact.m in Sources */,
 				C8CEFB291739E7DF0021D371 /* PhotoStackView.m in Sources */,
 				C8CEFB2D1739EEA00021D371 /* UIView+Animation.m in Sources */,
+				7F77B85A173BF2A0000973BD /* PersonDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90F342E617217C8E005BC944 /* MaiDuoTests.m in Sources */,
+				7F77B85B173BF2A0000973BD /* PersonDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
