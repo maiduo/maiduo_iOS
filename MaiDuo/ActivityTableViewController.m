@@ -11,7 +11,6 @@
 #import "AsyncImageView/AsyncImageView.h"
 #import "MDMessage.h"
 #import "MDContact.h"
-#import "ASMyCell.h"
 
 @interface ActivityTableViewController ()
 
@@ -457,15 +456,14 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
                                   cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = @"contacts";
-    ASMyCell *cell = [tableView
+    UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[ASMyCell alloc]
-                initWithStyle: UITableViewCellStyleValue1
+        cell = [[UITableViewCell alloc]
+                initWithStyle: UITableViewCellStyleSubtitle
                 reuseIdentifier: CellIdentifier];
         cell.indentationWidth = 10;
-//        cell.indentationLevel = 1;
         MDContact * aPerson = [self.contacts objectAtIndex:indexPath.row];
         cell.textLabel.text = [NSString stringWithFormat:@"%@%@%@",
                                aPerson.firstName,
@@ -473,7 +471,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
                                aPerson.lastName];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
-        cell.detailTextLabel.text =[NSString stringWithFormat:@"电话:%@",
+        cell.detailTextLabel.text =[NSString stringWithFormat:@"电话 %@",
                                              [aPerson.phones objectAtIndex:0]];
     }
     
