@@ -11,6 +11,7 @@
 #import "AsyncImageView/AsyncImageView.h"
 #import "MDMessage.h"
 #import "MDContact.h"
+#import "ASMyCell.h"
 
 @interface ActivityTableViewController ()
 
@@ -56,6 +57,8 @@
         
         self.messages = [[NSMutableArray alloc]initWithCapacity:0];
         self.contacts = [[NSMutableArray alloc]initWithCapacity:0];
+        
+        [self addPerson];
                          
         self.data = [NSArray arrayWithObjects:activities, messages, contacts, nil];
         
@@ -163,15 +166,20 @@
 {
 }
 
+- (void)addPerson
+{
+    NSArray * phones = @[@"123"];
+    MDContact * aPerson = [[MDContact alloc]initWithFirstName:@"a"
+                                                     lastName:@"w"
+                                                   middleName:@""
+                                                       phones:phones];
+    [self.contacts addObject:aPerson];
+}
+
 //改变tableview数据data
 - (void)changeTableviewData
 {
     if (self.viewState == CONTACT) {
-        NSArray * phones = @[@"123"];
-        MDContact * aPerson = [[MDContact alloc]initWithFirstName:@"a"
-                                                         lastName:@"w"
-                                                       middleName:@""
-                                                           phones:phones];
 //        MDContact * bPerson = [[MDContact alloc]initWithFirstName:@"b"
 //                                                         lastName:@"w"
 //                                                       middleName:@""
@@ -200,8 +208,7 @@
 //        NSDictionary* dic2 = [NSDictionary dictionaryWithContentsOfFile:filename];
 //        NSLog(@"dic is:%@",dic2);
         
-        [self.contacts addObject:aPerson];
-        self.tableView.showsVerticalScrollIndicator = YES;
+//        self.tableView.showsVerticalScrollIndicator = YES;
     }
 }
 
@@ -316,7 +323,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
             }
         break;
         case CONTACT:
-            height = 30;
+            height = 50;
             break;
     }
     return height + 20.0f;
@@ -450,11 +457,11 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
                                   cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = @"contacts";
-    UITableViewCell *cell = [tableView
+    ASMyCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]
+        cell = [[ASMyCell alloc]
                 initWithStyle: UITableViewCellStyleValue1
                 reuseIdentifier: CellIdentifier];
         cell.indentationWidth = 10;
@@ -464,8 +471,10 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
                                aPerson.firstName,
                                aPerson.middleName,
                                aPerson.lastName];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
-        cell.detailTextLabel.text = [aPerson.phones objectAtIndex:0];
+        cell.detailTextLabel.text =[NSString stringWithFormat:@"电话:%@",
+                                             [aPerson.phones objectAtIndex:0]];
     }
     
     return cell;
