@@ -11,6 +11,7 @@
 @implementation MDContact
 
 @synthesize firstName;
+@synthesize middleName;
 @synthesize lastName;
 @synthesize phones;
 

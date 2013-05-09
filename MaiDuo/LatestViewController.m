@@ -11,6 +11,7 @@
 #import "SendMessageViewController.h"
 #import "AsyncImageView/AsyncImageView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PersonDetailViewController.h"
 
 @interface LatestViewController ()
 
@@ -38,6 +39,11 @@
     
     [[self navigationItem] setRightBarButtonItem: btnAdd];
 //    [btnAdd release];
+    
+    //箭头的返回
+    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
+    temporaryBarButtonItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
     
     activities = [[NSArray alloc] initWithObjects:
                   [NSArray arrayWithObjects: @"1", @"CJ", @"CJ和他的朋友门。",
@@ -186,11 +192,17 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ActivityTableViewController* activityViewController;
-    activityViewController = [[ActivityTableViewController alloc] init];
-    activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
-                                     self.view.frame.size.height);
-    [self.navigationController pushViewController:activityViewController animated:YES];
+//    ActivityTableViewController* activityViewController;
+//    activityViewController = [[ActivityTableViewController alloc] init];
+//    activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
+//                                     self.view.frame.size.height);
+//    [self.navigationController pushViewController:activityViewController animated:YES];
+    NSArray *tempArray = [[NSArray alloc] initWithArray:[activities objectAtIndex:indexPath.row]];
+    PersonDetailViewController *personDetailViewController = [[PersonDetailViewController alloc]
+                                                              init];
+    personDetailViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    personDetailViewController.activity = tempArray;
+    [self.navigationController pushViewController:personDetailViewController animated:YES];
 }
 
 @end
