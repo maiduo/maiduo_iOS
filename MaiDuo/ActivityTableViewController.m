@@ -70,35 +70,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSArray *toolbarItems = [NSArray
-                             arrayWithObjects:segmented, nil];
-    UIBarButtonItem *flexibleLeft, *flexibleRight;
-    flexibleLeft = [[UIBarButtonItem alloc]
-                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                    target:nil
-                    action:nil];
-    flexibleRight = [[UIBarButtonItem alloc]
-                     initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                     target:nil
-                     action:nil];
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:segmented];
-    [self setToolbarItems:@[flexibleLeft, item, flexibleRight] animated:YES];
-//    [self.navigationController setToolbarItems:toolbarItems animated:YES];
-//    [self.navigationController setToolbarHidden:NO animated:NO];
-    self.navigationController.toolbarHidden = NO;
-//    self.navigationController.toolbar.tag = 111;
-//    self.toolbarItems = [NSArray arrayWithObjects:segmented, nil];
-//    self.navigationController.toolbarItems = [NSArray
-//                                              arrayWithObjects:segmented, nil];
-    
+//    self.navigationController.toolbarHidden = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
-    self.navigationController.toolbarHidden = YES;
+//    self.navigationController.toolbarHidden = YES;
 }
 
 - (void)viewDidLoad
@@ -111,8 +90,7 @@
                                              action:@selector(back)];
     viewState = ACTIVITY;
     self.navigationItem.rightBarButtonItem = [self createButton];
-    self.navigationItem.title = @"各位请主意，聚会改为晚上8点。";
-    NSLog(@"frame height %f", self.navigationController.navigationBar.frame.size.height);
+    self.navigationItem.titleView = segmented;
 }
 
 - (UIBarButtonItem *)createButton
