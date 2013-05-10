@@ -34,7 +34,46 @@
             success:(void (^)(MDUser *user, MDHTTPAPI *api))success
             failure:(void (^)(NSError *error))failure
 {
+    static NSString *url = @"https://himaiduo.com/api/";
+    AFHTTPClient *client = [[AFHTTPClient alloc]
+                            initWithBaseURL:[NSURL URLWithString:url]];
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          user.username, @"username",
+                          user.password, @"password",
+                          nil];
+    NSMutableURLRequest *request = [client requestWithMethod:@"POST"
+                                                        path:@"user/"
+                                                  parameters:data];
     
+    void (^blockSuccess)(NSURLRequest *, NSHTTPURLResponse *, id) =
+    ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
+            success(user, api);
+        } failure:^(NSError *error) {
+            failure(error);
+        }];
+    };
+    void (^blockFailure)(NSURLRequest *, NSHTTPURLResponse *, NSError *, id) =
+    ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error,
+      id JSON) {
+        if (400 == [response statusCode]) {
+            [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
+                success(user, api);
+            } failure:^(NSError *error2) {
+                failure(error2);
+            }];
+            return;
+        }
+        if (nil != failure)
+            failure(error);
+    };
+    
+    AFJSONRequestOperation *operation;
+    operation = [AFJSONRequestOperation
+                 JSONRequestOperationWithRequest:request
+                 success:blockSuccess
+                 failure:blockFailure];
+    [operation start];
 }
 
 +(void)login:(MDUser *)user

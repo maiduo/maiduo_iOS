@@ -25,9 +25,26 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testUserRegister
 {
-    NSLog(@"Test");
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    MDUser *user = [[MDUser alloc] initWithUsername:@"13000000000"
+                                           password:@"13000000000"];
+    [MDHTTPAPI registerUser:user success:^(MDUser *user, MDHTTPAPI *api) {
+        NSLog(@"Register access token %@", user.access_token);
+        NSLog(@"Register refresh token %@", user.refresh_token);
+    } failure:^(NSError *error) {
+        NSLog(@"%@", [error.userInfo objectForKey:@"NSLocalizedRecoverySuggestion"]);
+    }];
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+    dispatch_release(semaphore);
+}
+
+- (void)testUserLogin
+{
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     
     MDUser *user = [[MDUser alloc] initWithUsername:@"13000000000"
