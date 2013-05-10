@@ -40,6 +40,9 @@
 		90F342E617217C8E005BC944 /* MaiDuoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342E517217C8E005BC944 /* MaiDuoTests.m */; };
 		90F342F417217DD6005BC944 /* LatestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342F317217DD6005BC944 /* LatestViewController.m */; };
 		90F342F81721A706005BC944 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342F71721A706005BC944 /* AsyncImageView.m */; };
+		C8B6CECE173BC26D00943B56 /* photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B6CECD173BC26D00943B56 /* photo@2x.png */; };
+		C8C90EC9173D38B500986153 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C90EC8173D38B500986153 /* LoginViewController.m */; };
+		C8C90ECC173D3B0400986153 /* FConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C90ECB173D3B0400986153 /* FConstants.m */; };
 		C8CEFB271739E7DF0021D371 /* PhotoBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB231739E7DF0021D371 /* PhotoBorder.png */; };
 		C8CEFB281739E7DF0021D371 /* PhotoBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB241739E7DF0021D371 /* PhotoBorder@2x.png */; };
 		C8CEFB291739E7DF0021D371 /* PhotoStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CEFB261739E7DF0021D371 /* PhotoStackView.m */; };
@@ -114,6 +117,11 @@
 		90F342F317217DD6005BC944 /* LatestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatestViewController.m; sourceTree = "<group>"; };
 		90F342F61721A706005BC944 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		90F342F71721A706005BC944 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
+		C8B6CECD173BC26D00943B56 /* photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo@2x.png"; sourceTree = "<group>"; };
+		C8C90EC7173D38B500986153 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		C8C90EC8173D38B500986153 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		C8C90ECA173D3B0400986153 /* FConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FConstants.h; sourceTree = "<group>"; };
+		C8C90ECB173D3B0400986153 /* FConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FConstants.m; sourceTree = "<group>"; };
 		C8CEFB231739E7DF0021D371 /* PhotoBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoBorder.png; sourceTree = "<group>"; };
 		C8CEFB241739E7DF0021D371 /* PhotoBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoBorder@2x.png"; sourceTree = "<group>"; };
 		C8CEFB251739E7DF0021D371 /* PhotoStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoStackView.h; sourceTree = "<group>"; };
@@ -232,6 +240,8 @@
 				90E1F4E417243EF7009A578C /* MDContact.m */,
 				90F342C917217C8E005BC944 /* AppDelegate.h */,
 				90F342CA17217C8E005BC944 /* AppDelegate.m */,
+				C8C90EC7173D38B500986153 /* LoginViewController.h */,
+				C8C90EC8173D38B500986153 /* LoginViewController.m */,
 				90F342F217217DD6005BC944 /* LatestViewController.h */,
 				90F342F317217DD6005BC944 /* LatestViewController.m */,
 				90BBC8FA1722AFE800674C2C /* ActivityTableViewController.h */,
@@ -302,6 +312,8 @@
 		C8CEFB2A1739EE840021D371 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C8C90ECA173D3B0400986153 /* FConstants.h */,
+				C8C90ECB173D3B0400986153 /* FConstants.m */,
 				C8CEFB2B1739EEA00021D371 /* UIView+Animation.h */,
 				C8CEFB2C1739EEA00021D371 /* UIView+Animation.m */,
 			);
@@ -311,6 +323,7 @@
 		C8CEFB2E173A0DE90021D371 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C8B6CECD173BC26D00943B56 /* photo@2x.png */,
 				C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */,
 				C8CEFB30173A0DFD0021D371 /* garbage@2x.png */,
 			);
@@ -398,6 +411,7 @@
 				C8CEFB281739E7DF0021D371 /* PhotoBorder@2x.png in Resources */,
 				C8CEFB31173A0DFD0021D371 /* garbage_s@2x.png in Resources */,
 				C8CEFB32173A0DFD0021D371 /* garbage@2x.png in Resources */,
+				C8B6CECE173BC26D00943B56 /* photo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +494,8 @@
 				906B96E51736A6D400A7C20E /* YPlainContact.m in Sources */,
 				C8CEFB291739E7DF0021D371 /* PhotoStackView.m in Sources */,
 				C8CEFB2D1739EEA00021D371 /* UIView+Animation.m in Sources */,
+				C8C90EC9173D38B500986153 /* LoginViewController.m in Sources */,
+				C8C90ECC173D3B0400986153 /* FConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
