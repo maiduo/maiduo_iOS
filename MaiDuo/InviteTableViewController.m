@@ -27,14 +27,6 @@
     self.navigationItem.rightBarButtonItem = buttonInvite;
     self.navigationItem.title = @"邀请好友";
     
-    UIBarButtonItem *back;
-    back = [[UIBarButtonItem alloc]
-            initWithTitle:@"返回"
-            style:UIBarButtonItemStyleBordered
-            target:self
-            action:@selector(didBack)];
-    self.navigationItem.leftBarButtonItem = back;
-    
     self.tableView.allowsMultipleSelection = YES;
     [self.tableView setEditing:YES animated:YES];
 }

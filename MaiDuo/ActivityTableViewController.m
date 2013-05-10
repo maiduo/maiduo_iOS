@@ -83,11 +83,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                             initWithTitle:@"返回"
-                                             style:UIBarButtonItemStylePlain
-                                             target:self
-                                             action:@selector(back)];
     viewState = ACTIVITY;
     self.navigationItem.rightBarButtonItem = [self createButton];
     self.navigationItem.titleView = segmented;
