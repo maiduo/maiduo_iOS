@@ -57,9 +57,10 @@
     
     void (^blockSuccess)(NSURLRequest *, NSHTTPURLResponse *, id) =
     ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSString *token = [NSString stringWithFormat:@"%@",
-                           [JSON objectForKey:@"token"]];
-        user.token = token;
+        user.access_token = [NSString stringWithFormat:@"%@",
+                                  [JSON objectForKey:@"access_token"]];
+        user.refresh_token = [NSString stringWithFormat:@"%@",
+                                  [JSON objectForKey:@"refresh_token"]];
         MDHTTPAPI *api = [[MDHTTPAPI alloc] initWithUser:user];
         success(user, api);
     };

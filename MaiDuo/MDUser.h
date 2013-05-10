@@ -12,7 +12,8 @@
 
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
-@property (nonatomic, strong) NSString *token;
+@property (nonatomic, strong) NSString *access_token;
+@property (nonatomic, strong) NSString *refresh_token;
 
 -(id)initWithUsername:(NSString *)username password:(NSString *)password;
 @end

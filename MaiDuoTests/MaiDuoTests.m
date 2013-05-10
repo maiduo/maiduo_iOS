@@ -33,7 +33,8 @@
     MDUser *user = [[MDUser alloc] initWithUsername:@"13000000000"
                                            password:@"13000000000"];
     [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
-        NSLog(@"User token %@", user.token);
+        NSLog(@"Access token %@", user.access_token);
+        NSLog(@"Refresh token %@", user.refresh_token);
     } failure:^(NSError *error) {
         NSLog(@"%@", error);
     }];
