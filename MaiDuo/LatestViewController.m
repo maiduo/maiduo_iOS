@@ -30,6 +30,17 @@
 {
     [super viewDidLoad];
     
+    //下拉刷新的view
+    if (refreshHeaderView == nil) {
+        refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+        refreshHeaderView.delegate = self;
+        [self.tableView addSubview:refreshHeaderView];
+        
+    }
+    
+    // 刷新一次
+	[refreshHeaderView refreshLastUpdatedDate];
+    
     [[self navigationItem] setTitle: @"最新活动"];
     UIBarButtonItem* btnAdd;
     btnAdd = [[UIBarButtonItem alloc]
@@ -195,6 +206,59 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
                                      self.view.frame.size.height);
     [self.navigationController pushViewController:activityViewController animated:YES];
+}
+
+
+
+
+#pragma mark - UIScrollViewDelegate Methods
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+
+#pragma mark - EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+	
+	[self reloadTableViewDataSource];
+	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+	
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+	
+	return reloading; 
+	
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	
+	return [NSDate date]; 
+	
+}
+
+#pragma mark - Data Source Loading / Reloading Methods
+
+- (void)reloadTableViewDataSource{
+	
+	// 调用tableview datasource 刷新
+	reloading = YES;
+	
+}
+
+- (void)doneLoadingTableViewData{
+	
+	//  完成加载数据后
+	reloading = NO;
+	[refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+	
 }
 
 @end
