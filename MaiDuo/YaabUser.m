@@ -22,6 +22,7 @@
                            @"deviceToken", @"0", nil]];
         
         nsUser = [NSUserDefaults standardUserDefaults];
+        self.user=[[MDUser alloc] init];
         
 
     }

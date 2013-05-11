@@ -7,6 +7,7 @@
 //
 
 #import "MDHTTPAPI.h"
+#import "AFMDClient.h"
 #import <AFNetworking/AFNetworking.h>
 
 @implementation MDHTTPAPI
@@ -80,41 +81,60 @@
     success:(void (^)(MDUser *user, MDHTTPAPI *api))success
     failure:(void (^)(NSError *error))failure
 {
-    static NSString *url = @"https://himaiduo.com/api/";
-    AFHTTPClient *client = [[AFHTTPClient alloc]
-                            initWithBaseURL:[NSURL URLWithString:url]];
-    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+//    static NSString *url = @"https://himaiduo.com/api/";
+//    AFHTTPClient *client = [[AFHTTPClient alloc]
+//                            initWithBaseURL:[NSURL URLWithString:url]];
+//    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+//                          user.username, @"username",
+//                          user.password, @"password",
+//                          @"password", @"grant_type",
+//                          @"", @"scope",
+//                          @"104c03b3103e4d5e96d042330f6dd0c8", @"client_id",
+//                          nil];
+//    NSMutableURLRequest *request = [client requestWithMethod:@"POST"
+//                                                        path:@"authentication/"
+//                                                  parameters:data];
+//    
+//    void (^blockSuccess)(NSURLRequest *, NSHTTPURLResponse *, id) =
+//    ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+//        user.access_token = [NSString stringWithFormat:@"%@",
+//                                  [JSON objectForKey:@"access_token"]];
+//        user.refresh_token = [NSString stringWithFormat:@"%@",
+//                                  [JSON objectForKey:@"refresh_token"]];
+//        MDHTTPAPI *api = [[MDHTTPAPI alloc] initWithUser:user];
+//        success(user, api);
+//    };
+//    void (^blockFailure)(NSURLRequest *, NSHTTPURLResponse *, NSError *, id) =
+//    ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error,
+//      id JSON) {
+//        if (nil != failure)
+//            failure(error);
+//    };
+//    
+//    AFJSONRequestOperation *operation;
+//    operation = [AFJSONRequestOperation
+//                 JSONRequestOperationWithRequest:request
+//                                         success:blockSuccess
+//                                         failure:blockFailure];
+//    [operation start];
+    
+    NSDictionary *dicParams = [NSDictionary dictionaryWithObjectsAndKeys:
                           user.username, @"username",
                           user.password, @"password",
                           @"password", @"grant_type",
                           @"", @"scope",
                           @"104c03b3103e4d5e96d042330f6dd0c8", @"client_id",
                           nil];
-    NSMutableURLRequest *request = [client requestWithMethod:@"POST"
-                                                        path:@"authentication/"
-                                                  parameters:data];
-    
-    void (^blockSuccess)(NSURLRequest *, NSHTTPURLResponse *, id) =
-    ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+    [[AFMDClient sharedClient] postPath:@"authentication/" parameters:dicParams success:^(AFHTTPRequestOperation *operation, id JSON) {
         user.access_token = [NSString stringWithFormat:@"%@",
-                                  [JSON objectForKey:@"access_token"]];
+                             [JSON objectForKey:@"access_token"]];
         user.refresh_token = [NSString stringWithFormat:@"%@",
-                                  [JSON objectForKey:@"refresh_token"]];
+                              [JSON objectForKey:@"refresh_token"]];
         MDHTTPAPI *api = [[MDHTTPAPI alloc] initWithUser:user];
         success(user, api);
-    };
-    void (^blockFailure)(NSURLRequest *, NSHTTPURLResponse *, NSError *, id) =
-    ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error,
-      id JSON) {
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (nil != failure)
             failure(error);
-    };
-    
-    AFJSONRequestOperation *operation;
-    operation = [AFJSONRequestOperation
-                 JSONRequestOperationWithRequest:request
-                                         success:blockSuccess
-                                         failure:blockFailure];
-    [operation start];
+    }];
 }
 @end
