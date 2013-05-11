@@ -43,6 +43,8 @@
 		C8B6CECE173BC26D00943B56 /* photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B6CECD173BC26D00943B56 /* photo@2x.png */; };
 		C8C90EC9173D38B500986153 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C90EC8173D38B500986153 /* LoginViewController.m */; };
 		C8C90ECC173D3B0400986153 /* FConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C90ECB173D3B0400986153 /* FConstants.m */; };
+		90FD8205173D2A000000A6CD /* MDHTTPAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD8204173D2A000000A6CD /* MDHTTPAPI.m */; };
+		90FD8208173D2F840000A6CD /* MDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD8207173D2F840000A6CD /* MDUser.m */; };
 		C8CEFB271739E7DF0021D371 /* PhotoBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB231739E7DF0021D371 /* PhotoBorder.png */; };
 		C8CEFB281739E7DF0021D371 /* PhotoBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB241739E7DF0021D371 /* PhotoBorder@2x.png */; };
 		C8CEFB291739E7DF0021D371 /* PhotoStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CEFB261739E7DF0021D371 /* PhotoStackView.m */; };
@@ -124,6 +126,10 @@
 		C8C90EC8173D38B500986153 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C8C90ECA173D3B0400986153 /* FConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FConstants.h; sourceTree = "<group>"; };
 		C8C90ECB173D3B0400986153 /* FConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FConstants.m; sourceTree = "<group>"; };
+		90FD8203173D2A000000A6CD /* MDHTTPAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDHTTPAPI.h; sourceTree = "<group>"; };
+		90FD8204173D2A000000A6CD /* MDHTTPAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDHTTPAPI.m; sourceTree = "<group>"; };
+		90FD8206173D2F840000A6CD /* MDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUser.h; sourceTree = "<group>"; };
+		90FD8207173D2F840000A6CD /* MDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUser.m; sourceTree = "<group>"; };
 		C8CEFB231739E7DF0021D371 /* PhotoBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoBorder.png; sourceTree = "<group>"; };
 		C8CEFB241739E7DF0021D371 /* PhotoBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoBorder@2x.png"; sourceTree = "<group>"; };
 		C8CEFB251739E7DF0021D371 /* PhotoStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoStackView.h; sourceTree = "<group>"; };
@@ -236,8 +242,12 @@
 				C8CEFB221739E7B00021D371 /* PhotoStack */,
 				9015396D172BDC1600DBB64B /* Yaab */,
 				90EF5CA917257DC500AFE074 /* Data */,
+				90FD8203173D2A000000A6CD /* MDHTTPAPI.h */,
+				90FD8204173D2A000000A6CD /* MDHTTPAPI.m */,
 				90BBC9061722E16E00674C2C /* MDMessage.h */,
 				90BBC9071722E16E00674C2C /* MDMessage.m */,
+				90FD8206173D2F840000A6CD /* MDUser.h */,
+				90FD8207173D2F840000A6CD /* MDUser.m */,
 				90E1F4E317243EF7009A578C /* MDContact.h */,
 				90E1F4E417243EF7009A578C /* MDContact.m */,
 				90F342C917217C8E005BC944 /* AppDelegate.h */,
@@ -498,6 +508,8 @@
 				C8CEFB2D1739EEA00021D371 /* UIView+Animation.m in Sources */,
 				C8C90EC9173D38B500986153 /* LoginViewController.m in Sources */,
 				C8C90ECC173D3B0400986153 /* FConstants.m in Sources */,
+				90FD8205173D2A000000A6CD /* MDHTTPAPI.m in Sources */,
+				90FD8208173D2F840000A6CD /* MDUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
