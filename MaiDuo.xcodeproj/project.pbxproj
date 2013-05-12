@@ -12,6 +12,7 @@
 		90153977172BDC2300DBB64B /* Yaab.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153971172BDC2300DBB64B /* Yaab.m */; };
 		90153978172BDC2300DBB64B /* YaabUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* YaabUser.m */; };
 		90153979172BDC2300DBB64B /* YContactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153975172BDC2300DBB64B /* YContactTableViewController.m */; };
+		90538C2D173F741500391A31 /* MDActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 90538C2C173F741500391A31 /* MDActivity.m */; };
 		905876E4172D45AD00690DC3 /* YMessageContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 905876E3172D45AD00690DC3 /* YMessageContactViewController.m */; };
 		906B96E21736A16100A7C20E /* YMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 906B96E11736A16100A7C20E /* YMessage.m */; };
 		906B96E51736A6D400A7C20E /* YPlainContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 906B96E41736A6D400A7C20E /* YPlainContact.m */; };
@@ -74,6 +75,8 @@
 		90153973172BDC2300DBB64B /* YaabUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaabUser.m; sourceTree = "<group>"; };
 		90153974172BDC2300DBB64B /* YContactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YContactTableViewController.h; sourceTree = "<group>"; };
 		90153975172BDC2300DBB64B /* YContactTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YContactTableViewController.m; sourceTree = "<group>"; };
+		90538C2B173F741500391A31 /* MDActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivity.h; sourceTree = "<group>"; };
+		90538C2C173F741500391A31 /* MDActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivity.m; sourceTree = "<group>"; };
 		905876E2172D45AD00690DC3 /* YMessageContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMessageContactViewController.h; sourceTree = "<group>"; };
 		905876E3172D45AD00690DC3 /* YMessageContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMessageContactViewController.m; sourceTree = "<group>"; };
 		906B96E01736A16100A7C20E /* YMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMessage.h; sourceTree = "<group>"; };
@@ -244,6 +247,8 @@
 				90FD8204173D2A000000A6CD /* MDHTTPAPI.m */,
 				90BBC9061722E16E00674C2C /* MDMessage.h */,
 				90BBC9071722E16E00674C2C /* MDMessage.m */,
+				90538C2B173F741500391A31 /* MDActivity.h */,
+				90538C2C173F741500391A31 /* MDActivity.m */,
 				90FD8206173D2F840000A6CD /* MDUser.h */,
 				90FD8207173D2F840000A6CD /* MDUser.m */,
 				90E1F4E317243EF7009A578C /* MDContact.h */,

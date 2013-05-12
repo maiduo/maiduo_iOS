@@ -9,19 +9,16 @@
 #import "MDMessage.h"
 
 @implementation MDMessage
-@synthesize body;
-@synthesize type;
-@synthesize messageId;
 
-- (id) initWithBody:(NSString *)_body
-       messageForId:(NSInteger)_messageId
-     messageForType:(MessageType)_type
+- (id) initWithBody:(NSString *)aBody
+       messageForId:(NSInteger)aMessageId
+     messageForType:(MessageType)aType
 {
     self = [self init];
     if (self) {
-        self.body = _body;
-        self.type = _type;
-        self.messageId = _messageId;
+        self.body = aBody;
+        self.type = aType;
+        self.messageId = aMessageId;
     }
     
     return self;

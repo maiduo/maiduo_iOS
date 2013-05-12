@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EGORefreshTableHeaderView.h"
 
-@interface LatestViewController : UITableViewController<UITableViewDataSource,
+@interface LatestViewController : UITableViewController<EGORefreshTableHeaderDelegate,UITableViewDataSource,
 UITableViewDelegate> {
     NSArray* activities;
+    
+    EGORefreshTableHeaderView *refreshHeaderView;
+    BOOL reloading;
 }
 @end
