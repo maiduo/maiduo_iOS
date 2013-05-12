@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "MDUser.h"
+#import "MDMessage.h"
+#import "MDActivity.h"
 
 @interface MDHTTPAPI : NSObject
 {
@@ -17,6 +19,21 @@
 @property(nonatomic, strong) MDUser *user;
 
 -(id) initWithUser:(MDUser *)user;
+
+-(void)fetchActivitiesUsingBlockWithSuccess:(void (^)(NSArray *))success
+                                    failure:(void (^)(NSError *error))failure;
+
+-(void)createActivity:(MDActivity *)aActivity
+              success:(void (^)(NSArray *))success
+              failure:(void (^)(NSError *error))failure;
+
+-(void)sendMessage:(MDMessage *)message
+           success:(void (^)(MDMessage *))success
+           failure:(void (^)(NSError *error))failure;
+
+-(void)messagesWithActivity:(MDActivity *)activity
+                    success:(void (^)(NSArray *))success
+                    failure:(void (^)(NSError *error))failure;
 
 +(void)registerUser:(MDUser *)user
             success:(void (^)(MDUser *user, MDHTTPAPI *api))success
