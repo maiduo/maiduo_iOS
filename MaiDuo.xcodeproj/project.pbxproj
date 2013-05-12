@@ -40,11 +40,11 @@
 		90F342E617217C8E005BC944 /* MaiDuoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342E517217C8E005BC944 /* MaiDuoTests.m */; };
 		90F342F417217DD6005BC944 /* LatestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342F317217DD6005BC944 /* LatestViewController.m */; };
 		90F342F81721A706005BC944 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342F71721A706005BC944 /* AsyncImageView.m */; };
+		90FD8205173D2A000000A6CD /* MDHTTPAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD8204173D2A000000A6CD /* MDHTTPAPI.m */; };
+		90FD8208173D2F840000A6CD /* MDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD8207173D2F840000A6CD /* MDUser.m */; };
 		C8B6CECE173BC26D00943B56 /* photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B6CECD173BC26D00943B56 /* photo@2x.png */; };
 		C8C90EC9173D38B500986153 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C90EC8173D38B500986153 /* LoginViewController.m */; };
 		C8C90ECC173D3B0400986153 /* FConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C90ECB173D3B0400986153 /* FConstants.m */; };
-		90FD8205173D2A000000A6CD /* MDHTTPAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD8204173D2A000000A6CD /* MDHTTPAPI.m */; };
-		90FD8208173D2F840000A6CD /* MDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD8207173D2F840000A6CD /* MDUser.m */; };
 		C8CEFB271739E7DF0021D371 /* PhotoBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB231739E7DF0021D371 /* PhotoBorder.png */; };
 		C8CEFB281739E7DF0021D371 /* PhotoBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB241739E7DF0021D371 /* PhotoBorder@2x.png */; };
 		C8CEFB291739E7DF0021D371 /* PhotoStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CEFB261739E7DF0021D371 /* PhotoStackView.m */; };
@@ -64,8 +64,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03A59910173BEE3A00C0C4B3 /* ASMyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMyCell.h; sourceTree = "<group>"; };
-		03A59911173BEE3A00C0C4B3 /* ASMyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMyCell.m; sourceTree = "<group>"; };
 		19CCBF954E574D39AED92D14 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		8189D765038C4B9FB2F1D493 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9015396E172BDC2300DBB64B /* RHPerson+RHPersonCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RHPerson+RHPersonCategory.h"; sourceTree = "<group>"; };
@@ -121,15 +119,15 @@
 		90F342F317217DD6005BC944 /* LatestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatestViewController.m; sourceTree = "<group>"; };
 		90F342F61721A706005BC944 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		90F342F71721A706005BC944 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
+		90FD8203173D2A000000A6CD /* MDHTTPAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDHTTPAPI.h; sourceTree = "<group>"; };
+		90FD8204173D2A000000A6CD /* MDHTTPAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDHTTPAPI.m; sourceTree = "<group>"; };
+		90FD8206173D2F840000A6CD /* MDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUser.h; sourceTree = "<group>"; };
+		90FD8207173D2F840000A6CD /* MDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUser.m; sourceTree = "<group>"; };
 		C8B6CECD173BC26D00943B56 /* photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo@2x.png"; sourceTree = "<group>"; };
 		C8C90EC7173D38B500986153 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C8C90EC8173D38B500986153 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C8C90ECA173D3B0400986153 /* FConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FConstants.h; sourceTree = "<group>"; };
 		C8C90ECB173D3B0400986153 /* FConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FConstants.m; sourceTree = "<group>"; };
-		90FD8203173D2A000000A6CD /* MDHTTPAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDHTTPAPI.h; sourceTree = "<group>"; };
-		90FD8204173D2A000000A6CD /* MDHTTPAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDHTTPAPI.m; sourceTree = "<group>"; };
-		90FD8206173D2F840000A6CD /* MDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUser.h; sourceTree = "<group>"; };
-		90FD8207173D2F840000A6CD /* MDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUser.m; sourceTree = "<group>"; };
 		C8CEFB231739E7DF0021D371 /* PhotoBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoBorder.png; sourceTree = "<group>"; };
 		C8CEFB241739E7DF0021D371 /* PhotoBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoBorder@2x.png"; sourceTree = "<group>"; };
 		C8CEFB251739E7DF0021D371 /* PhotoStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoStackView.h; sourceTree = "<group>"; };
@@ -579,7 +577,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "C9551779-42FB-4772-AF6C-F8071479025D";
+				PROVISIONING_PROFILE = "D3CFE8E7-8711-4CF1-B64D-9A50E3EA2A9A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -10,6 +10,7 @@
 
 @interface MDUser : NSObject
 
+@property (nonatomic, assign) NSInteger user_id;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *access_token;
