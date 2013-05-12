@@ -10,6 +10,7 @@
 #import "LatestViewController.h"
 #import "InviteTableViewController.h"
 #import "SendMessageViewController.h"
+#import "LoginViewController.h"
 
 @implementation AppDelegate
 
@@ -21,18 +22,20 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    latestView = [[LatestViewController alloc]
-                  initWithStyle:UITableViewStylePlain];
+//    latestView = [[LatestViewController alloc]
+//                  initWithStyle:UITableViewStylePlain];
+//    
+//    InviteTableViewController* inviteViewController;
+//    inviteViewController = [[InviteTableViewController alloc] init];
+//    
+//    SendMessageViewController *sendMessageController;
+//    sendMessageController = [[SendMessageViewController alloc]
+//                             initWithMode:ACTIVITY_MODE];
     
-    InviteTableViewController* inviteViewController;
-    inviteViewController = [[InviteTableViewController alloc] init];
     
-    SendMessageViewController *sendMessageController;
-    sendMessageController = [[SendMessageViewController alloc]
-                             initWithMode:ACTIVITY_MODE];
-    
+    LoginViewController *loginVC = [[LoginViewController alloc]  initWithStyle:UITableViewStyleGrouped];
     navigation = [[UINavigationController alloc]
-                  initWithRootViewController:latestView];
+                  initWithRootViewController:loginVC];
     [self.window addSubview:[navigation view]];
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
@@ -52,7 +55,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         return;
     
     NSString *registerTokenURL;
-    registerTokenURL = @"https://himaiduo.com/aps//device/";
+    registerTokenURL = @"https://himaiduo.com/aps/device/";
     
     NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
                           token, @"token", @"1", @"service", nil];

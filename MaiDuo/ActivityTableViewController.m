@@ -10,6 +10,7 @@
 #import "InviteTableViewController.h"
 #import "AsyncImageView/AsyncImageView.h"
 #import "MDMessage.h"
+#import "MDContact.h"
 
 @interface ActivityTableViewController ()
 
@@ -53,7 +54,12 @@
                             messageForId:7
                             messageForType:TextMessage],nil];
         
-        self.data = [NSArray arrayWithObjects: activities, nil];
+        self.messages = [[NSMutableArray alloc]initWithCapacity:0];
+        self.contacts = [[NSMutableArray alloc]initWithCapacity:0];
+        
+        [self addPerson];
+                         
+        self.data = [NSArray arrayWithObjects:activities, messages, contacts, nil];
         
         segmented = [[UISegmentedControl alloc]
                      initWithItems:@[@"消息", @"聊天", @"通讯录"]];
@@ -86,6 +92,10 @@
     viewState = ACTIVITY;
     self.navigationItem.rightBarButtonItem = [self createButton];
     self.navigationItem.titleView = segmented;
+    
+    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
+    temporaryBarButtonItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
 }
 
 - (UIBarButtonItem *)createButton
@@ -132,14 +142,80 @@
 {
 }
 
+- (void)addPerson
+{
+    NSArray * phones = @[@"123"];
+    MDContact * aPerson = [[MDContact alloc]initWithFirstName:@"a"
+                                                     lastName:@"w"
+                                                   middleName:@""
+                                                       phones:phones];
+    [self.contacts addObject:aPerson];
+}
+
+//改变tableview数据data
+- (void)changeTableviewData
+{
+    if (self.viewState == CONTACT) {
+//        MDContact * bPerson = [[MDContact alloc]initWithFirstName:@"b"
+//                                                         lastName:@"w"
+//                                                       middleName:@""
+//                                                           phones:phones];
+//        MDContact * bPerson2 = [[MDContact alloc]initWithFirstName:@"bz"
+//                                                         lastName:@"w"
+//                                                       middleName:@""
+//                                                           phones:phones];
+
+        //测试用
+//        NSArray *paths = NSSearchPathForDirectoriesInDomains
+//                            (NSDocumentDirectory,NSUserDomainMask,YES);
+//        NSString *path = [paths objectAtIndex:0];
+//        NSLog(@"path = %@",path);
+//        NSString *filename = [path stringByAppendingPathComponent:@"contacts.plist"];
+//        NSFileManager* fm = [NSFileManager defaultManager];
+//        [fm createFileAtPath:filename contents:nil attributes:nil];
+//        
+//        NSMutableArray *Astart = [[NSMutableArray alloc]initWithObjects:aPerson, nil];
+//        NSMutableArray *Bstart = [[NSMutableArray alloc]initWithObjects:bPerson, bPerson2, nil];
+//        //创建一个dic，写到plist文件里
+//        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:
+//                             Astart, @"A", Bstart, @"B", nil];
+//        [dic writeToFile:filename atomically:YES];
+//        
+//        NSDictionary* dic2 = [NSDictionary dictionaryWithContentsOfFile:filename];
+//        NSLog(@"dic is:%@",dic2);
+        
+//        self.tableView.showsVerticalScrollIndicator = YES;
+    }
+}
+
+- (void)changeTitle
+{
+    switch (self.viewState) {
+        case CONTACT:
+            [self setTitle:@"所有联系人"];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 - (void)segmentedChanged:(id)sender forEvent:(UIEvent *)event
 {
 //    NSLog(@"Segmented selected %d", segmented.selectedSegmentIndex);
 //    NSLog(@"ACTIVITY %d", ACTIVITY);
 //    NSLog(@"MESSAGE %d", MESSAGE);
 //    NSLog(@"CONTACT %d", CONTACT);
+
     self.viewState = segmented.selectedSegmentIndex;
+    
     self.navigationItem.rightBarButtonItem = [self createButton];
+    
+    [self changeTableviewData];
+    
+    [self changeTitle];
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -151,32 +227,61 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (self.viewState == CONTACT) {
+//        return [keys count];
+        return 1;
+    }
     return 1;
 }
 
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+//    return keys;
+//}
+//
+//- (NSString *)tableView:(UITableView *)tableView
+//titleForHeaderInSection:(NSInteger)section
+//{
+//    NSString *key = [keys objectAtIndex:section];
+//    return key;
+//}
+
 - (NSInteger)tableView:(UITableView *)tableView
-numberOfRowsInSection:(NSInteger)section
+ numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"list:%@",self.data);
     NSMutableArray* list = (NSMutableArray *)[self.data objectAtIndex:self.viewState];
     return [list count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
-cellForRowAtIndexPath:(NSIndexPath *)indexPath
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray* list = (NSMutableArray *)[data objectAtIndex:self.viewState];
+    NSLog(@"%@",self.data);
+    NSMutableArray* list = (NSMutableArray *)[self.data objectAtIndex:self.viewState];
     MDMessage* msg = (MDMessage *)[list objectAtIndex:[indexPath row]];
-    return [self createCell:msg
-            tableView:tableView
-            cellForRowAtIndexPath:indexPath];
+    switch (viewState) {
+        case ACTIVITY:
+            return [self createCell:msg
+                          tableView:tableView
+              cellForRowAtIndexPath:indexPath];
+        case MESSAGE:
+            return [self createCell:msg
+                          tableView:tableView
+              cellForRowAtIndexPath:indexPath];
+        case CONTACT:
+            return [self createCellForContactsWithTableView:tableView
+                                      cellForRowAtIndexPath:indexPath];
+        default:
+            return nil;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray* list = (NSMutableArray *)[data objectAtIndex:self.viewState];
+    NSMutableArray* list = (NSMutableArray *)[self.data objectAtIndex:self.viewState];
     MDMessage* msg = (MDMessage *)[list objectAtIndex:[indexPath row]];
-    NSInteger height;
+    NSInteger height = 0;
     switch(viewState) {
         case ACTIVITY:
             switch (msg.type) {
@@ -192,14 +297,17 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
                 default:
                     break;
             }
+        break;
+        case CONTACT:
+            height = 50;
             break;
     }
     return height + 20.0f;
 }
 
 - (UITableViewCell *)createCell:(MDMessage *)message
-tableView:(UITableView *)tableView
-cellForRowAtIndexPath:(NSIndexPath *)indexPath
+                      tableView:(UITableView *)tableView
+          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell;
     switch (message.type) {
@@ -223,8 +331,8 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 - (UITableViewCell *)createCellWithVideo:(MDMessage *)message
-tableView:(UITableView *)tableView
-cellForRowAtIndexPath:(NSIndexPath *)indexPath
+                               tableView:(UITableView *)tableView
+                   cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = [NSString stringWithFormat:@"%ld",
                                 (long)[indexPath row]];
@@ -300,8 +408,8 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 - (UITableViewCell *)createCellWithText:(MDMessage *)message
-tableView:(UITableView *)tableView
-cellForRowAtIndexPath:(NSIndexPath *)indexPath
+                              tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = [NSString stringWithFormat:@"%ld",
                                 (long)[indexPath row]];
@@ -316,6 +424,32 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
         cell.indentationLevel = 1;
 
         cell.textLabel.text = message.body;
+    }
+    
+    return cell;
+}
+
+- (UITableViewCell *)createCellForContactsWithTableView:(UITableView *)tableView
+                                  cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = @"contacts";
+    UITableViewCell *cell = [tableView
+                             dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]
+                initWithStyle: UITableViewCellStyleSubtitle
+                reuseIdentifier: CellIdentifier];
+        cell.indentationWidth = 10;
+        MDContact * aPerson = [self.contacts objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@%@%@",
+                               aPerson.firstName,
+                               aPerson.middleName,
+                               aPerson.lastName];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        cell.detailTextLabel.text =[NSString stringWithFormat:@"电话 %@",
+                                             [aPerson.phones objectAtIndex:0]];
     }
     
     return cell;

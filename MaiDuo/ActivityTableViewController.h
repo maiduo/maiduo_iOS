@@ -25,6 +25,7 @@ typedef enum viewState {
     NSMutableArray* messages;
     NSMutableArray* contacts;
     NSArray* data;
+    NSArray* keys;
     
     NSInteger viewState;
     
