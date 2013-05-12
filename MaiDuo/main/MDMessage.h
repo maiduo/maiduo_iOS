@@ -23,8 +23,4 @@ enum {
 @property(nonatomic, strong) NSString* body;
 @property(nonatomic, assign) MessageType type;
 
-- (id) initWithBody:(NSString *)_body
-       messageForId:(NSInteger)_messageId
-     messageForType:(MessageType)_type;
-
 @end

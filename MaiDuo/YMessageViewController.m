@@ -81,7 +81,7 @@
 	[tokenFieldView.tokenField setDelegate:self];
 	[tokenFieldView.tokenField addTarget:self
                                   action:@selector(tokenFieldFrameDidChange:)
-                        forControlEvents:TITokenFieldControlEventFrameDidChange];
+                        forControlEvents:(UIControlEvents)TITokenFieldControlEventFrameDidChange];
 	[tokenFieldView.tokenField setTokenizingCharacters:
      [NSCharacterSet characterSetWithCharactersInString:@""]];
 	

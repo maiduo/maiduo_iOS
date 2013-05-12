@@ -8,7 +8,6 @@
 
 #import "MDActivityConView.h"
 #import "MDActivityConCell.h"
-#import "MDInviteTableViewController.h"
 
 @implementation MDActivityConView
 
@@ -41,8 +40,14 @@
 
 - (void)rightBarAction
 {
-    MDInviteTableViewController *inviteVC = [[MDInviteTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    [self.controller.navigationController pushViewController:inviteVC animated:YES];
+    ABPeoplePickerNavigationController *controller = [[ABPeoplePickerNavigationController alloc] init];
+    controller.peoplePickerDelegate = self;
+    [self.viewController.navigationController presentModalViewController:controller animated:YES];
+}
+
+- (void)reloadData
+{
+    [_tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -64,6 +69,34 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [MDActivityConCell heightWithItem:[_source objectAtIndex:indexPath.row]];
+}
+
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+    [peoplePicker dismissModalViewControllerAnimated:YES];
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+    MDContact *contact = [[MDContact alloc] init];
+    contact.firstName =  (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+    contact.middleName =  (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonMiddleNameProperty);
+    contact.lastName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
+    ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    NSMutableArray *phones = [NSMutableArray array];
+    for (int k = 0; k<ABMultiValueGetCount(phone); k++) {
+        NSString * personPhone = (__bridge_transfer NSString *)ABMultiValueCopyValueAtIndex(phone, k);
+        [phones addObject:personPhone];
+    }
+    [_source addObject:contact];
+    [self reloadData];
+    [peoplePicker dismissModalViewControllerAnimated:YES];
+    return NO;
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+{
+    return NO;
 }
 
 @end

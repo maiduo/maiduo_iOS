@@ -16,8 +16,4 @@
 @property (nonatomic, strong) NSString* middleName;
 @property (nonatomic, strong) NSArray* phones;
 
-- (id)initWithFirstName:(NSString *)_firstName
-               lastName:(NSString *)_lastName
-             middleName:(NSString *)_middleName
-                 phones:(NSArray  *)_phones;
 @end

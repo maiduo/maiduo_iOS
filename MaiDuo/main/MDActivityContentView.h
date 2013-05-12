@@ -10,7 +10,7 @@
 
 @interface MDActivityContentView : UIView
 
-@property (nonatomic, assign) UIViewController *controller;
+@property (nonatomic, assign) UIViewController *viewController;
 
 - (void)rightBarAction;
 

@@ -41,7 +41,6 @@
 		AA315DF4173F8ED8009BA36E /* MDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315DF2173F8ED8009BA36E /* MDLoginViewController.m */; };
 		AA315DF7173F8F4F009BA36E /* MDSendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315DF6173F8F4F009BA36E /* MDSendMessageViewController.m */; };
 		AA315DFA173F8FE6009BA36E /* MDActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315DF9173F8FE6009BA36E /* MDActivityTableViewController.m */; };
-		AA315DFD173F904C009BA36E /* MDInviteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315DFC173F904B009BA36E /* MDInviteTableViewController.m */; };
 		AA315E02173F91CF009BA36E /* MDContact.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E00173F91CF009BA36E /* MDContact.m */; };
 		AA315E03173F91CF009BA36E /* MDMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E01173F91CF009BA36E /* MDMessage.m */; };
 		AA315E06173F9629009BA36E /* MDActivityActView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E05173F9629009BA36E /* MDActivityActView.m */; };
@@ -49,6 +48,8 @@
 		AA315E10173F9725009BA36E /* MDActivityConView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E0F173F9725009BA36E /* MDActivityConView.m */; };
 		AA315E13173FA79B009BA36E /* MDActivityContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E12173FA79A009BA36E /* MDActivityContentView.m */; };
 		AA315E17173FAFB2009BA36E /* MDActivityConCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E16173FAFB1009BA36E /* MDActivityConCell.m */; };
+		AA9954F11740020600FF5BFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9954F01740020600FF5BFF /* SystemConfiguration.framework */; };
+		AA9954F31740020B00FF5BFF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9954F21740020B00FF5BFF /* MobileCoreServices.framework */; };
 		C8B6CECE173BC26D00943B56 /* photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B6CECD173BC26D00943B56 /* photo@2x.png */; };
 		C8C90ECC173D3B0400986153 /* FConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C90ECB173D3B0400986153 /* FConstants.m */; };
 		C8CEFB271739E7DF0021D371 /* PhotoBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB231739E7DF0021D371 /* PhotoBorder.png */; };
@@ -127,8 +128,6 @@
 		AA315DF6173F8F4F009BA36E /* MDSendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSendMessageViewController.m; sourceTree = "<group>"; };
 		AA315DF8173F8FE6009BA36E /* MDActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityTableViewController.h; sourceTree = "<group>"; };
 		AA315DF9173F8FE6009BA36E /* MDActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityTableViewController.m; sourceTree = "<group>"; };
-		AA315DFB173F904B009BA36E /* MDInviteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDInviteTableViewController.h; sourceTree = "<group>"; };
-		AA315DFC173F904B009BA36E /* MDInviteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDInviteTableViewController.m; sourceTree = "<group>"; };
 		AA315DFE173F91CF009BA36E /* MDContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDContact.h; sourceTree = "<group>"; };
 		AA315DFF173F91CF009BA36E /* MDMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMessage.h; sourceTree = "<group>"; };
 		AA315E00173F91CF009BA36E /* MDContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDContact.m; sourceTree = "<group>"; };
@@ -143,6 +142,8 @@
 		AA315E12173FA79A009BA36E /* MDActivityContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityContentView.m; sourceTree = "<group>"; };
 		AA315E15173FAFB1009BA36E /* MDActivityConCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityConCell.h; sourceTree = "<group>"; };
 		AA315E16173FAFB1009BA36E /* MDActivityConCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityConCell.m; sourceTree = "<group>"; };
+		AA9954F01740020600FF5BFF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AA9954F21740020B00FF5BFF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C8B6CECD173BC26D00943B56 /* photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo@2x.png"; sourceTree = "<group>"; };
 		C8C90ECA173D3B0400986153 /* FConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FConstants.h; sourceTree = "<group>"; };
 		C8C90ECB173D3B0400986153 /* FConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FConstants.m; sourceTree = "<group>"; };
@@ -161,6 +162,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA9954F31740020B00FF5BFF /* MobileCoreServices.framework in Frameworks */,
+				AA9954F11740020600FF5BFF /* SystemConfiguration.framework in Frameworks */,
 				9083C48C1736897100E87B4A /* AddressBookUI.framework in Frameworks */,
 				90E1F4E217242FF1009A578C /* AddressBook.framework in Frameworks */,
 				90F342BB17217C8E005BC944 /* UIKit.framework in Frameworks */,
@@ -239,6 +242,8 @@
 		90F342B917217C8E005BC944 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA9954F21740020B00FF5BFF /* MobileCoreServices.framework */,
+				AA9954F01740020600FF5BFF /* SystemConfiguration.framework */,
 				9083C48B1736897100E87B4A /* AddressBookUI.framework */,
 				90E1F4E117242FF1009A578C /* AddressBook.framework */,
 				90F342BA17217C8E005BC944 /* UIKit.framework */,
@@ -339,8 +344,6 @@
 				AA315DF0173F8ED8009BA36E /* MDLatestViewController.m */,
 				AA315DF1173F8ED8009BA36E /* MDLoginViewController.h */,
 				AA315DF2173F8ED8009BA36E /* MDLoginViewController.m */,
-				AA315DFB173F904B009BA36E /* MDInviteTableViewController.h */,
-				AA315DFC173F904B009BA36E /* MDInviteTableViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -600,7 +603,6 @@
 				AA315DF4173F8ED8009BA36E /* MDLoginViewController.m in Sources */,
 				AA315DF7173F8F4F009BA36E /* MDSendMessageViewController.m in Sources */,
 				AA315DFA173F8FE6009BA36E /* MDActivityTableViewController.m in Sources */,
-				AA315DFD173F904C009BA36E /* MDInviteTableViewController.m in Sources */,
 				AA315E02173F91CF009BA36E /* MDContact.m in Sources */,
 				AA315E03173F91CF009BA36E /* MDMessage.m in Sources */,
 				AA315E06173F9629009BA36E /* MDActivityActView.m in Sources */,

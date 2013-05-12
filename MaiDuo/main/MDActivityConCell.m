@@ -35,7 +35,7 @@
                            _item.middleName?_item.middleName:@"",
                            _item.firstName?_item.firstName:@""];
     self.detailTextLabel.text =[NSString stringWithFormat:@"电话 %@",
-                                [_item.phones objectAtIndex:0]];
+                                [_item.phones count]>0?[_item.phones objectAtIndex:0]:@"无"];
 }
 
 + (CGFloat)heightWithItem:(MDContact *)item

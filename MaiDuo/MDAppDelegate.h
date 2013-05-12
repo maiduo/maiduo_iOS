@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <YaabUser.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 #import <AFNetworking.h>
  
 @interface MDAppDelegate : UIResponder <UIApplicationDelegate> {

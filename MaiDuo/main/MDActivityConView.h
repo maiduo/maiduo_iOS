@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "MDActivityContentView.h"
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
 
-@interface MDActivityConView : MDActivityContentView <UITableViewDelegate, UITableViewDataSource> {
+@interface MDActivityConView : MDActivityContentView <UITableViewDelegate, UITableViewDataSource, ABPeoplePickerNavigationControllerDelegate> {
     UITableView *_tableView;
     NSMutableArray *_source;
 }

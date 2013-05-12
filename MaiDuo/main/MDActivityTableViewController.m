@@ -7,7 +7,6 @@
 //
 
 #import "MDActivityTableViewController.h"
-#import "MDInviteTableViewController.h"
 #import "AsyncImageView.h"
 #import "MDActivityActView.h"
 #import "MDActivityConView.h"
@@ -60,7 +59,7 @@
             if (_actView==nil) {
                 _actView = [[MDActivityActView alloc] initWithFrame:self.view.bounds];
                 _actView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                _actView.controller = self;
+                _actView.viewController = self;
             }
             _currentContentView = _actView;
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
@@ -72,7 +71,7 @@
             if (_mesView==nil) {
                 _mesView = [[MDActivityMesView alloc] initWithFrame:self.view.bounds];
                 _mesView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                _mesView.controller = self;
+                _mesView.viewController = self;
             }
             _currentContentView = _mesView;
             self.navigationItem.rightBarButtonItem = nil;
@@ -81,7 +80,7 @@
             if (_conView==nil) {
                 _conView = [[MDActivityConView alloc] initWithFrame:self.view.bounds];
                 _conView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                _conView.controller = self;
+                _conView.viewController = self;
             }
             _currentContentView = _conView;
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]

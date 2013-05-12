@@ -8,7 +8,6 @@
 
 #import "MDAppDelegate.h"
 #import "MDLatestViewController.h"
-#import "MDInviteTableViewController.h"
 #import "MDSendMessageViewController.h"
 #import "MDLoginViewController.h"
 #import "MDUserManager.h"
