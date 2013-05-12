@@ -220,11 +220,12 @@ static NSString *kViewKey = @"viewKey";
 #pragma mark Customer methods
 -(void) login
 {
-    MDUser *user=[YaabUser default].user;
+    MDUser *user=[YaabUser sharedInstance].user;
     user.username=_txtUser.text;
     user.password=_txtPass.text;
     [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
-        LatestViewController *latestVC = [[LatestViewController alloc] initWithStyle:UITableViewStylePlain];
+        
+        LatestViewController *latestVC = [[LatestViewController alloc] init];
         [self.navigationController pushViewController:latestVC animated:YES];
     } failure:^(NSError *error) {
          [[[iToast makeText:@"登录失败!"] setGravity:iToastGravityCenter] show];

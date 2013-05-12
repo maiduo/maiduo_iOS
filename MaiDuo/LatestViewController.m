@@ -10,21 +10,25 @@
 #import "ActivityTableViewController.h"
 #import "SendMessageViewController.h"
 #import "AsyncImageView/AsyncImageView.h"
+#import "EGOTableView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface LatestViewController ()
 
+@property (nonatomic,strong) EGOTableView *tableView;
 @end
 
 @implementation LatestViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-    }
-    return self;
-}
+//- (id)initWithStyle:(UITableViewStyle)style
+//{
+//    self = [super initWithStyle:style];
+//    if (self) {
+//    }
+//    return self;
+//}
+
+//-(id)
 
 - (void)viewDidLoad
 {
@@ -60,6 +64,20 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //self.tableView=nil;
+    self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size}];
+    self.tableView.delegate=self;
+    self.tableView.dataSource=self;
+    [self.view addSubview: self.tableView];
+    
+    
+}
+-(void) viewDidAppear:(BOOL)animated
+{
+    if(activities.count==0){
+        [_tableView autoLoadData];
+    }
+    [super viewDidAppear:animated];
 }
 
 - (void)addActivity
@@ -195,6 +213,31 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
                                      self.view.frame.size.height);
     [self.navigationController pushViewController:activityViewController animated:YES];
+}
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+// 页面滚动时回调
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //NSLog(@"scrollViewDidScroll");
+    [self.tableView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+// 滚动结束时回调
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    //NSLog(@"scrollViewDidEndDragging");
+    [self.tableView egoRefreshScrollViewDidEndDragging:scrollView];
+    
+}
+#pragma mark -
+#pragma mark EGOTableViewDelegate Methods
+- (void) startLoadData:(id) sender
+{
+    //[self getAllProduct];
+    //请求完后调用，用来使 tableview返回正常状态
+    [self.tableView refreshTableView];
 }
 
 @end

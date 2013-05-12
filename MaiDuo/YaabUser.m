@@ -46,7 +46,7 @@
     return token;
 }
 
-+(YaabUser *)default
++(YaabUser *)sharedInstance
 {
     static YaabUser *_instance;
     if (nil == _instance) {

@@ -53,6 +53,7 @@
 		C8CEFB2D1739EEA00021D371 /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CEFB2C1739EEA00021D371 /* UIView+Animation.m */; };
 		C8CEFB31173A0DFD0021D371 /* garbage_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */; };
 		C8CEFB32173A0DFD0021D371 /* garbage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB30173A0DFD0021D371 /* garbage@2x.png */; };
+		C8D7BA72173F8CFC008CCBC7 /* EGOTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D7BA71173F8CFC008CCBC7 /* EGOTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,8 @@
 		C8CEFB2C1739EEA00021D371 /* UIView+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
 		C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "garbage_s@2x.png"; sourceTree = "<group>"; };
 		C8CEFB30173A0DFD0021D371 /* garbage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "garbage@2x.png"; sourceTree = "<group>"; };
+		C8D7BA70173F8CFC008CCBC7 /* EGOTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOTableView.h; sourceTree = "<group>"; };
+		C8D7BA71173F8CFC008CCBC7 /* EGOTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +321,7 @@
 		C83212B6173E6F5D00B14E6C /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				C8D7BA6F173F8CD7008CCBC7 /* EGOTableView */,
 				C8CEFB221739E7B00021D371 /* PhotoStack */,
 				C83212B7173E6F6B00B14E6C /* iToast.h */,
 				C83212B8173E6F6B00B14E6C /* iToast.m */,
@@ -356,6 +360,15 @@
 				C8CEFB30173A0DFD0021D371 /* garbage@2x.png */,
 			);
 			name = Resource;
+			sourceTree = "<group>";
+		};
+		C8D7BA6F173F8CD7008CCBC7 /* EGOTableView */ = {
+			isa = PBXGroup;
+			children = (
+				C8D7BA70173F8CFC008CCBC7 /* EGOTableView.h */,
+				C8D7BA71173F8CFC008CCBC7 /* EGOTableView.m */,
+			);
+			name = EGOTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -528,6 +541,7 @@
 				90FD8208173D2F840000A6CD /* MDUser.m in Sources */,
 				C83212B5173E634200B14E6C /* AFMDClient.m in Sources */,
 				C83212B9173E6F6B00B14E6C /* iToast.m in Sources */,
+				C8D7BA72173F8CFC008CCBC7 /* EGOTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,11 +651,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 19CCBF954E574D39AED92D14 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: ma sijun (FWF69N2XSH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ma sijun (FWF69N2XSH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A0912766-E2C3-479C-B337-B14E7A716EC1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A0912766-E2C3-479C-B337-B14E7A716EC1";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -650,11 +668,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 19CCBF954E574D39AED92D14 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: ma sijun (FWF69N2XSH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ma sijun (FWF69N2XSH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A0912766-E2C3-479C-B337-B14E7A716EC1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A0912766-E2C3-479C-B337-B14E7A716EC1";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

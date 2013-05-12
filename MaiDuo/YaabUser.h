@@ -19,6 +19,6 @@
 -(void)setDeviceToken:(NSString *)deviceToken;
 -(NSString *)getDeviceTokenWithData:(NSData *)nsdataToken;
 
-+(YaabUser *)default;
++(YaabUser *)sharedInstance;
 
 @end
