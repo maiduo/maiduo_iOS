@@ -1,45 +1,38 @@
 //
-//  LatestViewController.m
-//  MaiDuo
+// LatestViewController.m
+// MaiDuo
 //
-//  Created by 魏琮举 on 13-4-19.
-//  Copyright (c) 2013年 魏琮举. All rights reserved.
+// Created by 魏琮举 on 13-4-19.
+// Copyright (c) 2013年 魏琮举. All rights reserved.
 //
 
 #import "LatestViewController.h"
 #import "ActivityTableViewController.h"
 #import "SendMessageViewController.h"
 #import "AsyncImageView/AsyncImageView.h"
+#import "EGOTableView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface LatestViewController ()
 
+@property (nonatomic,strong) EGOTableView *tableView;
 @end
 
 @implementation LatestViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-    }
-    return self;
-}
+//- (id)initWithStyle:(UITableViewStyle)style
+//{
+// self = [super initWithStyle:style];
+// if (self) {
+// }
+// return self;
+//}
+
+//-(id)
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //下拉刷新的view
-    if (refreshHeaderView == nil) {
-        refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
-        refreshHeaderView.delegate = self;
-        [self.tableView addSubview:refreshHeaderView];
-        
-    }
-    
-    // 刷新一次
-	[refreshHeaderView refreshLastUpdatedDate];
     
     [[self navigationItem] setTitle: @"最新活动"];
     UIBarButtonItem* btnAdd;
@@ -48,7 +41,7 @@
               target:self action:@selector(addActivity)];
     
     [[self navigationItem] setRightBarButtonItem: btnAdd];
-//    [btnAdd release];
+    // [btnAdd release];
     
     //箭头的返回
     UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
@@ -65,12 +58,26 @@
                   [NSArray arrayWithObjects: @"4", @"王文彪", @"已婚老男人俱乐部",
                    @"王文彪作为已婚老男人先锋，以发表长篇博文《我是已婚老疙瘩》。", nil],
                   nil];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //self.tableView=nil;
+    self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size}];
+    self.tableView.delegate=self;
+    self.tableView.dataSource=self;
+    [self.view addSubview: self.tableView];
+    
+    
+}
+-(void) viewDidAppear:(BOOL)animated
+{
+    if(activities.count==0){
+        [_tableView autoLoadData];
+    }
+    [super viewDidAppear:animated];
 }
 
 - (void)addActivity
@@ -94,13 +101,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
-numberOfRowsInSection:(NSInteger)section
+ numberOfRowsInSection:(NSInteger)section
 {
     return [activities count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
-cellForRowAtIndexPath:(NSIndexPath *)indexPath
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = [NSString stringWithFormat:@"%ld",
                                 (long)[indexPath row]];
@@ -108,9 +115,9 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
                              dequeueReusableCellWithIdentifier:CellIdentifier];
     
     AsyncImageView* imageView;
-    NSArray*  item   = (NSArray  *)[activities objectAtIndex: [indexPath row]];
-    NSString* uid    = (NSString *)[item objectAtIndex: 0];
-    NSString* title  = (NSString *)[item objectAtIndex: 2];
+    NSArray* item = (NSArray *)[activities objectAtIndex: [indexPath row]];
+    NSString* uid = (NSString *)[item objectAtIndex: 0];
+    NSString* title = (NSString *)[item objectAtIndex: 2];
     NSString* detail = (NSString *)[item objectAtIndex: 3];
 #define IMAGE_VIEW_TAG 99
     
@@ -126,8 +133,8 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
         imageView.tag = IMAGE_VIEW_TAG;
         
         [cell addSubview: imageView];
-
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        // cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.text = title;
         cell.detailTextLabel.text = detail;
         cell.detailTextLabel.numberOfLines = 2;
@@ -147,7 +154,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 - (void)tableView:(UITableView *)tableView
-willDisplayCell:(UITableViewCell *)cell
+  willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 }
@@ -159,43 +166,43 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 #pragma mark - Table view delegate
 
@@ -204,61 +211,33 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     ActivityTableViewController* activityViewController;
     activityViewController = [[ActivityTableViewController alloc] init];
     activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
-                                     self.view.frame.size.height);
+                                                   self.view.frame.size.height);
     [self.navigationController pushViewController:activityViewController animated:YES];
 }
 
-
-
-
-#pragma mark - UIScrollViewDelegate Methods
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+// 页面滚动时回调
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    //NSLog(@"scrollViewDidScroll");
+    [self.tableView egoRefreshScrollViewDidScroll:scrollView];
 }
 
+// 滚动结束时回调
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    [refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    //NSLog(@"scrollViewDidEndDragging");
+    [self.tableView egoRefreshScrollViewDidEndDragging:scrollView];
+    
 }
-
-
-#pragma mark - EGORefreshTableHeaderDelegate Methods
-
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
-	
-	[self reloadTableViewDataSource];
-	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
-	
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
-	
-	return reloading; 
-	
-}
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
-	
-	return [NSDate date]; 
-	
-}
-
-#pragma mark - Data Source Loading / Reloading Methods
-
-- (void)reloadTableViewDataSource{
-	
-	// 调用tableview datasource 刷新
-	reloading = YES;
-	
-}
-
-- (void)doneLoadingTableViewData{
-	
-	//  完成加载数据后
-	reloading = NO;
-	[refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-	
+#pragma mark -
+#pragma mark EGOTableViewDelegate Methods
+- (void) startLoadData:(id) sender
+{
+    //[self getAllProduct];
+    //请求完后调用，用来使 tableview返回正常状态
+    [self.tableView refreshTableView];
 }
 
 @end

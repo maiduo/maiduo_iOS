@@ -8,6 +8,10 @@
 
 #import "LoginViewController.h"
 #import "LatestViewController.h"
+#import "MDHTTPAPI.h"
+#import "YaabUser.h"
+#import "iToast.h"
+
 #define kLeftMargin				20.0
 #define kRightMargin			20.0
 #define kTextFieldWidth			160.0
@@ -49,11 +53,11 @@ static NSString *kViewKey = @"viewKey";
     
     self.dataArray = [NSArray arrayWithObjects:
 					  [NSDictionary dictionaryWithObjectsAndKeys:
-					   @"用  户  名：",kSourceKey,
+					   @"手机号:",kSourceKey,
 					   self.txtUser,kViewKey,
 					   nil],
 					  [NSDictionary dictionaryWithObjectsAndKeys:
-					   @"用户密码：",kSourceKey,
+					   @"密码:",kSourceKey,
 					   self.txtPass,kViewKey,
 					   nil],
 					  nil];
@@ -179,6 +183,7 @@ static NSString *kViewKey = @"viewKey";
 		_txtUser.clearButtonMode = UITextFieldViewModeWhileEditing;
 		_txtUser.tag = kViewTag;
 		_txtUser.delegate = self;
+        _txtUser.text=@"13000000000";
 	}
 	return _txtUser;
 }
@@ -198,6 +203,7 @@ static NSString *kViewKey = @"viewKey";
 		_txtPass.clearButtonMode = UITextFieldViewModeWhileEditing;
 		_txtPass.tag = kViewTag;
 		_txtPass.delegate = self;
+        _txtPass.text=@"13000000000";
 	}
 	return _txtPass;
 }
@@ -214,7 +220,20 @@ static NSString *kViewKey = @"viewKey";
 #pragma mark Customer methods
 -(void) login
 {
-    LatestViewController *latestVC = [[LatestViewController alloc] initWithStyle:UITableViewStylePlain];
-    [self.navigationController pushViewController:latestVC animated:YES];
+    MDUser *user=[YaabUser sharedInstance].user;
+    user.username=_txtUser.text;
+    user.password=_txtPass.text;
+    user.deviceToken = [YaabUser sharedInstance].deviceToken;
+    [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
+        
+        LatestViewController *latestVC = [[LatestViewController alloc] init];
+        [self.navigationController pushViewController:latestVC animated:YES];
+    } failure:^(NSError *error) {
+        [[error userInfo] enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            NSLog(@"%@", [[error userInfo] objectForKey:key]);
+        }];
+         [[[iToast makeText:@"登录失败!"] setGravity:iToastGravityCenter] show];
+    }];
+
 }
 @end

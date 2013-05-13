@@ -42,7 +42,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
      (UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|
       UIRemoteNotificationTypeSound)];
     
-    user = [[YaabUser alloc] init];
+    user = [YaabUser sharedInstance];
     return YES;
 }
 
@@ -53,6 +53,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     
     if ([token isEqualToString:[user deviceToken]])
         return;
+    else
+        [user setDeviceToken:token];
     
     NSString *registerTokenURL;
     registerTokenURL = @"https://himaiduo.com/aps/device/";
