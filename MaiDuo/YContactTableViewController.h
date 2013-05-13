@@ -19,4 +19,5 @@
 
 -(void) setAllowsMultipleSelection:(BOOL)allow;
 -(BOOL) getAllowsMultipleSelection;
+
 @end

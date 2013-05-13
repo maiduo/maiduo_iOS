@@ -6,15 +6,20 @@
 //  Copyright (c) 2013年 魏琮举. All rights reserved.
 //
 
-#import "LoginViewController.h"
-#import "LatestViewController.h"
+#import "YaabUser.h"
+#import "iToast.h"
+#import "MDHTTPAPI.h"
+#import "MDLoginViewController.h"
+#import "MDLatestViewController.h"
+#import "MDUserManager.h"
+
 #define kLeftMargin				20.0
 #define kRightMargin			20.0
 #define kTextFieldWidth			160.0
 #define kTextFieldHeight		25
 #define kOffSet         		160
 #define kViewTag				100
-@interface LoginViewController ()
+@interface MDLoginViewController ()
 @property (nonatomic, retain) NSArray *dataArray;
 @property (nonatomic, retain) UITextField *txtUser;
 @property (nonatomic, retain) UITextField *txtPass;
@@ -22,7 +27,7 @@
 
 static NSString *kSourceKey = @"sourceKey";
 static NSString *kViewKey = @"viewKey";
-@implementation LoginViewController
+@implementation MDLoginViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,11 +42,6 @@ static NSString *kViewKey = @"viewKey";
 {
     [super viewDidLoad];
     self.navigationItem.title=@"用户登录";
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    
     
     
     UIBarButtonItem *bbiRight=[[UIBarButtonItem alloc] initWithTitle:@"登录" style:UIBarButtonItemStylePlain target:self action:@selector(login)];
@@ -49,11 +49,11 @@ static NSString *kViewKey = @"viewKey";
     
     self.dataArray = [NSArray arrayWithObjects:
 					  [NSDictionary dictionaryWithObjectsAndKeys:
-					   @"用  户  名：",kSourceKey,
+					   @"手机号",kSourceKey,
 					   self.txtUser,kViewKey,
 					   nil],
 					  [NSDictionary dictionaryWithObjectsAndKeys:
-					   @"用户密码：",kSourceKey,
+					   @"密码",kSourceKey,
 					   self.txtPass,kViewKey,
 					   nil],
 					  nil];
@@ -179,6 +179,7 @@ static NSString *kViewKey = @"viewKey";
 		_txtUser.clearButtonMode = UITextFieldViewModeWhileEditing;
 		_txtUser.tag = kViewTag;
 		_txtUser.delegate = self;
+        _txtUser.text=@"13000000000";
 	}
 	return _txtUser;
 }
@@ -198,6 +199,7 @@ static NSString *kViewKey = @"viewKey";
 		_txtPass.clearButtonMode = UITextFieldViewModeWhileEditing;
 		_txtPass.tag = kViewTag;
 		_txtPass.delegate = self;
+        _txtPass.text=@"13000000000";
 	}
 	return _txtPass;
 }
@@ -214,7 +216,23 @@ static NSString *kViewKey = @"viewKey";
 #pragma mark Customer methods
 -(void) login
 {
-    LatestViewController *latestVC = [[LatestViewController alloc] initWithStyle:UITableViewStylePlain];
-    [self.navigationController pushViewController:latestVC animated:YES];
+    MDUser *user=[YaabUser sharedInstance].user;
+    user.username=_txtUser.text;
+    user.password=_txtPass.text;
+    user.deviceToken = [YaabUser sharedInstance].deviceToken;
+    [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
+        
+        MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
+        [self.navigationController pushViewController:latestVC animated:YES];
+    } failure:^(NSError *error) {
+        [[error userInfo] enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            NSLog(@"%@", [[error userInfo] objectForKey:key]);
+        }];
+         [[[iToast makeText:@"登录失败!"] setGravity:iToastGravityCenter] show];
+    }];
+
+    // 暂时沿用旧的代码，下次重构应用新的思路
+    // [[MDUserManager sharedInstance] setUser:[[MDUser alloc] init]];
+    // [_delegate loginViewControllerDidLogin:self];
 }
 @end

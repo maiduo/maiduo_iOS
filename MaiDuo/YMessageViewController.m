@@ -71,7 +71,7 @@
     [self setupAddressBook];
 	[self.view setBackgroundColor:[UIColor whiteColor]];
 	[self.navigationItem setTitle:@"新活动"];
-    user = [YaabUser default];
+    user = [YaabUser sharedInstance];
     msg = [[YMessage alloc] init];
 	
 	tokenFieldView = [[TITokenFieldView alloc] initWithFrame:TokenFieldViewFrame];
@@ -81,7 +81,7 @@
 	[tokenFieldView.tokenField setDelegate:self];
 	[tokenFieldView.tokenField addTarget:self
                                   action:@selector(tokenFieldFrameDidChange:)
-                        forControlEvents:TITokenFieldControlEventFrameDidChange];
+                        forControlEvents:(UIControlEvents)TITokenFieldControlEventFrameDidChange];
 	[tokenFieldView.tokenField setTokenizingCharacters:
      [NSCharacterSet characterSetWithCharactersInString:@""]];
 	

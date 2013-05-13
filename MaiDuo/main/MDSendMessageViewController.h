@@ -14,7 +14,7 @@ typedef enum {
     MESSAGE_MODE
 } SendMode;
 
-@interface SendMessageViewController : YMessageViewController {
+@interface MDSendMessageViewController : YMessageViewController {
     SendMode sendMode;
 }
 
