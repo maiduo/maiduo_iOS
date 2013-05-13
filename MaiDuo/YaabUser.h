@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import <RHAddressBook/AddressBook.h>
-
+#import "MDUser.h"
 @interface YaabUser : NSObject
 {
     NSUserDefaults *nsUser;
 }
 
 @property (nonatomic, strong) NSString *deviceToken;
-
+@property (nonatomic, strong) MDUser *user;
 -(void)setDeviceToken:(NSString *)deviceToken;
 -(NSString *)getDeviceTokenWithData:(NSData *)nsdataToken;
 
-+(YaabUser *)default;
++(YaabUser *)sharedInstance;
 
 @end

@@ -32,8 +32,8 @@
     MDUser *user = [[MDUser alloc] initWithUsername:@"13000000000"
                                            password:@"13000000000"];
     [MDHTTPAPI registerUser:user success:^(MDUser *user, MDHTTPAPI *api) {
-        NSLog(@"Register access token %@", user.access_token);
-        NSLog(@"Register refresh token %@", user.refresh_token);
+        NSLog(@"Register access token %@", user.accessToken);
+        NSLog(@"Register refresh token %@", user.refreshToken);
     } failure:^(NSError *error) {
         NSLog(@"%@", [error.userInfo objectForKey:@"NSLocalizedRecoverySuggestion"]);
     }];
@@ -50,8 +50,8 @@
     MDUser *user = [[MDUser alloc] initWithUsername:@"13000000000"
                                            password:@"13000000000"];
     [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
-        NSLog(@"Access token %@", user.access_token);
-        NSLog(@"Refresh token %@", user.refresh_token);
+        NSLog(@"Access token %@", user.accessToken);
+        NSLog(@"Refresh token %@", user.refreshToken);
     } failure:^(NSError *error) {
         NSLog(@"%@", error);
     }];

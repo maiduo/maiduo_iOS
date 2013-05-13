@@ -43,6 +43,8 @@
 		90F342F81721A706005BC944 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342F71721A706005BC944 /* AsyncImageView.m */; };
 		90FD8205173D2A000000A6CD /* MDHTTPAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD8204173D2A000000A6CD /* MDHTTPAPI.m */; };
 		90FD8208173D2F840000A6CD /* MDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD8207173D2F840000A6CD /* MDUser.m */; };
+		C83212B5173E634200B14E6C /* AFMDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C83212B4173E634200B14E6C /* AFMDClient.m */; };
+		C83212B9173E6F6B00B14E6C /* iToast.m in Sources */ = {isa = PBXBuildFile; fileRef = C83212B8173E6F6B00B14E6C /* iToast.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C8B6CECE173BC26D00943B56 /* photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B6CECD173BC26D00943B56 /* photo@2x.png */; };
 		C8C90EC9173D38B500986153 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C90EC8173D38B500986153 /* LoginViewController.m */; };
 		C8C90ECC173D3B0400986153 /* FConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C90ECB173D3B0400986153 /* FConstants.m */; };
@@ -52,6 +54,7 @@
 		C8CEFB2D1739EEA00021D371 /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CEFB2C1739EEA00021D371 /* UIView+Animation.m */; };
 		C8CEFB31173A0DFD0021D371 /* garbage_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */; };
 		C8CEFB32173A0DFD0021D371 /* garbage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB30173A0DFD0021D371 /* garbage@2x.png */; };
+		C8D7BA72173F8CFC008CCBC7 /* EGOTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D7BA71173F8CFC008CCBC7 /* EGOTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +68,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03A59910173BEE3A00C0C4B3 /* ASMyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMyCell.h; sourceTree = "<group>"; };
-		03A59911173BEE3A00C0C4B3 /* ASMyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMyCell.m; sourceTree = "<group>"; };
 		19CCBF954E574D39AED92D14 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		8189D765038C4B9FB2F1D493 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9015396E172BDC2300DBB64B /* RHPerson+RHPersonCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RHPerson+RHPersonCategory.h"; sourceTree = "<group>"; };
@@ -128,6 +129,10 @@
 		90FD8204173D2A000000A6CD /* MDHTTPAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDHTTPAPI.m; sourceTree = "<group>"; };
 		90FD8206173D2F840000A6CD /* MDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUser.h; sourceTree = "<group>"; };
 		90FD8207173D2F840000A6CD /* MDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUser.m; sourceTree = "<group>"; };
+		C83212B3173E634200B14E6C /* AFMDClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFMDClient.h; sourceTree = "<group>"; };
+		C83212B4173E634200B14E6C /* AFMDClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMDClient.m; sourceTree = "<group>"; };
+		C83212B7173E6F6B00B14E6C /* iToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iToast.h; sourceTree = "<group>"; };
+		C83212B8173E6F6B00B14E6C /* iToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iToast.m; sourceTree = "<group>"; };
 		C8B6CECD173BC26D00943B56 /* photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo@2x.png"; sourceTree = "<group>"; };
 		C8C90EC7173D38B500986153 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C8C90EC8173D38B500986153 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -141,6 +146,8 @@
 		C8CEFB2C1739EEA00021D371 /* UIView+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
 		C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "garbage_s@2x.png"; sourceTree = "<group>"; };
 		C8CEFB30173A0DFD0021D371 /* garbage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "garbage@2x.png"; sourceTree = "<group>"; };
+		C8D7BA70173F8CFC008CCBC7 /* EGOTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOTableView.h; sourceTree = "<group>"; };
+		C8D7BA71173F8CFC008CCBC7 /* EGOTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,11 +249,12 @@
 			children = (
 				C8CEFB2E173A0DE90021D371 /* Resource */,
 				C8CEFB2A1739EE840021D371 /* Extension */,
-				C8CEFB221739E7B00021D371 /* PhotoStack */,
 				9015396D172BDC1600DBB64B /* Yaab */,
 				90EF5CA917257DC500AFE074 /* Data */,
 				90FD8203173D2A000000A6CD /* MDHTTPAPI.h */,
 				90FD8204173D2A000000A6CD /* MDHTTPAPI.m */,
+				C83212B3173E634200B14E6C /* AFMDClient.h */,
+				C83212B4173E634200B14E6C /* AFMDClient.m */,
 				90BBC9061722E16E00674C2C /* MDMessage.h */,
 				90BBC9071722E16E00674C2C /* MDMessage.m */,
 				90538C2B173F741500391A31 /* MDActivity.h */,
@@ -315,6 +323,17 @@
 			path = MaiDuo/AsyncImageView;
 			sourceTree = "<group>";
 		};
+		C83212B6173E6F5D00B14E6C /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				C8D7BA6F173F8CD7008CCBC7 /* EGOTableView */,
+				C8CEFB221739E7B00021D371 /* PhotoStack */,
+				C83212B7173E6F6B00B14E6C /* iToast.h */,
+				C83212B8173E6F6B00B14E6C /* iToast.m */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
 		C8CEFB221739E7B00021D371 /* PhotoStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +348,7 @@
 		C8CEFB2A1739EE840021D371 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C83212B6173E6F5D00B14E6C /* Controls */,
 				C8C90ECA173D3B0400986153 /* FConstants.h */,
 				C8C90ECB173D3B0400986153 /* FConstants.m */,
 				C8CEFB2B1739EEA00021D371 /* UIView+Animation.h */,
@@ -345,6 +365,15 @@
 				C8CEFB30173A0DFD0021D371 /* garbage@2x.png */,
 			);
 			name = Resource;
+			sourceTree = "<group>";
+		};
+		C8D7BA6F173F8CD7008CCBC7 /* EGOTableView */ = {
+			isa = PBXGroup;
+			children = (
+				C8D7BA70173F8CFC008CCBC7 /* EGOTableView.h */,
+				C8D7BA71173F8CFC008CCBC7 /* EGOTableView.m */,
+			);
+			name = EGOTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -511,11 +540,14 @@
 				906B96E51736A6D400A7C20E /* YPlainContact.m in Sources */,
 				C8CEFB291739E7DF0021D371 /* PhotoStackView.m in Sources */,
 				C8CEFB2D1739EEA00021D371 /* UIView+Animation.m in Sources */,
-				90FD8205173D2A000000A6CD /* MDHTTPAPI.m in Sources */,
-				90FD8208173D2F840000A6CD /* MDUser.m in Sources */,
 				90538C2D173F741500391A31 /* MDActivity.m in Sources */,
 				C8C90EC9173D38B500986153 /* LoginViewController.m in Sources */,
 				C8C90ECC173D3B0400986153 /* FConstants.m in Sources */,
+				90FD8205173D2A000000A6CD /* MDHTTPAPI.m in Sources */,
+				90FD8208173D2F840000A6CD /* MDUser.m in Sources */,
+				C83212B5173E634200B14E6C /* AFMDClient.m in Sources */,
+				C83212B9173E6F6B00B14E6C /* iToast.m in Sources */,
+				C8D7BA72173F8CFC008CCBC7 /* EGOTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,11 +657,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 19CCBF954E574D39AED92D14 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "93D9ACA1-AA21-4559-AAD5-1C914DE19712";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "93D9ACA1-AA21-4559-AAD5-1C914DE19712";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -638,11 +674,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 19CCBF954E574D39AED92D14 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "93D9ACA1-AA21-4559-AAD5-1C914DE19712";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "93D9ACA1-AA21-4559-AAD5-1C914DE19712";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
