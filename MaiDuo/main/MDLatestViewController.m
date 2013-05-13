@@ -6,19 +6,20 @@
 // Copyright (c) 2013年 魏琮举. All rights reserved.
 //
 
-#import "LatestViewController.h"
-#import "ActivityTableViewController.h"
-#import "SendMessageViewController.h"
-#import "AsyncImageView/AsyncImageView.h"
+
 #import "EGOTableView.h"
+#import "MDLatestViewController.h"
+#import "MDActivityTableViewController.h"
+#import "MDSendMessageViewController.h"
+#import "AsyncImageView.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface LatestViewController ()
+@interface MDLatestViewController ()
 
 @property (nonatomic,strong) EGOTableView *tableView;
 @end
 
-@implementation LatestViewController
+@implementation MDLatestViewController
 
 //- (id)initWithStyle:(UITableViewStyle)style
 //{
@@ -75,15 +76,15 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     if(activities.count==0){
-        [_tableView autoLoadData];
+//        [_tableView autoLoadData];
     }
     [super viewDidAppear:animated];
 }
 
 - (void)addActivity
 {
-    SendMessageViewController *sendMessage;
-    sendMessage = [[SendMessageViewController alloc] initWithMode:ACTIVITY_MODE];
+    MDSendMessageViewController *sendMessage;
+    sendMessage = [[MDSendMessageViewController alloc] initWithMode:ACTIVITY_MODE];
     [self.navigationController pushViewController:sendMessage animated:YES];
 }
 
@@ -208,8 +209,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ActivityTableViewController* activityViewController;
-    activityViewController = [[ActivityTableViewController alloc] init];
+    MDActivityTableViewController* activityViewController;
+    activityViewController = [[MDActivityTableViewController alloc] init];
     activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
                                                    self.view.frame.size.height);
     [self.navigationController pushViewController:activityViewController animated:YES];

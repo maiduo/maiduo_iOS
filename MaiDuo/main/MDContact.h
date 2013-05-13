@@ -7,16 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MDItem.h"
 
-@interface MDContact : NSObject
+@interface MDContact : MDItem
 
 @property (nonatomic, strong) NSString* firstName;
 @property (nonatomic, strong) NSString* lastName;
 @property (nonatomic, strong) NSString* middleName;
 @property (nonatomic, strong) NSArray* phones;
 
-- (id)initWithFirstName:(NSString *)_firstName
-               lastName:(NSString *)_lastName
-             middleName:(NSString *)_middleName
-                 phones:(NSArray  *)_phones;
 @end

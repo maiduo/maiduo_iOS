@@ -8,16 +8,11 @@
 
 #import "UIVIew+Animation.h"
 
-@implementation UIView_Animation
+@implementation UIView(Animation)
 
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
++ (void) setAnimationPosition:(CGPoint)p
 {
-    // Drawing code
+    //todo
 }
-*/
 
 @end

@@ -9,9 +9,6 @@
 #import "YPlainContact.h"
 
 @implementation YPlainContact
-@synthesize person;
-@synthesize property;
-@synthesize identifier;
 
 -(id) initWithPerson:(RHPerson *)person
               property:(ABPropertyID)property

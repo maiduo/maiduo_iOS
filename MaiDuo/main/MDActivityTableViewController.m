@@ -6,27 +6,25 @@
 //  Copyright (c) 2013年 魏琮举. All rights reserved.
 //
 
-#import "ActivityTableViewController.h"
-#import "InviteTableViewController.h"
-#import "AsyncImageView/AsyncImageView.h"
-#import "MDMessage.h"
-#import "MDContact.h"
+#import "MDActivityTableViewController.h"
+#import "AsyncImageView.h"
+#import "MDActivityActView.h"
+#import "MDActivityConView.h"
+#import "MDActivityMesView.h"
 
-@interface ActivityTableViewController ()
+@interface MDActivityTableViewController () {
+    MDActivityActView *_actView;
+    MDActivityConView *_conView;
+    MDActivityMesView *_mesView;
+    UIView *_currentContentView;
+}
+
+@property (assign, nonatomic) MDActivityViewState viewState;
+@property (strong, nonatomic) UISegmentedControl* segmented;
 
 @end
 
-@implementation ActivityTableViewController
-
-@synthesize viewState;
-@synthesize activities;
-@synthesize messages;
-@synthesize contacts;
-@synthesize data;
-
-@synthesize segmented;
-@synthesize compose;
-@synthesize add;
+@implementation MDActivityTableViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,202 +34,68 @@
     return self;
 }
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        self.activities = [NSMutableArray arrayWithObjects:
-                           [[MDMessage alloc]
-                            initWithBody:@""
-                            messageForId:5
-                            messageForType:VideoMessage],
-                           [[MDMessage alloc]
-                            initWithBody:@""
-                            messageForId:6
-                            messageForType:ImageMessage],
-                           [[MDMessage alloc]
-                            initWithBody:@"牙疼。。。"
-                            messageForId:7
-                            messageForType:TextMessage],nil];
-        
-        self.messages = [[NSMutableArray alloc]initWithCapacity:0];
-        self.contacts = [[NSMutableArray alloc]initWithCapacity:0];
-        
-        [self addPerson];
-                         
-        self.data = [NSArray arrayWithObjects:activities, messages, contacts, nil];
-        
-        segmented = [[UISegmentedControl alloc]
-                     initWithItems:@[@"消息", @"聊天", @"通讯录"]];
-        segmented.segmentedControlStyle = UISegmentedControlSegmentCenter;
-        segmented.selectedSegmentIndex = 0;
-        [segmented addTarget:self
-                      action:@selector(segmentedChanged:forEvent:)
-            forControlEvents:UIControlEventValueChanged];
-    }
-    
-    return self;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-//    self.navigationController.toolbarHidden = NO;
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-//    self.navigationController.toolbarHidden = YES;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    viewState = ACTIVITY;
-    self.navigationItem.rightBarButtonItem = [self createButton];
-    self.navigationItem.titleView = segmented;
     
-    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
-    temporaryBarButtonItem.title = @"返回";
-    self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
-}
-
-- (UIBarButtonItem *)createButton
-{
-    switch (viewState) {
-    case ACTIVITY:
-        if (nil == compose) {
-            self.compose = [[UIBarButtonItem alloc]
-                       initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
-                       target:self
-                       action:@selector(back)];
-        }
-        return self.compose;
-    case CONTACT:
-        if (nil == add) {
-            self.add = [[UIBarButtonItem alloc]
-                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                   target:self
-                   action:@selector(invite)];
-        }
-        return self.add;
-    default:
-        break;
-    }
+    _segmented = [[UISegmentedControl alloc]
+                  initWithItems:@[@"消息", @"聊天", @"通讯录"]];
+    _segmented.segmentedControlStyle = UISegmentedControlSegmentCenter;
+    _segmented.selectedSegmentIndex = 0;
+    [_segmented addTarget:self
+                   action:@selector(segmentedChanged:forEvent:)
+         forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = _segmented;
     
-    return nil;
+    [self showViewState:MDActivityViewStateAct];
 }
 
-- (void)back
+- (void)showViewState:(MDActivityViewState)viewState
 {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)invite
-{
-    UITableViewController* inviteViewController;
-    inviteViewController = [[InviteTableViewController alloc] init];
-    
-    [self.navigationController pushViewController:
-     inviteViewController animated:YES];
-}
-
-- (void)addActivity
-{
-}
-
-- (void)addPerson
-{
-    NSArray * phones = @[@"123"];
-    MDContact * aPerson = [[MDContact alloc]initWithFirstName:@"a"
-                                                     lastName:@"w"
-                                                   middleName:@""
-                                                       phones:phones];
-    [self.contacts addObject:aPerson];
-}
-
-//改变tableview数据data
-- (void)changeTableviewData
-{
-    if (self.viewState == CONTACT) {
-//        MDContact * bPerson = [[MDContact alloc]initWithFirstName:@"b"
-//                                                         lastName:@"w"
-//                                                       middleName:@""
-//                                                           phones:phones];
-//        MDContact * bPerson2 = [[MDContact alloc]initWithFirstName:@"bz"
-//                                                         lastName:@"w"
-//                                                       middleName:@""
-//                                                           phones:phones];
-
-        //测试用
-//        NSArray *paths = NSSearchPathForDirectoriesInDomains
-//                            (NSDocumentDirectory,NSUserDomainMask,YES);
-//        NSString *path = [paths objectAtIndex:0];
-//        NSLog(@"path = %@",path);
-//        NSString *filename = [path stringByAppendingPathComponent:@"contacts.plist"];
-//        NSFileManager* fm = [NSFileManager defaultManager];
-//        [fm createFileAtPath:filename contents:nil attributes:nil];
-//        
-//        NSMutableArray *Astart = [[NSMutableArray alloc]initWithObjects:aPerson, nil];
-//        NSMutableArray *Bstart = [[NSMutableArray alloc]initWithObjects:bPerson, bPerson2, nil];
-//        //创建一个dic，写到plist文件里
-//        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:
-//                             Astart, @"A", Bstart, @"B", nil];
-//        [dic writeToFile:filename atomically:YES];
-//        
-//        NSDictionary* dic2 = [NSDictionary dictionaryWithContentsOfFile:filename];
-//        NSLog(@"dic is:%@",dic2);
-        
-//        self.tableView.showsVerticalScrollIndicator = YES;
-    }
-}
-
-- (void)changeTitle
-{
-    switch (self.viewState) {
-        case CONTACT:
-            [self setTitle:@"所有联系人"];
+    _viewState = viewState;
+    [_currentContentView removeFromSuperview];
+    switch (_viewState) {
+        case MDActivityViewStateAct:
+            if (_actView==nil) {
+                _actView = [[MDActivityActView alloc] initWithFrame:self.view.bounds];
+                _actView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                _actView.viewController = self;
+            }
+            _currentContentView = _actView;
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                                      initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                      target:_currentContentView
+                                                      action:@selector(rightBarAction)];
             break;
-            
+        case MDActivityViewStateMes:
+            if (_mesView==nil) {
+                _mesView = [[MDActivityMesView alloc] initWithFrame:self.view.bounds];
+                _mesView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                _mesView.viewController = self;
+            }
+            _currentContentView = _mesView;
+            self.navigationItem.rightBarButtonItem = nil;
+            break;
+        case MDActivityViewStateCon:
+            if (_conView==nil) {
+                _conView = [[MDActivityConView alloc] initWithFrame:self.view.bounds];
+                _conView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                _conView.viewController = self;
+            }
+            _currentContentView = _conView;
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                                      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                      target:_currentContentView
+                                                      action:@selector(rightBarAction)];
         default:
             break;
     }
+    [self.view addSubview:_currentContentView];
 }
 
 - (void)segmentedChanged:(id)sender forEvent:(UIEvent *)event
 {
-//    NSLog(@"Segmented selected %d", segmented.selectedSegmentIndex);
-//    NSLog(@"ACTIVITY %d", ACTIVITY);
-//    NSLog(@"MESSAGE %d", MESSAGE);
-//    NSLog(@"CONTACT %d", CONTACT);
-
-    self.viewState = segmented.selectedSegmentIndex;
-    
-    self.navigationItem.rightBarButtonItem = [self createButton];
-    
-    [self changeTableviewData];
-    
-    [self changeTitle];
-    
-    [self.tableView reloadData];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    if (self.viewState == CONTACT) {
-//        return [keys count];
-        return 1;
-    }
-    return 1;
+    [self showViewState:_segmented.selectedSegmentIndex];
 }
 
 //- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
@@ -245,6 +109,7 @@
 //    return key;
 //}
 
+/*
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
@@ -455,7 +320,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
     return cell;
 }
 
-/*
+
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
  {
@@ -494,18 +359,21 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath
  }
  */
 
+/*
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
+    
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
      // ...
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+
 }
 
+*/
 
 @end

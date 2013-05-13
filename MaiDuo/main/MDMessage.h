@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MDItem.h"
 
 enum {
     ImageMessage,
@@ -14,7 +15,7 @@ enum {
     TextMessage
 } typedef MessageType;
 
-@interface MDMessage : NSObject {
+@interface MDMessage : MDItem {
     
 }
 
@@ -22,7 +23,4 @@ enum {
 @property(nonatomic, strong) NSString* body;
 @property(nonatomic, assign) MessageType type;
 
-- (id) initWithBody:(NSString *)_body
-       messageForId:(NSInteger)_messageId
-     messageForType:(MessageType)_type;
 @end

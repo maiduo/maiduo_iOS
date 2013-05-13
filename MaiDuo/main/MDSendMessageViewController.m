@@ -6,11 +6,11 @@
 //  Copyright (c) 2013年 魏琮举. All rights reserved.
 //
 
-#import "SendMessageViewController.h"
+#import "MDSendMessageViewController.h"
 
-@interface SendMessageViewController ()
+@interface MDSendMessageViewController ()
 @end
-@implementation SendMessageViewController
+@implementation MDSendMessageViewController
 
 @synthesize sendMode;
 
@@ -48,4 +48,5 @@
 {
     [super didReceiveMemoryWarning];
 }
+
 @end;
