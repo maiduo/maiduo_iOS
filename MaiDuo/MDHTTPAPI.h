@@ -20,8 +20,8 @@
 
 -(id) initWithUser:(MDUser *)user;
 
--(void)ActivitiesUsingBlockWithSuccess:(void (^)(NSArray *))success
-                                    failure:(void (^)(NSError *error))failure;
+-(void)activitiesSuccess:(void (^)(NSArray *))success
+                 failure:(void (^)(NSError *error))failure;
 
 -(void)createActivity:(MDActivity *)aActivity
               success:(void (^)(NSArray *))success

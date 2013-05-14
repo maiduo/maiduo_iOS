@@ -45,6 +45,9 @@
 		90AAB18617412172009D7D62 /* EGOTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18517412172009D7D62 /* EGOTableView.m */; };
 		90AAB18917412193009D7D62 /* AFMDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18817412193009D7D62 /* AFMDClient.m */; };
 		90AAB18C174121A9009D7D62 /* MDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18B174121A9009D7D62 /* MDUser.m */; };
+		90AEA38C17427BF5003305EC /* MDActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AEA38B17427BF5003305EC /* MDActivity.m */; };
+		90AEA38D17427D18003305EC /* MDActivity.h in Sources */ = {isa = PBXBuildFile; fileRef = 90AEA38A17427BF5003305EC /* MDActivity.h */; };
+		90AEA38E17427D1A003305EC /* MDActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AEA38B17427BF5003305EC /* MDActivity.m */; };
 		90E1F4E217242FF1009A578C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E1F4E117242FF1009A578C /* AddressBook.framework */; };
 		90EF5CB517257DF000AFE074 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 90EF5CB017257DF000AFE074 /* pinyin.c */; };
 		90F342BB17217C8E005BC944 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
@@ -137,6 +140,8 @@
 		90AAB18817412193009D7D62 /* AFMDClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMDClient.m; sourceTree = "<group>"; };
 		90AAB18A174121A9009D7D62 /* MDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDUser.h; path = MaiDuo/MDUser.h; sourceTree = SOURCE_ROOT; };
 		90AAB18B174121A9009D7D62 /* MDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDUser.m; path = MaiDuo/MDUser.m; sourceTree = SOURCE_ROOT; };
+		90AEA38A17427BF5003305EC /* MDActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivity.h; path = MaiDuo/MDActivity.h; sourceTree = SOURCE_ROOT; };
+		90AEA38B17427BF5003305EC /* MDActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDActivity.m; path = MaiDuo/MDActivity.m; sourceTree = SOURCE_ROOT; };
 		90E1F4E117242FF1009A578C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		90EF5CB017257DF000AFE074 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		90EF5CB117257DF000AFE074 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
@@ -447,6 +452,8 @@
 		AA315DE7173F8A45009BA36E /* item */ = {
 			isa = PBXGroup;
 			children = (
+				90AEA38A17427BF5003305EC /* MDActivity.h */,
+				90AEA38B17427BF5003305EC /* MDActivity.m */,
 				AA315DFE173F91CF009BA36E /* MDContact.h */,
 				AA315E00173F91CF009BA36E /* MDContact.m */,
 				AA315DFF173F91CF009BA36E /* MDMessage.h */,
@@ -527,7 +534,6 @@
 			buildConfigurationList = 902C91E91742322800073241 /* Build configuration list for PBXNativeTarget "MaiDuoTests" */;
 			buildPhases = (
 				19247C72FD4E4F76A1C477C7 /* Check Pods Manifest.lock */,
-				003708A1DC394E5EBB32485E /* Check Pods Manifest.lock */,
 				902C91C61742322800073241 /* Sources */,
 				902C91C71742322800073241 /* Frameworks */,
 				902C91C81742322800073241 /* Resources */,
@@ -548,12 +554,10 @@
 			buildConfigurationList = 90F342E917217C8E005BC944 /* Build configuration list for PBXNativeTarget "MaiDuo" */;
 			buildPhases = (
 				AA0E110F6E044AF68EE38797 /* Check Pods Manifest.lock */,
-				339B545D98E5453286B3BA7A /* Check Pods Manifest.lock */,
 				90F342B317217C8E005BC944 /* Sources */,
 				90F342B417217C8E005BC944 /* Frameworks */,
 				90F342B517217C8E005BC944 /* Resources */,
 				DD0180B152624E5CBC74A9AC /* Copy Pods Resources */,
-				4C3D31EEBD9545DEB52253C1 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -622,20 +626,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		003708A1DC394E5EBB32485E /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-		};
 		19247C72FD4E4F76A1C477C7 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -649,34 +639,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-		};
-		339B545D98E5453286B3BA7A /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-		};
-		4C3D31EEBD9545DEB52253C1 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 		};
 		AA0E110F6E044AF68EE38797 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -733,6 +695,8 @@
 				904726F0174266D8000B0398 /* AFMDClient.m in Sources */,
 				904726E717426236000B0398 /* MDHTTPAPI.h in Sources */,
 				904726E817426236000B0398 /* MDHTTPAPI.m in Sources */,
+				90AEA38D17427D18003305EC /* MDActivity.h in Sources */,
+				90AEA38E17427D1A003305EC /* MDActivity.m in Sources */,
 				904726E917426236000B0398 /* MDContact.h in Sources */,
 				904726EA17426236000B0398 /* MDContact.m in Sources */,
 				904726EB17426236000B0398 /* MDMessage.h in Sources */,
@@ -781,6 +745,7 @@
 				90AAB18617412172009D7D62 /* EGOTableView.m in Sources */,
 				90AAB18917412193009D7D62 /* AFMDClient.m in Sources */,
 				90AAB18C174121A9009D7D62 /* MDUser.m in Sources */,
+				90AEA38C17427BF5003305EC /* MDActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,4 +10,42 @@
 
 @implementation MDActivity
 
++(NSArray *)activitiesWithJSON:(id)JSON
+{
+    NSArray *jsonActivities = (NSArray *)JSON;
+    NSMutableArray *activies = [NSMutableArray
+                                arrayWithCapacity:jsonActivities.count];
+    NSInteger size = [jsonActivities count];
+    for (NSInteger i=0; i < size; i++) {
+        activies[i] = [MDActivity activityWithJSON:[jsonActivities objectAtIndex:i]];
+    }
+    
+    return activies;
+}
+
++(MDActivity *)activityWithJSON:(id)JSON
+{
+    NSInteger userID = [[JSON objectForKey:@"id"] intValue];
+    NSString *subject = [JSON objectForKey:@"subject"];
+    
+    return [MDActivity activityWithID:userID
+                              subject:subject
+                                owner:[MDUser userWithJSON:
+                                       [JSON objectForKey:@"owner"]]
+                                users:[MDUser usersWithJSON:
+                                       [JSON objectForKey:@"users"]]];
+}
+
++(MDActivity *)activityWithID:(NSInteger)aID
+                      subject:(NSString *)aSubject
+                        owner:(MDUser *)aOwner
+                        users:(NSArray *)aUsers
+{
+    MDActivity *activity = [[MDActivity alloc] init];
+    activity.id =aID;
+    activity.subject = aSubject;
+    activity.owner =aOwner;
+    activity.users = aUsers;
+    return activity;
+}
 @end

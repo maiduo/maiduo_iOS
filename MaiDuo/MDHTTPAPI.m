@@ -31,17 +31,45 @@
     return self;
 }
 
--(void)ActivitiesUsingBlockWithSuccess:(void (^)(NSArray *))success
-                               failure:(void (^)(NSError *error))failure
+-(void)activitiesSuccess:(void (^)(NSArray *))success
+                 failure:(void (^)(NSError *error))failure
 {
+    void (^blockSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id JSON) {
+        NSLog(@"Activity fetch data success.");
+        success([MDActivity activitiesWithJSON:JSON]);
+    };
     
+    void (^blockFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (nil != failure)
+            failure(error);
+    };
+    
+    NSDictionary *query = [NSDictionary dictionaryWithObjectsAndKeys:
+                           self.user.accessToken, @"access_token", nil];
+    
+    [[AFMDClient sharedClient] getPath:@"activity/"
+                            parameters:query
+                               success:blockSuccess
+                               failure:blockFailure];
 }
 
 -(void)createActivity:(MDActivity *)aActivity
               success:(void (^)(NSArray *))success
               failure:(void (^)(NSError *error))failure
 {
+    void (^blockSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id JSON) {
+        NSLog(@"Success");
+    };
     
+    void (^blockFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (nil != failure)
+            failure(error);
+    };
+    
+    [[AFMDClient sharedClient] getPath:@"activity/"
+                            parameters:nil
+                               success:blockSuccess
+                               failure:blockFailure];
 }
 
 -(void)sendMessage:(MDMessage *)message
