@@ -166,4 +166,9 @@
             failure(error);
     }];
 }
+
++(MDHTTPAPI *)MDHTTPAPIWithToken:(MDUser *)user
+{
+    return [[MDHTTPAPI alloc] initWithUser:user];
+}
 @end

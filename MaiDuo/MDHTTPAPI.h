@@ -42,4 +42,6 @@
 +(void)login:(MDUser *)user
      success:(void (^)(MDUser *user, MDHTTPAPI *api))success
      failure:(void (^)(NSError *error))failure;
+
++(MDHTTPAPI *)MDHTTPAPIWithToken:(MDUser *)user;
 @end

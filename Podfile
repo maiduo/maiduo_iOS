@@ -9,4 +9,6 @@ pod 'MBProgressHUD'
 
 target :MaiDuoTests do
     pod 'GHUnitIOS'
+    pod 'AFNetworking'
+    #    link_with 'MaiDuoTests'
 end

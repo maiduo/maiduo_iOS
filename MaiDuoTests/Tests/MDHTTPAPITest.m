@@ -6,50 +6,91 @@
 //  Copyright (c) 2013年 魏琮举. All rights reserved.
 //
 
-#import <GHUnitIOS/GHUnit.h>
+#include "MaiDuoTests.h"
 
-@interface MDHTTPAPITest : GHTestCase {}
+@interface MDHTTPAPITest : GHTestCase {
+    NSCondition *condition;
+    BOOL operationSuccessed;
+    
+    MDHTTPAPI *api;
+}
 @end
 
-- (void)testUserRegister
+@implementation MDHTTPAPITest
+
+-(void) setUp
 {
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    
+    condition = [[NSCondition alloc] init];
+    operationSuccessed = NO;
     MDUser *user = [[MDUser alloc] initWithUsername:@"13000000000"
-                                           password:@"13000000000"];
-    [MDHTTPAPI registerUser:user success:^(MDUser *user, MDHTTPAPI *api) {
-        NSLog(@"Register access token %@", user.accessToken);
-        NSLog(@"Register refresh token %@", user.refreshToken);
-    } failure:^(NSError *error) {
-        NSLog(@"%@", [error.userInfo objectForKey:@"NSLocalizedRecoverySuggestion"]);
-    }];
-    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
-    dispatch_release(semaphore);
+                                          password:nil];
+    user.accessToken = @"0acc2d039fc04202bfc6e0a5aed5091f";
+    
+    api = [MDHTTPAPI MDHTTPAPIWithToken:user];
 }
 
+//- (void)testUserRegister
+//{
+//    MDUser *user = [[MDUser alloc] initWithUsername:@"13000000000"
+//                                           password:@"13000000000"];
+//    [MDHTTPAPI registerUser:user success:^(MDUser *user, MDHTTPAPI *api) {
+//        
+//        NSLog(@"Register access token %@", user.accessToken);
+//        NSLog(@"Register refresh token %@", user.refreshToken);
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@", [error.userInfo objectForKey:@"NSLocalizedRecoverySuggestion"]);
+//    }];
+//    
+//
+//}
+//
 - (void)testUserLogin
 {
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     
     MDUser *user = [[MDUser alloc] initWithUsername:@"13000000000"
                                            password:@"13000000000"];
     [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
-        NSLog(@"Access token %@", user.accessToken);
-        NSLog(@"Refresh token %@", user.refreshToken);
+        operationSuccessed = YES;
+        
+        [condition lock];
+        [condition signal];
+        [condition unlock];
     } failure:^(NSError *error) {
-        NSLog(@"%@", error);
+        operationSuccessed = NO;
+        
+        [condition lock];
+        [condition signal];
+        [condition unlock];
     }];
-    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
-    dispatch_release(semaphore);
+    
+    [condition lock];
+    [condition wait];
+    [condition unlock];
+    
+    GHAssertTrue(operationSuccessed, @"");
 }
 
-@implementation MDHTTPAPITest
--(void) testA
+-(void)testSendMessage
 {
+    MDMessage *message = [[MDMessage alloc] init];
+    [api sendMessage:message success:^(MDMessage *aMessage) {
+        operationSuccessed = YES;
+        
+        [condition lock];
+        [condition signal];
+        [condition unlock];
+    } failure:^(NSError *error) {
+        operationSuccessed = NO;
+        
+        [condition lock];
+        [condition signal];
+        [condition unlock];
+    }];
     
+    [condition lock];
+    [condition wait];
+    [condition unlock];
+    
+    GHAssertTrue(operationSuccessed, @"");
 }
 @end
