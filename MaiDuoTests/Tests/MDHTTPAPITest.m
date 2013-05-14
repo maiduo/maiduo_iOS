@@ -1,29 +1,15 @@
 //
-//  MaiDuoTests.m
-//  MaiDuoTests
+//  MDHTTPAPITest.m
+//  MaiDuo
 //
-//  Created by 魏琮举 on 13-4-19.
+//  Created by 魏琮举 on 13-5-14.
 //  Copyright (c) 2013年 魏琮举. All rights reserved.
 //
 
-#import "MaiDuoTests.h"
-#import "MDHTTPAPI.h"
+#import <GHUnitIOS/GHUnit.h>
 
-@implementation MaiDuoTests
-
-- (void)setUp
-{
-    [super setUp];
-    
-    // Set-up code here.
-}
-
-- (void)tearDown
-{
-    // Tear-down code here.
-    
-    [super tearDown];
-}
+@interface MDHTTPAPITest : GHTestCase {}
+@end
 
 - (void)testUserRegister
 {
@@ -61,4 +47,9 @@
     dispatch_release(semaphore);
 }
 
+@implementation MDHTTPAPITest
+-(void) testA
+{
+    
+}
 @end

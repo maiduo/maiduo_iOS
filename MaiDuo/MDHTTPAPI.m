@@ -31,8 +31,8 @@
     return self;
 }
 
--(void)fetchActivitiesUsingBlockWithSuccess:(void (^)(NSArray *))success
-                                    failure:(void (^)(NSError *error))failure
+-(void)ActivitiesUsingBlockWithSuccess:(void (^)(NSArray *))success
+                               failure:(void (^)(NSError *error))failure
 {
     
 }

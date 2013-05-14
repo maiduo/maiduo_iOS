@@ -20,7 +20,7 @@
 
 -(id) initWithUser:(MDUser *)user;
 
--(void)fetchActivitiesUsingBlockWithSuccess:(void (^)(NSArray *))success
+-(void)ActivitiesUsingBlockWithSuccess:(void (^)(NSArray *))success
                                     failure:(void (^)(NSError *error))failure;
 
 -(void)createActivity:(MDActivity *)aActivity
