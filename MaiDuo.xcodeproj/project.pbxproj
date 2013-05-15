@@ -76,13 +76,15 @@
 		AA315E17173FAFB2009BA36E /* MDActivityConCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E16173FAFB1009BA36E /* MDActivityConCell.m */; };
 		AA9954F11740020600FF5BFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9954F01740020600FF5BFF /* SystemConfiguration.framework */; };
 		AA9954F31740020B00FF5BFF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9954F21740020B00FF5BFF /* MobileCoreServices.framework */; };
-		C8B6CECE173BC26D00943B56 /* photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B6CECD173BC26D00943B56 /* photo@2x.png */; };
 		C8CEFB271739E7DF0021D371 /* PhotoBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB231739E7DF0021D371 /* PhotoBorder.png */; };
 		C8CEFB281739E7DF0021D371 /* PhotoBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB241739E7DF0021D371 /* PhotoBorder@2x.png */; };
 		C8CEFB291739E7DF0021D371 /* PhotoStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CEFB261739E7DF0021D371 /* PhotoStackView.m */; };
 		C8CEFB2D1739EEA00021D371 /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CEFB2C1739EEA00021D371 /* UIView+Animation.m */; };
 		C8CEFB31173A0DFD0021D371 /* garbage_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */; };
 		C8CEFB32173A0DFD0021D371 /* garbage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB30173A0DFD0021D371 /* garbage@2x.png */; };
+		C8D1A44017431ADE00398568 /* MDActivityMesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D1A43F17431ADE00398568 /* MDActivityMesViewController.m */; };
+		C8D1A44317431C4200398568 /* photo0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D1A44117431C4200398568 /* photo0@2x.png */; };
+		C8D1A44417431C4200398568 /* photo1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D1A44217431C4200398568 /* photo1@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,6 +209,10 @@
 		C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "garbage_s@2x.png"; sourceTree = "<group>"; };
 		C8CEFB30173A0DFD0021D371 /* garbage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "garbage@2x.png"; sourceTree = "<group>"; };
 		F55CCA5C929C463FAC6C0F04 /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8D1A43E17431ADE00398568 /* MDActivityMesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityMesViewController.h; sourceTree = "<group>"; };
+		C8D1A43F17431ADE00398568 /* MDActivityMesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityMesViewController.m; sourceTree = "<group>"; };
+		C8D1A44117431C4200398568 /* photo0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo0@2x.png"; sourceTree = "<group>"; };
+		C8D1A44217431C4200398568 /* photo1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo1@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +431,8 @@
 				AA315DF0173F8ED8009BA36E /* MDLatestViewController.m */,
 				AA315DF1173F8ED8009BA36E /* MDLoginViewController.h */,
 				AA315DF2173F8ED8009BA36E /* MDLoginViewController.m */,
+				C8D1A43E17431ADE00398568 /* MDActivityMesViewController.h */,
+				C8D1A43F17431ADE00398568 /* MDActivityMesViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -519,7 +527,8 @@
 		C8CEFB2E173A0DE90021D371 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				C8B6CECD173BC26D00943B56 /* photo@2x.png */,
+				C8D1A44117431C4200398568 /* photo0@2x.png */,
+				C8D1A44217431C4200398568 /* photo1@2x.png */,
 				C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */,
 				C8CEFB30173A0DFD0021D371 /* garbage@2x.png */,
 			);
@@ -619,7 +628,8 @@
 				C8CEFB281739E7DF0021D371 /* PhotoBorder@2x.png in Resources */,
 				C8CEFB31173A0DFD0021D371 /* garbage_s@2x.png in Resources */,
 				C8CEFB32173A0DFD0021D371 /* garbage@2x.png in Resources */,
-				C8B6CECE173BC26D00943B56 /* photo@2x.png in Resources */,
+				C8D1A44317431C4200398568 /* photo0@2x.png in Resources */,
+				C8D1A44417431C4200398568 /* photo1@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,6 +756,15 @@
 				90AAB18917412193009D7D62 /* AFMDClient.m in Sources */,
 				90AAB18C174121A9009D7D62 /* MDUser.m in Sources */,
 				90AEA38C17427BF5003305EC /* MDActivity.m in Sources */,
+				C8D1A44017431ADE00398568 /* MDActivityMesViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90F342D217217C8E005BC944 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90F342E617217C8E005BC944 /* MaiDuoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

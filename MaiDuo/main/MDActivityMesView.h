@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MDActivityContentView.h"
-
-@interface MDActivityMesView : MDActivityContentView
+#import "JSMessagesViewController.h"
+@interface MDActivityMesView : MDActivityContentView<JSMessagesViewDelegate, JSMessagesViewDataSource>
 
 @end
