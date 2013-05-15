@@ -11,16 +11,18 @@
 #import "MDActivityActView.h"
 #import "MDActivityConView.h"
 #import "MDActivityMesView.h"
+#import "MDActivityMesViewController.h"
 
 @interface MDActivityTableViewController () {
     MDActivityActView *_actView;
     MDActivityConView *_conView;
-    MDActivityMesView *_mesView;
+    UIView *_mesView;
     UIView *_currentContentView;
 }
 
 @property (assign, nonatomic) MDActivityViewState viewState;
 @property (strong, nonatomic) UISegmentedControl* segmented;
+@property (strong, nonatomic) MDActivityMesViewController *mesVC;
 
 @end
 
@@ -69,9 +71,10 @@
             break;
         case MDActivityViewStateMes:
             if (_mesView==nil) {
-                _mesView = [[MDActivityMesView alloc] initWithFrame:self.view.bounds];
+                self.mesVC = [[MDActivityMesViewController alloc] init];
+                _mesView=_mesVC.view;
                 _mesView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                _mesView.viewController = self;
+                //_mesView.viewController = self;
             }
             _currentContentView = _mesView;
             self.navigationItem.rightBarButtonItem = nil;
@@ -90,6 +93,7 @@
         default:
             break;
     }
+    _currentContentView.frame=self.view.bounds;
     [self.view addSubview:_currentContentView];
 }
 
