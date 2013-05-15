@@ -11,9 +11,12 @@
 #import "MDSendMessageViewController.h"
 #import "MDLoginViewController.h"
 #import "MDUserManager.h"
+#import "MBProgressHUD.h"
 
-@interface MDAppDelegate() <MDLoginViewControllerDelegate>
-
+@interface MDAppDelegate() <MDLoginViewControllerDelegate>{
+    MBProgressHUD *_HUD;
+}
+@property (strong,nonatomic) UINavigationController *navigationController;
 @end
 
 @implementation MDAppDelegate
@@ -36,11 +39,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     
     if ([[MDUserManager sharedInstance] userSessionValid]) {
         MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
-        _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:latestVC];
+        self.navigationController=[[UINavigationController alloc] initWithRootViewController:latestVC];
+        _window.rootViewController = _navigationController;
     } else {
         MDLoginViewController *loginVC = [[MDLoginViewController alloc]  initWithStyle:UITableViewStyleGrouped];
         loginVC.delegate = self;
-        _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        self.navigationController=[[UINavigationController alloc] initWithRootViewController:loginVC];
+        _window.rootViewController = _navigationController;
     }
     
     [self.window makeKeyAndVisible];
@@ -113,6 +118,21 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
     MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
     _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:latestVC];
+}
+
+-(void) showHUDWithLabel:(NSString*) text
+{
+    if(!_HUD){
+        _HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    }
+	[self.navigationController.view addSubview:_HUD];
+	_HUD.labelText = text;
+    [_HUD show:YES];
+}
+-(void) hideHUD
+{
+    [_HUD hide:YES];
+    [_HUD removeFromSuperview];
 }
 
 @end
