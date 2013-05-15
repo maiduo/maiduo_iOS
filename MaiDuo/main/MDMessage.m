@@ -10,4 +10,27 @@
 
 @implementation MDMessage
 
+-(NSMutableDictionary *)valueDictionary
+{
+    
+}
+
++(MDMessage *)messageWithJSON:(id)JSON
+{
+    
+}
+
++(NSArray *)messagesWithJSON:(id)JSON
+{
+    
+}
+
++(MDMessage *)messageWithBody:(NSString *)body
+{
+    MDMessage *message = [[MDMessage alloc] init];
+    message.body = body;
+    message.type = TextMessage;
+    
+    return message;
+}
 @end

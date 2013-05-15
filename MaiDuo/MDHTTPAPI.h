@@ -11,6 +11,44 @@
 #import "MDMessage.h"
 #import "MDActivity.h"
 
+/** 麦垛服务接口库
+ 
+ 这个库包含了所有的麦垛的服务请求，HTTP Rest风格，OAuth2的认证流程。
+ 
+ 下面是范例，MDHTTPAPI没有提供伪托的方式编程，使用闭包应用异步开发。
+ 
+ *使用范例：*
+ 
+     [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
+         NSLog(@"Your name is %@.", user.first_name);
+     } failure:^(NSError *error) {
+         NSLog(@"I'm sorry.");
+     }];
+ 
+ 因为是异步，所以不能在单元测试中使用[NSConditionLock]，会锁定线程。
+ 
+ *异步单元测试范例：*
+ 
+     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+     [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
+         NSLog(@"Your name is %@.", user.first_name);
+         dispatch_semaphore_signal(semaphore);
+     } failure:^(NSError *error) {
+         NSLog(@"I'm sorry.");
+         dispatch_semaphore_signal(semaphore);
+     }];
+
+ 
+     while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
+         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+     }
+ 
+     NSLog(@"好了，你可以在这里做Assert);
+ 
+ @warning *Note*: 远程接口还在开发和测试阶段，接口名随时可能会更改。
+ */
+
 @interface MDHTTPAPI : NSObject
 {
     NSString *url;
@@ -20,26 +58,157 @@
 
 -(id) initWithUser:(MDUser *)user;
 
--(void)fetchActivitiesUsingBlockWithSuccess:(void (^)(NSArray *))success
-                                    failure:(void (^)(NSError *error))failure;
+/** 获得所有的活动列表
+ 
+ 按时间降序返回，试验性，之后会加入分页。
+ 
+ @param success 远程服务成功执行后向`success`返回数据。
+ 
+ <dl>
+    <dt>activies</dt>
+    <dd>活动列表数组。</dd>
+ </dl>
+ 
+ @param failure 如果远程服务器不能正确执行，则输入`NSError`。
+ 
+ <dl>
+    <dt>error</dt>
+    <dd><code>NSError</code>包含原始的请求错误。</dd>
+ </dl>
+ */
+-(void)activitiesSuccess:(void (^)(NSArray *activies))success
+                 failure:(void (^)(NSError *error))failure;
 
--(void)createActivity:(MDActivity *)aActivity
-              success:(void (^)(NSArray *))success
+/** 创建活动
+ 
+ 创建活动的API提供了专用的工厂方法 
+ 
+ - [MDActivity activityWithSubject:]
+ - [MDActivity activityWithSubject:description:]
+
+ 
+ @param activity `MDActivity activityWithSubject:`
+ 
+ @see [MDActivity activityWithSubject:]
+ @see [MDActivity activityWithSubject:description:]
+ 
+ */
+-(void)createActivity:(MDActivity *)activity
+              success:(void (^)(MDActivity *))success
               failure:(void (^)(NSError *error))failure;
 
+/** 发送消息
+ 
+ 在调用发送消息以前，请使用工厂方法[MDMessage messageWithBody:]实例化MDMessage对象。
+ 
+ @param message MDMessage对象
+ @param success 远程服务成功执行后向`success`返回数据。
+ 
+ <dl>
+ <dt>message</dt>
+ <dd>成功保存的MDMessage对象，包含<code>id</code>属性。</dd>
+ </dl>
+ 
+ @param failure 如果远程服务器不能正确执行，则输入`NSError`。
+ 
+ <dl>
+ <dt>error</dt>
+ <dd><code>NSError</code>包含原始的请求错误。</dd>
+ </dl>
+ 
+ @see [MDMessage messageWithBody:]
+ */
 -(void)sendMessage:(MDMessage *)message
            success:(void (^)(MDMessage *))success
            failure:(void (^)(NSError *error))failure;
 
+/** 查询活动下所有的消息
+ 
+ @param activity MDActivity对象必须包含`id`属性。
+ @param success 远程服务成功执行后向`success`返回数据。
+ 
+ <dl>
+ <dt>messages</dt>
+ <dd>活动下的所有消息</dd>
+ </dl>
+ 
+ @param failure 如果远程服务器不能正确执行，则输入`NSError`。
+ 
+ <dl>
+ <dt>error</dt>
+ <dd><code>NSError</code>包含原始的请求错误。</dd>
+ </dl>
+ 
+ @see [MDMessage messageWithBody:]
+ */
 -(void)messagesWithActivity:(MDActivity *)activity
-                    success:(void (^)(NSArray *))success
+                    success:(void (^)(NSArray *messages))success
                     failure:(void (^)(NSError *error))failure;
 
+/** 注册用户
+ 
+ [MDUser deviceToken] 如果存在，同时登记设备Token。
+ 
+ @param user [MDUser]
+ @param success 远程服务成功执行后向`success`返回数据。
+ 
+ <dl>
+ <dt>user</dt>
+ <dd>MDUser</dd>
+ </dl>
+ <dl>
+    <dt>api</dt>
+    <dd>MDHTTPAPI</dd>
+ </dl>
+ 
+ @param failure 如果远程服务器不能正确执行，则输入`NSError`。
+ 
+ <dl>
+ <dt>error</dt>
+ <dd><code>NSError</code>包含原始的请求错误。</dd>
+ </dl>
+ 
+ @see MDUser
+ */
 +(void)registerUser:(MDUser *)user
             success:(void (^)(MDUser *user, MDHTTPAPI *api))success
             failure:(void (^)(NSError *error))failure;
 
+/** 用户登陆
+ 
+ 验证并获得用户状态，保存在 [MDUser accessToken].
+ 
+ @param user [MDUser]
+ @param success 远程服务成功执行后向`success`返回数据。
+ 
+ <dl>
+ <dt>user</dt>
+ <dd>MDUser</dd>
+ </dl>
+ <dl>
+ <dt>api</dt>
+ <dd>MDHTTPAPI</dd>
+ </dl>
+ 
+ @param failure 如果远程服务器不能正确执行，则输入`NSError`。
+ 
+ <dl>
+ <dt>error</dt>
+ <dd><code>NSError</code>包含原始的请求错误。</dd>
+ </dl>
+ 
+ @see MDUser
+ */
 +(void)login:(MDUser *)user
      success:(void (^)(MDUser *user, MDHTTPAPI *api))success
      failure:(void (^)(NSError *error))failure;
+
+/** MDHTTPAPI
+ 
+ @warning 不推荐使用，这是单元测试使用的。
+ 
+ @param user `MDUser`
+ @return `MDHTTPAPI`
+ */
++(MDHTTPAPI *)MDHTTPAPIWithToken:(MDUser *)user;
 @end

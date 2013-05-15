@@ -7,11 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7EB9B2F3E69F4709B59DA87A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8189D765038C4B9FB2F1D493 /* libPods.a */; };
+		2D35337AA439410087000219 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B653FAC110D24793B8E10EB8 /* libPods.a */; };
 		90153976172BDC2300DBB64B /* RHPerson+RHPersonCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9015396F172BDC2300DBB64B /* RHPerson+RHPersonCategory.m */; };
 		90153977172BDC2300DBB64B /* Yaab.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153971172BDC2300DBB64B /* Yaab.m */; };
 		90153978172BDC2300DBB64B /* YaabUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* YaabUser.m */; };
 		90153979172BDC2300DBB64B /* YContactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153975172BDC2300DBB64B /* YContactTableViewController.m */; };
+		902C91CB1742322800073241 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
+		902C91CC1742322800073241 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BC17217C8E005BC944 /* Foundation.framework */; };
+		902C91CD1742322800073241 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BE17217C8E005BC944 /* CoreGraphics.framework */; };
+		902C91D31742322800073241 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 902C91D11742322800073241 /* InfoPlist.strings */; };
+		902C91D51742322800073241 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 902C91D41742322800073241 /* main.m */; };
+		902C91DB1742322800073241 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 902C91DA1742322800073241 /* Default.png */; };
+		902C91DD1742322800073241 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 902C91DC1742322800073241 /* Default@2x.png */; };
+		902C91DF1742322800073241 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 902C91DE1742322800073241 /* Default-568h@2x.png */; };
+		902C91EE174232E400073241 /* MDTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 902C91ED174232E400073241 /* MDTestAppDelegate.m */; };
+		902C91F6174235A500073241 /* MDHTTPAPITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 902C91F4174235A500073241 /* MDHTTPAPITest.m */; };
+		902CD8911743C47100429D64 /* MDRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 902CD8901743C47100429D64 /* MDRegisterViewController.m */; };
+		902CD8941743CBB700429D64 /* MDPersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 902CD8931743CBB700429D64 /* MDPersonDetailViewController.m */; };
+		904726E717426236000B0398 /* MDHTTPAPI.h in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18117412056009D7D62 /* MDHTTPAPI.h */; };
+		904726E817426236000B0398 /* MDHTTPAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18217412056009D7D62 /* MDHTTPAPI.m */; };
+		904726E917426236000B0398 /* MDContact.h in Sources */ = {isa = PBXBuildFile; fileRef = AA315DFE173F91CF009BA36E /* MDContact.h */; };
+		904726EA17426236000B0398 /* MDContact.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E00173F91CF009BA36E /* MDContact.m */; };
+		904726EB17426236000B0398 /* MDMessage.h in Sources */ = {isa = PBXBuildFile; fileRef = AA315DFF173F91CF009BA36E /* MDMessage.h */; };
+		904726EC17426236000B0398 /* MDMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E01173F91CF009BA36E /* MDMessage.m */; };
+		904726ED17426236000B0398 /* MDUser.h in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18A174121A9009D7D62 /* MDUser.h */; };
+		904726EE17426236000B0398 /* MDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18B174121A9009D7D62 /* MDUser.m */; };
+		904726EF174266D8000B0398 /* AFMDClient.h in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18717412193009D7D62 /* AFMDClient.h */; };
+		904726F0174266D8000B0398 /* AFMDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18817412193009D7D62 /* AFMDClient.m */; };
+		904726F11742679B000B0398 /* MDItem.h in Sources */ = {isa = PBXBuildFile; fileRef = AA315DE9173F8AAC009BA36E /* MDItem.h */; };
+		904726F21742679B000B0398 /* MDItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315DEA173F8AAC009BA36E /* MDItem.m */; };
+		904726F317426CBC000B0398 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342D817217C8E005BC944 /* SenTestingKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		905876E4172D45AD00690DC3 /* YMessageContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 905876E3172D45AD00690DC3 /* YMessageContactViewController.m */; };
 		906B96E21736A16100A7C20E /* YMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 906B96E11736A16100A7C20E /* YMessage.m */; };
 		906B96E51736A6D400A7C20E /* YPlainContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 906B96E41736A6D400A7C20E /* YPlainContact.m */; };
@@ -22,6 +47,9 @@
 		90AAB18617412172009D7D62 /* EGOTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18517412172009D7D62 /* EGOTableView.m */; };
 		90AAB18917412193009D7D62 /* AFMDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18817412193009D7D62 /* AFMDClient.m */; };
 		90AAB18C174121A9009D7D62 /* MDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18B174121A9009D7D62 /* MDUser.m */; };
+		90AEA38C17427BF5003305EC /* MDActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AEA38B17427BF5003305EC /* MDActivity.m */; };
+		90AEA38D17427D18003305EC /* MDActivity.h in Sources */ = {isa = PBXBuildFile; fileRef = 90AEA38A17427BF5003305EC /* MDActivity.h */; };
+		90AEA38E17427D1A003305EC /* MDActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AEA38B17427BF5003305EC /* MDActivity.m */; };
 		90E1F4E217242FF1009A578C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E1F4E117242FF1009A578C /* AddressBook.framework */; };
 		90EF5CB517257DF000AFE074 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 90EF5CB017257DF000AFE074 /* pinyin.c */; };
 		90F342BB17217C8E005BC944 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
@@ -33,12 +61,8 @@
 		90F342CD17217C8E005BC944 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F342CC17217C8E005BC944 /* Default.png */; };
 		90F342CF17217C8E005BC944 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F342CE17217C8E005BC944 /* Default@2x.png */; };
 		90F342D117217C8E005BC944 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F342D017217C8E005BC944 /* Default-568h@2x.png */; };
-		90F342D917217C8E005BC944 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342D817217C8E005BC944 /* SenTestingKit.framework */; };
-		90F342DA17217C8E005BC944 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
-		90F342DB17217C8E005BC944 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BC17217C8E005BC944 /* Foundation.framework */; };
-		90F342E317217C8E005BC944 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90F342E117217C8E005BC944 /* InfoPlist.strings */; };
-		90F342E617217C8E005BC944 /* MaiDuoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342E517217C8E005BC944 /* MaiDuoTests.m */; };
 		90F342F81721A706005BC944 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F342F71721A706005BC944 /* AsyncImageView.m */; };
+		917A66597970441388A256A2 /* libPods-MaiDuoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 024D33E43FE24742A8D24C76 /* libPods-MaiDuoTests.a */; };
 		AA315DE6173F8784009BA36E /* MDUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315DE5173F8784009BA36E /* MDUserManager.m */; };
 		AA315DEB173F8AAC009BA36E /* MDItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315DEA173F8AAC009BA36E /* MDItem.m */; };
 		AA315DF3173F8ED8009BA36E /* MDLatestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315DF0173F8ED8009BA36E /* MDLatestViewController.m */; };
@@ -66,7 +90,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		90F342DC17217C8E005BC944 /* PBXContainerItemProxy */ = {
+		902C91FD1742418A00073241 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90F342AF17217C8E005BC944 /* Project object */;
 			proxyType = 1;
@@ -76,7 +100,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		19CCBF954E574D39AED92D14 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		024D33E43FE24742A8D24C76 /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2018E73633D84F1A834FE42F /* Pods-MaiDuoTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaiDuoTests.xcconfig"; path = "Pods/Pods-MaiDuoTests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		213944C578514190A2BAC4A1 /* libPods-MaiDuo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		432379D17D2049AF901101B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8189D765038C4B9FB2F1D493 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9015396E172BDC2300DBB64B /* RHPerson+RHPersonCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RHPerson+RHPersonCategory.h"; sourceTree = "<group>"; };
 		9015396F172BDC2300DBB64B /* RHPerson+RHPersonCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RHPerson+RHPersonCategory.m"; sourceTree = "<group>"; };
@@ -86,6 +113,22 @@
 		90153973172BDC2300DBB64B /* YaabUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaabUser.m; sourceTree = "<group>"; };
 		90153974172BDC2300DBB64B /* YContactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YContactTableViewController.h; sourceTree = "<group>"; };
 		90153975172BDC2300DBB64B /* YContactTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YContactTableViewController.m; sourceTree = "<group>"; };
+		902C91CA1742322800073241 /* MaiDuoTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaiDuoTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		902C91D01742322800073241 /* MaiDuoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MaiDuoTests-Info.plist"; sourceTree = "<group>"; };
+		902C91D21742322800073241 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		902C91D41742322800073241 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		902C91D61742322800073241 /* MaiDuoTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MaiDuoTests-Prefix.pch"; sourceTree = "<group>"; };
+		902C91DA1742322800073241 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		902C91DC1742322800073241 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		902C91DE1742322800073241 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		902C91EC174232E400073241 /* MDTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTestAppDelegate.h; sourceTree = "<group>"; };
+		902C91ED174232E400073241 /* MDTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTestAppDelegate.m; sourceTree = "<group>"; };
+		902C91F2174235A500073241 /* MaiDuoTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaiDuoTests.h; sourceTree = "<group>"; };
+		902C91F4174235A500073241 /* MDHTTPAPITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDHTTPAPITest.m; sourceTree = "<group>"; };
+		902CD88F1743C47100429D64 /* MDRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDRegisterViewController.h; path = MaiDuo/MDRegisterViewController.h; sourceTree = SOURCE_ROOT; };
+		902CD8901743C47100429D64 /* MDRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDRegisterViewController.m; path = MaiDuo/MDRegisterViewController.m; sourceTree = SOURCE_ROOT; };
+		902CD8921743CBB700429D64 /* MDPersonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDPersonDetailViewController.h; path = MaiDuo/MDPersonDetailViewController.h; sourceTree = SOURCE_ROOT; };
+		902CD8931743CBB700429D64 /* MDPersonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDPersonDetailViewController.m; path = MaiDuo/MDPersonDetailViewController.m; sourceTree = SOURCE_ROOT; };
 		905876E2172D45AD00690DC3 /* YMessageContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMessageContactViewController.h; sourceTree = "<group>"; };
 		905876E3172D45AD00690DC3 /* YMessageContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMessageContactViewController.m; sourceTree = "<group>"; };
 		906B96E01736A16100A7C20E /* YMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMessage.h; sourceTree = "<group>"; };
@@ -105,6 +148,8 @@
 		90AAB18817412193009D7D62 /* AFMDClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMDClient.m; sourceTree = "<group>"; };
 		90AAB18A174121A9009D7D62 /* MDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDUser.h; path = MaiDuo/MDUser.h; sourceTree = SOURCE_ROOT; };
 		90AAB18B174121A9009D7D62 /* MDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDUser.m; path = MaiDuo/MDUser.m; sourceTree = SOURCE_ROOT; };
+		90AEA38A17427BF5003305EC /* MDActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivity.h; path = MaiDuo/MDActivity.h; sourceTree = SOURCE_ROOT; };
+		90AEA38B17427BF5003305EC /* MDActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDActivity.m; path = MaiDuo/MDActivity.m; sourceTree = SOURCE_ROOT; };
 		90E1F4E117242FF1009A578C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		90EF5CB017257DF000AFE074 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		90EF5CB117257DF000AFE074 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
@@ -121,14 +166,12 @@
 		90F342CC17217C8E005BC944 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		90F342CE17217C8E005BC944 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		90F342D017217C8E005BC944 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		90F342D717217C8E005BC944 /* MaiDuoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaiDuoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F342D817217C8E005BC944 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		90F342E017217C8E005BC944 /* MaiDuoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MaiDuoTests-Info.plist"; sourceTree = "<group>"; };
-		90F342E217217C8E005BC944 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		90F342E417217C8E005BC944 /* MaiDuoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaiDuoTests.h; sourceTree = "<group>"; };
-		90F342E517217C8E005BC944 /* MaiDuoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaiDuoTests.m; sourceTree = "<group>"; };
 		90F342F61721A706005BC944 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		90F342F71721A706005BC944 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
+		94844377963140799A16CD56 /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		96F6F32747884C9186FD3D23 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DBBFC670F454C7BB499B0A2 /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA315DE4173F8784009BA36E /* MDUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUserManager.h; sourceTree = "<group>"; };
 		AA315DE5173F8784009BA36E /* MDUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUserManager.m; sourceTree = "<group>"; };
 		AA315DE9173F8AAC009BA36E /* MDItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDItem.h; sourceTree = "<group>"; };
@@ -157,6 +200,11 @@
 		AA315E16173FAFB1009BA36E /* MDActivityConCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityConCell.m; sourceTree = "<group>"; };
 		AA9954F01740020600FF5BFF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AA9954F21740020B00FF5BFF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		B226F2C0B9234D76A2D8AE9F /* libPods-test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-test.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B653FAC110D24793B8E10EB8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B75EEC2339FE4F518789FFDF /* libPods-MaiDuo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B78F4CAE91B54BC18739200C /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8CEFB231739E7DF0021D371 /* PhotoBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoBorder.png; sourceTree = "<group>"; };
 		C8CEFB241739E7DF0021D371 /* PhotoBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoBorder@2x.png"; sourceTree = "<group>"; };
 		C8CEFB251739E7DF0021D371 /* PhotoStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoStackView.h; sourceTree = "<group>"; };
@@ -169,9 +217,22 @@
 		C8D1A43F17431ADE00398568 /* MDActivityMesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityMesViewController.m; sourceTree = "<group>"; };
 		C8D1A44117431C4200398568 /* photo0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo0@2x.png"; sourceTree = "<group>"; };
 		C8D1A44217431C4200398568 /* photo1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo1@2x.png"; sourceTree = "<group>"; };
+		F55CCA5C929C463FAC6C0F04 /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		902C91C71742322800073241 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				904726F317426CBC000B0398 /* SenTestingKit.framework in Frameworks */,
+				902C91CB1742322800073241 /* UIKit.framework in Frameworks */,
+				902C91CC1742322800073241 /* Foundation.framework in Frameworks */,
+				902C91CD1742322800073241 /* CoreGraphics.framework in Frameworks */,
+				917A66597970441388A256A2 /* libPods-MaiDuoTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90F342B417217C8E005BC944 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -183,17 +244,7 @@
 				90F342BB17217C8E005BC944 /* UIKit.framework in Frameworks */,
 				90F342BD17217C8E005BC944 /* Foundation.framework in Frameworks */,
 				90F342BF17217C8E005BC944 /* CoreGraphics.framework in Frameworks */,
-				7EB9B2F3E69F4709B59DA87A /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		90F342D317217C8E005BC944 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				90F342D917217C8E005BC944 /* SenTestingKit.framework in Frameworks */,
-				90F342DA17217C8E005BC944 /* UIKit.framework in Frameworks */,
-				90F342DB17217C8E005BC944 /* Foundation.framework in Frameworks */,
+				2D35337AA439410087000219 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +274,40 @@
 			name = Yaab;
 			sourceTree = "<group>";
 		};
+		902C91CE1742322800073241 /* MaiDuoTests */ = {
+			isa = PBXGroup;
+			children = (
+				902C91CF1742322800073241 /* Supporting Files */,
+				902C91EC174232E400073241 /* MDTestAppDelegate.h */,
+				902C91ED174232E400073241 /* MDTestAppDelegate.m */,
+				902C91F1174235A500073241 /* Tests */,
+			);
+			path = MaiDuoTests;
+			sourceTree = "<group>";
+		};
+		902C91CF1742322800073241 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				902C91D01742322800073241 /* MaiDuoTests-Info.plist */,
+				902C91D11742322800073241 /* InfoPlist.strings */,
+				902C91D41742322800073241 /* main.m */,
+				902C91D61742322800073241 /* MaiDuoTests-Prefix.pch */,
+				902C91DA1742322800073241 /* Default.png */,
+				902C91DC1742322800073241 /* Default@2x.png */,
+				902C91DE1742322800073241 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		902C91F1174235A500073241 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				902C91F2174235A500073241 /* MaiDuoTests.h */,
+				902C91F4174235A500073241 /* MDHTTPAPITest.m */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		90EF5CA917257DC500AFE074 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,10 +322,11 @@
 			children = (
 				90F342F51721A706005BC944 /* AsyncImageView */,
 				90F342C017217C8E005BC944 /* MaiDuo */,
-				90F342DE17217C8E005BC944 /* MaiDuoTests */,
+				902C91CE1742322800073241 /* MaiDuoTests */,
 				90F342B917217C8E005BC944 /* Frameworks */,
 				90F342B817217C8E005BC944 /* Products */,
-				19CCBF954E574D39AED92D14 /* Pods.xcconfig */,
+				AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */,
+				2018E73633D84F1A834FE42F /* Pods-MaiDuoTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -248,7 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				90F342B717217C8E005BC944 /* MaiDuo.app */,
-				90F342D717217C8E005BC944 /* MaiDuoTests.octest */,
+				902C91CA1742322800073241 /* MaiDuoTests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -265,6 +351,17 @@
 				90F342BE17217C8E005BC944 /* CoreGraphics.framework */,
 				90F342D817217C8E005BC944 /* SenTestingKit.framework */,
 				8189D765038C4B9FB2F1D493 /* libPods.a */,
+				F55CCA5C929C463FAC6C0F04 /* libPods-MaiDuoTests.a */,
+				9DBBFC670F454C7BB499B0A2 /* libPods-MaiDuoTests.a */,
+				B78F4CAE91B54BC18739200C /* libPods-MaiDuoTests.a */,
+				B75EEC2339FE4F518789FFDF /* libPods-MaiDuo.a */,
+				432379D17D2049AF901101B9 /* libPods.a */,
+				213944C578514190A2BAC4A1 /* libPods-MaiDuo.a */,
+				B226F2C0B9234D76A2D8AE9F /* libPods-test.a */,
+				96F6F32747884C9186FD3D23 /* libPods.a */,
+				94844377963140799A16CD56 /* libPods-MaiDuoTests.a */,
+				B653FAC110D24793B8E10EB8 /* libPods.a */,
+				024D33E43FE24742A8D24C76 /* libPods-MaiDuoTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -293,25 +390,6 @@
 				90F342CC17217C8E005BC944 /* Default.png */,
 				90F342CE17217C8E005BC944 /* Default@2x.png */,
 				90F342D017217C8E005BC944 /* Default-568h@2x.png */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		90F342DE17217C8E005BC944 /* MaiDuoTests */ = {
-			isa = PBXGroup;
-			children = (
-				90F342E417217C8E005BC944 /* MaiDuoTests.h */,
-				90F342E517217C8E005BC944 /* MaiDuoTests.m */,
-				90F342DF17217C8E005BC944 /* Supporting Files */,
-			);
-			path = MaiDuoTests;
-			sourceTree = "<group>";
-		};
-		90F342DF17217C8E005BC944 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				90F342E017217C8E005BC944 /* MaiDuoTests-Info.plist */,
-				90F342E117217C8E005BC944 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -358,8 +436,12 @@
 				AA315DF0173F8ED8009BA36E /* MDLatestViewController.m */,
 				AA315DF1173F8ED8009BA36E /* MDLoginViewController.h */,
 				AA315DF2173F8ED8009BA36E /* MDLoginViewController.m */,
+				902CD88F1743C47100429D64 /* MDRegisterViewController.h */,
+				902CD8901743C47100429D64 /* MDRegisterViewController.m */,
 				C8D1A43E17431ADE00398568 /* MDActivityMesViewController.h */,
 				C8D1A43F17431ADE00398568 /* MDActivityMesViewController.m */,
+				902CD8921743CBB700429D64 /* MDPersonDetailViewController.h */,
+				902CD8931743CBB700429D64 /* MDPersonDetailViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -387,6 +469,8 @@
 		AA315DE7173F8A45009BA36E /* item */ = {
 			isa = PBXGroup;
 			children = (
+				90AEA38A17427BF5003305EC /* MDActivity.h */,
+				90AEA38B17427BF5003305EC /* MDActivity.m */,
 				AA315DFE173F91CF009BA36E /* MDContact.h */,
 				AA315E00173F91CF009BA36E /* MDContact.m */,
 				AA315DFF173F91CF009BA36E /* MDMessage.h */,
@@ -437,10 +521,10 @@
 		C8CEFB2A1739EE840021D371 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				C8CEFB2B1739EEA00021D371 /* UIView+Animation.h */,
-				C8CEFB2C1739EEA00021D371 /* UIView+Animation.m */,
 				90AAB18717412193009D7D62 /* AFMDClient.h */,
 				90AAB18817412193009D7D62 /* AFMDClient.m */,
+				C8CEFB2B1739EEA00021D371 /* UIView+Animation.h */,
+				C8CEFB2C1739EEA00021D371 /* UIView+Animation.m */,
 				90AAB17E17411E85009D7D62 /* iToast.h */,
 				90AAB17F17411E85009D7D62 /* iToast.m */,
 				90AAB18417412172009D7D62 /* EGOTableView.h */,
@@ -463,11 +547,31 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		902C91C91742322800073241 /* MaiDuoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 902C91E91742322800073241 /* Build configuration list for PBXNativeTarget "MaiDuoTests" */;
+			buildPhases = (
+				19247C72FD4E4F76A1C477C7 /* Check Pods Manifest.lock */,
+				902C91C61742322800073241 /* Sources */,
+				902C91C71742322800073241 /* Frameworks */,
+				902C91C81742322800073241 /* Resources */,
+				CDA8D51637FB4D3B9F50E02D /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				902C91FE1742418A00073241 /* PBXTargetDependency */,
+			);
+			name = MaiDuoTests;
+			productName = MaiDuoTests;
+			productReference = 902C91CA1742322800073241 /* MaiDuoTests.app */;
+			productType = "com.apple.product-type.application";
+		};
 		90F342B617217C8E005BC944 /* MaiDuo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90F342E917217C8E005BC944 /* Build configuration list for PBXNativeTarget "MaiDuo" */;
 			buildPhases = (
-				B2F037BCAA4F4650AE2A852E /* Check Pods Manifest.lock */,
+				AA0E110F6E044AF68EE38797 /* Check Pods Manifest.lock */,
 				90F342B317217C8E005BC944 /* Sources */,
 				90F342B417217C8E005BC944 /* Frameworks */,
 				90F342B517217C8E005BC944 /* Resources */,
@@ -481,25 +585,6 @@
 			productName = MaiDuo;
 			productReference = 90F342B717217C8E005BC944 /* MaiDuo.app */;
 			productType = "com.apple.product-type.application";
-		};
-		90F342D617217C8E005BC944 /* MaiDuoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 90F342EC17217C8E005BC944 /* Build configuration list for PBXNativeTarget "MaiDuoTests" */;
-			buildPhases = (
-				90F342D217217C8E005BC944 /* Sources */,
-				90F342D317217C8E005BC944 /* Frameworks */,
-				90F342D417217C8E005BC944 /* Resources */,
-				90F342D517217C8E005BC944 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				90F342DD17217C8E005BC944 /* PBXTargetDependency */,
-			);
-			name = MaiDuoTests;
-			productName = MaiDuoTests;
-			productReference = 90F342D717217C8E005BC944 /* MaiDuoTests.octest */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -523,12 +608,23 @@
 			projectRoot = "";
 			targets = (
 				90F342B617217C8E005BC944 /* MaiDuo */,
-				90F342D617217C8E005BC944 /* MaiDuoTests */,
+				902C91C91742322800073241 /* MaiDuoTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		902C91C81742322800073241 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				902C91D31742322800073241 /* InfoPlist.strings in Resources */,
+				902C91DB1742322800073241 /* Default.png in Resources */,
+				902C91DD1742322800073241 /* Default@2x.png in Resources */,
+				902C91DF1742322800073241 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90F342B517217C8E005BC944 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -546,31 +642,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		90F342D417217C8E005BC944 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				90F342E317217C8E005BC944 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		90F342D517217C8E005BC944 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		B2F037BCAA4F4650AE2A852E /* Check Pods Manifest.lock */ = {
+		19247C72FD4E4F76A1C477C7 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -582,7 +657,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
+		AA0E110F6E044AF68EE38797 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
+		CDA8D51637FB4D3B9F50E02D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-MaiDuoTests-resources.sh\"\n";
 		};
 		DD0180B152624E5CBC74A9AC /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -601,6 +704,30 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		902C91C61742322800073241 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				904726F11742679B000B0398 /* MDItem.h in Sources */,
+				904726F21742679B000B0398 /* MDItem.m in Sources */,
+				904726EF174266D8000B0398 /* AFMDClient.h in Sources */,
+				904726F0174266D8000B0398 /* AFMDClient.m in Sources */,
+				904726E717426236000B0398 /* MDHTTPAPI.h in Sources */,
+				904726E817426236000B0398 /* MDHTTPAPI.m in Sources */,
+				90AEA38D17427D18003305EC /* MDActivity.h in Sources */,
+				90AEA38E17427D1A003305EC /* MDActivity.m in Sources */,
+				904726E917426236000B0398 /* MDContact.h in Sources */,
+				904726EA17426236000B0398 /* MDContact.m in Sources */,
+				904726EB17426236000B0398 /* MDMessage.h in Sources */,
+				904726EC17426236000B0398 /* MDMessage.m in Sources */,
+				904726ED17426236000B0398 /* MDUser.h in Sources */,
+				904726EE17426236000B0398 /* MDUser.m in Sources */,
+				902C91D51742322800073241 /* main.m in Sources */,
+				902C91EE174232E400073241 /* MDTestAppDelegate.m in Sources */,
+				902C91F6174235A500073241 /* MDHTTPAPITest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90F342B317217C8E005BC944 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -637,29 +764,32 @@
 				90AAB18617412172009D7D62 /* EGOTableView.m in Sources */,
 				90AAB18917412193009D7D62 /* AFMDClient.m in Sources */,
 				90AAB18C174121A9009D7D62 /* MDUser.m in Sources */,
+				90AEA38C17427BF5003305EC /* MDActivity.m in Sources */,
 				C8D1A44017431ADE00398568 /* MDActivityMesViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		90F342D217217C8E005BC944 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				90F342E617217C8E005BC944 /* MaiDuoTests.m in Sources */,
+				902CD8911743C47100429D64 /* MDRegisterViewController.m in Sources */,
+				902CD8941743CBB700429D64 /* MDPersonDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		90F342DD17217C8E005BC944 /* PBXTargetDependency */ = {
+		902C91FE1742418A00073241 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 90F342B617217C8E005BC944 /* MaiDuo */;
-			targetProxy = 90F342DC17217C8E005BC944 /* PBXContainerItemProxy */;
+			targetProxy = 902C91FD1742418A00073241 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		902C91D11742322800073241 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				902C91D21742322800073241 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		90F342C317217C8E005BC944 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -668,17 +798,45 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		90F342E117217C8E005BC944 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				90F342E217217C8E005BC944 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		902C91EA1742322800073241 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2018E73633D84F1A834FE42F /* Pods-MaiDuoTests.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MaiDuoTests/MaiDuoTests-Prefix.pch";
+				INFOPLIST_FILE = "MaiDuoTests/MaiDuoTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		902C91EB1742322800073241 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2018E73633D84F1A834FE42F /* Pods-MaiDuoTests.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MaiDuoTests/MaiDuoTests-Prefix.pch";
+				INFOPLIST_FILE = "MaiDuoTests/MaiDuoTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		90F342E717217C8E005BC944 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -745,7 +903,7 @@
 		};
 		90F342EA17217C8E005BC944 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19CCBF954E574D39AED92D14 /* Pods.xcconfig */;
+			baseConfigurationReference = AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
@@ -762,7 +920,7 @@
 		};
 		90F342EB17217C8E005BC944 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19CCBF954E574D39AED92D14 /* Pods.xcconfig */;
+			baseConfigurationReference = AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
@@ -777,43 +935,18 @@
 			};
 			name = Release;
 		};
-		90F342ED17217C8E005BC944 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MaiDuo.app/MaiDuo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
-				INFOPLIST_FILE = "MaiDuoTests/MaiDuoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		90F342EE17217C8E005BC944 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MaiDuo.app/MaiDuo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
-				INFOPLIST_FILE = "MaiDuoTests/MaiDuoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		902C91E91742322800073241 /* Build configuration list for PBXNativeTarget "MaiDuoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				902C91EA1742322800073241 /* Debug */,
+				902C91EB1742322800073241 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		90F342B217217C8E005BC944 /* Build configuration list for PBXProject "MaiDuo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -828,15 +961,6 @@
 			buildConfigurations = (
 				90F342EA17217C8E005BC944 /* Debug */,
 				90F342EB17217C8E005BC944 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		90F342EC17217C8E005BC944 /* Build configuration list for PBXNativeTarget "MaiDuoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				90F342ED17217C8E005BC944 /* Debug */,
-				90F342EE17217C8E005BC944 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
