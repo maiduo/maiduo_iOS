@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03A59912173BEE3A00C0C4B3 /* ASMyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A59911173BEE3A00C0C4B3 /* ASMyCell.m */; };
 		7EB9B2F3E69F4709B59DA87A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8189D765038C4B9FB2F1D493 /* libPods.a */; };
 		90153976172BDC2300DBB64B /* RHPerson+RHPersonCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9015396F172BDC2300DBB64B /* RHPerson+RHPersonCategory.m */; };
 		90153977172BDC2300DBB64B /* Yaab.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153971172BDC2300DBB64B /* Yaab.m */; };
@@ -485,7 +484,6 @@
 				906B96E51736A6D400A7C20E /* YPlainContact.m in Sources */,
 				C8CEFB291739E7DF0021D371 /* PhotoStackView.m in Sources */,
 				C8CEFB2D1739EEA00021D371 /* UIView+Animation.m in Sources */,
-				03A59912173BEE3A00C0C4B3 /* ASMyCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
