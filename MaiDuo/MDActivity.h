@@ -20,7 +20,6 @@
 
 -(MDUser *)invite:(MDUser *)user;
 -(void)removeAllInvitations;
--(NSMutableDictionary *)valueDictionary;
 
 /** @name 为MDHTTPAPI提供的工厂方法 */
 

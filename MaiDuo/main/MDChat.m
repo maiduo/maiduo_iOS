@@ -11,7 +11,7 @@
 
 @implementation MDChat
 
--(NSMutableDictionary *)valueDictionary
+-(NSMutableDictionary *)dictionaryValue
 {
     return [NSMutableDictionary dictionaryWithObjectsAndKeys:
             self.text, @"text", nil];

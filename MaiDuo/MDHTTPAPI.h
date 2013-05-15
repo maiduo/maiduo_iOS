@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MDHTTPAPIFactory.h"
 #import "MDUser.h"
 #import "MDMessage.h"
 #import "MDActivity.h"
@@ -56,6 +57,7 @@
 }
 
 @property(nonatomic, strong) MDUser *user;
+@property(copy) NSString *service;
 
 -(id) initWithUser:(MDUser *)user;
 

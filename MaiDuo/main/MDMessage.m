@@ -10,7 +10,12 @@
 
 @implementation MDMessage
 
--(NSMutableDictionary *)valueDictionary
+-(NSMutableDictionary *)dictionaryValue
+{
+    return nil;
+}
+
+-(NSDictionary *)dictionaryForAPIWithAccessToken:(NSString *)token
 {
     
 }

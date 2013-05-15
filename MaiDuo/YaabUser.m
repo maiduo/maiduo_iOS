@@ -23,7 +23,7 @@
         
         nsUser = [NSUserDefaults standardUserDefaults];
         self.user=[[MDUser alloc] init];
-        
+        self.service = @"dev";
 
     }
     return self;

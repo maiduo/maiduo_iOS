@@ -21,16 +21,6 @@
     [self.invitation removeAllObjects];
 }
 
-
-
--(NSMutableDictionary *)valueDictionary
-{
-    return [NSMutableDictionary dictionaryWithObjectsAndKeys:
-            self.subject, @"subject",
-            [self.invitation componentsJoinedByString:@","], @"invitation",
-            nil];
-}
-
 +(NSArray *)activitiesWithJSON:(id)JSON
 {
     NSArray *jsonActivities = (NSArray *)JSON;

@@ -38,7 +38,7 @@
  @see dictionaryForAPIWithAccessToken:
  @see [MDHTTPAPI sendChat:activity:user:]
  */
--(NSMutableDictionary *)valueDictionary;
+-(NSMutableDictionary *)dictionaryValue;
 
 
 /** 为[MDHTTPAPI sendMessage:activity:user]提供序列化MDChat的方法
