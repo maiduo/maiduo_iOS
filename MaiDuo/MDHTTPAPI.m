@@ -53,30 +53,50 @@
                                failure:blockFailure];
 }
 
--(void)createActivity:(MDActivity *)aActivity
-              success:(void (^)(NSArray *))success
+-(void)createActivity:(MDActivity *)activity
+              success:(void (^)(MDActivity *))success
               failure:(void (^)(NSError *error))failure
 {
     void (^blockSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id JSON) {
-        NSLog(@"Success");
+        success([MDActivity activityWithJSON: JSON]);
     };
     
     void (^blockFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self printError:error];
         if (nil != failure)
             failure(error);
     };
     
-    [[AFMDClient sharedClient] getPath:@"activity/"
-                            parameters:nil
-                               success:blockSuccess
-                               failure:blockFailure];
+    NSMutableDictionary *dictionaryActivity = [activity valueDictionary];
+    [dictionaryActivity setValue:self.user.accessToken forKey:@"access_token"];
+    
+    [[AFMDClient sharedClient] postPath:@"activity/"
+                             parameters:dictionaryActivity
+                                success:blockSuccess
+                                failure:blockFailure];
 }
 
 -(void)sendMessage:(MDMessage *)message
            success:(void (^)(MDMessage *))success
            failure:(void (^)(NSError *error))failure
 {
+    void (^blockSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id JSON) {
+        success([MDMessage messageWithJSON:JSON]);
+    };
     
+    void (^blockFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self printError:error];
+        if (nil != failure)
+            failure(error);
+    };
+    
+    NSMutableDictionary *dictionaryMessage = [message valueDictionary];
+    [dictionaryMessage setValue:self.user.accessToken forKey:@"access_token"];
+    
+    [[AFMDClient sharedClient] postPath:@"activity/"
+                             parameters:dictionaryMessage
+                                success:blockSuccess
+                                failure:blockFailure];
 }
 
 -(void)messagesWithActivity:(MDActivity *)activity
@@ -198,5 +218,13 @@
 +(MDHTTPAPI *)MDHTTPAPIWithToken:(MDUser *)user
 {
     return [[MDHTTPAPI alloc] initWithUser:user];
+}
+
+-(void)printError:(NSError *)error
+{
+    [error.userInfo
+     enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+         NSLog(@"key:%@\nvalue:%@\n", key, obj);
+     }];
 }
 @end

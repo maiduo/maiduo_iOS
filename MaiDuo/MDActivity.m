@@ -10,6 +10,27 @@
 
 @implementation MDActivity
 
+-(MDUser *)invite:(MDUser *)user
+{
+    [self.invitation addObject: user];
+    return user;
+}
+
+-(void)removeAllInvitations
+{
+    [self.invitation removeAllObjects];
+}
+
+
+
+-(NSMutableDictionary *)valueDictionary
+{
+    return [NSMutableDictionary dictionaryWithObjectsAndKeys:
+            self.subject, @"subject",
+            [self.invitation componentsJoinedByString:@","], @"invitation",
+            nil];
+}
+
 +(NSArray *)activitiesWithJSON:(id)JSON
 {
     NSArray *jsonActivities = (NSArray *)JSON;
@@ -21,6 +42,20 @@
     }
     
     return activies;
+}
+
++(MDActivity *)activityWithSubject:(NSString *)aSubject
+{
+    MDActivity *activity = [[MDActivity alloc]init];
+    activity.subject = aSubject;
+    
+    return activity;
+}
+
++(MDActivity *)activityWithSubject:(NSString *)aSubject
+                       description:(NSString *)aDescription
+{
+    
 }
 
 +(MDActivity *)activityWithJSON:(id)JSON

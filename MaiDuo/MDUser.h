@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+/** MDUser
+ */
+
 @interface MDUser : NSObject
 
 @property (nonatomic, assign) NSInteger id;

@@ -44,10 +44,6 @@
 //
 //}
 //
-- (void)testA
-{
-    GHAssertTrue(YES, @"");
-}
 
 - (void)testUserLogin
 {
@@ -83,6 +79,29 @@
     };
     
     [api activitiesSuccess:success failure:failure];
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+    }
+    
+    GHAssertTrue(operationSuccessed, @"");
+}
+
+- (void)testCreateActivity
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    MDActivity *activity = [MDActivity activityWithSubject:@"Activity subject"];
+    
+    void (^success)(MDActivity *) = ^(MDActivity *aActivity) {
+        operationSuccessed = YES;
+        dispatch_semaphore_signal(semaphore);
+    };
+    
+    void (^failure)(NSError *) = ^(NSError *error) {
+        operationSuccessed = NO;
+        dispatch_semaphore_signal(semaphore);
+    };
+    
+    [api createActivity:activity success:success failure:failure];
     while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
     }
