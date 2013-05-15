@@ -13,6 +13,7 @@
 #import "MDSendMessageViewController.h"
 #import "AsyncImageView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "MDPersonDetailViewController.h"
 
 @interface MDLatestViewController ()
 
@@ -214,6 +215,22 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
                                                    self.view.frame.size.height);
     [self.navigationController pushViewController:activityViewController animated:YES];
+
+// Feng999的用户界面的触发代码
+// 因为和逻辑不符合，注释掉，并且不触发
+    
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    ActivityTableViewController* activityViewController;
+//    activityViewController = [[ActivityTableViewController alloc] init];
+//    activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
+//                                     self.view.frame.size.height);
+//    [self.navigationController pushViewController:activityViewController animated:YES];
+//    NSArray *tempArray = [[NSArray alloc] initWithArray:[activities objectAtIndex:indexPath.row]];
+//    PersonDetailViewController *personDetailViewController = [[PersonDetailViewController alloc]
+//                                                              init];
+//    personDetailViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+//    personDetailViewController.activity = tempArray;
+//    [self.navigationController pushViewController:personDetailViewController animated:YES];
 }
 
 #pragma mark -

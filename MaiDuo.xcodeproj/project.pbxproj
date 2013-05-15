@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03134671174371E4005A9F50 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03134670174371E4005A9F50 /* RegisterViewController.m */; };
 		2D35337AA439410087000219 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B653FAC110D24793B8E10EB8 /* libPods.a */; };
 		90153976172BDC2300DBB64B /* RHPerson+RHPersonCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9015396F172BDC2300DBB64B /* RHPerson+RHPersonCategory.m */; };
 		90153977172BDC2300DBB64B /* Yaab.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153971172BDC2300DBB64B /* Yaab.m */; };
@@ -24,6 +23,7 @@
 		902C91EE174232E400073241 /* MDTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 902C91ED174232E400073241 /* MDTestAppDelegate.m */; };
 		902C91F6174235A500073241 /* MDHTTPAPITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 902C91F4174235A500073241 /* MDHTTPAPITest.m */; };
 		902CD8911743C47100429D64 /* MDRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 902CD8901743C47100429D64 /* MDRegisterViewController.m */; };
+		902CD8941743CBB700429D64 /* MDPersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 902CD8931743CBB700429D64 /* MDPersonDetailViewController.m */; };
 		904726E717426236000B0398 /* MDHTTPAPI.h in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18117412056009D7D62 /* MDHTTPAPI.h */; };
 		904726E817426236000B0398 /* MDHTTPAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB18217412056009D7D62 /* MDHTTPAPI.m */; };
 		904726E917426236000B0398 /* MDContact.h in Sources */ = {isa = PBXBuildFile; fileRef = AA315DFE173F91CF009BA36E /* MDContact.h */; };
@@ -101,7 +101,6 @@
 
 /* Begin PBXFileReference section */
 		024D33E43FE24742A8D24C76 /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		03134670174371E4005A9F50 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		2018E73633D84F1A834FE42F /* Pods-MaiDuoTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaiDuoTests.xcconfig"; path = "Pods/Pods-MaiDuoTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		213944C578514190A2BAC4A1 /* libPods-MaiDuo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		432379D17D2049AF901101B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +127,8 @@
 		902C91F4174235A500073241 /* MDHTTPAPITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDHTTPAPITest.m; sourceTree = "<group>"; };
 		902CD88F1743C47100429D64 /* MDRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDRegisterViewController.h; path = MaiDuo/MDRegisterViewController.h; sourceTree = SOURCE_ROOT; };
 		902CD8901743C47100429D64 /* MDRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDRegisterViewController.m; path = MaiDuo/MDRegisterViewController.m; sourceTree = SOURCE_ROOT; };
+		902CD8921743CBB700429D64 /* MDPersonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDPersonDetailViewController.h; path = MaiDuo/MDPersonDetailViewController.h; sourceTree = SOURCE_ROOT; };
+		902CD8931743CBB700429D64 /* MDPersonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDPersonDetailViewController.m; path = MaiDuo/MDPersonDetailViewController.m; sourceTree = SOURCE_ROOT; };
 		905876E2172D45AD00690DC3 /* YMessageContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMessageContactViewController.h; sourceTree = "<group>"; };
 		905876E3172D45AD00690DC3 /* YMessageContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMessageContactViewController.m; sourceTree = "<group>"; };
 		906B96E01736A16100A7C20E /* YMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMessage.h; sourceTree = "<group>"; };
@@ -439,6 +440,8 @@
 				902CD8901743C47100429D64 /* MDRegisterViewController.m */,
 				C8D1A43E17431ADE00398568 /* MDActivityMesViewController.h */,
 				C8D1A43F17431ADE00398568 /* MDActivityMesViewController.m */,
+				902CD8921743CBB700429D64 /* MDPersonDetailViewController.h */,
+				902CD8931743CBB700429D64 /* MDPersonDetailViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -763,8 +766,8 @@
 				90AAB18C174121A9009D7D62 /* MDUser.m in Sources */,
 				90AEA38C17427BF5003305EC /* MDActivity.m in Sources */,
 				C8D1A44017431ADE00398568 /* MDActivityMesViewController.m in Sources */,
-				03134671174371E4005A9F50 /* RegisterViewController.m in Sources */,
 				902CD8911743C47100429D64 /* MDRegisterViewController.m in Sources */,
+				902CD8941743CBB700429D64 /* MDPersonDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
