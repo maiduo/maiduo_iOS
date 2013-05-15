@@ -22,7 +22,6 @@
 #define kOffSet         		160
 #define kViewTag				100
 @interface MDLoginViewController (){
-    MBProgressHUD *_HUD;
 }
 @property (nonatomic, retain) NSArray *dataArray;
 @property (nonatomic, retain) UITextField *txtUser;
@@ -231,7 +230,7 @@ static NSString *kViewKey = @"viewKey";
         MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
         [self.navigationController pushViewController:latestVC animated:YES];
     } failure:^(NSError *error) {
-        [_HUD removeFromSuperview];
+        [appDelegate hideHUD];
         [[error userInfo] enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             NSLog(@"%@", [[error userInfo] objectForKey:key]);
         }];
