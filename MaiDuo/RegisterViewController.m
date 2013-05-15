@@ -23,10 +23,9 @@
     label.backgroundColor = [UIColor clearColor];
     label.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesture =
-    [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(forget)] autorelease];
+    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(forget)];
     [label addGestureRecognizer:tapGesture];
     [self.myTableView addSubview:label];
-    [label release];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -40,9 +39,9 @@
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:kCellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc]
+        cell = [[UITableViewCell alloc]
                  initWithStyle:UITableViewCellStyleDefault
-                 reuseIdentifier:kCellIdentifier] autorelease];
+                 reuseIdentifier:kCellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -52,7 +51,6 @@
     [myPlaceHolder setBackgroundColor:[UIColor clearColor]];
     
     [cell.contentView addSubview:myPlaceHolder];
-    [myPlaceHolder release];
 
     UITextField *theTextField = [[UITextField alloc] initWithFrame:
                                                     CGRectMake(72, 12, 300, 20)];
@@ -71,7 +69,6 @@
         [theTextField becomeFirstResponder];
     }
     [cell.contentView addSubview:theTextField];
-    [theTextField release];
     
     return cell;
 }
@@ -104,9 +101,9 @@
 {
     [super viewDidLoad];
     
-    self.myTableView = [[[UITableView alloc]initWithFrame:
+    self.myTableView = [[UITableView alloc]initWithFrame:
                          CGRectMake(0, 0, 320, self.view.bounds.size.height)
-                                                    style:UITableViewStyleGrouped]autorelease];
+                                                    style:UITableViewStyleGrouped];
     self.myTableView.backgroundColor = [UIColor redColor];
     self.myTableView.delegate = self;
     self.myTableView.dataSource = self;
@@ -114,8 +111,25 @@
     self.myPlaceHolder = @[@"手机号",@"密码"];
     
     [self addForget];
+    
+    [self titleSet];
 }
 
+- (void)titleSet
+{
+    self.title = @"注册麦垛";
+    UIBarButtonItem* reg;
+    reg = [[UIBarButtonItem alloc]
+              initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+              target:self action:@selector(registerMaiduo)];
+    
+    [[self navigationItem] setRightBarButtonItem: reg];
+}
+
+- (void)registerMaiduo
+{
+    NSLog(@"reg");
+}
 
 - (void)didReceiveMemoryWarning
 {

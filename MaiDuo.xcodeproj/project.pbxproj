@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03134671174371E4005A9F50 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03134670174371E4005A9F50 /* RegisterViewController.m */; };
 		7EB9B2F3E69F4709B59DA87A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8189D765038C4B9FB2F1D493 /* libPods.a */; };
 		90153976172BDC2300DBB64B /* RHPerson+RHPersonCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9015396F172BDC2300DBB64B /* RHPerson+RHPersonCategory.m */; };
 		90153977172BDC2300DBB64B /* Yaab.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153971172BDC2300DBB64B /* Yaab.m */; };
@@ -59,8 +60,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03A59910173BEE3A00C0C4B3 /* ASMyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMyCell.h; sourceTree = "<group>"; };
-		03A59911173BEE3A00C0C4B3 /* ASMyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMyCell.m; sourceTree = "<group>"; };
+		0313466F174371E4005A9F50 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		03134670174371E4005A9F50 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		19CCBF954E574D39AED92D14 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		8189D765038C4B9FB2F1D493 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9015396E172BDC2300DBB64B /* RHPerson+RHPersonCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RHPerson+RHPersonCategory.h"; sourceTree = "<group>"; };
@@ -242,6 +243,8 @@
 				90E1F4DF17242ED2009A578C /* InviteTableViewController.m */,
 				90EF5B80172A49F30032F736 /* SendMessageViewController.h */,
 				90EF5B81172A49F30032F736 /* SendMessageViewController.m */,
+				0313466F174371E4005A9F50 /* RegisterViewController.h */,
+				03134670174371E4005A9F50 /* RegisterViewController.m */,
 				90F342C117217C8E005BC944 /* Supporting Files */,
 			);
 			path = MaiDuo;
@@ -304,8 +307,6 @@
 		C8CEFB2A1739EE840021D371 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				03A59910173BEE3A00C0C4B3 /* ASMyCell.h */,
-				03A59911173BEE3A00C0C4B3 /* ASMyCell.m */,
 				C8CEFB2B1739EEA00021D371 /* UIView+Animation.h */,
 				C8CEFB2C1739EEA00021D371 /* UIView+Animation.m */,
 			);
@@ -484,6 +485,7 @@
 				906B96E51736A6D400A7C20E /* YPlainContact.m in Sources */,
 				C8CEFB291739E7DF0021D371 /* PhotoStackView.m in Sources */,
 				C8CEFB2D1739EEA00021D371 /* UIView+Animation.m in Sources */,
+				03134671174371E4005A9F50 /* RegisterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
