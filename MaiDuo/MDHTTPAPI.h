@@ -10,6 +10,7 @@
 #import "MDUser.h"
 #import "MDMessage.h"
 #import "MDActivity.h"
+#import "MDChat.h"
 
 /** 麦垛服务接口库
  
@@ -144,6 +145,30 @@
 -(void)messagesWithActivity:(MDActivity *)activity
                     success:(void (^)(NSArray *messages))success
                     failure:(void (^)(NSError *error))failure;
+
+/** 发送聊天
+ 
+ @param chat [MDChat]
+ @param success 远程服务成功执行后向`success`返回数据。
+ 
+ <dl>
+ <dt>messages</dt>
+ <dd>活动下的所有消息</dd>
+ </dl>
+ 
+ @param failure 如果远程服务器不能正确执行，则输入`NSError`。
+ 
+ <dl>
+ <dt>error</dt>
+ <dd><code>NSError</code>包含原始的请求错误。</dd>
+ </dl>
+ 
+ @see [MDChat chatWithText:activity:user:]
+ @see [MDChat]
+ */
+-(void)sendChat:(MDChat *)chat
+        success:(void (^)(MDChat *))success
+        failure:(void (^)(NSError *error))failure;
 
 /** 注册用户
  

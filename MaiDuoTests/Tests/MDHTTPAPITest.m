@@ -13,6 +13,7 @@
     BOOL operationSuccessed;
     
     MDHTTPAPI *api;
+    MDActivity *activity;
 }
 @end
 
@@ -25,6 +26,12 @@
     MDUser *user = [[MDUser alloc] initWithUsername:@"13000000000"
                                           password:nil];
     user.accessToken = @"0acc2d039fc04202bfc6e0a5aed5091f";
+    user.id = 2;
+    
+    activity = [MDActivity activityWithID:2
+                                  subject:@"Activity subject"
+                                    owner:user
+                                    users:@[user]];
     
     api = [MDHTTPAPI MDHTTPAPIWithToken:user];
 }
@@ -89,7 +96,7 @@
 - (void)testCreateActivity
 {
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    MDActivity *activity = [MDActivity activityWithSubject:@"Activity subject"];
+    MDActivity *anActivity = [MDActivity activityWithSubject:@"Activity subject"];
     
     void (^success)(MDActivity *) = ^(MDActivity *aActivity) {
         operationSuccessed = YES;
@@ -101,9 +108,35 @@
         dispatch_semaphore_signal(semaphore);
     };
     
-    [api createActivity:activity success:success failure:failure];
+    [api createActivity:anActivity success:success failure:failure];
     while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+    }
+    
+    GHAssertTrue(operationSuccessed, @"");
+}
+
+-(void)testSendChat
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    MDChat *chat = [MDChat chatWithText:@"Hello."
+                               activity:activity
+                                   user:activity.owner];
+    
+    [api sendChat:chat
+          success:^(MDChat *aChat) {
+              operationSuccessed = YES;
+              NSLog(@"Chat ID %d text %@", aChat.id, aChat.text);
+              dispatch_semaphore_signal(semaphore);
+          }
+          failure:^(NSError *error) {
+              operationSuccessed = NO;
+              dispatch_semaphore_signal(semaphore);
+          }];
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
     }
     
     GHAssertTrue(operationSuccessed, @"");

@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *deviceToken;
-@property (nonatomic, strong) NSString *accessToken;
+@property (copy) NSString *accessToken;
 @property (nonatomic, strong) NSString *refreshToken;
 
 -(id)initWithUsername:(NSString *)username password:(NSString *)password;
