@@ -216,12 +216,12 @@ static NSString *kViewKey = @"viewKey";
 #pragma mark Customer methods
 -(void) login
 {
-    MDUser *user=[YaabUser sharedInstance].user;
+    MDUser *user=[MDUserManager sharedInstance].user;
     user.username=_txtUser.text;
     user.password=_txtPass.text;
     user.deviceToken = [YaabUser sharedInstance].deviceToken;
     [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
-        
+        [[MDUserManager sharedInstance] saveUserSession];
         MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
         [self.navigationController pushViewController:latestVC animated:YES];
     } failure:^(NSError *error) {

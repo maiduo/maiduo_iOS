@@ -11,6 +11,8 @@
 #import "MDSendMessageViewController.h"
 #import "MDLoginViewController.h"
 #import "MDUserManager.h"
+#import "MDHTTPAPI.h"
+#import "iToast.h"
 
 @interface MDAppDelegate() <MDLoginViewControllerDelegate>
 
@@ -35,8 +37,17 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     self.window.backgroundColor = [UIColor whiteColor];
     
     if ([[MDUserManager sharedInstance] userSessionValid]) {
-        MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
-        _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:latestVC];
+        MDUser *user=[[MDUserManager sharedInstance] getUserSession];
+        [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
+            MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
+            _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:latestVC];
+        } failure:^(NSError *error) {
+            [[error userInfo] enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                NSLog(@"%@", [[error userInfo] objectForKey:key]);
+            }];
+            [[[iToast makeText:@"登录失败!"] setGravity:iToastGravityCenter] show];
+        }];
+ 
     } else {
         MDLoginViewController *loginVC = [[MDLoginViewController alloc]  initWithStyle:UITableViewStyleGrouped];
         loginVC.delegate = self;
@@ -45,19 +56,19 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     
     [self.window makeKeyAndVisible];
     
-    user = [YaabUser sharedInstance];
+    _user = [YaabUser sharedInstance];
     return YES;
 }
 
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    NSString *token = [user getDeviceTokenWithData:deviceToken];
+    NSString *token = [_user getDeviceTokenWithData:deviceToken];
     
-    if ([token isEqualToString:[user deviceToken]])
+    if ([token isEqualToString:[_user deviceToken]])
         return;
 
-    [user setDeviceToken:token];
+    [_user setDeviceToken:token];
     
     NSString *registerTokenURL;
     registerTokenURL = @"https://himaiduo.com/aps/device/";

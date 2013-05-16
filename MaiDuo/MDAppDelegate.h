@@ -13,7 +13,7 @@
 #import <AFNetworking.h>
  
 @interface MDAppDelegate : UIResponder <UIApplicationDelegate> {
-    YaabUser *user;
+    YaabUser *_user;
 }
 
 @property (strong, nonatomic) UIWindow *window;
