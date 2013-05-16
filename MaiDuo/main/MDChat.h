@@ -55,4 +55,6 @@
  @see [MDHTTPAPI sendChat:chat:activity:user]
  */
 +(MDChat *)chatWithJSON:(id)JSON;
+
++(NSArray *)chatsWithJSON:(id)JSON;
 @end

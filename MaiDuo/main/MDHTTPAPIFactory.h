@@ -42,4 +42,9 @@
 -(NSDictionary *)dictionaryForCreateActivity:(MDActivity *)anActivity;
 -(NSDictionary *)dictionaryForSendMessage:(MDMessage *)aMessage;
 -(NSDictionary *)dictionaryForSendChat:(MDChat *)aChat;
+-(NSDictionary *)dictionaryForMessagesWithActivity:(MDActivity *)anActivity
+                                              page:(NSInteger)aPage;
+-(NSDictionary *)dictionaryForChatsWithActivity:(MDActivity *)anActivity
+                                           page:(NSInteger)aPage;
+-(NSDictionary *)dictionaryForAccessToken;
 @end

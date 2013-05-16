@@ -131,6 +131,7 @@
 /** 查询活动下所有的消息
  
  @param activity MDActivity对象必须包含`id`属性。
+ @param page 分业
  @param success 远程服务成功执行后向`success`返回数据。
  
  <dl>
@@ -148,8 +149,15 @@
  @see [MDMessage messageWithBody:]
  */
 -(void)messagesWithActivity:(MDActivity *)activity
+                       page:(NSInteger)page
                     success:(void (^)(NSArray *messages))success
                     failure:(void (^)(NSError *error))failure;
+
+
+-(void)chatsWithActivity:(MDActivity *)activity
+                    page:(NSInteger)page
+                 success:(void (^)(NSArray *messages))success
+                 failure:(void (^)(NSError *error))failure;
 
 /** 发送聊天
  
