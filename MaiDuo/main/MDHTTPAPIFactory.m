@@ -20,17 +20,15 @@
     return factory;
 }
 
--(NSDictionary *)dictionaryWithDictionary:(NSDictionary *)aDictionary
+-(NSDictionary *)dictionaryWithDictionary:(NSMutableDictionary *)aDictionary
 {
-    NSMutableDictionary *dictionary = [NSMutableDictionary
-                                       dictionaryWithDictionary: aDictionary];
-    [dictionary setObject:self.accessToken forKey:@"access_token"];
-    [dictionary setObject:self.service forKey:@"service"];
+    [aDictionary setObject:self.accessToken forKey:@"access_token"];
+    [aDictionary setObject:self.service forKey:@"service"];
     
-    return dictionary;
+    return aDictionary;
 }
 
--(NSDictionary *)dictionaryForPostWithActivity:(MDActivity *)anActivity
+-(NSDictionary *)dictionaryForCreateActivity:(MDActivity *)anActivity
 {
     NSMutableDictionary *dictionary;
     dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -39,17 +37,29 @@
                   @"invitation",
                   nil];
     
-    return [self dictionaryWithDictionary:[anActivity dictionaryValue]];
+    return [self dictionaryWithDictionary:dictionary];
 }
 
--(NSDictionary *)dictionaryWithMessage:(MDMessage *)aMessage
+-(NSDictionary *)dictionaryForSendMessage:(MDMessage *)aMessage
 {
-    return [self dictionaryWithDictionary:[aMessage dictionaryValue]];
+    NSMutableDictionary *dictionary;
+    NSString *activity_id;
+    activity_id = [NSString stringWithFormat:@"%d", aMessage.activity.id];
+    dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                  activity_id, @"activity_id",
+                  aMessage.body, @"body", nil];
+    return [self dictionaryWithDictionary:dictionary];
 }
 
--(NSDictionary *)dictionaryWithChat:(MDChat *)aChat
+-(NSDictionary *)dictionaryForSendChat:(MDChat *)aChat
 {
-    return [self dictionaryWithDictionary:[aChat dictionaryValue]];
+    NSMutableDictionary *dictionary;
+    NSString *activity_id;
+    activity_id = [NSString stringWithFormat:@"%d", aChat.activity.id];
+    dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                  aChat.text, @"text",
+                  activity_id, @"activity_id", nil];
+    return [self dictionaryWithDictionary:dictionary];
 }
 
 @end

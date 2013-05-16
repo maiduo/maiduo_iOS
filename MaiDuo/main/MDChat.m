@@ -11,21 +11,6 @@
 
 @implementation MDChat
 
--(NSMutableDictionary *)dictionaryValue
-{
-    return [NSMutableDictionary dictionaryWithObjectsAndKeys:
-            self.text, @"text", nil];
-}
-
--(NSDictionary *)dictionaryForAPIWithAccessToken:(NSString *)accessToken
-{
-
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            self.text, @"text",
-            accessToken, @"access_token",
-            [NSString stringWithFormat:@"%d", self.activity.id], @"activity_id", nil];
-}
-
 +(MDChat *)chatWithText:(NSString *)text
                activity:(MDActivity *)anActivity
                    user:(MDUser *)aUser

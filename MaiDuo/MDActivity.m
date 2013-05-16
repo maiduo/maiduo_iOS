@@ -9,10 +9,16 @@
 #import "MDActivity.h"
 
 @implementation MDActivity
--(NSMutableDictionary *)dictionaryValue
+
+-(id)init
 {
-    return nil;
+    self = [super init];
+    if (self) {
+        self.invitation = [NSMutableArray array];
+    }
+    return self;
 }
+
 -(MDUser *)invite:(MDUser *)user
 {
     [self.invitation addObject: user];

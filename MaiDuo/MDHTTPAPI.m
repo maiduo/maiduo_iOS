@@ -26,6 +26,8 @@
     self = [self init];
     if (self) {
         self.user = user;
+        self.factory = [MDHTTPAPIFactory factoryWithAccessToken:user.accessToken
+                                                        service:@"dev"];
     }
     
     return self;
@@ -67,14 +69,19 @@
             failure(error);
     };
     
-    //NSMutableDictionary *dictionaryActivity = [activity dictionaryValue];
-    NSMutableDictionary *dictionaryActivity;
-    [dictionaryActivity setValue:self.user.accessToken forKey:@"access_token"];
+    NSDictionary *dictionaryActivity;
+    dictionaryActivity = [self.factory dictionaryForCreateActivity:activity];
     
     [[AFMDClient sharedClient] postPath:@"activity/"
                              parameters:dictionaryActivity
                                 success:blockSuccess
                                 failure:blockFailure];
+}
+
+-(void)messagesSuccess:(void (^)(NSArray *activies))success
+               failure:(void (^)(NSError *error))failure
+{
+    
 }
 
 -(void)sendMessage:(MDMessage *)message
@@ -86,15 +93,14 @@
     };
     
     void (^blockFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self printError:error];
         if (nil != failure)
             failure(error);
     };
     
-    NSMutableDictionary *dictionaryMessage = [message dictionaryValue];
-    [dictionaryMessage setValue:self.user.accessToken forKey:@"access_token"];
+    NSDictionary *dictionaryMessage;
+    dictionaryMessage = [self.factory dictionaryForSendMessage:message];
     
-    [[AFMDClient sharedClient] postPath:@"activity/"
+    [[AFMDClient sharedClient] postPath:@"message/"
                              parameters:dictionaryMessage
                                 success:blockSuccess
                                 failure:blockFailure];
@@ -112,7 +118,7 @@
         failure:(void (^)(NSError *))failure
 {
     NSDictionary *chatDictionary;
-    chatDictionary = [chat dictionaryForAPIWithAccessToken:self.user.accessToken];
+    chatDictionary = [self.factory dictionaryForSendChat:chat];
     [[AFMDClient sharedClient] postPath:@"chat/"
                              parameters:chatDictionary
                                 success:^(AFHTTPRequestOperation *operation,

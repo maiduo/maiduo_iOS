@@ -58,7 +58,7 @@
 
 @property(nonatomic, strong) MDUser *user;
 @property(copy) NSString *service;
-
+@property(retain) MDHTTPAPIFactory *factory;
 -(id) initWithUser:(MDUser *)user;
 
 /** 获得所有的活动列表
@@ -99,6 +99,9 @@
 -(void)createActivity:(MDActivity *)activity
               success:(void (^)(MDActivity *))success
               failure:(void (^)(NSError *error))failure;
+
+-(void)messagesSuccess:(void (^)(NSArray *activies))success
+               failure:(void (^)(NSError *error))failure;
 
 /** 发送消息
  
@@ -149,6 +152,14 @@
                     failure:(void (^)(NSError *error))failure;
 
 /** 发送聊天
+ 
+ 推送的数据：
+ 
+    {
+        "user_id": 1,
+        "activity_id": 1,
+        "chat_id": 1
+    }
  
  @param chat [MDChat]
  @param success 远程服务成功执行后向`success`返回数据。
