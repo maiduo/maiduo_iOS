@@ -11,6 +11,8 @@
 #import "MDSendMessageViewController.h"
 #import "MDLoginViewController.h"
 #import "MDUserManager.h"
+#import "MDHTTPAPI.h"
+#import "iToast.h"
 #import "MBProgressHUD.h"
 
 @interface MDAppDelegate() <MDLoginViewControllerDelegate>{
@@ -38,9 +40,15 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     self.window.backgroundColor = [UIColor whiteColor];
     
     if ([[MDUserManager sharedInstance] userSessionValid]) {
-        MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
-        self.navigationController=[[UINavigationController alloc] initWithRootViewController:latestVC];
-        _window.rootViewController = _navigationController;
+        // 只需要登陆一次
+        // API使用user.accessToken保存用户状态
+        
+        // 直接进入活动列表并刷新
+        // FIXME 这里的逻辑应该是进入活动列表，并自动刷新。
+        [self.navigationController
+         pushViewController:[[MDLatestViewController alloc]init]
+         animated:YES];
+
     } else {
         MDLoginViewController *loginVC = [[MDLoginViewController alloc]  initWithStyle:UITableViewStyleGrouped];
         loginVC.delegate = self;
@@ -50,19 +58,19 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     
     [self.window makeKeyAndVisible];
     
-    user = [YaabUser sharedInstance];
+    _user = [YaabUser sharedInstance];
     return YES;
 }
 
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    NSString *token = [user getDeviceTokenWithData:deviceToken];
+    NSString *token = [_user getDeviceTokenWithData:deviceToken];
     
-    if ([token isEqualToString:[user deviceToken]])
+    if ([token isEqualToString:[_user deviceToken]])
         return;
 
-    [user setDeviceToken:token];
+    [_user setDeviceToken:token];
     
     NSString *registerTokenURL;
     registerTokenURL = @"https://himaiduo.com/aps/device/";

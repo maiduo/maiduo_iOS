@@ -7,12 +7,40 @@
 //
 
 #import "MDUserManager.h"
-
+#define MDUserKey @"MDUser"
+#define NameKey @"MDName"
+#define PwdKey @"MDPwd"
+#define DeviceTokenKey @"MDDeviceToken"
 @implementation MDUserManager
 
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        self.user=[[MDUser alloc] init];
+    }
+    return self;
+}
 - (BOOL)userSessionValid
 {
-    return _user != nil;
+    return [self getUserSession] != nil;
+}
+- (MDUser*)getUserSession
+{
+    NSDictionary *dictionaryUser=[[NSUserDefaults standardUserDefaults] objectForKey:MDUserKey];
+    if(dictionaryUser){
+        return [MDUser userWithDictionary:dictionaryUser];
+    }else{
+        return nil;
+    }
+}
+- (void) saveUserSession
+{
+    if(_user){
+        [[NSUserDefaults standardUserDefaults] setValue:[_user dictionaryValue]
+                                                 forKey:MDUserKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 + (MDUserManager *)sharedInstance

@@ -14,7 +14,8 @@
 @property (nonatomic, strong) MDUser *user;
 
 - (BOOL)userSessionValid;
-
+- (MDUser*)getUserSession;
+- (void)saveUserSession;
 + (MDUserManager *)sharedInstance;
 
 @end

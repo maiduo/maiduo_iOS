@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) NSString *deviceToken;
 @property (nonatomic, strong) MDUser *user;
+@property (strong) NSString *service;
 -(void)setDeviceToken:(NSString *)deviceToken;
 -(NSString *)getDeviceTokenWithData:(NSData *)nsdataToken;
 

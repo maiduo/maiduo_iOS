@@ -219,13 +219,14 @@ static NSString *kViewKey = @"viewKey";
 #pragma mark Customer methods
 -(void) login
 {
+    MDUser *user=[MDUserManager sharedInstance].user;
     MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate showHUDWithLabel:@"正在登录..."];    
-    MDUser *user=[YaabUser sharedInstance].user;
     user.username=_txtUser.text;
     user.password=_txtPass.text;
     user.deviceToken = [YaabUser sharedInstance].deviceToken;
     [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
+        [[MDUserManager sharedInstance] saveUserSession];
         [appDelegate hideHUD];
         MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
         [self.navigationController pushViewController:latestVC animated:YES];
