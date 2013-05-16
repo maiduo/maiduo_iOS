@@ -50,6 +50,10 @@
 		90AEA38C17427BF5003305EC /* MDActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AEA38B17427BF5003305EC /* MDActivity.m */; };
 		90AEA38D17427D18003305EC /* MDActivity.h in Sources */ = {isa = PBXBuildFile; fileRef = 90AEA38A17427BF5003305EC /* MDActivity.h */; };
 		90AEA38E17427D1A003305EC /* MDActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AEA38B17427BF5003305EC /* MDActivity.m */; };
+		90CC64031743D7CD00DF2E4D /* MDChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC64021743D7CD00DF2E4D /* MDChat.m */; };
+		90CC64041743E8D300DF2E4D /* MDChat.h in Sources */ = {isa = PBXBuildFile; fileRef = 90CC64011743D7CD00DF2E4D /* MDChat.h */; };
+		90CC64051743E8D400DF2E4D /* MDChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC64021743D7CD00DF2E4D /* MDChat.m */; };
+		90CC64081743FE5F00DF2E4D /* MDHTTPAPIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC64071743FE5F00DF2E4D /* MDHTTPAPIFactory.m */; };
 		90E1F4E217242FF1009A578C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E1F4E117242FF1009A578C /* AddressBook.framework */; };
 		90EF5CB517257DF000AFE074 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 90EF5CB017257DF000AFE074 /* pinyin.c */; };
 		90F342BB17217C8E005BC944 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
@@ -151,6 +155,10 @@
 		90AAB18B174121A9009D7D62 /* MDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDUser.m; path = MaiDuo/MDUser.m; sourceTree = SOURCE_ROOT; };
 		90AEA38A17427BF5003305EC /* MDActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivity.h; path = MaiDuo/MDActivity.h; sourceTree = SOURCE_ROOT; };
 		90AEA38B17427BF5003305EC /* MDActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDActivity.m; path = MaiDuo/MDActivity.m; sourceTree = SOURCE_ROOT; };
+		90CC64011743D7CD00DF2E4D /* MDChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDChat.h; sourceTree = "<group>"; };
+		90CC64021743D7CD00DF2E4D /* MDChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDChat.m; sourceTree = "<group>"; };
+		90CC64061743FE5F00DF2E4D /* MDHTTPAPIFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDHTTPAPIFactory.h; sourceTree = "<group>"; };
+		90CC64071743FE5F00DF2E4D /* MDHTTPAPIFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDHTTPAPIFactory.m; sourceTree = "<group>"; };
 		90E1F4E117242FF1009A578C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		90EF5CB017257DF000AFE074 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		90EF5CB117257DF000AFE074 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
@@ -451,6 +459,8 @@
 		AA315DE2173F8729009BA36E /* model */ = {
 			isa = PBXGroup;
 			children = (
+				90CC64061743FE5F00DF2E4D /* MDHTTPAPIFactory.h */,
+				90CC64071743FE5F00DF2E4D /* MDHTTPAPIFactory.m */,
 				90AAB18117412056009D7D62 /* MDHTTPAPI.h */,
 				90AAB18217412056009D7D62 /* MDHTTPAPI.m */,
 				AA315DE7173F8A45009BA36E /* item */,
@@ -479,6 +489,8 @@
 				AA315E01173F91CF009BA36E /* MDMessage.m */,
 				90AAB18A174121A9009D7D62 /* MDUser.h */,
 				90AAB18B174121A9009D7D62 /* MDUser.m */,
+				90CC64011743D7CD00DF2E4D /* MDChat.h */,
+				90CC64021743D7CD00DF2E4D /* MDChat.m */,
 			);
 			name = item;
 			sourceTree = "<group>";
@@ -726,6 +738,8 @@
 				904726EC17426236000B0398 /* MDMessage.m in Sources */,
 				904726ED17426236000B0398 /* MDUser.h in Sources */,
 				904726EE17426236000B0398 /* MDUser.m in Sources */,
+				90CC64041743E8D300DF2E4D /* MDChat.h in Sources */,
+				90CC64051743E8D400DF2E4D /* MDChat.m in Sources */,
 				902C91D51742322800073241 /* main.m in Sources */,
 				902C91EE174232E400073241 /* MDTestAppDelegate.m in Sources */,
 				902C91F6174235A500073241 /* MDHTTPAPITest.m in Sources */,
@@ -772,6 +786,8 @@
 				C8D1A44017431ADE00398568 /* MDActivityMesViewController.m in Sources */,
 				902CD8911743C47100429D64 /* MDRegisterViewController.m in Sources */,
 				902CD8941743CBB700429D64 /* MDPersonDetailViewController.m in Sources */,
+				90CC64031743D7CD00DF2E4D /* MDChat.m in Sources */,
+				90CC64081743FE5F00DF2E4D /* MDHTTPAPIFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

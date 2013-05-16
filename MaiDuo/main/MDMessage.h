@@ -23,7 +23,15 @@ enum {
 @property(nonatomic, strong) NSString* body;
 @property(nonatomic, assign) MessageType type;
 
--(NSMutableDictionary *)valueDictionary;
+-(NSMutableDictionary *)dictionaryValue;
+
+/** 为[MDHTTPAPI sendMessage:activity:user]提供序列化MDMessage的方法
+ 
+ @param accessToken 访问Token
+ @return NSDictionary
+ @see [MDHTTPAPI sendMessage:activity:user]
+ */
+-(NSDictionary *)dictionaryForAPIWithAccessToken:(NSString *)token;
 
 +(MDMessage *)messageWithJSON:(id)JSON;
 +(NSArray *)messagesWithJSON:(id)JSON;

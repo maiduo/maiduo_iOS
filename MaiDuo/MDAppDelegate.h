@@ -17,5 +17,6 @@
 }
 
 @property (strong, nonatomic) UIWindow *window;
-
+-(void) showHUDWithLabel:(NSString*) text;
+-(void) hideHUD;
 @end

@@ -9,26 +9,19 @@
 #import "MDActivity.h"
 
 @implementation MDActivity
-
+-(NSMutableDictionary *)dictionaryValue
+{
+    return nil;
+}
 -(MDUser *)invite:(MDUser *)user
 {
     [self.invitation addObject: user];
     return user;
 }
-
+ 
 -(void)removeAllInvitations
 {
     [self.invitation removeAllObjects];
-}
-
-
-
--(NSMutableDictionary *)valueDictionary
-{
-    return [NSMutableDictionary dictionaryWithObjectsAndKeys:
-            self.subject, @"subject",
-            [self.invitation componentsJoinedByString:@","], @"invitation",
-            nil];
 }
 
 +(NSArray *)activitiesWithJSON:(id)JSON

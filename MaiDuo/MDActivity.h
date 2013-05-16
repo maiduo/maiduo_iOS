@@ -17,10 +17,9 @@
 @property (nonatomic, strong) MDUser *owner;
 @property (nonatomic, strong) NSArray *users;
 @property (nonatomic, strong) NSMutableArray *invitation;
-
+-(NSMutableDictionary *)dictionaryValue;
 -(MDUser *)invite:(MDUser *)user;
 -(void)removeAllInvitations;
--(NSMutableDictionary *)valueDictionary;
 
 /** @name 为MDHTTPAPI提供的工厂方法 */
 

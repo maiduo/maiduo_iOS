@@ -67,7 +67,8 @@
             failure(error);
     };
     
-    NSMutableDictionary *dictionaryActivity = [activity valueDictionary];
+    //NSMutableDictionary *dictionaryActivity = [activity dictionaryValue];
+    NSMutableDictionary *dictionaryActivity;
     [dictionaryActivity setValue:self.user.accessToken forKey:@"access_token"];
     
     [[AFMDClient sharedClient] postPath:@"activity/"
@@ -90,7 +91,7 @@
             failure(error);
     };
     
-    NSMutableDictionary *dictionaryMessage = [message valueDictionary];
+    NSMutableDictionary *dictionaryMessage = [message dictionaryValue];
     [dictionaryMessage setValue:self.user.accessToken forKey:@"access_token"];
     
     [[AFMDClient sharedClient] postPath:@"activity/"
@@ -104,6 +105,28 @@
                     failure:(void (^)(NSError *error))failure
 {
     
+}
+
+-(void)sendChat:(MDChat *)chat
+        success:(void (^)(MDChat *))success
+        failure:(void (^)(NSError *))failure
+{
+    NSDictionary *chatDictionary;
+    chatDictionary = [chat dictionaryForAPIWithAccessToken:self.user.accessToken];
+    [[AFMDClient sharedClient] postPath:@"chat/"
+                             parameters:chatDictionary
+                                success:^(AFHTTPRequestOperation *operation,
+                                          id JSON)
+    {
+        success([MDChat chatWithJSON:JSON]);
+    }
+                                failure:^(AFHTTPRequestOperation *operation,
+                                          NSError *error)
+    {
+        [self printError:error];
+        if (nil != failure)
+            failure(error);
+    }];
 }
 
 +(void)registerUser:(MDUser *)user
@@ -156,42 +179,6 @@
     success:(void (^)(MDUser *user, MDHTTPAPI *api))success
     failure:(void (^)(NSError *error))failure
 {
-//    static NSString *url = @"https://himaiduo.com/api/";
-//    AFHTTPClient *client = [[AFHTTPClient alloc]
-//                            initWithBaseURL:[NSURL URLWithString:url]];
-//    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
-//                          user.username, @"username",
-//                          user.password, @"password",
-//                          @"password", @"grant_type",
-//                          @"", @"scope",
-//                          @"104c03b3103e4d5e96d042330f6dd0c8", @"client_id",
-//                          nil];
-//    NSMutableURLRequest *request = [client requestWithMethod:@"POST"
-//                                                        path:@"authentication/"
-//                                                  parameters:data];
-//    
-//    void (^blockSuccess)(NSURLRequest *, NSHTTPURLResponse *, id) =
-//    ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-//        user.access_token = [NSString stringWithFormat:@"%@",
-//                                  [JSON objectForKey:@"access_token"]];
-//        user.refresh_token = [NSString stringWithFormat:@"%@",
-//                                  [JSON objectForKey:@"refresh_token"]];
-//        MDHTTPAPI *api = [[MDHTTPAPI alloc] initWithUser:user];
-//        success(user, api);
-//    };
-//    void (^blockFailure)(NSURLRequest *, NSHTTPURLResponse *, NSError *, id) =
-//    ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error,
-//      id JSON) {
-//        if (nil != failure)
-//            failure(error);
-//    };
-//    
-//    AFJSONRequestOperation *operation;
-//    operation = [AFJSONRequestOperation
-//                 JSONRequestOperationWithRequest:request
-//                                         success:blockSuccess
-//                                         failure:blockFailure];
-//    [operation start];
     
     NSDictionary *dicParams = [NSDictionary dictionaryWithObjectsAndKeys:
                           user.username, @"username",
@@ -201,7 +188,6 @@
                           @"104c03b3103e4d5e96d042330f6dd0c8", @"client_id",
                           user.deviceToken, @"device_token",
                           nil];
-    NSLog(@"device token:%@", user.deviceToken);
     [[AFMDClient sharedClient] postPath:@"authentication/" parameters:dicParams success:^(AFHTTPRequestOperation *operation, id JSON) {
         user.accessToken = [NSString stringWithFormat:@"%@",
                              [JSON objectForKey:@"access_token"]];
