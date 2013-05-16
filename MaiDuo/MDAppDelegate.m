@@ -45,17 +45,21 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         
         // 直接进入活动列表并刷新
         // FIXME 这里的逻辑应该是进入活动列表，并自动刷新。
-        [self.navigationController
-         pushViewController:[[MDLatestViewController alloc]init]
-         animated:YES];
+        MDLatestViewController *latestViewController;
+        latestViewController = [[MDLatestViewController alloc] init];
+        self.navigationController = [[UINavigationController alloc]
+                                     initWithRootViewController:latestViewController];
 
     } else {
-        MDLoginViewController *loginVC = [[MDLoginViewController alloc]  initWithStyle:UITableViewStyleGrouped];
-        loginVC.delegate = self;
-        self.navigationController=[[UINavigationController alloc] initWithRootViewController:loginVC];
-        _window.rootViewController = _navigationController;
+        MDLoginViewController *loginViewController;
+        loginViewController = [[MDLoginViewController alloc]
+                               initWithStyle:UITableViewStyleGrouped];
+        loginViewController.delegate = self;
+        self.navigationController = [[UINavigationController alloc]
+                                     initWithRootViewController:loginViewController];
     }
     
+    self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     
     _user = [YaabUser sharedInstance];
