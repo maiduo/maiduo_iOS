@@ -290,10 +290,10 @@
 		902C91CE1742322800073241 /* MaiDuoTests */ = {
 			isa = PBXGroup;
 			children = (
+				902C91F1174235A500073241 /* Tests */,
 				902C91CF1742322800073241 /* Supporting Files */,
 				902C91EC174232E400073241 /* MDTestAppDelegate.h */,
 				902C91ED174232E400073241 /* MDTestAppDelegate.m */,
-				902C91F1174235A500073241 /* Tests */,
 			);
 			path = MaiDuoTests;
 			sourceTree = "<group>";

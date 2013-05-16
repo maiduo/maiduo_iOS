@@ -32,7 +32,8 @@ enum {
 +(MDMessage *)messageWithID:(NSInteger)aID
                        body:(NSString *)aBody
                    activity:(MDActivity *)anActivity
-                       user:(MDUser *)aUser;
+                       user:(MDUser *)aUser
+                       type:(MessageType)aType;
 
 /** 创建消息对象
  

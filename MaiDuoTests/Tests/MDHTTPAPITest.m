@@ -120,6 +120,52 @@
     GHAssertTrue(operationSuccessed, @"");
 }
 
+-(void)testMessagesWithActivity
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [api messagesWithActivity:activity
+                         page:1
+                      success:^(NSArray *messages) {
+                          operationSuccessed = YES;
+                          dispatch_semaphore_signal(semaphore);
+    }
+                      failure:^(NSError *error) {
+                          [self printError:error];
+                          operationSuccessed = NO;
+                          dispatch_semaphore_signal(semaphore);
+    }];
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+    }
+    
+    GHAssertTrue(operationSuccessed, @"");
+}
+
+-(void)testChatsWithActivity
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [api chatsWithActivity:activity
+                      page:1
+                   success:^(NSArray *chats) {
+                          operationSuccessed = YES;
+                          dispatch_semaphore_signal(semaphore);
+                      }
+                   failure:^(NSError *error) {
+                          [self printError:error];
+                          operationSuccessed = NO;
+                          dispatch_semaphore_signal(semaphore);
+                      }];
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+    }
+    
+    GHAssertTrue(operationSuccessed, @"");
+}
+
 -(void)testSendChat
 {
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);

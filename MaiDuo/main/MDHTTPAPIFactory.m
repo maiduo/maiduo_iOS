@@ -28,6 +28,11 @@
     return aDictionary;
 }
 
+-(NSDictionary *)dictionaryForAccessToken
+{
+    return [self dictionaryWithDictionary:[NSMutableDictionary dictionary]];
+}
+
 -(NSDictionary *)dictionaryForCreateActivity:(MDActivity *)anActivity
 {
     NSMutableDictionary *dictionary;
@@ -60,6 +65,24 @@
                   aChat.text, @"text",
                   activity_id, @"activity_id", nil];
     return [self dictionaryWithDictionary:dictionary];
+}
+
+-(NSDictionary *)dictionaryForMessagesWithActivity:(MDActivity *)anActivity
+                                              page:(NSInteger)aPage
+{
+    NSMutableDictionary *dictionary;
+    NSString *activity_id;
+    activity_id = [NSString stringWithFormat:@"%d", anActivity.id];
+    dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                  activity_id, @"activity_id",
+                  [NSString stringWithFormat:@"%d", aPage], @"page", nil];
+    return [self dictionaryWithDictionary:dictionary];
+}
+
+-(NSDictionary *)dictionaryForChatsWithActivity:(MDActivity *)anActivity
+                                           page:(NSInteger)aPage
+{
+    return [self dictionaryForMessagesWithActivity:anActivity page:aPage];
 }
 
 @end
