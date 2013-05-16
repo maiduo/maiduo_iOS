@@ -154,9 +154,27 @@
                     failure:(void (^)(NSError *error))failure;
 
 
+/** 查询聊天纪录
+ 
+ @param activity MDActivity对象必须包含`id`属性。
+ @param page 分页
+ @param success 远程服务成功执行后向`success`返回数据。
+ 
+ <dl>
+ <dt>chats</dt>
+ <dd>活动下的所有消息</dd>
+ </dl>
+ 
+ @param failure 如果远程服务器不能正确执行，则输入`NSError`。
+ 
+ <dl>
+ <dt>error</dt>
+ <dd><code>NSError</code>包含原始的请求错误。</dd>
+ </dl>
+ */
 -(void)chatsWithActivity:(MDActivity *)activity
                     page:(NSInteger)page
-                 success:(void (^)(NSArray *messages))success
+                 success:(void (^)(NSArray *chats))success
                  failure:(void (^)(NSError *error))failure;
 
 /** 发送聊天
