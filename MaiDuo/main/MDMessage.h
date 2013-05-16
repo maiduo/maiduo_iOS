@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MDItem.h"
+#import "MDActivity.h"
+#import "MDUser.h"
 
 enum {
     ImageMessage,
@@ -15,26 +16,23 @@ enum {
     TextMessage
 } typedef MessageType;
 
-@interface MDMessage : MDItem {
+@interface MDMessage : NSObject {
     
 }
 
-@property(nonatomic, assign) NSInteger messageId;
+@property(nonatomic, assign) NSInteger id;
+@property(strong) MDActivity *activity;
+@property(strong) MDUser *user;
 @property(nonatomic, strong) NSString* body;
 @property(nonatomic, assign) MessageType type;
 
--(NSMutableDictionary *)dictionaryValue;
-
-/** 为[MDHTTPAPI sendMessage:activity:user]提供序列化MDMessage的方法
- 
- @param accessToken 访问Token
- @return NSDictionary
- @see [MDHTTPAPI sendMessage:activity:user]
- */
--(NSDictionary *)dictionaryForAPIWithAccessToken:(NSString *)token;
-
 +(MDMessage *)messageWithJSON:(id)JSON;
 +(NSArray *)messagesWithJSON:(id)JSON;
+
++(MDMessage *)messageWithID:(NSInteger)aID
+                       body:(NSString *)aBody
+                   activity:(MDActivity *)anActivity
+                       user:(MDUser *)aUser;
 
 /** 创建消息对象
  
@@ -44,5 +42,6 @@ enum {
  @return MDMessage对象
  @see [MDHTTPAPI sendMessage:success:failure:]
  */
-+(MDMessage *)messageWithBody:(NSString *)body;
++(MDMessage *)messageWithActivity:(MDActivity *)anActivity
+                             body:(NSString *)aBody;
 @end

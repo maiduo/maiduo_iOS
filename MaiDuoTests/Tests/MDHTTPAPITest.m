@@ -13,6 +13,7 @@
     BOOL operationSuccessed;
     
     MDHTTPAPI *api;
+    MDHTTPAPIFactory *factory;
     MDActivity *activity;
 }
 @end
@@ -34,6 +35,8 @@
                                     users:@[user]];
     
     api = [MDHTTPAPI MDHTTPAPIWithToken:user];
+    factory = [MDHTTPAPIFactory factoryWithAccessToken:user.accessToken
+                                               service:@"dev"];
 }
 
 //- (void)testUserRegister
@@ -131,6 +134,7 @@
               dispatch_semaphore_signal(semaphore);
           }
           failure:^(NSError *error) {
+              [self printError:error];
               operationSuccessed = NO;
               dispatch_semaphore_signal(semaphore);
           }];
@@ -145,7 +149,7 @@
 -(void)testSendTextMessage
 {
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    MDMessage *message = [[MDMessage alloc] init];
+    MDMessage *message = [MDMessage messageWithActivity:activity body:@"Hello."];
     [api sendMessage:message success:^(MDMessage *aMessage) {
         operationSuccessed = YES;
         dispatch_semaphore_signal(semaphore);
@@ -158,5 +162,13 @@
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
     }
     GHAssertTrue(operationSuccessed, @"");
+}
+
+-(void)printError:(NSError *)error
+{
+    [error.userInfo
+     enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+         NSLog(@"key:%@\nvalue:%@\n", key, obj);
+     }];
 }
 @end

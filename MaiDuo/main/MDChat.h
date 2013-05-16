@@ -31,23 +31,6 @@
  */
 @property(nonatomic, strong) NSDate *createAt;
 
-/** 把对象存储的内容转换为字典 - 失效
- 
- 
- @return [NSMutableDictionary]
- @see dictionaryForAPIWithAccessToken:
- @see [MDHTTPAPI sendChat:activity:user:]
- */
--(NSMutableDictionary *)dictionaryValue;
-
-
-/** 为[MDHTTPAPI sendMessage:activity:user]提供序列化MDChat的方法
- 
- @param accessToken 访问Token
- @return NSDictionary
- @see [MDHTTPAPI sendMessage:activity:user]
- */
--(NSDictionary *)dictionaryForAPIWithAccessToken:(NSString *)accessToken;
 
 /** 构造MDChat聊天对象 － 该工厂方法用于在请求HTTP Service前创建MDChat对象
  

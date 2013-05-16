@@ -10,6 +10,15 @@
 
 @implementation MDActivity
 
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        self.invitation = [NSMutableArray array];
+    }
+    return self;
+}
+
 -(MDUser *)invite:(MDUser *)user
 {
     [self.invitation addObject: user];

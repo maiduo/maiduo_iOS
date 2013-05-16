@@ -39,7 +39,7 @@
 +(MDHTTPAPIFactory *)factoryWithAccessToken:(NSString *)anAccessToken
                                     service:(NSString *)aService;
 
--(NSDictionary *)dictionaryForPostWithActivity:(MDActivity *)anActivity;
--(NSDictionary *)dictionaryWithMessage:(MDMessage *)aMessage;
--(NSDictionary *)dictionaryWithChat:(MDChat *)aChat;
+-(NSDictionary *)dictionaryForCreateActivity:(MDActivity *)anActivity;
+-(NSDictionary *)dictionaryForSendMessage:(MDMessage *)aMessage;
+-(NSDictionary *)dictionaryForSendChat:(MDChat *)aChat;
 @end

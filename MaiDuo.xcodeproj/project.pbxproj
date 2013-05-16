@@ -40,6 +40,8 @@
 		905876E4172D45AD00690DC3 /* YMessageContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 905876E3172D45AD00690DC3 /* YMessageContactViewController.m */; };
 		906B96E21736A16100A7C20E /* YMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 906B96E11736A16100A7C20E /* YMessage.m */; };
 		906B96E51736A6D400A7C20E /* YPlainContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 906B96E41736A6D400A7C20E /* YPlainContact.m */; };
+		90737B7A1744AEEE006A2903 /* MDHTTPAPIFactory.h in Sources */ = {isa = PBXBuildFile; fileRef = 90CC64061743FE5F00DF2E4D /* MDHTTPAPIFactory.h */; };
+		90737B7B1744AEEE006A2903 /* MDHTTPAPIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC64071743FE5F00DF2E4D /* MDHTTPAPIFactory.m */; };
 		9083C48C1736897100E87B4A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9083C48B1736897100E87B4A /* AddressBookUI.framework */; };
 		909CB398172BFA7F008B7B5A /* YMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CB397172BFA7E008B7B5A /* YMessageViewController.m */; };
 		90AAB18017411E85009D7D62 /* iToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB17F17411E85009D7D62 /* iToast.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -720,6 +722,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90737B7A1744AEEE006A2903 /* MDHTTPAPIFactory.h in Sources */,
+				90737B7B1744AEEE006A2903 /* MDHTTPAPIFactory.m in Sources */,
 				904726F11742679B000B0398 /* MDItem.h in Sources */,
 				904726F21742679B000B0398 /* MDItem.m in Sources */,
 				904726EF174266D8000B0398 /* AFMDClient.h in Sources */,
