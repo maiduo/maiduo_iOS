@@ -21,7 +21,9 @@
 @property (copy) NSString *accessToken;
 @property (nonatomic, strong) NSString *refreshToken;
 
+-(NSDictionary *)dictionaryValue;
 -(id)initWithUsername:(NSString *)username password:(NSString *)password;
++(MDUser *)userWithDictionary:(NSDictionary *)aDictionary;
 +(MDUser *)userWithJSON:(id)JSON;
 +(NSArray *)usersWithJSON:(id)JSON;
 @end

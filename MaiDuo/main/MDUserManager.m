@@ -27,12 +27,9 @@
 }
 - (MDUser*)getUserSession
 {
-    NSDictionary *dicUser=[[NSUserDefaults standardUserDefaults] objectForKey:MDUserKey];
-    if(dicUser){
-        self.user.username=dicUser[NameKey];
-        self.user.password=dicUser[PwdKey];
-        self.user.deviceToken=dicUser[DeviceTokenKey];
-        return self.user;
+    NSDictionary *dictionaryUser=[[NSUserDefaults standardUserDefaults] objectForKey:MDUserKey];
+    if(dictionaryUser){
+        return [MDUser userWithDictionary:dictionaryUser];
     }else{
         return nil;
     }
@@ -40,8 +37,8 @@
 - (void) saveUserSession
 {
     if(_user){
-        NSDictionary *dicUser=@{NameKey:_user.username,PwdKey:_user.password,DeviceTokenKey:_user.deviceToken};
-        [[NSUserDefaults standardUserDefaults] setValue:dicUser forKey:MDUserKey];
+        [[NSUserDefaults standardUserDefaults] setValue:[_user dictionaryValue]
+                                                 forKey:MDUserKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
