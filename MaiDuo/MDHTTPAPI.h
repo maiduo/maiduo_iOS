@@ -100,9 +100,6 @@
               success:(void (^)(MDActivity *))success
               failure:(void (^)(NSError *error))failure;
 
--(void)messagesSuccess:(void (^)(NSArray *activies))success
-               failure:(void (^)(NSError *error))failure;
-
 /** 发送消息
  
  在调用发送消息以前，请使用工厂方法[MDMessage messageWithBody:]实例化MDMessage对象。
@@ -145,8 +142,6 @@
  <dt>error</dt>
  <dd><code>NSError</code>包含原始的请求错误。</dd>
  </dl>
- 
- @see [MDMessage messageWithBody:]
  */
 -(void)messagesWithActivity:(MDActivity *)activity
                        page:(NSInteger)page
