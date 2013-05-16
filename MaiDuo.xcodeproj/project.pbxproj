@@ -42,6 +42,9 @@
 		906B96E51736A6D400A7C20E /* YPlainContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 906B96E41736A6D400A7C20E /* YPlainContact.m */; };
 		90737B7A1744AEEE006A2903 /* MDHTTPAPIFactory.h in Sources */ = {isa = PBXBuildFile; fileRef = 90CC64061743FE5F00DF2E4D /* MDHTTPAPIFactory.h */; };
 		90737B7B1744AEEE006A2903 /* MDHTTPAPIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC64071743FE5F00DF2E4D /* MDHTTPAPIFactory.m */; };
+		90737B7D1744D5ED006A2903 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 90737B7C1744D5ED006A2903 /* Default-Portrait@2x~ipad.png */; };
+		90737B7F1744D5F8006A2903 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 90737B7E1744D5F8006A2903 /* Default-Portrait~ipad.png */; };
+		90737B811744D710006A2903 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 90737B801744D710006A2903 /* Default-Portrait~ipad.png */; };
 		9083C48C1736897100E87B4A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9083C48B1736897100E87B4A /* AddressBookUI.framework */; };
 		909CB398172BFA7F008B7B5A /* YMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CB397172BFA7E008B7B5A /* YMessageViewController.m */; };
 		90AAB18017411E85009D7D62 /* iToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB17F17411E85009D7D62 /* iToast.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -142,6 +145,9 @@
 		906B96E11736A16100A7C20E /* YMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMessage.m; sourceTree = "<group>"; };
 		906B96E31736A6D400A7C20E /* YPlainContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPlainContact.h; sourceTree = "<group>"; };
 		906B96E41736A6D400A7C20E /* YPlainContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPlainContact.m; sourceTree = "<group>"; };
+		90737B7C1744D5ED006A2903 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		90737B7E1744D5F8006A2903 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		90737B801744D710006A2903 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		9083C48B1736897100E87B4A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		909CB396172BFA7E008B7B5A /* YMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMessageViewController.h; sourceTree = "<group>"; };
 		909CB397172BFA7E008B7B5A /* YMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMessageViewController.m; sourceTree = "<group>"; };
@@ -332,6 +338,9 @@
 		90F342AE17217C8E005BC944 = {
 			isa = PBXGroup;
 			children = (
+				90737B801744D710006A2903 /* Default-Portrait~ipad.png */,
+				90737B7E1744D5F8006A2903 /* Default-Portrait~ipad.png */,
+				90737B7C1744D5ED006A2903 /* Default-Portrait@2x~ipad.png */,
 				90F342F51721A706005BC944 /* AsyncImageView */,
 				90F342C017217C8E005BC944 /* MaiDuo */,
 				902C91CE1742322800073241 /* MaiDuoTests */,
@@ -657,6 +666,9 @@
 				C8D1A44317431C4200398568 /* photo0@2x.png in Resources */,
 				C8D1A44417431C4200398568 /* photo1@2x.png in Resources */,
 				C808F8291744A1DF0018FA2A /* Default@2x.png in Resources */,
+				90737B7D1744D5ED006A2903 /* Default-Portrait@2x~ipad.png in Resources */,
+				90737B7F1744D5F8006A2903 /* Default-Portrait~ipad.png in Resources */,
+				90737B811744D710006A2903 /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
