@@ -40,16 +40,14 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     self.window.backgroundColor = [UIColor whiteColor];
     
     if ([[MDUserManager sharedInstance] userSessionValid]) {
-        MDUser *user=[[MDUserManager sharedInstance] getUserSession];
-        [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
-            MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
-            _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:latestVC];
-        } failure:^(NSError *error) {
-            [[error userInfo] enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-                NSLog(@"%@", [[error userInfo] objectForKey:key]);
-            }];
-            [[[iToast makeText:@"登录失败!"] setGravity:iToastGravityCenter] show];
-        }];
+        // 只需要登陆一次
+        // API使用user.accessToken保存用户状态
+        
+        // 直接进入活动列表并刷新
+        // FIXME 这里的逻辑应该是进入活动列表，并自动刷新。
+        [self.navigationController
+         pushViewController:[[MDLatestViewController alloc]init]
+         animated:YES];
 
     } else {
         MDLoginViewController *loginVC = [[MDLoginViewController alloc]  initWithStyle:UITableViewStyleGrouped];
