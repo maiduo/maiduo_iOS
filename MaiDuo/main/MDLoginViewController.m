@@ -10,6 +10,7 @@
 #import "iToast.h"
 #import "MDHTTPAPI.h"
 #import "MDLoginViewController.h"
+#import "MDRegisterViewController.h"
 #import "MDLatestViewController.h"
 #import "MDUserManager.h"
 #import "MBProgressHUD.h"
@@ -47,8 +48,20 @@ static NSString *kViewKey = @"viewKey";
     self.navigationItem.title=@"用户登录";
     
     
-    UIBarButtonItem *bbiRight=[[UIBarButtonItem alloc] initWithTitle:@"登录" style:UIBarButtonItemStylePlain target:self action:@selector(login)];
+    UIBarButtonItem *bbiRight=[[UIBarButtonItem alloc]
+                               initWithTitle:@"登录"
+                               style:UIBarButtonItemStyleDone
+                               target:self action:@selector(login)];
+
     self.navigationItem.rightBarButtonItem = bbiRight;
+
+    UIBarButtonItem *buttonItemRegister;
+    buttonItemRegister = [[UIBarButtonItem alloc]
+                          initWithTitle:@"注册"
+                          style:UIBarButtonItemStyleBordered
+                          target:self
+                          action:@selector(register)];
+    self.navigationItem.leftBarButtonItem = buttonItemRegister;
     
     self.dataArray = [NSArray arrayWithObjects:
 					  [NSDictionary dictionaryWithObjectsAndKeys:
@@ -72,13 +85,11 @@ static NSString *kViewKey = @"viewKey";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return 2;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -114,57 +125,6 @@ static NSString *kViewKey = @"viewKey";
 	return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
 #pragma mark -
 #pragma mark TextFields
 
@@ -241,5 +201,12 @@ static NSString *kViewKey = @"viewKey";
     // 暂时沿用旧的代码，下次重构应用新的思路
     // [[MDUserManager sharedInstance] setUser:[[MDUser alloc] init]];
     // [_delegate loginViewControllerDidLogin:self];
+}
+
+-(void)register
+{
+    [self.navigationController
+     pushViewController:[[MDRegisterViewController alloc] init]
+     animated:YES];
 }
 @end
