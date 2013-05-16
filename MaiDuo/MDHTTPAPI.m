@@ -106,7 +106,7 @@
 
 -(void)chatsWithActivity:(MDActivity *)activity
                     page:(NSInteger)page
-                 success:(void (^)(NSArray *messages))success
+                 success:(void (^)(NSArray *chats))success
                  failure:(void (^)(NSError *error))failure
 {
     void (^blockSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id JSON) {
