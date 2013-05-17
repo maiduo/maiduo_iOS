@@ -188,7 +188,8 @@ static NSString *kViewKey = @"viewKey";
     [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
         [[MDUserManager sharedInstance] saveUserSession];
         [appDelegate hideHUD];
-        [[YaabUser sharedInstance] addUser: user];
+        [[YaabUser sharedInstance] addUser:user];
+        [[YaabUser sharedInstance] addAPI:api user:user];
         MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
         [self.navigationController pushViewController:latestVC animated:YES];
     } failure:^(NSError *error) {
