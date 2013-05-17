@@ -9,25 +9,47 @@
 #import "MDNotificationCenter.h"
 
 @implementation MDNotificationCenter
--(id)initWithNotificationCenterWithPayload:(NSString *)aPayload
-                                  delegate:(id<MDNotificationCenterDelegate>)aDelegate
+-(id)initNotificationCenterWithUser:(MDUser *)aUser
+                           delegate:(id<MDNotificationCenterDelegate>)aDelegate
 {
     self = [self init];
     if (self)
     {
         MDNotificationCenter *center = [[MDNotificationCenter alloc]init];
-        center.payload = aPayload;
         center.delegate = aDelegate;
+        center.user = aUser;
     }
     return self;
 }
 
+-(void)send:(NSDictionary *)userInfo
+{
+    NSString *type = [userInfo objectForKey:@"type"];
+    if ([@"message" isEqualToString:type]) {
+        MDMessage *message;
+        [self.delegate didReceiveMessage:message];
+    }
+    
+    if ([@"activity" isEqualToString:type]) {
+        
+    }
+    
+    if ([@"chat" isEqualToString:type]) {
+        MDChat *chat;
+    }
+}
+
+-(MDMessage *)messageWithPayload:(NSDictionary *)userInfo
+{
+    
+}
+
 +(MDNotificationCenter *)
-notificationCenterWithPlayload:(NSString *)aPayload
-delegate:(id<MDNotificationCenterDelegate>)aDelegate
+notificationCenterWithUser:(MDUser *)aUser
+delegate:(id<MDNotificationCenterDelegate>)aDelegate;
 {
     return [[MDNotificationCenter alloc]
-            initWithNotificationCenterWithPayload:aPayload
+            initNotificationCenterWithUser:aUser
             delegate:aDelegate];
 }
 

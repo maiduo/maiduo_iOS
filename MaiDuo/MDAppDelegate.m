@@ -30,6 +30,14 @@
       UIRemoteNotificationTypeSound)];
 }
 
+- (void)setupNotificationCenter
+{
+    if (nil == center) {
+        center = [MDNotificationCenter notificationCenterWithUser:
+                                                         delegate:];
+    }
+}
+
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -63,6 +71,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     [self.window makeKeyAndVisible];
     
     _user = [YaabUser sharedInstance];
+    [self setupNotificationCenter];
     return YES;
 }
 
@@ -97,6 +106,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
     NSLog(@"注册失败，无法获取设备ID, 具体错误: %@", error);
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"Received");
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

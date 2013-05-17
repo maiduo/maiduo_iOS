@@ -12,13 +12,15 @@
 @interface MDNotificationCenter : NSObject {
 }
 
-@property(copy) NSString *payload;
+@property(strong) MDUser *user;
 @property(strong) id<MDNotificationCenterDelegate> delegate;
 
--(id)initWithNotificationCenterWithPayload:(NSString *)aPayload
-delegate:(id<MDNotificationCenterDelegate>)aDelegate;
+-(id)initNotificationCenterWithUser:(MDUser *)aUser
+                           delegate:(id<MDNotificationCenterDelegate>)aDelegate;
+
+-(void)send:(NSDictionary *)userInfo;
 
 +(MDNotificationCenter *)
-notificationCenterWithPlayload:(NSString *)aPayload
+notificationCenterWithUser:(MDUser *)aUser
 delegate:(id<MDNotificationCenterDelegate>)aDelegate;
 @end
