@@ -23,21 +23,37 @@
 }
 - (BOOL)userSessionValid
 {
-    return [self getUserSession] != nil;
+    BOOL valid = YES;
+    MDUser *user = [self getUserSession];
+    valid = user != nil;
+    valid = user.id > 0;
+    
+    return valid;
 }
 - (MDUser*)getUserSession
 {
-    NSDictionary *dictionaryUser=[[NSUserDefaults standardUserDefaults] objectForKey:MDUserKey];
+    static MDUser *session;
+    if (nil != session) {
+        return session;
+    }
+    
+    NSDictionary *dictionaryUser=[[NSUserDefaults standardUserDefaults]
+                                  objectForKey:MDUserKey];
     if(dictionaryUser){
-        return [MDUser userWithDictionary:dictionaryUser];
+        session = [MDUser userWithDictionary:dictionaryUser];
+        [[YaabUser sharedInstance]
+         addAPI:[[MDHTTPAPI alloc] initWithUser:session]
+           user:session];
+        [[YaabUser sharedInstance] setUser:session];
+        return session;
     }else{
         return nil;
     }
 }
-- (void) saveUserSession
+- (void)saveSessionWithUser:(MDUser *)aUser
 {
-    if(_user){
-        [[NSUserDefaults standardUserDefaults] setValue:[_user dictionaryValue]
+    if(aUser){
+        [[NSUserDefaults standardUserDefaults] setValue:[aUser dictionaryValue]
                                                  forKey:MDUserKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }

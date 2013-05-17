@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MDActivity.h"
 
 #define VIEW_STATE_ACTIVITY 0
 #define VIEW_STATE_MESSAGE  1
@@ -18,10 +19,14 @@ typedef enum MDActivityViewState {
     MDActivityViewStateAct,
     MDActivityViewStateMes,
     MDActivityViewStateCon
-    } MDActivityViewState;
+} MDActivityViewState;
 
 @interface MDActivityTableViewController : UIViewController {
-
+    
 }
+
+@property (strong) MDActivity *activity;
+
+-(id)initWithActivity:(MDActivity *)anActivity;
 
 @end

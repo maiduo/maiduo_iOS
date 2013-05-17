@@ -78,10 +78,57 @@
                                 failure:blockFailure];
 }
 
--(void)messagesSuccess:(void (^)(NSArray *activies))success
-               failure:(void (^)(NSError *error))failure
+-(void)messagesWithActivity:(MDActivity *)activity
+                       page:(NSInteger)page
+                    success:(void (^)(NSArray *messages))success
+                    failure:(void (^)(NSError *error))failure
 {
+    void (^blockSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id JSON) {
+        success([MDMessage messagesWithJSON:JSON]);
+    };
     
+    void (^blockFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (nil != failure)
+            failure(error);
+    };
+    
+    NSDictionary *dictionaryChats;
+    dictionaryChats = [self.factory dictionaryForChatsWithActivity:activity
+                                                              page:page];
+    
+    NSString *chatsURL = [NSString
+                            stringWithFormat:@"messages/%d/", activity.id];
+    [[AFMDClient sharedClient] getPath:chatsURL
+                            parameters:dictionaryChats
+                               success:blockSuccess
+                               failure:blockFailure];
+}
+
+-(void)chatsWithActivity:(MDActivity *)activity
+                    page:(NSInteger)page
+                 success:(void (^)(NSArray *chats))success
+                 failure:(void (^)(NSError *error))failure
+{
+    void (^blockSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id JSON) {
+        success([MDChat chatsWithJSON:JSON]);
+    };
+    
+    void (^blockFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (nil != failure)
+            failure(error);
+    };
+    
+    NSDictionary *dictionaryMessages;
+    dictionaryMessages = [self.factory
+                          dictionaryForMessagesWithActivity:activity
+                          page:page];
+    
+    NSString *messagesURL = [NSString
+                             stringWithFormat:@"chats/%d/", activity.id];
+    [[AFMDClient sharedClient] getPath:messagesURL
+                            parameters:dictionaryMessages
+                               success:blockSuccess
+                               failure:blockFailure];
 }
 
 -(void)sendMessage:(MDMessage *)message
@@ -194,14 +241,22 @@
                           @"104c03b3103e4d5e96d042330f6dd0c8", @"client_id",
                           user.deviceToken, @"device_token",
                           nil];
-    [[AFMDClient sharedClient] postPath:@"authentication/" parameters:dicParams success:^(AFHTTPRequestOperation *operation, id JSON) {
-        user.accessToken = [NSString stringWithFormat:@"%@",
+    [[AFMDClient sharedClient] postPath:@"authentication/"
+                             parameters:dicParams
+                                success:^(AFHTTPRequestOperation *operation, id JSON)
+    {
+        user.password = nil;
+        
+        MDUser *newUser = [MDUser userWithJSON: [JSON objectForKey:@"user"]];
+        newUser.accessToken = [NSString stringWithFormat:@"%@",
                              [JSON objectForKey:@"access_token"]];
-        user.refreshToken = [NSString stringWithFormat:@"%@",
+        newUser.refreshToken = [NSString stringWithFormat:@"%@",
                               [JSON objectForKey:@"refresh_token"]];
-        MDHTTPAPI *api = [[MDHTTPAPI alloc] initWithUser:user];
-        success(user, api);
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        MDHTTPAPI *api = [[MDHTTPAPI alloc] initWithUser:newUser];
+        success(newUser, api);
+    }
+                                failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
         if (nil != failure)
             failure(error);
     }];

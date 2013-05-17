@@ -14,6 +14,7 @@
 #import "AsyncImageView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MDPersonDetailViewController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface MDLatestViewController ()
 
@@ -37,40 +38,32 @@
     [super viewDidLoad];
     
     [[self navigationItem] setTitle: @"最新活动"];
+    
     UIBarButtonItem* btnAdd;
     btnAdd = [[UIBarButtonItem alloc]
               initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
               target:self action:@selector(addActivity)];
     
     [[self navigationItem] setRightBarButtonItem: btnAdd];
-    // [btnAdd release];
     
     //箭头的返回
     UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
     temporaryBarButtonItem.title = @"返回";
     self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
     
-    activities = [[NSArray alloc] initWithObjects:
-                  [NSArray arrayWithObjects: @"1", @"CJ", @"CJ和他的朋友门。",
-                   @"各位请主意，聚会改为晚上8点。", nil],
-                  [NSArray arrayWithObjects: @"2", @"KiKi", @"KiKi最爱的2B",
-                   @"可怜的2B嘴巴一直好不鸟。", nil],
-                  [NSArray arrayWithObjects: @"3", @"沈江", @"江总的婚礼现场",
-                   @"请大家用热烈的掌声欢迎新人", nil],
-                  [NSArray arrayWithObjects: @"4", @"王文彪", @"已婚老男人俱乐部",
-                   @"王文彪作为已婚老男人先锋，以发表长篇博文《我是已婚老疙瘩》。", nil],
-                  nil];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    //self.tableView=nil;
+    _api = [[YaabUser sharedInstance] api];
+    [_api activitiesSuccess:^(NSArray *anActivies) {
+        activities = anActivies;
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        NSLog(@"Error");
+    }];
+
     self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size}];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     [self.view addSubview: self.tableView];
+    [self.tableView autoLoadData];
     
     
 }
@@ -116,11 +109,10 @@
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    AsyncImageView* imageView;
-    NSArray* item = (NSArray *)[activities objectAtIndex: [indexPath row]];
-    NSString* uid = (NSString *)[item objectAtIndex: 0];
-    NSString* title = (NSString *)[item objectAtIndex: 2];
-    NSString* detail = (NSString *)[item objectAtIndex: 3];
+    UIImageView* imageView;
+
+    MDActivity* activity = (MDActivity *)[activities
+                                          objectAtIndex:[indexPath row]];
 #define IMAGE_VIEW_TAG 99
     
     if (cell == nil) {
@@ -132,13 +124,13 @@
                      initWithFrame: CGRectMake(0.0f, 0.0f, 80.0f, 80.0f)];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
-        imageView.tag = IMAGE_VIEW_TAG;
+//        imageView.tag = IMAGE_VIEW_TAG;
         
         [cell addSubview: imageView];
         
         // cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.text = title;
-        cell.detailTextLabel.text = detail;
+        cell.textLabel.text = activity.subject;
+//        cell.detailTextLabel.text = detail;
         cell.detailTextLabel.numberOfLines = 2;
         cell.indentationLevel = 1;
         cell.indentationWidth = 80;
@@ -148,9 +140,15 @@
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
     
     static NSString* image_url;
-    image_url = @"http://oss.aliyuncs.com/maiduo/%@.jpg";
-    imageView.imageURL = [NSURL URLWithString:
-                          [NSString stringWithFormat:image_url, uid]];
+    
+    if (nil != activity.owner.avatar) {
+        [imageView setImageWithURL:[NSURL URLWithString:activity.owner.avatar]];
+     } else {
+         [imageView setImageWithURL:
+          [NSURL URLWithString:[[NSBundle mainBundle]
+                                pathForResource:@"default_avatar.png"
+                                ofType:@"png"]]];
+     }
     
     return cell;
 }
@@ -211,7 +209,10 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MDActivityTableViewController* activityViewController;
-    activityViewController = [[MDActivityTableViewController alloc] init];
+    MDActivity* activity = (MDActivity *)[activities
+                                          objectAtIndex:[indexPath row]];
+    activityViewController = [[MDActivityTableViewController alloc]
+                              initWithActivity:activity];
     activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
                                                    self.view.frame.size.height);
     [self.navigationController pushViewController:activityViewController animated:YES];

@@ -12,11 +12,14 @@
  */
 
 @interface MDUser : NSObject
+{
+}
 
 @property (nonatomic, assign) NSInteger id;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *name;
+@property (strong) NSString *avatar;
 @property (nonatomic, strong) NSString *deviceToken;
 @property (copy) NSString *accessToken;
 @property (nonatomic, strong) NSString *refreshToken;

@@ -38,4 +38,17 @@
     return chat;
 }
 
++(NSArray *)chatsWithJSON:(id)JSON
+{
+    NSArray *jsonChats = (NSArray *)JSON;
+    NSMutableArray *chats = [NSMutableArray
+                                arrayWithCapacity:jsonChats.count];
+    NSInteger size = [jsonChats count];
+    for (NSInteger i=0; i < size; i++) {
+        chats[i] = [MDChat chatWithJSON:[jsonChats objectAtIndex:i]];
+    }
+    
+    return chats;
+}
+
 @end
