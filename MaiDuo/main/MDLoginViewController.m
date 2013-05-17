@@ -186,8 +186,10 @@ static NSString *kViewKey = @"viewKey";
     user.password=_txtPass.text;
     user.deviceToken = [YaabUser sharedInstance].deviceToken;
     [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
-        [[MDUserManager sharedInstance] saveUserSession];
+        [[MDUserManager sharedInstance] saveSessionWithUser:user];
         [appDelegate hideHUD];
+        [[YaabUser sharedInstance] addUser:user];
+        [[YaabUser sharedInstance] addAPI:api user:user];
         MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
         [self.navigationController pushViewController:latestVC animated:YES];
     } failure:^(NSError *error) {

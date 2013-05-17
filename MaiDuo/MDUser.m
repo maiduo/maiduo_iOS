@@ -24,6 +24,7 @@
 -(NSDictionary *)dictionaryValue
 {
     return [NSDictionary dictionaryWithObjectsAndKeys:
+            [NSString stringWithFormat:@"%d", self.id], @"id",
             self.username, @"username",
             self.accessToken, @"accessToken",
             self.deviceToken, @"deviceToken",
@@ -33,6 +34,9 @@
 +(MDUser *)userWithDictionary:(NSDictionary *)aDictionary
 {
     MDUser *user = [[MDUser alloc]init];
+    if (nil != [aDictionary objectForKey:@"id"]) {
+        user.id = [[aDictionary objectForKey:@"id"] intValue];
+    }
     user.username = [aDictionary objectForKey:@"username"];
     user.accessToken = [aDictionary objectForKey:@"accessToken"];
     user.deviceToken = [aDictionary objectForKey:@"deviceToken"];
@@ -51,6 +55,7 @@
     user.username = username;
     user.name = name;
     user.id = userID;
+    user.avatar = [JSON objectForKey:@"avatar"];
     
     return user;
 }

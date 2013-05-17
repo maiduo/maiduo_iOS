@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "MDActivity.h"
+#import "MDMessage.h"
+#import "MDChat.h"
 
 @protocol MDNotificationCenterDelegate <NSObject>
 
 -(void)didReceiveActivity:(MDActivity *)anActivity;
+-(void)didReceiveMessage:(MDMessage *)aMessage;
+-(void)didReceiveChat:(MDChat *)aChat;
 
 @end

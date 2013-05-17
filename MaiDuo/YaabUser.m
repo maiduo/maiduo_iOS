@@ -23,6 +23,8 @@
         
         nsUser = [NSUserDefaults standardUserDefaults];
         self.user=[[MDUser alloc] init];
+        self.users = [NSMutableDictionary dictionary];
+        self.apis = [NSMutableDictionary dictionary];
         self.service = @"dev";
 
     }
@@ -44,6 +46,34 @@
                                                    withString:@""];
     
     return token;
+}
+
+-(MDUser *)userWithID:(NSInteger)aUserID
+{
+    return [self.users objectForKey:[NSString stringWithFormat:@"%d", aUserID]];
+}
+
+-(void)addUser:(MDUser *)aUser
+{
+    [self.users setValue:aUser
+                  forKey:[NSString stringWithFormat:@"%d", aUser.id]];
+    self.user = aUser;
+}
+
+-(MDHTTPAPI *)api
+{
+    return [self apiWithUserID:self.user.id];
+}
+
+-(MDHTTPAPI *)apiWithUserID:(NSInteger)aUserID
+{
+    return [self.apis objectForKey:[NSString stringWithFormat:@"%d", aUserID]];
+}
+
+-(void)addAPI:(MDHTTPAPI *)aMDHTTPAPI user:(MDUser *)aUser
+{
+    [self.apis setValue:aMDHTTPAPI
+                  forKey:[NSString stringWithFormat:@"%d", aUser.id]];
 }
 
 +(YaabUser *)sharedInstance

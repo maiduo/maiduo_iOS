@@ -42,6 +42,8 @@
 		906B96E51736A6D400A7C20E /* YPlainContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 906B96E41736A6D400A7C20E /* YPlainContact.m */; };
 		90737B7A1744AEEE006A2903 /* MDHTTPAPIFactory.h in Sources */ = {isa = PBXBuildFile; fileRef = 90CC64061743FE5F00DF2E4D /* MDHTTPAPIFactory.h */; };
 		90737B7B1744AEEE006A2903 /* MDHTTPAPIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC64071743FE5F00DF2E4D /* MDHTTPAPIFactory.m */; };
+		90737B8717460C23006A2903 /* MDNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8617460C23006A2903 /* MDNotificationCenter.m */; };
+		90737B89174632B8006A2903 /* default_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 90737B88174632B8006A2903 /* default_avatar.png */; };
 		9083C48C1736897100E87B4A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9083C48B1736897100E87B4A /* AddressBookUI.framework */; };
 		909CB398172BFA7F008B7B5A /* YMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CB397172BFA7E008B7B5A /* YMessageViewController.m */; };
 		90AAB18017411E85009D7D62 /* iToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB17F17411E85009D7D62 /* iToast.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -143,6 +145,9 @@
 		906B96E31736A6D400A7C20E /* YPlainContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPlainContact.h; sourceTree = "<group>"; };
 		906B96E41736A6D400A7C20E /* YPlainContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPlainContact.m; sourceTree = "<group>"; };
 		90737B831744E287006A2903 /* MDNotificationCenterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDNotificationCenterDelegate.h; sourceTree = "<group>"; };
+		90737B8517460C23006A2903 /* MDNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDNotificationCenter.h; sourceTree = "<group>"; };
+		90737B8617460C23006A2903 /* MDNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDNotificationCenter.m; sourceTree = "<group>"; };
+		90737B88174632B8006A2903 /* default_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_avatar.png; sourceTree = "<group>"; };
 		9083C48B1736897100E87B4A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		909CB396172BFA7E008B7B5A /* YMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMessageViewController.h; sourceTree = "<group>"; };
 		909CB397172BFA7E008B7B5A /* YMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMessageViewController.m; sourceTree = "<group>"; };
@@ -321,12 +326,14 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		90737B821744E25C006A2903 /* delegates */ = {
+		90737B8417460BE8006A2903 /* push */ = {
 			isa = PBXGroup;
 			children = (
 				90737B831744E287006A2903 /* MDNotificationCenterDelegate.h */,
+				90737B8517460C23006A2903 /* MDNotificationCenter.h */,
+				90737B8617460C23006A2903 /* MDNotificationCenter.m */,
 			);
-			name = delegates;
+			name = push;
 			sourceTree = "<group>";
 		};
 		90EF5CA917257DC500AFE074 /* Data */ = {
@@ -390,7 +397,7 @@
 		90F342C017217C8E005BC944 /* MaiDuo */ = {
 			isa = PBXGroup;
 			children = (
-				90737B821744E25C006A2903 /* delegates */,
+				90737B8417460BE8006A2903 /* push */,
 				90F342C917217C8E005BC944 /* MDAppDelegate.h */,
 				90F342CA17217C8E005BC944 /* MDAppDelegate.m */,
 				AA315DE8173F8A87009BA36E /* common */,
@@ -567,6 +574,7 @@
 				C8D1A44217431C4200398568 /* photo1@2x.png */,
 				C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */,
 				C8CEFB30173A0DFD0021D371 /* garbage@2x.png */,
+				90737B88174632B8006A2903 /* default_avatar.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -667,6 +675,7 @@
 				C8D1A44317431C4200398568 /* photo0@2x.png in Resources */,
 				C8D1A44417431C4200398568 /* photo1@2x.png in Resources */,
 				C808F8291744A1DF0018FA2A /* Default@2x.png in Resources */,
+				90737B89174632B8006A2903 /* default_avatar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,6 +811,7 @@
 				902CD8941743CBB700429D64 /* MDPersonDetailViewController.m in Sources */,
 				90CC64031743D7CD00DF2E4D /* MDChat.m in Sources */,
 				90CC64081743FE5F00DF2E4D /* MDHTTPAPIFactory.m in Sources */,
+				90737B8717460C23006A2903 /* MDNotificationCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
