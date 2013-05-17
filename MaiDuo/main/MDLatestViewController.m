@@ -122,8 +122,6 @@
     imageView = (AsyncImageView *)[cell viewWithTag: IMAGE_VIEW_TAG];
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
     
-    static NSString* image_url;
-    
     if (nil != activity.owner.avatar) {
         [imageView setImageWithURL:[NSURL URLWithString:activity.owner.avatar]];
      } else {
@@ -148,73 +146,19 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     return 80.0;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MDActivityTableViewController* activityViewController;
     MDActivity* activity = (MDActivity *)[activities
                                           objectAtIndex:[indexPath row]];
     activityViewController = [[MDActivityTableViewController alloc]
                               initWithActivity:activity];
-    activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
-                                                   self.view.frame.size.height);
-    [self.navigationController pushViewController:activityViewController animated:YES];
-
-// Feng999的用户界面的触发代码
-// 因为和逻辑不符合，注释掉，并且不触发
-    
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    ActivityTableViewController* activityViewController;
-//    activityViewController = [[ActivityTableViewController alloc] init];
 //    activityViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
-//                                     self.view.frame.size.height);
-//    [self.navigationController pushViewController:activityViewController animated:YES];
-//    NSArray *tempArray = [[NSArray alloc] initWithArray:[activities objectAtIndex:indexPath.row]];
-//    PersonDetailViewController *personDetailViewController = [[PersonDetailViewController alloc]
-//                                                              init];
-//    personDetailViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-//    personDetailViewController.activity = tempArray;
-//    [self.navigationController pushViewController:personDetailViewController animated:YES];
+//                                                   self.view.frame.size.height);
+    [self.navigationController pushViewController:activityViewController animated:YES];
 }
 
 #pragma mark -
@@ -222,24 +166,20 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 // 页面滚动时回调
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    //NSLog(@"scrollViewDidScroll");
     [self.tableView egoRefreshScrollViewDidScroll:scrollView];
 }
 
 // 滚动结束时回调
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+                  willDecelerate:(BOOL)decelerate
 {
-    //NSLog(@"scrollViewDidEndDragging");
     [self.tableView egoRefreshScrollViewDidEndDragging:scrollView];
     
 }
 #pragma mark -
 #pragma mark EGOTableViewDelegate Methods
-- (void) startLoadData:(id) sender
+- (void)startLoadData:(id)sender
 {
-    //[self getAllProduct];
-    //请求完后调用，用来使 tableview返回正常状态
-    
     [_api activitiesSuccess:^(NSArray *anActivies) {
         activities = anActivies;
         [self.tableView loaded];
@@ -247,5 +187,4 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
         NSLog(@"Error");
     }];
 }
-
 @end
