@@ -241,14 +241,22 @@
                           @"104c03b3103e4d5e96d042330f6dd0c8", @"client_id",
                           user.deviceToken, @"device_token",
                           nil];
-    [[AFMDClient sharedClient] postPath:@"authentication/" parameters:dicParams success:^(AFHTTPRequestOperation *operation, id JSON) {
-        user.accessToken = [NSString stringWithFormat:@"%@",
+    [[AFMDClient sharedClient] postPath:@"authentication/"
+                             parameters:dicParams
+                                success:^(AFHTTPRequestOperation *operation, id JSON)
+    {
+        user.password = nil;
+        
+        MDUser *newUser = [MDUser userWithJSON: [JSON objectForKey:@"user"]];
+        newUser.accessToken = [NSString stringWithFormat:@"%@",
                              [JSON objectForKey:@"access_token"]];
-        user.refreshToken = [NSString stringWithFormat:@"%@",
+        newUser.refreshToken = [NSString stringWithFormat:@"%@",
                               [JSON objectForKey:@"refresh_token"]];
-        MDHTTPAPI *api = [[MDHTTPAPI alloc] initWithUser:user];
-        success(user, api);
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        MDHTTPAPI *api = [[MDHTTPAPI alloc] initWithUser:newUser];
+        success(newUser, api);
+    }
+                                failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
         if (nil != failure)
             failure(error);
     }];

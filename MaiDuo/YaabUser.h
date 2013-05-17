@@ -28,6 +28,7 @@
 -(void)addUser:(MDUser *)aUser;
 
 -(MDHTTPAPI *)apiWithUserID:(NSInteger)aUserID;
+-(MDHTTPAPI *)api;
 -(void)addAPI:(MDHTTPAPI *)aMDHTTPAPI user:(MDUser *)aUser;
 
 +(YaabUser *)sharedInstance;

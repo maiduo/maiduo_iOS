@@ -33,8 +33,8 @@
 - (void)setupNotificationCenter
 {
     if (nil == center) {
-        center = [MDNotificationCenter notificationCenterWithUser:
-                                                         delegate:];
+//        center = [MDNotificationCenter notificationCenterWithUser:
+//                                                         delegate:];
     }
 }
 

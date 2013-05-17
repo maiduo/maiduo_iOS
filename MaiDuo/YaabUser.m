@@ -60,6 +60,11 @@
     self.user = aUser;
 }
 
+-(MDHTTPAPI *)api
+{
+    return [self apiWithUserID:self.user.id];
+}
+
 -(MDHTTPAPI *)apiWithUserID:(NSInteger)aUserID
 {
     return [self.apis objectForKey:[NSString stringWithFormat:@"%d", aUserID]];

@@ -28,6 +28,16 @@
 
 @implementation MDActivityTableViewController
 
+-(id)initWithActivity:(MDActivity *)anActivity
+{
+    self = [self init];
+    if (self) {
+        self.activity = anActivity;
+    }
+    
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
