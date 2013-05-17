@@ -157,7 +157,7 @@
  
 -(void) animationFinished: (id) sender
 {
-    _reloading = NO;
+//    _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDidEndDragging:self];
 }
 
@@ -175,6 +175,7 @@
 -(void) finishedAnimationForLoad:(id)sender
 {
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self];
+    _reloading = NO;
     [self reloadData];
 }
 
