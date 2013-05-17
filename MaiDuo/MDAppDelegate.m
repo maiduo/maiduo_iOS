@@ -55,8 +55,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         // FIXME 这里的逻辑应该是进入活动列表，并自动刷新。
         MDLatestViewController *latestViewController;
         latestViewController = [[MDLatestViewController alloc] init];
-        self.navigationController = [[UINavigationController alloc]
-                                     initWithRootViewController:latestViewController];
+        self.navigationController = [[UINavigationController alloc] init];
+        [self.navigationController pushViewController:latestViewController
+                                             animated:NO];
+//                                     initWithRootViewController:latestViewController];
 
     } else {
         MDLoginViewController *loginViewController;

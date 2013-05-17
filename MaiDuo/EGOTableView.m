@@ -51,7 +51,6 @@
     
 	_reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self];
-    
 }
 
 - (void)doneLoadingTableViewDataForHeader
@@ -140,6 +139,7 @@
 
 -(void) autoLoadData
 {
+    [self reloadTableViewDataSource];
     [UIView beginAnimations:nil context:UIGraphicsGetCurrentContext()];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDuration:0.4f];
@@ -159,6 +159,23 @@
 {
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDidEndDragging:self];
+}
+
+-(void) loaded
+{
+    [UIView beginAnimations:nil context:UIGraphicsGetCurrentContext()];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:0.4f];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(finishedAnimationForLoad:)];
+    [self setContentOffset:CGPointMake(0, 0)];
+    [UIView commitAnimations];
+}
+
+-(void) finishedAnimationForLoad:(id)sender
+{
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self];
+    [self reloadData];
 }
 
 /*
