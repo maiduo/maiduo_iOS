@@ -163,13 +163,11 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 #pragma mark -
 #pragma mark UIScrollViewDelegate Methods
-// 页面滚动时回调
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.tableView egoRefreshScrollViewDidScroll:scrollView];
 }
 
-// 滚动结束时回调
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                   willDecelerate:(BOOL)decelerate
 {
