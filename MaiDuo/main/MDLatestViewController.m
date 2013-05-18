@@ -23,19 +23,10 @@
 
 @implementation MDLatestViewController
 
-//- (id)initWithStyle:(UITableViewStyle)style
-//{
-// self = [super initWithStyle:style];
-// if (self) {
-// }
-// return self;
-//}
-
-//-(id)
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"view did load.");
     
     [[self navigationItem] setTitle: @"最新活动"];
     
@@ -52,25 +43,17 @@
     self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
     
     _api = [[YaabUser sharedInstance] api];
-    [_api activitiesSuccess:^(NSArray *anActivies) {
-        activities = anActivies;
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        NSLog(@"Error");
-    }];
+    
 
     self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size}];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     [self.view addSubview: self.tableView];
-    [self.tableView autoLoadData];
-    
-    
 }
 -(void) viewDidAppear:(BOOL)animated
 {
     if(activities.count==0){
-//        [_tableView autoLoadData];
+        [_tableView autoLoadData];
     }
     [super viewDidAppear:animated];
 }
@@ -256,7 +239,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //[self getAllProduct];
     //请求完后调用，用来使 tableview返回正常状态
-    [self.tableView refreshTableView];
+    
+    [_api activitiesSuccess:^(NSArray *anActivies) {
+        activities = anActivies;
+        [self.tableView loaded];
+    } failure:^(NSError *error) {
+        NSLog(@"Error");
+    }];
 }
 
 @end
