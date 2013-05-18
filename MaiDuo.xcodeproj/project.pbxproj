@@ -671,11 +671,7 @@
 				C8CEFB32173A0DFD0021D371 /* garbage@2x.png in Resources */,
 				C8D1A44317431C4200398568 /* photo0@2x.png in Resources */,
 				C8D1A44417431C4200398568 /* photo1@2x.png in Resources */,
-<<<<<<< HEAD
-=======
-				C808F8291744A1DF0018FA2A /* Default@2x.png in Resources */,
-				90737B89174632B8006A2903 /* default_avatar.png in Resources */,
->>>>>>> 2d7c6fd322fe6e6675af7c90c6df39bddce3925d
+ 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
