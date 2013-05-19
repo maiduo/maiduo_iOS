@@ -72,6 +72,7 @@
         [appDelegate hideHUD];
         [self.arrayChats addObjectsFromArray:chats];
         [self.tableView reloadData];
+        self.tableView 
     } failure:^(NSError *error) {
         [appDelegate hideHUD];
     }];
