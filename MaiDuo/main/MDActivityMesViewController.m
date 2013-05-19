@@ -7,11 +7,21 @@
 //
 
 #import "MDActivityMesViewController.h"
-#import "MDAppDelegate.h"
+#import "MDChat.h"
 #import "MDUserManager.h"
+#import "MDHTTPAPI.h"
+#import "YaabUser.h"
+#import "MDAppDelegate.h"
+
+#define chatIDKey @"chat_id"
+#define chatTextKey @"text"
+#define timeStampsKey @"created_at"
+#define kPageSize 10
+
 @interface MDActivityMesViewController (){
     NSUInteger _currentPageIndex;
     BOOL _loading;
+    BOOL _noMore;
     UIActivityIndicatorView *_indicatorView;
 }
 
@@ -41,26 +51,27 @@
 	// Do any additional setup after loading the view.
     self.delegate = self;
     self.dataSource = self;
-    
+    _currentPageIndex=1;//页数从1开始
     self.title = @"Messages";
     
     self.arrayChats=[NSMutableArray array];
     MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate showHUDWithLabel:@"正在获取聊天..."];
     [[[YaabUser sharedInstance] api] chatsWithActivity:self.activity
-                                                 page:_currentPageIndex+1
-    success:^(NSArray *chats) {
-        [appDelegate hideHUD];
-        [self.arrayChats addObjectsFromArray:chats];
-        [self.tableView reloadData];
-        if(self.arrayChats.count>0){
-            NSIndexPath * ndxPath= [NSIndexPath indexPathForRow:self.arrayChats.count-1 inSection:0];
-    	    [self.tableView scrollToRowAtIndexPath:ndxPath atScrollPosition:UITableViewScrollPositionTop  animated:NO];
-        }
-        
-    } failure:^(NSError *error) {
-        [appDelegate hideHUD];
-    }];
+                                                  page:_currentPageIndex
+                                              pageSize:kPageSize
+                                               success:^(NSArray *chats) {
+                                                   [appDelegate hideHUD];
+                                                   [self.arrayChats addObjectsFromArray:chats];
+                                                   [self.tableView reloadData];
+                                                   if(self.arrayChats.count>0){
+                                                       NSIndexPath * ndxPath= [NSIndexPath indexPathForRow:self.arrayChats.count-1 inSection:0];
+                                                       [self.tableView scrollToRowAtIndexPath:ndxPath atScrollPosition:UITableViewScrollPositionTop  animated:NO];
+                                                   }
+                                                   
+                                               } failure:^(NSError *error) {
+                                                   [appDelegate hideHUD];
+                                               }];
 
 }
 
@@ -72,22 +83,35 @@
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.messages.count;
+    return self.arrayChats.count;
 }
 
 #pragma mark - Messages view delegate
 - (void)sendPressed:(UIButton *)sender withText:(NSString *)text
 {
-    [self.messages addObject:text];
+   
     
-    [self.timestamps addObject:[NSDate date]];
+    [JSMessageSoundEffect playMessageSentSound];
     
-    if((self.messages.count - 1) % 2)
-        [JSMessageSoundEffect playMessageSentSound];
-    else
-        [JSMessageSoundEffect playMessageReceivedSound];
+    MDChat *chat=[MDChat chatWithText:text activity:self.activity user:[[MDUserManager sharedInstance] getUserSession]];
     
-    [self finishSend];
+    MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
+    [appDelegate showHUDWithLabel:@"正在发送..."];
+    [[[YaabUser sharedInstance] api] sendChat:chat success:^(MDChat *chat) {
+        [appDelegate hideHUD];
+        
+         
+        [self.arrayChats addObject:chat];
+        
+//        [self.messages addObject:text];
+//        [self.timestamps addObject:[NSDate date]];
+        [self finishSend];
+    } failure:^(NSError *error) {
+        [appDelegate hideHUD];
+        NSLog(@"fail send chat");
+    }];
+        
+    
 }
 
 - (JSBubbleMessageStyle)messageStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,7 +128,7 @@
 
 - (JSMessagesViewTimestampPolicy)timestampPolicyForMessagesView
 {
-    return JSMessagesViewTimestampPolicyEveryThree;
+    return JSMessagesViewTimestampPolicyAll;
 }
 
 - (BOOL)hasTimestampForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -119,6 +143,7 @@
     NSLog(@"index:%d",indexPath.row);
     MDChat *chat=self.arrayChats[indexPath.row];
     return chat.text;
+    //return [self.messages objectAtIndex:indexPath.row];
 }
 - (NSString *)photoForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -133,7 +158,9 @@
 }
 - (NSDate *)timestampForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.timestamps objectAtIndex:indexPath.row];
+    MDChat *chat=self.arrayChats[indexPath.row];
+    return chat.createAt;
+    //return [self.timestamps objectAtIndex:indexPath.row];
 }
 
 
@@ -143,7 +170,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //NSLog(@"scrollViewDidScroll");
-    if(scrollView.contentOffset.y < -10.0f && !_loading){
+    if(scrollView.contentOffset.y < -15.0f && !_loading&&!_noMore){
         _loading=YES;
         if(!_indicatorView){
             _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -155,18 +182,28 @@
         
         _currentPageIndex++;
         [[[YaabUser sharedInstance] api] chatsWithActivity:self.activity
-                                                      page:_currentPageIndex+1
+                                                      page:_currentPageIndex
+                                                  pageSize:kPageSize
                                                    success:^(NSArray *chats) {
-                                                       
-                                                       NSRange range = NSMakeRange(0, [chats count]);
-                                                       NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
-                                                       
-                                                       
-                                                       [self.arrayChats insertObjects:chats atIndexes:indexSet];
-                                                       [self.tableView reloadData];
+                                                       _loading=NO;
+                                                       if(chats.count==0){
+                                                           _noMore=YES;
+                                                           _currentPageIndex--;
+                                                        
+                                                       }else{
+                                                           NSRange range = NSMakeRange(0, [chats count]);
+                                                           NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+                                                           
+                                                           
+                                                           [self.arrayChats insertObjects:chats atIndexes:indexSet];
+                                                           [self.tableView reloadData];
+                                                           
+                                                           NSUInteger scrollToIndex=MIN(kPageSize, chats.count);
+                                                           NSIndexPath * ndxPath= [NSIndexPath indexPathForRow:scrollToIndex-1 inSection:0];
+                                                           [self.tableView scrollToRowAtIndexPath:ndxPath atScrollPosition:UITableViewScrollPositionTop  animated:NO];
+                                                       }
                                                        [_indicatorView stopAnimating];
                                                        [_indicatorView removeFromSuperview];
-                                                       _loading=NO;
                                                        
                                                    } failure:^(NSError *error) {
                                                        _currentPageIndex--;
