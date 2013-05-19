@@ -11,12 +11,21 @@
 
 @implementation MDChat
 
-+(MDChat *)chatWithText:(NSString *)text
++(MDChat *)chatWithText:(NSString *)aText
                activity:(MDActivity *)anActivity
                    user:(MDUser *)aUser
 {
+    return [self chatWithID:0 text:aText activity:anActivity user:aUser];
+}
+
++(MDChat *)chatWithID:(NSInteger)chatID
+                 text:(NSString *)aText
+             activity:(MDActivity *)anActivity
+                 user:(MDUser *)aUser
+{
     MDChat *chat = [[MDChat alloc] init];
-    chat.text = text;
+    chat.id = chatID;
+    chat.text = aText;
     chat.activity = anActivity;
     chat.user = aUser;
     

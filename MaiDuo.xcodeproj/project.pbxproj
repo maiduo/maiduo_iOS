@@ -43,6 +43,7 @@
 		90737B7A1744AEEE006A2903 /* MDHTTPAPIFactory.h in Sources */ = {isa = PBXBuildFile; fileRef = 90CC64061743FE5F00DF2E4D /* MDHTTPAPIFactory.h */; };
 		90737B7B1744AEEE006A2903 /* MDHTTPAPIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC64071743FE5F00DF2E4D /* MDHTTPAPIFactory.m */; };
 		90737B8717460C23006A2903 /* MDNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8617460C23006A2903 /* MDNotificationCenter.m */; };
+		90737B8C1748CBAC006A2903 /* MDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8B1748CBAC006A2903 /* MDCache.m */; };
 		9083C48C1736897100E87B4A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9083C48B1736897100E87B4A /* AddressBookUI.framework */; };
 		909CB398172BFA7F008B7B5A /* YMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CB397172BFA7E008B7B5A /* YMessageViewController.m */; };
 		90AAB18017411E85009D7D62 /* iToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AAB17F17411E85009D7D62 /* iToast.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -146,6 +147,8 @@
 		90737B831744E287006A2903 /* MDNotificationCenterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDNotificationCenterDelegate.h; sourceTree = "<group>"; };
 		90737B8517460C23006A2903 /* MDNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDNotificationCenter.h; sourceTree = "<group>"; };
 		90737B8617460C23006A2903 /* MDNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDNotificationCenter.m; sourceTree = "<group>"; };
+		90737B8A1748CBAC006A2903 /* MDCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCache.h; sourceTree = "<group>"; };
+		90737B8B1748CBAC006A2903 /* MDCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCache.m; sourceTree = "<group>"; };
 		9083C48B1736897100E87B4A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		909CB396172BFA7E008B7B5A /* YMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMessageViewController.h; sourceTree = "<group>"; };
 		909CB397172BFA7E008B7B5A /* YMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMessageViewController.m; sourceTree = "<group>"; };
@@ -480,9 +483,11 @@
 				90CC64071743FE5F00DF2E4D /* MDHTTPAPIFactory.m */,
 				90AAB18117412056009D7D62 /* MDHTTPAPI.h */,
 				90AAB18217412056009D7D62 /* MDHTTPAPI.m */,
-				AA315DE7173F8A45009BA36E /* item */,
 				AA315DE4173F8784009BA36E /* MDUserManager.h */,
 				AA315DE5173F8784009BA36E /* MDUserManager.m */,
+				90737B8A1748CBAC006A2903 /* MDCache.h */,
+				90737B8B1748CBAC006A2903 /* MDCache.m */,
+				AA315DE7173F8A45009BA36E /* item */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -808,6 +813,7 @@
 				90CC64031743D7CD00DF2E4D /* MDChat.m in Sources */,
 				90CC64081743FE5F00DF2E4D /* MDHTTPAPIFactory.m in Sources */,
 				90737B8717460C23006A2903 /* MDNotificationCenter.m in Sources */,
+				90737B8C1748CBAC006A2903 /* MDCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

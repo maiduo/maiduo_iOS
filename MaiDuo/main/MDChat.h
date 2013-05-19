@@ -42,10 +42,14 @@
  @see [MDUser]
  @see [MDActivity]
  */
-+(MDChat *)chatWithText:(NSString *)text
++(MDChat *)chatWithText:(NSString *)aText
                activity:(MDActivity *)anActivity
                    user:(MDUser *)aUser;
 
++(MDChat *)chatWithID:(NSInteger)chatID
+                 text:(NSString *)aText
+             activity:(MDActivity *)anActivity
+                 user:(MDUser *)aUser;
 
 /** 构造MDChat聊天对象 － 该工厂个方法用于在[MDHTTPAPI sendChat:chat:activity:user]内
 构造返回对象

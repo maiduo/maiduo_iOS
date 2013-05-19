@@ -50,6 +50,7 @@
     self.tableView.dataSource=self;
     [self.view addSubview: self.tableView];
 }
+
 -(void) viewDidAppear:(BOOL)animated
 {
     if(activities.count==0){

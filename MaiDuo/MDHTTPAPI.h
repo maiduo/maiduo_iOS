@@ -12,6 +12,7 @@
 #import "MDMessage.h"
 #import "MDActivity.h"
 #import "MDChat.h"
+#import "MDCache.h"
 
 /** 麦垛服务接口库
  
@@ -54,6 +55,7 @@
 @interface MDHTTPAPI : NSObject
 {
     NSString *url;
+    MDCache *_cache;
 }
 
 @property(nonatomic, strong) MDUser *user;

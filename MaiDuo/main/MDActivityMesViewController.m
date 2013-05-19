@@ -68,6 +68,7 @@
     [appDelegate showHUDWithLabel:@"正在获取聊天..."];
     [[[YaabUser sharedInstance] api] chatsWithActivity:self.activity
                                                  page:_currentPageIndex+1
+                                              pageSize:10
     success:^(NSArray *chats) {
         [appDelegate hideHUD];
         [self.arrayChats addObjectsFromArray:chats];

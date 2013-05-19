@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "MDNotificationCenterDelegate.h"
+#import "MDCache.h"
+
+#define kDidReceiveMessage @"didReceiveMessage"
+#define kDidReceiveChat @"didReceiveChat"
+#define kDidReceiveActivity @"didReceiveActivity"
 
 @interface MDNotificationCenter : NSObject {
+    MDCache *_cache;
 }
 
 @property(strong) MDUser *user;
@@ -18,7 +24,7 @@
 -(id)initNotificationCenterWithUser:(MDUser *)aUser
                            delegate:(id<MDNotificationCenterDelegate>)aDelegate;
 
--(void)send:(NSDictionary *)userInfo;
+-(void)post:(NSDictionary *)userInfo;
 
 +(MDNotificationCenter *)
 notificationCenterWithUser:(MDUser *)aUser
