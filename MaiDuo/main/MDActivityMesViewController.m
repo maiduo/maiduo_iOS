@@ -119,8 +119,14 @@
 
 - (JSBubbleMessageStyle)messageStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MDChat *chat=self.arrayChats[indexPath.row];
+    if([chat.user.username isEqualToString:[[MDUserManager sharedInstance] getUserSession].username]){
+        return JSBubbleMessageStyleOutgoingDefault;
+    }else{
+        return JSBubbleMessageStyleIncomingDefault;
+    }
     //return (indexPath.row % 2) ? JSBubbleMessageStyleIncomingDefault : JSBubbleMessageStyleOutgoingDefault;
-    return JSBubbleMessageStyleIncomingDefault;
+    //return JSBubbleMessageStyleIncomingDefault;
 }
 
 - (JSMessagesViewTimestampPolicy)timestampPolicyForMessagesView
@@ -143,9 +149,13 @@
 }
 - (NSString *)photoForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     NSString *photoUrl=[NSString stringWithFormat:@"photo%d",indexPath.row%2];
-    
+    MDChat *chat=self.arrayChats[indexPath.row];
+    if([chat.user.username isEqualToString:[[MDUserManager sharedInstance] getUserSession].username]){
+        photoUrl=@"photo0";
+    }else{
+        photoUrl=@"photo1";
+    }
     return photoUrl;
 }
 - (NSDate *)timestampForRowAtIndexPath:(NSIndexPath *)indexPath
