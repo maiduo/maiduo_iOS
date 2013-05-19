@@ -45,7 +45,7 @@
     _api = [[YaabUser sharedInstance] api];
     
 
-    self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size}];
+    self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size.width,self.view.bounds.size.height-44}];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     [self.view addSubview: self.tableView];
@@ -237,12 +237,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark EGOTableViewDelegate Methods
 - (void) startLoadData:(id) sender
 {
-    //[self getAllProduct];
     //请求完后调用，用来使 tableview返回正常状态
     
     [_api activitiesSuccess:^(NSArray *anActivies) {
         activities = anActivies;
-        [self.tableView loaded];
+        [self.tableView refreshTableView];
     } failure:^(NSError *error) {
         NSLog(@"Error");
     }];

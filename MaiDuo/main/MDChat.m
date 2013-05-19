@@ -32,7 +32,7 @@
     
     MDChat *chat = [MDChat chatWithText:text
                                activity:[MDActivity activityWithJSON:activity]
-                                   user:anUser];
+                                   user:[MDUser userWithJSON:anUser]];
     chat.id = chatID;
     
     return chat;
