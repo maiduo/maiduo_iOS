@@ -27,13 +27,13 @@
         
         _source = [NSMutableArray arrayWithObjects:nil];
         _message = [NSMutableArray array];
-        [[[YaabUser sharedInstance] api] messagesWithActivity:self.activity
-                                                         page:1
-                                                      success:^(NSArray *messages) {
-                                                       [_message addObjectsFromArray:messages];
-                                                       [_tableView reloadData];
-                                                }      failure:^(NSError *error) {
-                                                   }];
+//        [[[YaabUser sharedInstance] api] messagesWithActivity:self.activity
+//                                                         page:1
+//                                                      success:^(NSArray *messages) {
+//                                                       [_message addObjectsFromArray:messages];
+//                                                       [_tableView reloadData];
+//                                                }      failure:^(NSError *error) {
+//                                                   }];
     }
     return self;
 }
@@ -51,19 +51,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
         case PictureRow:
-            return [self createCellWithImageTesttableView:tableView
-                                    cellForRowAtIndexPath:indexPath];
+            return [self createCellWithImageTableView:tableView
+                                cellForRowAtIndexPath:indexPath];
             break;
             
         default:
-            return nil;
+            return [self createCellWithTextTableView:tableView
+                               cellForRowAtIndexPath:indexPath];
             break;
     }
 }
@@ -71,38 +72,36 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == PictureRow) {
-        return 500;
+        return 300;
     } else {
-        return 100;
+        return 50;
     }
     
 }
 
 #pragma mark -cell
-- (UITableViewCell *)createCellWithImageTesttableView:(UITableView *)tableView
-                                cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)createCellWithImageTableView:(UITableView *)tableView
+                            cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"%ld",
-                                (long)[indexPath row]];
+    NSString *CellIdentifier = @"test";
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    AsyncImageView* imageView;
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc]
                 initWithStyle: UITableViewCellStyleSubtitle
-                reuseIdentifier: CellIdentifier];
+                reuseIdentifier: @"test"];
         cell.indentationWidth = 10;
         cell.indentationLevel = 1;
+        AsyncImageView* imageView;
         imageView = [[AsyncImageView alloc]
-                     initWithFrame: CGRectMake(50.0f, 10.0f, 200.0f, 200.0f)];
+                     initWithFrame: CGRectMake(30.0f, 5.0f, 250.0f, 200.0f)];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
         imageView.tag = 1;
         
         [cell addSubview: imageView];
-        
-        
         imageView = (AsyncImageView *)[cell viewWithTag: 1];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
         
@@ -114,39 +113,96 @@
         
         AsyncImageView* imageView2;
         imageView2 = [[AsyncImageView alloc]
-                      initWithFrame: CGRectMake(10.0f, 200.0f, 50.0f, 50.0f)];
+                     initWithFrame: CGRectMake(10.0f, 210.0f, 65.0f, 50.0f)];
         imageView2.contentMode = UIViewContentModeScaleAspectFill;
         imageView2.clipsToBounds = YES;
         imageView2.tag = 2;
+        
+        [cell addSubview: imageView2];
         imageView2 = (AsyncImageView *)[cell viewWithTag: 2];
-        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView2];
         
         image_url = @"http://img0.ddove.com/upload/20100707/071007321979.png";
         imageView2.imageURL = [NSURL URLWithString:
-                               [NSString stringWithFormat:image_url,
-                                @"test"]];
-        [cell addSubview: imageView2];
-        
+                              [NSString stringWithFormat:image_url,
+                               @"test"]];
         
         AsyncImageView* imageView3;
         imageView3 = [[AsyncImageView alloc]
-                      initWithFrame: CGRectMake(90.0f, 200.0f, 50.0f, 50.0f)];
+                      initWithFrame: CGRectMake(90.0f, 210.0f, 65.0f, 50.0f)];
         imageView3.contentMode = UIViewContentModeScaleAspectFill;
         imageView3.clipsToBounds = YES;
         imageView3.tag = 3;
+        
+        [cell addSubview: imageView3];
         imageView3 = (AsyncImageView *)[cell viewWithTag: 3];
-        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView2];
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView3];
         
         image_url = @"http://img0.ddove.com/upload/20100707/071007321979.png";
         imageView3.imageURL = [NSURL URLWithString:
                                [NSString stringWithFormat:image_url,
                                 @"test"]];
-        [cell addSubview: imageView3];
+        
+        AsyncImageView* imageView4;
+        imageView4 = [[AsyncImageView alloc]
+                      initWithFrame: CGRectMake(170.0f, 210.0f, 65.0f, 50.0f)];
+        imageView4.contentMode = UIViewContentModeScaleAspectFill;
+        imageView4.clipsToBounds = YES;
+        imageView4.tag = 4;
+        
+        [cell addSubview: imageView4];
+        imageView4 = (AsyncImageView *)[cell viewWithTag: 4];
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView4];
+        
+        image_url = @"http://img0.ddove.com/upload/20100707/071007321979.png";
+        imageView4.imageURL = [NSURL URLWithString:
+                               [NSString stringWithFormat:image_url,
+                                @"test"]];
+        
+        AsyncImageView* imageView5;
+        imageView5 = [[AsyncImageView alloc]
+                      initWithFrame: CGRectMake(250.0f, 210.0f, 65.0f, 50.0f)];
+        imageView5.contentMode = UIViewContentModeScaleAspectFill;
+        imageView5.clipsToBounds = YES;
+        imageView5.tag = 5;
+        
+        [cell addSubview: imageView5];
+        imageView5 = (AsyncImageView *)[cell viewWithTag: 5];
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView5];
+        
+        image_url = @"http://img0.ddove.com/upload/20100707/071007321979.png";
+        imageView5.imageURL = [NSURL URLWithString:
+                               [NSString stringWithFormat:image_url,
+                                @"test"]];
     }
     return cell;
 }
 
-
-
+- (UITableViewCell *)createCellWithTextTableView:(UITableView *)tableView
+                            cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"text"];
+	if (cell == nil)
+	{
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"text"];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	}
+    NSString *textLabel;
+    switch (indexPath.row) {
+        case 1:
+            textLabel = @"活动内容1";
+            break;
+        
+        case 2:
+            textLabel = @"活动内容2";
+            break;
+        default:
+            break;
+    }
+   
+    cell.textLabel.text = textLabel;
+    
+	return cell;
+}
 
 @end
