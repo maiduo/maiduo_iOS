@@ -17,7 +17,7 @@
 //结束加载
 -(void) refreshTableView;
 
-//-(void) loaded;
+-(void) loaded;
 
 -(void) egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView;
 -(void) egoRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView;
