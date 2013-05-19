@@ -76,13 +76,32 @@
     dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                   activity_id, @"activity_id",
                   [NSString stringWithFormat:@"%d", aPage], @"page", nil];
+    
+    return [self dictionaryWithDictionary:dictionary];
+}
+
+-(NSDictionary *)dictionaryForChatsWithActivity:(MDActivity *)anActivity
+                                           page:(NSInteger)aPage
+                                       pageSize:(NSInteger)aPageSize;
+{
+    NSMutableDictionary *dictionary;
+    NSString *activity_id;
+    activity_id = [NSString stringWithFormat:@"%d", anActivity.id];
+    dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                  activity_id, @"activity_id",
+                  [NSString stringWithFormat:@"%d", aPage], @"page",
+                  [NSString stringWithFormat:@"%d", aPageSize], @"page_size",
+                  nil];
+    
     return [self dictionaryWithDictionary:dictionary];
 }
 
 -(NSDictionary *)dictionaryForChatsWithActivity:(MDActivity *)anActivity
                                            page:(NSInteger)aPage
 {
-    return [self dictionaryForMessagesWithActivity:anActivity page:aPage];
+    return [self dictionaryForChatsWithActivity:anActivity
+                                           page:aPage
+                                       pageSize:0];
 }
 
 @end

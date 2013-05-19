@@ -72,6 +72,11 @@
         [appDelegate hideHUD];
         [self.arrayChats addObjectsFromArray:chats];
         [self.tableView reloadData];
+        if(self.arrayChats.count>0){
+            NSIndexPath * ndxPath= [NSIndexPath indexPathForRow:self.arrayChats.count-1 inSection:0];
+    	    [self.tableView scrollToRowAtIndexPath:ndxPath atScrollPosition:UITableViewScrollPositionTop  animated:YES];
+        }
+        
     } failure:^(NSError *error) {
         [appDelegate hideHUD];
     }];

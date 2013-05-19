@@ -107,7 +107,7 @@
                      initWithFrame: CGRectMake(0.0f, 0.0f, 80.0f, 80.0f)];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
-//        imageView.tag = IMAGE_VIEW_TAG;
+        imageView.tag = IMAGE_VIEW_TAG;
         
         [cell addSubview: imageView];
         
@@ -127,10 +127,11 @@
     if (nil != activity.owner.avatar) {
         [imageView setImageWithURL:[NSURL URLWithString:activity.owner.avatar]];
      } else {
-         [imageView setImageWithURL:
-          [NSURL URLWithString:[[NSBundle mainBundle]
-                                pathForResource:@"default_avatar.png"
-                                ofType:@"png"]]];
+//         [imageView setImageWithURL:
+//          [NSURL URLWithString:[[NSBundle mainBundle]
+//                                pathForResource:@"default_avatar"
+//                                ofType:@"png"]]];
+         [imageView setImage:[UIImage imageNamed:@"default_avatar"]];
      }
     
     return cell;

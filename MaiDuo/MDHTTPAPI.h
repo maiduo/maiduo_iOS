@@ -148,7 +148,6 @@
                     success:(void (^)(NSArray *messages))success
                     failure:(void (^)(NSError *error))failure;
 
-
 /** 查询聊天纪录
  
  @param activity MDActivity对象必须包含`id`属性。
@@ -169,6 +168,12 @@
  */
 -(void)chatsWithActivity:(MDActivity *)activity
                     page:(NSInteger)page
+                 success:(void (^)(NSArray *chats))success
+                 failure:(void (^)(NSError *error))failure;
+
+-(void)chatsWithActivity:(MDActivity *)activity
+                    page:(NSInteger)page
+                pageSize:(NSInteger)pageSize
                  success:(void (^)(NSArray *chats))success
                  failure:(void (^)(NSError *error))failure;
 
