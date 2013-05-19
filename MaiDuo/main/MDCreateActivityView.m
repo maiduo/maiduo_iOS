@@ -56,11 +56,17 @@
                                          fieldHeight - padding * 2)];
     _subject.leftViewMode = UITextFieldViewModeAlways;
     _subject.leftView = _label;
+    _subject.text = @"默认活动。";
     [self addSubview: _subject];
     
     _separator = [[UIView alloc] initWithFrame:CGRectMake(0, 43, w, 1)];
     [_separator setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
     [self addSubview:_separator];
+}
+
+-(NSString *)activitySubject
+{
+    return _subject.text;
 }
 
 @end

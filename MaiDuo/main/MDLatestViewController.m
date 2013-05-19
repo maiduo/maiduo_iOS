@@ -15,6 +15,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "MDPersonDetailViewController.h"
 #import <AFNetworking/AFNetworking.h>
+#import "MDCreateActivityViewController.h"
 
 @interface MDLatestViewController ()
 
@@ -26,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"view did load.");
+    NSLog(@"latest view controller did load.");
     
     [[self navigationItem] setTitle: @"最新活动"];
     
@@ -50,6 +51,7 @@
     self.tableView.dataSource=self;
     [self.view addSubview: self.tableView];
 }
+
 -(void) viewDidAppear:(BOOL)animated
 {
     if(activities.count==0){
@@ -60,15 +62,50 @@
 
 - (void)addActivity
 {
-    MDSendMessageViewController *sendMessage;
-    sendMessage = [[MDSendMessageViewController alloc] initWithMode:ACTIVITY_MODE];
-    [self.navigationController pushViewController:sendMessage animated:YES];
+    MDCreateActivityViewController *createActivity;
+//    createActivity = [[MDCreateActivityViewController alloc]
+//                      initWithDelegate:self];
+    createActivity = [[MDCreateActivityViewController alloc] init];
+    [self.navigationController pushViewController:createActivity
+                                         animated:YES];
+}
+
+-(void)refresh
+{
+    [self.tableView autoLoadData];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Create activity delegate
+
+-(void)didCreateActivity:(MDActivity *)anActivity
+{
+    if (0 == anActivity.id) {
+        [activities insertObject:anActivity atIndex:0];
+    } else {
+        __block NSInteger found;
+        [activities enumerateObjectsUsingBlock:^(id obj, NSUInteger idx,
+                                                 BOOL *stop) {
+            MDActivity *iterActivity = (MDActivity *)obj;
+            if ([anActivity.subject isEqualToString:iterActivity.subject]) {
+                found = idx;
+            }
+        }];
+        MDActivity *willDelete = [activities objectAtIndex:found];
+        willDelete = nil;
+        [activities replaceObjectAtIndex:found withObject:anActivity];
+        [self.tableView reloadData];
+    }
+}
+
+-(void)didReceiveFailure:(NSError *)aError
+{
+    
 }
 
 #pragma mark - Table view data source
@@ -179,7 +216,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)startLoadData:(id)sender
 {
     [_api activitiesSuccess:^(NSArray *anActivies) {
-        activities = anActivies;
+        activities = [NSMutableArray arrayWithArray: anActivies];
         [self.tableView loaded];
     } failure:^(NSError *error) {
         NSLog(@"Error");

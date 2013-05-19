@@ -13,7 +13,6 @@
 @end
 
 @implementation MDCreateActivityViewController
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -35,7 +34,28 @@
 
 - (void)didClickConfirm:(id)sender
 {
+    MDActivity *activity;
+    activity = [MDActivity
+                activityWithSubject:[_createActivityView activitySubject]];
+
+    MDAppDelegate *app = [[UIApplication sharedApplication] delegate];
+    [app showHUDWithLabel:@"发送数据 ..."];
     
+    __block MDLatestViewController *latestController;
+    
+    MDHTTPAPI *api = [[YaabUser sharedInstance] api];
+    [api createActivity:activity success:^(MDActivity *anActivity) {
+        [app hideHUD];
+        UIViewController *controller = [self.navigationController
+                                        popViewControllerAnimated:YES];
+        
+        if ([controller isKindOfClass: [MDLatestViewController class]]) {
+            latestController  = (MDLatestViewController *)controller;
+            [latestController refresh];
+            
+        }
+    } failure:^(NSError *error) {
+    }];
 }
 
 - (void)didReceiveMemoryWarning

@@ -165,6 +165,7 @@
 		90AAB18B174121A9009D7D62 /* MDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDUser.m; path = MaiDuo/MDUser.m; sourceTree = SOURCE_ROOT; };
 		90AEA38A17427BF5003305EC /* MDActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivity.h; path = MaiDuo/MDActivity.h; sourceTree = SOURCE_ROOT; };
 		90AEA38B17427BF5003305EC /* MDActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDActivity.m; path = MaiDuo/MDActivity.m; sourceTree = SOURCE_ROOT; };
+		90B251D117491572004A56BE /* MDCreateActivityDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCreateActivityDelegate.h; sourceTree = "<group>"; };
 		90C1B6AD17475EAC00307909 /* MDCreateActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCreateActivityViewController.h; sourceTree = "<group>"; };
 		90C1B6AE17475EAC00307909 /* MDCreateActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCreateActivityViewController.m; sourceTree = "<group>"; };
 		90CC64011743D7CD00DF2E4D /* MDChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDChat.h; sourceTree = "<group>"; };
@@ -340,6 +341,18 @@
 			name = push;
 			sourceTree = "<group>";
 		};
+		90B251D01749154A004A56BE /* MDCreateActivity */ = {
+			isa = PBXGroup;
+			children = (
+				90A9CAE8174695740024218D /* MDCreateActivityView.h */,
+				90A9CAE9174695740024218D /* MDCreateActivityView.m */,
+				90C1B6AD17475EAC00307909 /* MDCreateActivityViewController.h */,
+				90C1B6AE17475EAC00307909 /* MDCreateActivityViewController.m */,
+				90B251D117491572004A56BE /* MDCreateActivityDelegate.h */,
+			);
+			name = MDCreateActivity;
+			sourceTree = "<group>";
+		};
 		90EF5CA917257DC500AFE074 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,6 +474,7 @@
 		AA315DE1173F8720009BA36E /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				90B251D01749154A004A56BE /* MDCreateActivity */,
 				AA315DF8173F8FE6009BA36E /* MDActivityTableViewController.h */,
 				AA315DF9173F8FE6009BA36E /* MDActivityTableViewController.m */,
 				AA315DF5173F8F4F009BA36E /* MDSendMessageViewController.h */,
@@ -475,10 +489,6 @@
 				C8D1A43F17431ADE00398568 /* MDActivityMesViewController.m */,
 				902CD8921743CBB700429D64 /* MDPersonDetailViewController.h */,
 				902CD8931743CBB700429D64 /* MDPersonDetailViewController.m */,
-				90A9CAE8174695740024218D /* MDCreateActivityView.h */,
-				90A9CAE9174695740024218D /* MDCreateActivityView.m */,
-				90C1B6AD17475EAC00307909 /* MDCreateActivityViewController.h */,
-				90C1B6AE17475EAC00307909 /* MDCreateActivityViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";

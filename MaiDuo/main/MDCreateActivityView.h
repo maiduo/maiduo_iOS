@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MDActivity.h"
+
 @interface MDCreateActivityView : UIScrollView
 {
     UIView *_separator;
     UITextField *_subject;
     UILabel *_label;
 }
+
+-(NSString *)activitySubject;
+
 @end

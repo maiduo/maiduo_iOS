@@ -15,6 +15,7 @@
 #import "iToast.h"
 #import "MBProgressHUD.h"
 
+
 @interface MDAppDelegate() <MDLoginViewControllerDelegate>{
     MBProgressHUD *_HUD;
 }
@@ -68,6 +69,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         self.navigationController = [[UINavigationController alloc]
                                      initWithRootViewController:loginViewController];
     }
+    
     
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
