@@ -70,7 +70,7 @@
 }
 
 -(void)createActivity:(MDActivity *)activity
-              success:(void (^)(MDActivity *))success
+              success:(void (^)(MDActivity *anActivity))success
               failure:(void (^)(NSError *error))failure
 {
     void (^blockSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id JSON) {
