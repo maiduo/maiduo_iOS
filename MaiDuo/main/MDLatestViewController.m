@@ -244,7 +244,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     
     [_api activitiesSuccess:^(NSArray *anActivies) {
         activities = anActivies;
-        [self.tableView loaded];
+        [self.tableView refreshTableView];
     } failure:^(NSError *error) {
         NSLog(@"Error");
     }];
