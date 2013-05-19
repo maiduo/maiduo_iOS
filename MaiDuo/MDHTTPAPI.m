@@ -29,7 +29,6 @@
         self.factory = [MDHTTPAPIFactory factoryWithAccessToken:user.accessToken
                                                         service:@"dev"];
     }
-    
     return self;
 }
 
