@@ -7,21 +7,9 @@
 //
 
 #import "MDActivityMesViewController.h"
-#import "MDChat.h"
-#import "MDUserManager.h"
-#import "MDHTTPAPI.h"
-#import "YaabUser.h"
-#import "MDAppDelegate.h"
 
-#define chatIDKey @"chat_id"
-#define chatTextKey @"text"
-#define timeStampsKey @"created_at"
+@interface MDActivityMesViewController ()
 
-@interface MDActivityMesViewController (){
-    NSUInteger _currentPageIndex;
-}
-
-@property (strong,nonatomic) NSMutableArray *arrayChats;
 @end
 
 @implementation MDActivityMesViewController
@@ -48,33 +36,21 @@
     self.delegate = self;
     self.dataSource = self;
     
-    //self.title = @"Messages";
+    self.title = @"Messages";
     
-//    self.messages = [[NSMutableArray alloc] initWithObjects:
-//                     @"Testing some messages here.",
-//                     @"This work is based on Sam Soffes' SSMessagesViewController.",
-//                     @"This is a complete re-write and refactoring.",
-//                     @"It's easy to implement. Sound effects and images included. Animations are smooth and messages can be of arbitrary size!",
-//                     nil];
-//    
-//    self.timestamps = [[NSMutableArray alloc] initWithObjects:
-//                       [NSDate distantPast],
-//                       [NSDate distantPast],
-//                       [NSDate distantPast],
-//                       [NSDate date],
-//                       nil];
-    self.arrayChats=[NSMutableArray array];
-    MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate showHUDWithLabel:@"正在获取聊天..."];
-    [[[YaabUser sharedInstance] api] chatsWithActivity:self.activity
-                                                 page:_currentPageIndex+1
-    success:^(NSArray *chats) {
-        [appDelegate hideHUD];
-        [self.arrayChats addObjectsFromArray:chats];
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        [appDelegate hideHUD];
-    }];
+    self.messages = [[NSMutableArray alloc] initWithObjects:
+                     @"Testing some messages here.",
+                     @"This work is based on Sam Soffes' SSMessagesViewController.",
+                     @"This is a complete re-write and refactoring.",
+                     @"It's easy to implement. Sound effects and images included. Animations are smooth and messages can be of arbitrary size!",
+                     nil];
+    
+    self.timestamps = [[NSMutableArray alloc] initWithObjects:
+                       [NSDate distantPast],
+                       [NSDate distantPast],
+                       [NSDate distantPast],
+                       [NSDate date],
+                       nil];
 
 }
 
@@ -86,46 +62,32 @@
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.arrayChats.count;
+    return self.messages.count;
 }
 
 #pragma mark - Messages view delegate
 - (void)sendPressed:(UIButton *)sender withText:(NSString *)text
 {
-   
+    [self.messages addObject:text];
     
-    [JSMessageSoundEffect playMessageSentSound];
+    [self.timestamps addObject:[NSDate date]];
     
-    MDChat *chat=[MDChat chatWithText:text activity:self.activity user:[[MDUserManager sharedInstance] getUserSession]];
+    if((self.messages.count - 1) % 2)
+        [JSMessageSoundEffect playMessageSentSound];
+    else
+        [JSMessageSoundEffect playMessageReceivedSound];
     
-    MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate showHUDWithLabel:@"正在发送..."];
-    [[[YaabUser sharedInstance] api] sendChat:chat success:^(MDChat *chat) {
-        [appDelegate hideHUD];
-        
-         
-        [self.arrayChats addObject:chat];
-        
-//        [self.messages addObject:text];
-//        [self.timestamps addObject:[NSDate date]];
-        [self finishSend];
-    } failure:^(NSError *error) {
-        [appDelegate hideHUD];
-        NSLog(@"fail send chat");
-    }];
-        
-    
+    [self finishSend];
 }
 
 - (JSBubbleMessageStyle)messageStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //return (indexPath.row % 2) ? JSBubbleMessageStyleIncomingDefault : JSBubbleMessageStyleOutgoingDefault;
-    return JSBubbleMessageStyleIncomingDefault;
+    return (indexPath.row % 2) ? JSBubbleMessageStyleIncomingDefault : JSBubbleMessageStyleOutgoingDefault;
 }
 
 - (JSMessagesViewTimestampPolicy)timestampPolicyForMessagesView
 {
-    return JSMessagesViewTimestampPolicyAll;
+    return JSMessagesViewTimestampPolicyEveryThree;
 }
 
 - (BOOL)hasTimestampForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -137,21 +99,16 @@
 #pragma mark - Messages view data source
 - (NSString *)textForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MDChat *chat=self.arrayChats[indexPath.row];
-    return chat.text;
-    //return [self.messages objectAtIndex:indexPath.row];
+    return [self.messages objectAtIndex:indexPath.row];
 }
 - (NSString *)photoForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     NSString *photoUrl=[NSString stringWithFormat:@"photo%d",indexPath.row%2];
     
     return photoUrl;
 }
 - (NSDate *)timestampForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MDChat *chat=self.arrayChats[indexPath.row];
-    return chat.createAt;
-    //return [self.timestamps objectAtIndex:indexPath.row];
+    return [self.timestamps objectAtIndex:indexPath.row];
 }
 @end
