@@ -82,8 +82,9 @@
         case MDActivityViewStateMes:
             if (_mesView==nil) {
                 self.mesVC = [[MDActivityMesViewController alloc] init];
-                self.mesVC.activity=self.activity;
+                _mesVC.activity=self.activity;
                 _mesView=_mesVC.view;
+                
                 _mesView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
                 //_mesView.viewController = self;
             }
