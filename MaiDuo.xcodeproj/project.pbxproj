@@ -83,7 +83,7 @@
 		AA315E03173F91CF009BA36E /* MDMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E01173F91CF009BA36E /* MDMessage.m */; };
 		AA315E06173F9629009BA36E /* MDActivityActView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E05173F9629009BA36E /* MDActivityActView.m */; };
 		AA315E0A173F9670009BA36E /* MDActivityMesView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E09173F9670009BA36E /* MDActivityMesView.m */; };
-		AA315E10173F9725009BA36E /* MDActivityConView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E0F173F9725009BA36E /* MDActivityConView.m */; };
+		AA315E10173F9725009BA36E /* MDActivityContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E0F173F9725009BA36E /* MDActivityContactView.m */; };
 		AA315E13173FA79B009BA36E /* MDActivityContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E12173FA79A009BA36E /* MDActivityContentView.m */; };
 		AA315E17173FAFB2009BA36E /* MDActivityConCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E16173FAFB1009BA36E /* MDActivityConCell.m */; };
 		AA9954F11740020600FF5BFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9954F01740020600FF5BFF /* SystemConfiguration.framework */; };
@@ -217,8 +217,8 @@
 		AA315E05173F9629009BA36E /* MDActivityActView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityActView.m; sourceTree = "<group>"; };
 		AA315E08173F9670009BA36E /* MDActivityMesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityMesView.h; sourceTree = "<group>"; };
 		AA315E09173F9670009BA36E /* MDActivityMesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityMesView.m; sourceTree = "<group>"; };
-		AA315E0E173F9725009BA36E /* MDActivityConView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityConView.h; sourceTree = "<group>"; };
-		AA315E0F173F9725009BA36E /* MDActivityConView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityConView.m; sourceTree = "<group>"; };
+		AA315E0E173F9725009BA36E /* MDActivityContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityContactView.h; sourceTree = "<group>"; };
+		AA315E0F173F9725009BA36E /* MDActivityContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityContactView.m; sourceTree = "<group>"; };
 		AA315E11173FA79A009BA36E /* MDActivityContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityContentView.h; sourceTree = "<group>"; };
 		AA315E12173FA79A009BA36E /* MDActivityContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityContentView.m; sourceTree = "<group>"; };
 		AA315E15173FAFB1009BA36E /* MDActivityConCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityConCell.h; sourceTree = "<group>"; };
@@ -555,8 +555,8 @@
 				AA315E05173F9629009BA36E /* MDActivityActView.m */,
 				AA315E08173F9670009BA36E /* MDActivityMesView.h */,
 				AA315E09173F9670009BA36E /* MDActivityMesView.m */,
-				AA315E0E173F9725009BA36E /* MDActivityConView.h */,
-				AA315E0F173F9725009BA36E /* MDActivityConView.m */,
+				AA315E0E173F9725009BA36E /* MDActivityContactView.h */,
+				AA315E0F173F9725009BA36E /* MDActivityContactView.m */,
 				AA315E15173FAFB1009BA36E /* MDActivityConCell.h */,
 				AA315E16173FAFB1009BA36E /* MDActivityConCell.m */,
 			);
@@ -818,7 +818,7 @@
 				AA315E03173F91CF009BA36E /* MDMessage.m in Sources */,
 				AA315E06173F9629009BA36E /* MDActivityActView.m in Sources */,
 				AA315E0A173F9670009BA36E /* MDActivityMesView.m in Sources */,
-				AA315E10173F9725009BA36E /* MDActivityConView.m in Sources */,
+				AA315E10173F9725009BA36E /* MDActivityContactView.m in Sources */,
 				AA315E13173FA79B009BA36E /* MDActivityContentView.m in Sources */,
 				AA315E17173FAFB2009BA36E /* MDActivityConCell.m in Sources */,
 				90AAB18017411E85009D7D62 /* iToast.m in Sources */,

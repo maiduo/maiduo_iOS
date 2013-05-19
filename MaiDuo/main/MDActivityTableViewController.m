@@ -9,13 +9,13 @@
 #import "MDActivityTableViewController.h"
 #import "AsyncImageView.h"
 #import "MDActivityActView.h"
-#import "MDActivityConView.h"
+#import "MDActivityContactView.h"
 #import "MDActivityMesView.h"
 #import "MDActivityMesViewController.h"
 
 @interface MDActivityTableViewController () {
     MDActivityActView *_actView;
-    MDActivityConView *_conView;
+    MDActivityContactView *_conView;
     UIView *_mesView;
     UIView *_currentContentView;
 }
@@ -93,7 +93,7 @@
             break;
         case MDActivityViewStateCon:
             if (_conView==nil) {
-                _conView = [[MDActivityConView alloc] initWithFrame:self.view.bounds];
+                _conView = [[MDActivityContactView alloc] init];
                 _conView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
                 _conView.viewController = self;
             }

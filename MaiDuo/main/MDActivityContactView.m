@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 魏琮举. All rights reserved.
 //
 
-#import "MDActivityConView.h"
+#import "MDActivityContactView.h"
 #import "MDActivityConCell.h"
 
-@implementation MDActivityConView
+@implementation MDActivityContactView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -57,12 +57,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifier = @"MDActivityConCell";
-    MDActivityConCell *cell = (MDActivityConCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell==nil) {
-        cell = [[MDActivityConCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
+    static NSString *identifier = @"MDActivityContactTableViewCell";
+//    MDActivityConCell *cell = (MDActivityConCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+//    if (cell==nil) {
+//        cell = [[MDActivityConCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
+//    }
+//    cell.item = [_source objectAtIndex:indexPath.row];
+    
+    UITableViewCell *cell;
+    cell = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
+    
+    if (nil == cell) {
+        cell = [[UITableViewCell alloc]
+                initWithStyle:UITableViewCellStyleSubtitle
+                reuseIdentifier:identifier];
     }
-    cell.item = [_source objectAtIndex:indexPath.row];
+    
+//    cell.textLabel.text
+    
     return cell;
 }
 
@@ -70,6 +82,8 @@
 {
     return [MDActivityConCell heightWithItem:[_source objectAtIndex:indexPath.row]];
 }
+
+#pragma mark ABPeoplePickerNavigationControllerDelegate
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
 {

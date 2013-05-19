@@ -11,7 +11,8 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 
-@interface MDActivityConView : MDActivityContentView <UITableViewDelegate, UITableViewDataSource, ABPeoplePickerNavigationControllerDelegate> {
+@interface MDActivityContactView : MDActivityContentView <UITableViewDelegate,
+UITableViewDataSource, ABPeoplePickerNavigationControllerDelegate> {
     UITableView *_tableView;
     NSMutableArray *_source;
 }
