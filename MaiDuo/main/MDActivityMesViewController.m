@@ -88,19 +88,14 @@
 
 #pragma mark - Messages view delegate
 - (void)sendPressed:(UIButton *)sender withText:(NSString *)text
-{
-   
-    
-    [JSMessageSoundEffect playMessageSentSound];
-    
+{    
     MDChat *chat=[MDChat chatWithText:text activity:self.activity user:[[MDUserManager sharedInstance] getUserSession]];
     
     MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate showHUDWithLabel:@"正在发送..."];
     [[[YaabUser sharedInstance] api] sendChat:chat success:^(MDChat *chat) {
+        [JSMessageSoundEffect playMessageSentSound];
         [appDelegate hideHUD];
-        
-         
         [self.arrayChats addObject:chat];
         
 //        [self.messages addObject:text];
@@ -170,7 +165,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //NSLog(@"scrollViewDidScroll");
-    if(scrollView.contentOffset.y < -15.0f && !_loading&&!_noMore){
+    if(scrollView.contentOffset.y < -35.0f && !_loading&&!_noMore){
         _loading=YES;
         if(!_indicatorView){
             _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -199,11 +194,14 @@
                                                            [self.tableView reloadData];
                                                            
                                                            NSUInteger scrollToIndex=MIN(kPageSize, chats.count);
-                                                           NSIndexPath * ndxPath= [NSIndexPath indexPathForRow:scrollToIndex-1 inSection:0];
+                                                           NSIndexPath * ndxPath= [NSIndexPath indexPathForRow:scrollToIndex inSection:0];
                                                            [self.tableView scrollToRowAtIndexPath:ndxPath atScrollPosition:UITableViewScrollPositionTop  animated:NO];
                                                        }
                                                        [_indicatorView stopAnimating];
                                                        [_indicatorView removeFromSuperview];
+                                               
+                                                       scrollView.contentInset = UIEdgeInsetsZero;
+                                                       
                                                        
                                                    } failure:^(NSError *error) {
                                                        _currentPageIndex--;
@@ -220,7 +218,12 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     //NSLog(@"scrollViewDidEndDragging");
-    
+    if(_loading){
+//        CGFloat offset = MAX(scrollView.contentOffset.y * -1, 0);
+//		offset = MIN(offset, 35);
+        CGFloat offset=35;
+		scrollView.contentInset = UIEdgeInsetsMake(offset, 0.0f, 0.0f, 0.0f);
+    }
     
 }
 @end

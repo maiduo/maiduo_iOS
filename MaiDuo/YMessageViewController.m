@@ -186,7 +186,11 @@
     
     // warn re restricted access to contacts
     if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusRestricted){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"RHAuthorizationStatusRestricted" message:@"Access to the addressbook is currently restricted." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"RHAuthorizationStatusRestricted"
+                              message:@"Access to the addressbook is currently restricted."
+                              delegate:nil cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
         [alert show];
     }
 }

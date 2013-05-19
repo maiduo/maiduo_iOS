@@ -139,7 +139,7 @@
 
 -(void) autoLoadData
 {
-    [self reloadTableViewDataSource];
+    //[self reloadTableViewDataSource];
     [UIView beginAnimations:nil context:UIGraphicsGetCurrentContext()];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDuration:0.4f];
@@ -161,16 +161,7 @@
     [_refreshHeaderView egoRefreshScrollViewDidEndDragging:self];
 }
 
--(void) loaded
-{
-    [UIView beginAnimations:nil context:UIGraphicsGetCurrentContext()];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:0.4f];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(finishedAnimationForLoad:)];
-    [self setContentOffset:CGPointMake(0, 0)];
-    [UIView commitAnimations];
-}
+
 
 -(void) finishedAnimationForLoad:(id)sender
 {

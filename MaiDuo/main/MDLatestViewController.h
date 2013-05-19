@@ -10,11 +10,14 @@
 #import "MDHTTPAPI.h"
 #import "YaabUser.h"
 #import "EGORefreshTableHeaderView.h"
+#import "MDCreateActivityDelegate.h"
 
 @interface MDLatestViewController : UIViewController<UITableViewDataSource,
-UITableViewDelegate> {
-    NSArray* activities;
+UITableViewDelegate, MDCreateActivityDelegate> {
+    NSMutableArray* activities;
     MDHTTPAPI *_api;
 }
+
+-(void)refresh;
 
 @end
