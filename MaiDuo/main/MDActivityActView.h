@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "MDActivityContentView.h"
+#import "MDActivity.h"
+
 
 @interface MDActivityActView : MDActivityContentView <UITableViewDataSource, UITableViewDelegate> {
     UITableView *_tableView;
     NSMutableArray *_source;
+    NSMutableArray *_message;
 }
+
+@property (strong, nonatomic) MDActivity *activity;
 
 @end

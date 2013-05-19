@@ -70,8 +70,9 @@
         case MDActivityViewStateAct:
             if (_actView==nil) {
                 _actView = [[MDActivityActView alloc] initWithFrame:self.view.bounds];
+                self.mesVC.activity = self.activity;
                 _actView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                _actView.viewController = self;
+//                _actView.viewController = self;
             }
             _currentContentView = _actView;
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
