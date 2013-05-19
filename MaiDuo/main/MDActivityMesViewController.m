@@ -19,6 +19,8 @@
 
 @interface MDActivityMesViewController (){
     NSUInteger _currentPageIndex;
+    BOOL _loading;
+    UIActivityIndicatorView *_indicatorView;
 }
 
 @property (strong,nonatomic) NSMutableArray *arrayChats;
@@ -74,7 +76,7 @@
         [self.tableView reloadData];
         if(self.arrayChats.count>0){
             NSIndexPath * ndxPath= [NSIndexPath indexPathForRow:self.arrayChats.count-1 inSection:0];
-    	    [self.tableView scrollToRowAtIndexPath:ndxPath atScrollPosition:UITableViewScrollPositionTop  animated:YES];
+    	    [self.tableView scrollToRowAtIndexPath:ndxPath atScrollPosition:UITableViewScrollPositionTop  animated:NO];
         }
         
     } failure:^(NSError *error) {
@@ -148,6 +150,7 @@
 #pragma mark - Messages view data source
 - (NSString *)textForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"index:%d",indexPath.row);
     MDChat *chat=self.arrayChats[indexPath.row];
     return chat.text;
     //return [self.messages objectAtIndex:indexPath.row];
@@ -168,5 +171,56 @@
     MDChat *chat=self.arrayChats[indexPath.row];
     return chat.createAt;
     //return [self.timestamps objectAtIndex:indexPath.row];
+}
+
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+// 页面滚动时回调
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //NSLog(@"scrollViewDidScroll");
+    if(scrollView.contentOffset.y < -10.0f && !_loading){
+        _loading=YES;
+        if(!_indicatorView){
+            _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            _indicatorView.frame = CGRectMake(0.0f,  0.0f, 20.0f, 20.0f);
+            _indicatorView.center=CGPointMake(self.view.center.x, -15.0f);
+        }
+		[self.tableView addSubview:_indicatorView];
+        [_indicatorView startAnimating];
+        
+        _currentPageIndex++;
+        [[[YaabUser sharedInstance] api] chatsWithActivity:self.activity
+                                                      page:_currentPageIndex+1
+                                                   success:^(NSArray *chats) {
+                                                       
+                                                       NSRange range = NSMakeRange(0, [chats count]);
+                                                       NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+                                                       
+                                                       
+                                                       [self.arrayChats insertObjects:chats atIndexes:indexSet];
+                                                       [self.tableView reloadData];
+                                                       [_indicatorView stopAnimating];
+                                                       [_indicatorView removeFromSuperview];
+                                                       _loading=NO;
+                                                       
+                                                   } failure:^(NSError *error) {
+                                                       _currentPageIndex--;
+                                                       [_indicatorView stopAnimating];
+                                                       [_indicatorView removeFromSuperview];
+                                                       _loading=NO;
+                                                   }];
+        
+    }
+    
+}
+
+// 滚动结束时回调
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    //NSLog(@"scrollViewDidEndDragging");
+    
+    
 }
 @end
