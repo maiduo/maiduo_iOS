@@ -46,5 +46,8 @@
                                               page:(NSInteger)aPage;
 -(NSDictionary *)dictionaryForChatsWithActivity:(MDActivity *)anActivity
                                            page:(NSInteger)aPage;
+-(NSDictionary *)dictionaryForChatsWithActivity:(MDActivity *)anActivity
+                                           page:(NSInteger)aPage
+                                       pageSize:(NSInteger)aPageSize;
 -(NSDictionary *)dictionaryForAccessToken;
 @end

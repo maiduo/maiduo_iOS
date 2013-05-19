@@ -12,6 +12,7 @@
 #import "MDMessage.h"
 #import "MDActivity.h"
 #import "MDChat.h"
+#import "MDCache.h"
 
 /** 麦垛服务接口库
  
@@ -54,6 +55,7 @@
 @interface MDHTTPAPI : NSObject
 {
     NSString *url;
+    MDCache *_cache;
 }
 
 @property(nonatomic, strong) MDUser *user;
@@ -97,7 +99,7 @@
  
  */
 -(void)createActivity:(MDActivity *)activity
-              success:(void (^)(MDActivity *))success
+              success:(void (^)(MDActivity *anActivity))success
               failure:(void (^)(NSError *error))failure;
 
 /** 发送消息
@@ -148,7 +150,6 @@
                     success:(void (^)(NSArray *messages))success
                     failure:(void (^)(NSError *error))failure;
 
-
 /** 查询聊天纪录
  
  @param activity MDActivity对象必须包含`id`属性。
@@ -169,6 +170,12 @@
  */
 -(void)chatsWithActivity:(MDActivity *)activity
                     page:(NSInteger)page
+                 success:(void (^)(NSArray *chats))success
+                 failure:(void (^)(NSError *error))failure;
+
+-(void)chatsWithActivity:(MDActivity *)activity
+                    page:(NSInteger)page
+                pageSize:(NSInteger)pageSize
                  success:(void (^)(NSArray *chats))success
                  failure:(void (^)(NSError *error))failure;
 

@@ -67,7 +67,7 @@
                                 owner:[MDUser userWithJSON:
                                        [JSON objectForKey:@"owner"]]
                                 users:[MDUser usersWithJSON:
-                                       [JSON objectForKey:@"users"]]];
+                                       [JSON objectForKey:@"user"]]];
 }
 
 +(MDActivity *)activityWithID:(NSInteger)aID
