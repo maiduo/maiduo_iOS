@@ -45,11 +45,12 @@
     _api = [[YaabUser sharedInstance] api];
     
 
-    self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size.width,self.view.bounds.size.height-44}];
+    self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size}];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     [self.view addSubview: self.tableView];
 }
+
 -(void) viewDidAppear:(BOOL)animated
 {
     if(activities.count==0){
@@ -107,7 +108,7 @@
                      initWithFrame: CGRectMake(0.0f, 0.0f, 80.0f, 80.0f)];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
-//        imageView.tag = IMAGE_VIEW_TAG;
+        imageView.tag = IMAGE_VIEW_TAG;
         
         [cell addSubview: imageView];
         
@@ -127,10 +128,11 @@
     if (nil != activity.owner.avatar) {
         [imageView setImageWithURL:[NSURL URLWithString:activity.owner.avatar]];
      } else {
-         [imageView setImageWithURL:
-          [NSURL URLWithString:[[NSBundle mainBundle]
-                                pathForResource:@"default_avatar.png"
-                                ofType:@"png"]]];
+//         [imageView setImageWithURL:
+//          [NSURL URLWithString:[[NSBundle mainBundle]
+//                                pathForResource:@"default_avatar"
+//                                ofType:@"png"]]];
+         [imageView setImage:[UIImage imageNamed:@"default_avatar"]];
      }
     
     return cell;
@@ -237,11 +239,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark EGOTableViewDelegate Methods
 - (void) startLoadData:(id) sender
 {
+    //[self getAllProduct];
     //请求完后调用，用来使 tableview返回正常状态
     
     [_api activitiesSuccess:^(NSArray *anActivies) {
         activities = anActivies;
-        [self.tableView refreshTableView];
+        [self.tableView loaded];
     } failure:^(NSError *error) {
         NSLog(@"Error");
     }];

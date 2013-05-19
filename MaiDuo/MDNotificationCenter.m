@@ -9,6 +9,17 @@
 #import "MDNotificationCenter.h"
 
 @implementation MDNotificationCenter
+
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        _cache = [MDCache sharedInstance];
+    }
+    
+    return self;
+}
+
 -(id)initNotificationCenterWithUser:(MDUser *)aUser
                            delegate:(id<MDNotificationCenterDelegate>)aDelegate
 {
@@ -22,12 +33,49 @@
     return self;
 }
 
--(void)send:(NSDictionary *)userInfo
+-(void)post:(NSDictionary *)userInfo
 {
     NSString *type = [userInfo objectForKey:@"type"];
+    MDActivity *activity;
+    MDUser *user;
+    NSInteger user_id;
+    NSInteger chat_id;
+    NSInteger activity_id;
+    NSInteger message_id;
+    NSString *chat_text;
+    NSString *message_body;
+    NSString *string_message_type;
+    MessageType message_type;
+    
     if ([@"message" isEqualToString:type]) {
         MDMessage *message;
-        [self.delegate didReceiveMessage:message];
+        
+        user_id = [[userInfo objectForKey:@"user_id"] intValue];
+        activity_id = [[userInfo objectForKey:@"activity_id"] intValue];
+        message_id = [[userInfo objectForKey:@"message_id"] intValue];
+        message_body = [userInfo objectForKey:@"message_body"];
+        string_message_type = [userInfo objectForKey:@"message_type"];
+        
+        activity = [_cache activity:activity_id];
+        user = [_cache user:user_id];
+        
+        if ([@"T" isEqualToString: string_message_type]) {
+            message_type = TextMessage;
+        } else if ([@"V" isEqualToString: string_message_type]) {
+            message_type = VideoMessage;
+        } else {
+            message_type = ImageMessage;
+        }
+        
+        message = [MDMessage messageWithID:message_id
+                                      body:message_body
+                                  activity:activity
+                                      user:user
+                                      type:message_type];
+        
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:kDidReceiveMessage
+         object:message];
     }
     
     if ([@"activity" isEqualToString:type]) {
@@ -36,6 +84,23 @@
     
     if ([@"chat" isEqualToString:type]) {
         MDChat *chat;
+        
+        user_id = [[userInfo objectForKey:@"user_id"] intValue];
+        activity_id = [[userInfo objectForKey:@"activity_id"] intValue];
+        chat_id = [[userInfo objectForKey:@"chat_id"] intValue];
+        chat_text = [userInfo objectForKey:@"chat_text"];
+        
+        activity = [_cache activity:activity_id];
+        user = [_cache user:user_id];
+        
+        chat = [MDChat chatWithID:chat_id
+                             text:chat_text
+                         activity:activity
+                             user:user];
+        
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:kDidReceiveChat
+         object:chat];
     }
 }
 

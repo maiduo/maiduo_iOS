@@ -16,6 +16,7 @@
     self = [super init];
     if (self) {
         url = @"https://himaiduo.com/api/";
+        _cache = [MDCache sharedInstance];
     }
     
     return self;
@@ -29,6 +30,7 @@
         self.factory = [MDHTTPAPIFactory factoryWithAccessToken:user.accessToken
                                                         service:@"dev"];
     }
+    
     return self;
 }
 
@@ -37,7 +39,20 @@
 {
     void (^blockSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id JSON) {
         NSLog(@"Activity fetch data success.");
-        success([MDActivity activitiesWithJSON:JSON]);
+        NSArray *activities = [MDActivity activitiesWithJSON:JSON];
+        [activities enumerateObjectsUsingBlock:^(id obj, NSUInteger idx,
+                                                 BOOL *stop) {
+            [_cache addActivity:obj];
+            
+            MDActivity *activity = (MDActivity *)obj;
+            [activity.users enumerateObjectsUsingBlock:^(id aIDUser,
+                                                         NSUInteger idx,
+                                                         BOOL *stop) {
+                MDUser *aUser = (MDUser *)aIDUser;
+                [_cache addUser:aUser];
+            }];
+        }];
+        success(activities);
     };
     
     void (^blockFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -108,6 +123,19 @@
                  success:(void (^)(NSArray *chats))success
                  failure:(void (^)(NSError *error))failure
 {
+    [self chatsWithActivity:activity
+                       page:page
+                   pageSize:0
+                    success:success
+                    failure:failure];
+}
+
+-(void)chatsWithActivity:(MDActivity *)activity
+                    page:(NSInteger)page
+                pageSize:(NSInteger)pageSize
+                 success:(void (^)(NSArray *chats))success
+                 failure:(void (^)(NSError *error))failure
+{
     void (^blockSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id JSON) {
         success([MDChat chatsWithJSON:JSON]);
     };
@@ -119,8 +147,9 @@
     
     NSDictionary *dictionaryMessages;
     dictionaryMessages = [self.factory
-                          dictionaryForMessagesWithActivity:activity
-                          page:page];
+                          dictionaryForChatsWithActivity:activity
+                          page:page
+                          pageSize:pageSize];
     
     NSString *messagesURL = [NSString
                              stringWithFormat:@"chats/%d/", activity.id];

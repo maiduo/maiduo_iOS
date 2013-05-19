@@ -10,7 +10,6 @@
 #import "MDLatestViewController.h"
 #import "MDSendMessageViewController.h"
 #import "MDLoginViewController.h"
-#import "MDUserManager.h"
 #import "MDHTTPAPI.h"
 #import "iToast.h"
 #import "MBProgressHUD.h"
@@ -28,13 +27,12 @@
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|
       UIRemoteNotificationTypeSound)];
-}
-
-- (void)setupNotificationCenter
-{
-    if (nil == center) {
-//        center = [MDNotificationCenter notificationCenterWithUser:
-//                                                         delegate:];
+    
+    _userManager = [MDUserManager sharedInstance];
+    if (nil == _notification) {
+        _notification = [MDNotificationCenter
+                         notificationCenterWithUser:[_userManager getUserSession]
+                         delegate:nil];
     }
 }
 
@@ -47,7 +45,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
                    initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    if ([[MDUserManager sharedInstance] userSessionValid]) {
+    if ([_userManager userSessionValid]) {
         // 只需要登陆一次
         // API使用user.accessToken保存用户状态
         
@@ -73,7 +71,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     [self.window makeKeyAndVisible];
     
     _user = [YaabUser sharedInstance];
-    [self setupNotificationCenter];
     return YES;
 }
 
@@ -113,7 +110,7 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    NSLog(@"Received");
+    [_notification post:userInfo];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
