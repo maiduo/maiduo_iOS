@@ -17,6 +17,7 @@
 #define chatTextKey @"text"
 #define timeStampsKey @"created_at"
 #define kPageSize 10
+#define kDidReceiveChat @"didReceiveChat"
 
 @interface MDActivityMesViewController (){
     NSUInteger _currentPageIndex;
@@ -26,6 +27,7 @@
 }
 
 @property (strong,nonatomic) NSMutableArray *arrayChats;
+@property (strong,nonatomic) NSMutableDictionary *dicAccessoryView;
 @end
 
 @implementation MDActivityMesViewController
@@ -51,10 +53,16 @@
 	// Do any additional setup after loading the view.
     self.delegate = self;
     self.dataSource = self;
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveChat:) name:kDidReceiveChat object:nil];
+    
+    
     _currentPageIndex=1;//页数从1开始
     self.title = @"Messages";
     
     self.arrayChats=[NSMutableArray array];
+    self.dicAccessoryView=[NSMutableDictionary dictionary];
     MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate showHUDWithLabel:@"正在获取聊天..."];
     [[[YaabUser sharedInstance] api] chatsWithActivity:self.activity
@@ -72,9 +80,14 @@
                                                } failure:^(NSError *error) {
                                                    [appDelegate hideHUD];
                                                }];
-
+    
 }
 
+-(void) viewDidUnload
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kDidReceiveChat object:nil];
+    [super viewDidUnload];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -88,24 +101,33 @@
 
 #pragma mark - Messages view delegate
 - (void)sendPressed:(UIButton *)sender withText:(NSString *)text
-{    
+{
     MDChat *chat=[MDChat chatWithText:text activity:self.activity user:[[MDUserManager sharedInstance] getUserSession]];
+    [JSMessageSoundEffect playMessageSentSound];
+    [self.arrayChats addObject:chat];
+    UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    indicatorView.frame = CGRectMake(0.0f,  0.0f, 20.0f, 20.0f);
+    [indicatorView startAnimating];
+    NSString *key=[NSString stringWithFormat:@"%d",self.arrayChats.count-1];
+    [self.dicAccessoryView setObject:indicatorView forKey:key];
+    [self finishSend];
     
-    MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate showHUDWithLabel:@"正在发送..."];
+    //MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
+    //[appDelegate showHUDWithLabel:@"正在发送..."];
     [[[YaabUser sharedInstance] api] sendChat:chat success:^(MDChat *chat) {
-        [JSMessageSoundEffect playMessageSentSound];
-        [appDelegate hideHUD];
-        [self.arrayChats addObject:chat];
+        //[appDelegate hideHUD];
+        [indicatorView stopAnimating];
+        [indicatorView removeFromSuperview];
+        [self.dicAccessoryView removeObjectForKey:key];
         
-//        [self.messages addObject:text];
-//        [self.timestamps addObject:[NSDate date]];
-        [self finishSend];
     } failure:^(NSError *error) {
-        [appDelegate hideHUD];
+        //[appDelegate hideHUD];
+        [indicatorView stopAnimating];
+        [indicatorView removeFromSuperview];
+        [self.dicAccessoryView removeObjectForKey:key];
         NSLog(@"fail send chat");
     }];
-        
+    
     
 }
 
@@ -151,6 +173,12 @@
     }
     return photoUrl;
 }
+-(UIView*) accessoryViewForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *key=[NSString stringWithFormat:@"%d",indexPath.row];
+    UIView *accessoryView=[self.dicAccessoryView objectForKey:key];
+    return accessoryView;
+}
 - (NSDate *)timestampForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MDChat *chat=self.arrayChats[indexPath.row];
@@ -165,7 +193,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //NSLog(@"scrollViewDidScroll");
-    if(scrollView.contentOffset.y < -35.0f && !_loading&&!_noMore){
+    if(scrollView.contentOffset.y < -15.0f && !_loading&&!_noMore){
         _loading=YES;
         if(!_indicatorView){
             _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -184,7 +212,7 @@
                                                        if(chats.count==0){
                                                            _noMore=YES;
                                                            _currentPageIndex--;
-                                                        
+                                                           
                                                        }else{
                                                            NSRange range = NSMakeRange(0, [chats count]);
                                                            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
@@ -194,14 +222,11 @@
                                                            [self.tableView reloadData];
                                                            
                                                            NSUInteger scrollToIndex=MIN(kPageSize, chats.count);
-                                                           NSIndexPath * ndxPath= [NSIndexPath indexPathForRow:scrollToIndex inSection:0];
+                                                           NSIndexPath * ndxPath= [NSIndexPath indexPathForRow:scrollToIndex-1 inSection:0];
                                                            [self.tableView scrollToRowAtIndexPath:ndxPath atScrollPosition:UITableViewScrollPositionTop  animated:NO];
                                                        }
                                                        [_indicatorView stopAnimating];
                                                        [_indicatorView removeFromSuperview];
-                                               
-                                                       scrollView.contentInset = UIEdgeInsetsZero;
-                                                       
                                                        
                                                    } failure:^(NSError *error) {
                                                        _currentPageIndex--;
@@ -218,12 +243,15 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     //NSLog(@"scrollViewDidEndDragging");
-    if(_loading){
-//        CGFloat offset = MAX(scrollView.contentOffset.y * -1, 0);
-//		offset = MIN(offset, 35);
-        CGFloat offset=35;
-		scrollView.contentInset = UIEdgeInsetsMake(offset, 0.0f, 0.0f, 0.0f);
-    }
+    
     
 }
+#pragma mark -
+#pragma mark Customer Methods
+-(void) receiveChat:(NSNotification *)note
+{
+    NSDictionary *dicInfo = note.userInfo;
+}
+
+
 @end
