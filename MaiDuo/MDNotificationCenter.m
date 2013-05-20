@@ -46,6 +46,7 @@
     NSString *message_body;
     NSString *string_message_type;
     MessageType message_type;
+    NSDictionary *aUserInfo;
     
     if ([@"message" isEqualToString:type]) {
         MDMessage *message;
@@ -72,10 +73,12 @@
                                   activity:activity
                                       user:user
                                       type:message_type];
-        
+        aUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:message,
+                     @"object", nil];
         [[NSNotificationCenter defaultCenter]
          postNotificationName:kDidReceiveMessage
-         object:message];
+         object:self
+         userInfo:aUserInfo];
     }
     
     if ([@"activity" isEqualToString:type]) {
@@ -98,9 +101,13 @@
                          activity:activity
                              user:user];
         
+        aUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:chat,
+                     @"object", nil];
+        
         [[NSNotificationCenter defaultCenter]
          postNotificationName:kDidReceiveChat
-         object:chat];
+         object:self
+         userInfo:aUserInfo];
     }
 }
 
