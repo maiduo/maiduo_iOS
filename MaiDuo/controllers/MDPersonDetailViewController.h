@@ -9,14 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "AsyncImageView.h"
 
-@interface MDPersonDetailViewController : UIViewController
-{
-    UIImageView *bgImageView;     //头像背景图片
-    AsyncImageView *headerImageView;   //头像
-    UILabel *nameLabel;         //姓名
-    UILabel *phoneLable;        //电话
-}
+#define USER_LOGOUT @"user_logout"
 
-@property (nonatomic, retain) NSArray *activity;
+@interface MDPersonDetailViewController : UITableViewController {
+    
+}
 
 @end

@@ -11,6 +11,9 @@
 #import "YaabUser.h"
 #import "EGORefreshTableHeaderView.h"
 #import "MDCreateActivityDelegate.h"
+#import "MDLoginViewController.h"
+#import "MDPersonDetailViewController.h"
+#import "MDUserManager.h"
 
 @interface MDLatestViewController : UIViewController<UITableViewDataSource,
 UITableViewDelegate, MDCreateActivityDelegate> {

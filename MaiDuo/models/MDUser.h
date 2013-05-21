@@ -21,6 +21,7 @@
 
 @property (nonatomic, assign) NSInteger id;
 @property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *name;
 @property (assign) BOOL isActive;
