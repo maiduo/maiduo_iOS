@@ -252,9 +252,14 @@
 {
     NSDictionary *dicInfo = note.userInfo;
     MDChat *chat = (MDChat *)[dicInfo objectForKey:@"object"];
-    [self.arrayChats addObject:chat];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.arrayChats.count-1 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    if(chat.activity.id==self.activity.id){
+        [self.arrayChats addObject:chat];
+        //[self.tableView reloadData];
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.arrayChats.count-1 inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom  animated:NO];
+    }
     //[self.tableView reloadData];
     
 }
