@@ -104,7 +104,7 @@
     self.myTableView = [[UITableView alloc]initWithFrame:
                          CGRectMake(0, 0, 320, self.view.bounds.size.height)
                                                     style:UITableViewStyleGrouped];
-    self.myTableView.backgroundColor = [UIColor redColor];
+    //self.myTableView.backgroundColor = [UIColor redColor];
     self.myTableView.delegate = self;
     self.myTableView.dataSource = self;
     [self.view addSubview:self.myTableView];

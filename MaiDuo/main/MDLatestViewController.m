@@ -37,6 +37,7 @@
               target:self action:@selector(addActivity)];
     
     [[self navigationItem] setRightBarButtonItem: btnAdd];
+    [[self navigationItem] setHidesBackButton:YES];
     
     //箭头的返回
     UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
