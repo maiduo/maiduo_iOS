@@ -44,6 +44,8 @@
 		90737B7B1744AEEE006A2903 /* MDHTTPAPIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CC64071743FE5F00DF2E4D /* MDHTTPAPIFactory.m */; };
 		90737B8717460C23006A2903 /* MDNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8617460C23006A2903 /* MDNotificationCenter.m */; };
 		90737B8C1748CBAC006A2903 /* MDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8B1748CBAC006A2903 /* MDCache.m */; };
+		90819CFE174B5CE0007906E5 /* MDCache.h in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8A1748CBAC006A2903 /* MDCache.h */; };
+		90819CFF174B5CED007906E5 /* MDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8B1748CBAC006A2903 /* MDCache.m */; };
 		9083C48C1736897100E87B4A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9083C48B1736897100E87B4A /* AddressBookUI.framework */; };
 		909CB398172BFA7F008B7B5A /* YMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CB397172BFA7E008B7B5A /* YMessageViewController.m */; };
 		90A9CAEA174695740024218D /* MDCreateActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A9CAE9174695740024218D /* MDCreateActivityView.m */; };
@@ -85,7 +87,6 @@
 		AA315E0A173F9670009BA36E /* MDActivityMesView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E09173F9670009BA36E /* MDActivityMesView.m */; };
 		AA315E10173F9725009BA36E /* MDActivityContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E0F173F9725009BA36E /* MDActivityContactView.m */; };
 		AA315E13173FA79B009BA36E /* MDActivityContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E12173FA79A009BA36E /* MDActivityContentView.m */; };
-		AA315E17173FAFB2009BA36E /* MDActivityConCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315E16173FAFB1009BA36E /* MDActivityConCell.m */; };
 		AA9954F11740020600FF5BFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9954F01740020600FF5BFF /* SystemConfiguration.framework */; };
 		AA9954F31740020B00FF5BFF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9954F21740020B00FF5BFF /* MobileCoreServices.framework */; };
 		C8B4613E1748AE7B00CF14AA /* default_avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B4613D1748AE7B00CF14AA /* default_avatar.jpg */; };
@@ -221,8 +222,6 @@
 		AA315E0F173F9725009BA36E /* MDActivityContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityContactView.m; sourceTree = "<group>"; };
 		AA315E11173FA79A009BA36E /* MDActivityContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityContentView.h; sourceTree = "<group>"; };
 		AA315E12173FA79A009BA36E /* MDActivityContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityContentView.m; sourceTree = "<group>"; };
-		AA315E15173FAFB1009BA36E /* MDActivityConCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityConCell.h; sourceTree = "<group>"; };
-		AA315E16173FAFB1009BA36E /* MDActivityConCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityConCell.m; sourceTree = "<group>"; };
 		AA9954F01740020600FF5BFF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AA9954F21740020B00FF5BFF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -557,8 +556,6 @@
 				AA315E09173F9670009BA36E /* MDActivityMesView.m */,
 				AA315E0E173F9725009BA36E /* MDActivityContactView.h */,
 				AA315E0F173F9725009BA36E /* MDActivityContactView.m */,
-				AA315E15173FAFB1009BA36E /* MDActivityConCell.h */,
-				AA315E16173FAFB1009BA36E /* MDActivityConCell.m */,
 			);
 			name = MDActivity;
 			sourceTree = "<group>";
@@ -787,6 +784,8 @@
 				902C91D51742322800073241 /* main.m in Sources */,
 				902C91EE174232E400073241 /* MDTestAppDelegate.m in Sources */,
 				902C91F6174235A500073241 /* MDHTTPAPITest.m in Sources */,
+				90819CFE174B5CE0007906E5 /* MDCache.h in Sources */,
+				90819CFF174B5CED007906E5 /* MDCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,7 +819,6 @@
 				AA315E0A173F9670009BA36E /* MDActivityMesView.m in Sources */,
 				AA315E10173F9725009BA36E /* MDActivityContactView.m in Sources */,
 				AA315E13173FA79B009BA36E /* MDActivityContentView.m in Sources */,
-				AA315E17173FAFB2009BA36E /* MDActivityConCell.m in Sources */,
 				90AAB18017411E85009D7D62 /* iToast.m in Sources */,
 				90AAB18317412056009D7D62 /* MDHTTPAPI.m in Sources */,
 				90AAB18617412172009D7D62 /* EGOTableView.m in Sources */,

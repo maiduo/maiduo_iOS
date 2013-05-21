@@ -7,42 +7,86 @@
 //
 
 #import "MDActivityContactView.h"
-#import "MDActivityConCell.h"
 
 @implementation MDActivityContactView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithActivity:(MDActivity *)anActivity
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self) {
-        _tableView = [[UITableView alloc] initWithFrame:self.bounds];
-        _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _tableView = [[UITableView alloc] init];
+        _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
+                                      UIViewAutoresizingFlexibleHeight;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [self addSubview:_tableView];
         
-        MDContact *item1 = [[MDContact alloc] init];
-        item1.firstName = @"三";
-        item1.lastName = @"张";
-        item1.phones = @[@"900022022",@"992828282"];
-        MDContact *item2 = [[MDContact alloc] init];
-        item2.firstName = @"三";
-        item2.lastName = @"张";
-        item2.phones = @[@"900022022",@"992828282"];
-        MDContact *item3 = [[MDContact alloc] init];
-        item3.firstName = @"三";
-        item3.lastName = @"张";
-        item3.phones = @[@"900022022",@"992828282"];
-        _source = [NSMutableArray arrayWithObjects:item1, item2, item3, nil];
+        _activity = anActivity;
+        _people = [NSMutableArray arrayWithArray:anActivity.users];
+        _invitations = [NSMutableArray arrayWithArray:anActivity.invitation];
+        _user = [[MDUserManager sharedInstance] getUserSession];
+        
+        [self setupAddressBook];
+        
+        if([_user equal:_activity.owner]) {
+            [_people addObjectsFromArray: _invitations];
+        }
     }
+    
     return self;
+}
+
+- (void)setupAddressBook
+{
+    _addressBook = [[RHAddressBook alloc] init];
+    //if not yet authorized, force an auth.
+    if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusNotDetermined){
+        [_addressBook requestAuthorizationWithCompletion:^(bool granted, NSError *error) {
+            [self setupABRef];
+        }];
+    } else {
+    }
+    // warn re being denied access to contacts
+    if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusDenied){
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"RHAuthorizationStatusDenied"
+                              message:@"Access to the addressbook is currently denied."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    // warn re restricted access to contacts
+    if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusRestricted){
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"RHAuthorizationStatusRestricted"
+                              message:@"Access to the addressbook is currently restricted."
+                              delegate:nil cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    [self setupABRef];
+}
+
+- (void)setupABRef
+{
+    [_addressBook performAddressBookAction:^(ABAddressBookRef anAddressBookRef)
+    {
+        _addressBookRef = anAddressBookRef;
+    }
+                             waitUntilDone:YES];
 }
 
 - (void)rightBarAction
 {
-    ABPeoplePickerNavigationController *controller = [[ABPeoplePickerNavigationController alloc] init];
+    ABPeoplePickerNavigationController *controller;
+    controller = [[ABPeoplePickerNavigationController alloc] init];
     controller.peoplePickerDelegate = self;
-    [self.viewController.navigationController presentModalViewController:controller animated:YES];
+    [self.viewController.navigationController
+     presentModalViewController:controller
+     animated:YES];
 }
 
 - (void)reloadData
@@ -50,21 +94,19 @@
     [_tableView reloadData];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
 {
-    return [_source count];
+    return [_people count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"MDActivityContactTableViewCell";
-//    MDActivityConCell *cell = (MDActivityConCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
-//    if (cell==nil) {
-//        cell = [[MDActivityConCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
-//    }
-//    cell.item = [_source objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView
+                             dequeueReusableCellWithIdentifier:identifier];
     
-    UITableViewCell *cell;
     cell = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
     
     if (nil == cell) {
@@ -73,14 +115,18 @@
                 reuseIdentifier:identifier];
     }
     
-//    cell.textLabel.text
+    MDUser *person = (MDUser *)[_people objectAtIndex:[indexPath row]];
+    cell.textLabel.text = person.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"电话 %@",
+                                 person.username];
     
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [MDActivityConCell heightWithItem:[_source objectAtIndex:indexPath.row]];
+    return 55;
 }
 
 #pragma mark ABPeoplePickerNavigationControllerDelegate
@@ -90,26 +136,56 @@
     [peoplePicker dismissModalViewControllerAnimated:YES];
 }
 
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+      shouldContinueAfterSelectingPerson:(ABRecordRef)person
 {
-    MDContact *contact = [[MDContact alloc] init];
-    contact.firstName =  (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-    contact.middleName =  (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonMiddleNameProperty);
-    contact.lastName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
-    ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
-    NSMutableArray *phones = [NSMutableArray array];
-    for (int k = 0; k<ABMultiValueGetCount(phone); k++) {
-        NSString * personPhone = (__bridge_transfer NSString *)ABMultiValueCopyValueAtIndex(phone, k);
-        [phones addObject:personPhone];
+    RHPerson *rh_person = [_addressBook personForABRecordRef:person];
+    BOOL hasManyPhoneNumber = [rh_person.phoneNumbers count] > 1;
+    if (hasManyPhoneNumber) {
+        return YES;
+    } else {
+        [self.viewController dismissViewControllerAnimated:YES completion:nil];
+        return NO;
     }
-    [_source addObject:contact];
-    [self reloadData];
-    [peoplePicker dismissModalViewControllerAnimated:YES];
+}
+
+- (BOOL)hasUser:(MDUser *)anUser
+{
+    
+    NSInteger size = [_people count];
+    NSInteger i = 0;
+    MDUser *iter;
+    for(;i < size;i++) {
+        iter = (MDUser *)[_people objectAtIndex:i];
+        if ([anUser.username isEqualToString:iter.username]) {
+            return YES;
+        }
+    }
+    
     return NO;
 }
 
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+      shouldContinueAfterSelectingPerson:(ABRecordRef)person
+                                property:(ABPropertyID)property
+                              identifier:(ABMultiValueIdentifier)identifier
 {
+    RHPerson *aPerson = [_addressBook personForABRecordRef:person];
+    MDUser *invited = [MDUser userWithRHPerson:aPerson
+                                      property:property
+                                    identifier:identifier];
+    
+    if (![self hasUser:invited]) {
+        [_people addObject:invited];
+        [_tableView reloadData];
+        
+        [[[YaabUser sharedInstance] api] inviteForActivity:_activity
+                                                      user:invited
+                                                   success:^(MDUser *anUser){}
+                                                   failure:nil];
+    }
+    
+    [peoplePicker dismissModalViewControllerAnimated:YES];
     return NO;
 }
 
