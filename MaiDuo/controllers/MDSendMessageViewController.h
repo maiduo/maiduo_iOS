@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <YMessageViewController.h>
+#import "YMessageViewController.h"
 
 typedef enum {
     ACTIVITY_MODE,

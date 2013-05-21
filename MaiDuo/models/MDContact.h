@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MDItem.h"
 
-@interface MDContact : MDItem
+@interface MDContact : NSObject
 
 @property (nonatomic, strong) NSString* firstName;
 @property (nonatomic, strong) NSString* lastName;
