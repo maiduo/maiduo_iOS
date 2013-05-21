@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AsyncImageView/AsyncImageView.h"
+#import "AsyncImageView.h"
 
 @interface MDPersonDetailViewController : UIViewController
 {
