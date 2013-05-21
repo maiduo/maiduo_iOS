@@ -50,6 +50,12 @@
         return nil;
     }
 }
+
+- (void)logout
+{
+    [self getUserSession].id = 0;
+}
+
 - (void)saveSessionWithUser:(MDUser *)aUser
 {
     if(aUser){

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "AsyncImageView.h"
 
+#define USER_LOGOUT @"user_logout"
+
 @interface MDPersonDetailViewController : UITableViewController {
     
 }

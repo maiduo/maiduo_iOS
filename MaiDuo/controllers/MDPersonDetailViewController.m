@@ -47,8 +47,19 @@
 
 - (void)photoAction
 {
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"上传头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"立即拍摄", @"选择照片", nil];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"上传头像"
+                                                       delegate:self
+                                              cancelButtonTitle:@"取消"
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:@"立即拍摄",
+                            @"选择照片", nil];
     [sheet showInView:self.navigationController.view];
+}
+
+- (void)logoutAction
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:USER_LOGOUT
+                                                        object:self];
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
@@ -84,6 +95,11 @@
         cell.contentView.layer.cornerRadius = 10;
         cell.contentView.backgroundColor = [UIColor redColor];
         cell.textLabel.text = @"退出登陆";
+        
+        [cell addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                    initWithTarget:self
+                                    action:@selector(logoutAction)]];
+        
         return cell;
     } else {
         static NSString *identifier = @"UITableViewCell";

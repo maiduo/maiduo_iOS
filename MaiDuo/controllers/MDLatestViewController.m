@@ -13,7 +13,6 @@
 #import "MDSendMessageViewController.h"
 #import "AsyncImageView.h"
 #import <QuartzCore/QuartzCore.h>
-#import "MDPersonDetailViewController.h"
 #import <AFNetworking/AFNetworking.h>
 #import "MDCreateActivityViewController.h"
 
@@ -44,7 +43,16 @@
     temporaryBarButtonItem.title = @"返回";
     self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"个人中心" style:UIBarButtonItemStylePlain target:self action:@selector(detailAction)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                                             initWithTitle:@"个人中心"
+                                             style:UIBarButtonItemStylePlain
+                                             target:self
+                                             action:@selector(detailAction)];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(logoutAction:)
+                                                 name:USER_LOGOUT
+                                               object:nil];
     
     _api = [[YaabUser sharedInstance] api];
     
@@ -82,6 +90,21 @@
      presentModalViewController:[[UINavigationController alloc]
                                  initWithRootViewController:controller]
      animated:YES];
+}
+
+- (void)logoutAction:(id)sender
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        [self.navigationController popViewControllerAnimated:NO];
+        
+        MDLoginViewController *loginViewController;
+        loginViewController = [[MDLoginViewController alloc] init];
+        
+        [self.navigationController
+         presentModalViewController:[[UINavigationController alloc]
+                                     initWithRootViewController:loginViewController]
+         animated:YES];
+    }];
 }
 
 -(void)refresh
