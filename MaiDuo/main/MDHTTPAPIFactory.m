@@ -45,6 +45,18 @@
     return [self dictionaryWithDictionary:dictionary];
 }
 
+-(NSDictionary *)dictionaryForInvite:(MDActivity *)anActivity
+                                user:(MDUser *)anUser
+{
+    NSString *activity_id = [NSString stringWithFormat:@"%d", anActivity.id];
+    NSMutableDictionary *dictionary;
+    dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                  activity_id, @"activity_id", anUser.username, @"username",
+                  anUser.name, @"name", nil];
+    
+    return [self dictionaryWithDictionary:dictionary];
+}
+
 -(NSDictionary *)dictionaryForSendMessage:(MDMessage *)aMessage
 {
     NSMutableDictionary *dictionary;

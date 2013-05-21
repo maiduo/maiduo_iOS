@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MDActivity.h"
+#import "MDUserManager.h"
 
 #define VIEW_STATE_ACTIVITY 0
 #define VIEW_STATE_MESSAGE  1
@@ -22,7 +23,7 @@ typedef enum MDActivityViewState {
 } MDActivityViewState;
 
 @interface MDActivityTableViewController : UIViewController {
-    
+    MDUser *_user;
 }
 
 @property (strong) MDActivity *activity;

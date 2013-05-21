@@ -10,12 +10,24 @@
 
 @implementation MDUser
 
--(id)initWithUsername:(NSString *)username password:(NSString *)password
+-(id) init
+{
+    self = [super init];
+    if (self) {
+        self.isActive = YES;
+    }
+    
+    return self;
+}
+
+-(id)initWithUsername:(NSString *)anUsername password:(NSString *)aPassword
 {
     self = [self init];
     if (self) {
-        self.username = username;
-        self.password = password;
+        self.username = anUsername;
+        self.password = aPassword;
+        
+        self.isActive = YES;
     }
     
     return self;
@@ -31,6 +43,14 @@
             self.name, @"first_name", nil];
 }
 
+-(BOOL)equal:(MDUser *)aUser
+{
+    if(self.id == aUser.id)
+        return YES;
+    else
+        return NO;
+}
+
 +(MDUser *)userWithDictionary:(NSDictionary *)aDictionary
 {
     MDUser *user = [[MDUser alloc]init];
@@ -43,6 +63,29 @@
     user.name = [aDictionary objectForKey:@"first_name"];
     
     return user;
+}
+
++(MDUser *)userWithInvite:(NSString *)anUsername name:(NSString *)aName
+{
+    MDUser *user = [[MDUser alloc] init];
+    user.username = anUsername;
+    user.name = aName;
+    user.isActive = NO;
+    return user;
+}
+
++(MDUser *)userWithRHPerson:(RHPerson *)aPerson
+                   property:(ABPropertyID)property
+                 identifier:(ABMultiValueIdentifier)identifier
+{
+    NSString *mobile = [[aPerson getMultiValueForPropertyID:property]
+                        valueAtIndex:identifier];
+    
+    mobile = [[[[mobile stringByReplacingOccurrencesOfString:@")" withString:@""]
+              stringByReplacingOccurrencesOfString:@"(" withString:@""]
+              stringByReplacingOccurrencesOfString:@"-" withString:@""]
+              stringByReplacingOccurrencesOfString:@" " withString:@""];
+    return [MDUser userWithInvite:mobile name:[aPerson getFullName]];
 }
 
 +(MDUser *)userWithJSON:(id)JSON

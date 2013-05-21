@@ -192,6 +192,30 @@
     GHAssertTrue(operationSuccessed, @"");
 }
 
+-(void)testInvite
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);    
+    MDUser *inviteUser = [MDUser userWithInvite:@"13000000002" name:@"袁德俊"];
+    
+    [api inviteForActivity:activity
+                      user:inviteUser
+          success:^(MDChat *aChat) {
+              operationSuccessed = YES;
+              dispatch_semaphore_signal(semaphore);
+          }
+          failure:^(NSError *error) {
+              [self printError:error];
+              operationSuccessed = NO;
+              dispatch_semaphore_signal(semaphore);
+          }];
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+    }
+    
+    GHAssertTrue(operationSuccessed, @"");
+}
+
 -(void)testSendTextMessage
 {
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
