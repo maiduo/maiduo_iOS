@@ -25,8 +25,6 @@
 		902C91DF1742322800073241 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 902C91DE1742322800073241 /* Default-568h@2x.png */; };
 		902C91EE174232E400073241 /* MDTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 902C91ED174232E400073241 /* MDTestAppDelegate.m */; };
 		902C91F6174235A500073241 /* MDHTTPAPITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 902C91F4174235A500073241 /* MDHTTPAPITest.m */; };
-		904726F11742679B000B0398 /* MDItem.h in Sources */ = {isa = PBXBuildFile; fileRef = AA315DE9173F8AAC009BA36E /* MDItem.h */; };
-		904726F21742679B000B0398 /* MDItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AA315DEA173F8AAC009BA36E /* MDItem.m */; };
 		904726F317426CBC000B0398 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342D817217C8E005BC944 /* SenTestingKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		90737B8717460C23006A2903 /* MDNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8617460C23006A2903 /* MDNotificationCenter.m */; };
 		9083C48C1736897100E87B4A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9083C48B1736897100E87B4A /* AddressBookUI.framework */; };
@@ -218,8 +216,6 @@
 		94844377963140799A16CD56 /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F6F32747884C9186FD3D23 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBBFC670F454C7BB499B0A2 /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA315DE9173F8AAC009BA36E /* MDItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDItem.h; sourceTree = "<group>"; };
-		AA315DEA173F8AAC009BA36E /* MDItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDItem.m; sourceTree = "<group>"; };
 		AA9954F01740020600FF5BFF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AA9954F21740020B00FF5BFF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -315,11 +311,11 @@
 		90B32B0C174BBBC600D7A1F4 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				90B32B84174BC1D200D7A1F4 /* delegates */,
 				90B32B0D174BBBD500D7A1F4 /* MDActivityMesViewController.h */,
 				90B32B0E174BBBD500D7A1F4 /* MDActivityMesViewController.m */,
 				90B32B0F174BBBD500D7A1F4 /* MDActivityTableViewController.h */,
 				90B32B10174BBBD500D7A1F4 /* MDActivityTableViewController.m */,
-				90B32B11174BBBD500D7A1F4 /* MDCreateActivityDelegate.h */,
 				90B32B12174BBBD500D7A1F4 /* MDCreateActivityViewController.h */,
 				90B32B13174BBBD500D7A1F4 /* MDCreateActivityViewController.m */,
 				90B32B14174BBBD500D7A1F4 /* MDLatestViewController.h */,
@@ -436,6 +432,14 @@
 			path = views;
 			sourceTree = "<group>";
 		};
+		90B32B84174BC1D200D7A1F4 /* delegates */ = {
+			isa = PBXGroup;
+			children = (
+				90B32B11174BBBD500D7A1F4 /* MDCreateActivityDelegate.h */,
+			);
+			name = delegates;
+			sourceTree = "<group>";
+		};
 		90F342AE17217C8E005BC944 = {
 			isa = PBXGroup;
 			children = (
@@ -498,7 +502,6 @@
 				90B32B0C174BBBC600D7A1F4 /* controllers */,
 				90737B8417460BE8006A2903 /* push */,
 				90B32B64174BBC8400D7A1F4 /* yaab */,
-				AA315DE8173F8A87009BA36E /* common */,
 				C8CEFB2E173A0DE90021D371 /* Resource */,
 				90F342C117217C8E005BC944 /* Supporting Files */,
 			);
@@ -527,15 +530,6 @@
 			);
 			name = AsyncImageView;
 			path = MaiDuo/AsyncImageView;
-			sourceTree = "<group>";
-		};
-		AA315DE8173F8A87009BA36E /* common */ = {
-			isa = PBXGroup;
-			children = (
-				AA315DE9173F8AAC009BA36E /* MDItem.h */,
-				AA315DEA173F8AAC009BA36E /* MDItem.m */,
-			);
-			path = common;
 			sourceTree = "<group>";
 		};
 		C8CEFB2E173A0DE90021D371 /* Resource */ = {
@@ -715,8 +709,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				904726F11742679B000B0398 /* MDItem.h in Sources */,
-				904726F21742679B000B0398 /* MDItem.m in Sources */,
 				902C91D51742322800073241 /* main.m in Sources */,
 				902C91EE174232E400073241 /* MDTestAppDelegate.m in Sources */,
 				902C91F6174235A500073241 /* MDHTTPAPITest.m in Sources */,
