@@ -39,6 +39,11 @@
     [[self navigationItem] setRightBarButtonItem: btnAdd];
     [[self navigationItem] setHidesBackButton:YES];
     
+    //箭头的返回
+    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
+    temporaryBarButtonItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"个人中心" style:UIBarButtonItemStylePlain target:self action:@selector(detailAction)];
     
     _api = [[YaabUser sharedInstance] api];
@@ -68,17 +73,26 @@
                                          animated:YES];
 }
 
+- (void)detailAction
+{
+    MDPersonDetailViewController *controller;
+    controller = [[MDPersonDetailViewController alloc]
+                  initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController
+     presentModalViewController:[[UINavigationController alloc]
+                                 initWithRootViewController:controller]
+     animated:YES];
+}
+
 -(void)refresh
 {
     [self.tableView autoLoadData];
 }
 
-#pragma mark - Action
-
-- (void)detailAction
+- (void)didReceiveMemoryWarning
 {
-    MDPersonDetailViewController *controller = [[MDPersonDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [self.navigationController presentModalViewController:[[UINavigationController alloc] initWithRootViewController:controller] animated:YES];
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Create activity delegate
