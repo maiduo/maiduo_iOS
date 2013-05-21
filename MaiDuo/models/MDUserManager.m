@@ -53,7 +53,9 @@
 
 - (void)logout
 {
-    [self getUserSession].id = 0;
+    MDUser *user = [self getUserSession];
+    user.id = 0;
+    [self saveSessionWithUser:user];
 }
 
 - (void)saveSessionWithUser:(MDUser *)aUser

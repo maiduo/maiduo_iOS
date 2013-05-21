@@ -104,6 +104,8 @@
          presentModalViewController:[[UINavigationController alloc]
                                      initWithRootViewController:loginViewController]
          animated:YES];
+        
+        [[MDUserManager sharedInstance] logout];
     }];
 }
 
