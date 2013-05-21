@@ -11,19 +11,23 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import <RHAddressBook/RHAddressBook.h>
-#import "MDActivity.h"
 #import <RHAddressBook/RHPerson.h>
+#import "MDActivity.h"
+#import "MDUserManager.h"
 
 @interface MDActivityContactView : MDActivityContentView <UITableViewDelegate,
 UITableViewDataSource, ABPeoplePickerNavigationControllerDelegate> {
+    UITableView *_tableView;
+    MDActivity *_activity;
+    MDUser *_user;
+    NSMutableArray *_people;
+    NSMutableArray *_invitations;
     RHAddressBook *_addressBook;
     ABAddressBookRef _addressBookRef;
 }
 
-@property (strong) UITableView *tableView;
 @property (strong) MDActivity *activity;
-@property (strong) NSMutableArray *contacts;
+@property (strong) NSMutableArray *people;
 
--(id)initWithActivity:(MDActivity *)anActivity;
-
+-(id) initWithActivity:(MDActivity *)anActivity;
 @end

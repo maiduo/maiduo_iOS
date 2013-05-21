@@ -211,6 +211,12 @@
         success:(void (^)(MDChat *))success
         failure:(void (^)(NSError *error))failure;
 
+-(void) inviteForActivity:(MDActivity *)anActivity
+                     user:(MDUser *)anUser
+                  success:(void (^)(MDUser *anUser))success
+                  failure:(void (^)(NSError *error))failure;
+
+
 /** 注册用户
  
  [MDUser deviceToken] 如果存在，同时登记设备Token。

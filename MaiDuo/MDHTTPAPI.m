@@ -210,6 +210,30 @@
     }];
 }
 
+-(void) inviteForActivity:(MDActivity *)anActivity
+                     user:(MDUser *)anUser
+                  success:(void (^)(MDUser *anUser))success
+                  failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *dictionaryInvite;
+    dictionaryInvite = [_factory dictionaryForInvite:anActivity user:anUser];
+    
+    [[AFMDClient sharedClient] postPath:@"activity/invite/"
+                             parameters:dictionaryInvite
+                                success:^(AFHTTPRequestOperation *operation,
+                                          id JSON)
+     {
+         success(anUser);
+     }
+                                failure:^(AFHTTPRequestOperation *operation,
+                                          NSError *error)
+     {
+         [self printError:error];
+         if (nil != failure)
+             failure(error);
+     }];
+}
+
 +(void)registerUser:(MDUser *)user
             success:(void (^)(MDUser *user, MDHTTPAPI *api))success
             failure:(void (^)(NSError *error))failure

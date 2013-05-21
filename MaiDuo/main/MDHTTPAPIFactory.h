@@ -40,6 +40,8 @@
                                     service:(NSString *)aService;
 
 -(NSDictionary *)dictionaryForCreateActivity:(MDActivity *)anActivity;
+-(NSDictionary *)dictionaryForInvite:(MDActivity *)anActivity
+                                user:(MDUser *)anUser;
 -(NSDictionary *)dictionaryForSendMessage:(MDMessage *)aMessage;
 -(NSDictionary *)dictionaryForSendChat:(MDChat *)aChat;
 -(NSDictionary *)dictionaryForMessagesWithActivity:(MDActivity *)anActivity

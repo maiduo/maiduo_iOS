@@ -15,7 +15,7 @@
 
 @interface MDActivityTableViewController () {
     MDActivityActView *_actView;
-    MDActivityContactView *_conView;
+    MDActivityContactView *_contactView;
     UIView *_mesView;
     UIView *_currentContentView;
 }
@@ -33,6 +33,7 @@
     self = [self init];
     if (self) {
         self.activity = anActivity;
+        _user = [[MDUserManager sharedInstance] getUserSession];
     }
     
     return self;
@@ -69,7 +70,8 @@
     
     CGRect rectangle = self.view.bounds;
     UIViewAutoresizing autoresizing = UIViewAutoresizingFlexibleHeight |
-                         UIViewAutoresizingFlexibleWidth;
+                                      UIViewAutoresizingFlexibleWidth;
+    UIBarButtonItem *rightBarButtonItem;
     
     switch (_viewState) {
         case MDActivityViewStateAct:
@@ -79,10 +81,7 @@
                 _actView.viewController = self;
             }
             _currentContentView = _actView;
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                                      initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
-                                                      target:_currentContentView
-                                                      action:@selector(rightBarAction)];
+            rightBarButtonItem = [self barButtonItemMessage:_actView];
             break;
         case MDActivityViewStateMes:
             if (_mesView==nil) {
@@ -92,24 +91,44 @@
                 _mesView.autoresizingMask = autoresizing;
             }
             _currentContentView = _mesView;
-            self.navigationItem.rightBarButtonItem = nil;
+            rightBarButtonItem = nil;
             break;
         case MDActivityViewStateCon:
-            if (_conView==nil) {
-                _conView = [[MDActivityContactView alloc]
-                            initWithActivity:self.activity];
-                _conView.viewController = self;
+            if (_contactView==nil) {
+                _contactView = [[MDActivityContactView alloc]
+                                initWithActivity:self.activity];
+                _contactView.frame = rectangle;
+                
+                _contactView.viewController = self;
             }
-            _currentContentView = _conView;
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                                      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                      target:_currentContentView
-                                                      action:@selector(rightBarAction)];
+            _currentContentView = _contactView;
+            
+            rightBarButtonItem = [self barButtonItemInvite:_contactView];
         default:
             break;
     }
+    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     _currentContentView.frame=self.view.bounds;
     [self.view addSubview:_currentContentView];
+}
+
+- (UIBarButtonItem *)barButtonItemInvite:(MDActivityContactView *)view
+{
+    if ([self.activity.owner equal:_user]) {
+        return [[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                target:view
+                action:@selector(rightBarAction)];
+    } else
+        return NO;
+}
+
+- (UIBarButtonItem *)barButtonItemMessage:(MDActivityActView *)view
+{
+    return [[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+            target:view
+            action:@selector(rightBarAction)];
 }
 
 - (void)segmentedChanged:(id)sender forEvent:(UIEvent *)event

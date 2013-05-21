@@ -7,22 +7,30 @@
 //
 
 #import "MDActivityContactView.h"
-#import "MDActivityConCell.h"
 
 @implementation MDActivityContactView
 
--(id)initWithActivity:(MDActivity *)anActivity
+- (id)initWithActivity:(MDActivity *)anActivity
 {
     self = [super init];
     if (self) {
-        self.tableView = [[UITableView alloc] initWithFrame:self.bounds];
-        self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
-        [self addSubview:self.tableView];
+        _tableView = [[UITableView alloc] init];
+        _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
+                                      UIViewAutoresizingFlexibleHeight;
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        [self addSubview:_tableView];
         
         _activity = anActivity;
-        _contacts = [NSMutableArray arrayWithArray:anActivity.users];
+        _people = [NSMutableArray arrayWithArray:anActivity.users];
+        _invitations = [NSMutableArray arrayWithArray:anActivity.invitation];
+        _user = [[MDUserManager sharedInstance] getUserSession];
+        
+        [self setupAddressBook];
+        
+        if([_user equal:_activity.owner]) {
+            [_people addObjectsFromArray: _invitations];
+        }
     }
     
     return self;
@@ -33,12 +41,10 @@
     _addressBook = [[RHAddressBook alloc] init];
     //if not yet authorized, force an auth.
     if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusNotDetermined){
-        [_addressBook requestAuthorizationWithCompletion:^(bool granted,
-                                                           NSError *error) {
-//            [self setupPeople];
+        [_addressBook requestAuthorizationWithCompletion:^(bool granted, NSError *error) {
+            [self setupABRef];
         }];
     } else {
-//        [self setupPeople];
     }
     // warn re being denied access to contacts
     if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusDenied){
@@ -60,27 +66,47 @@
                               otherButtonTitles:nil];
         [alert show];
     }
+    
+    [self setupABRef];
+}
+
+- (void)setupABRef
+{
+    [_addressBook performAddressBookAction:^(ABAddressBookRef anAddressBookRef)
+    {
+        _addressBookRef = anAddressBookRef;
+    }
+                             waitUntilDone:YES];
 }
 
 - (void)rightBarAction
 {
-    ABPeoplePickerNavigationController *controller = [[ABPeoplePickerNavigationController alloc] init];
+    ABPeoplePickerNavigationController *controller;
+    controller = [[ABPeoplePickerNavigationController alloc] init];
     controller.peoplePickerDelegate = self;
-    [self.viewController.navigationController presentModalViewController:controller animated:YES];
+    [self.viewController.navigationController
+     presentModalViewController:controller
+     animated:YES];
+}
+
+- (void)reloadData
+{
+    [_tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return [_contacts count];
+    return [_people count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"MDActivityContactTableViewCell";
+    UITableViewCell *cell = [tableView
+                             dequeueReusableCellWithIdentifier:identifier];
     
-    UITableViewCell *cell;
     cell = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
     
     if (nil == cell) {
@@ -89,15 +115,16 @@
                 reuseIdentifier:identifier];
     }
     
-    MDUser *user = [_contacts objectAtIndex:[indexPath row]];
-    cell.textLabel.text = user.name;
-    cell.detailTextLabel.text = [NSString
-                                 stringWithFormat:@"手机 %@", user.username];
+    MDUser *person = (MDUser *)[_people objectAtIndex:[indexPath row]];
+    cell.textLabel.text = person.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"电话 %@",
+                                 person.username];
     
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 55;
 }
@@ -109,34 +136,57 @@
     [peoplePicker dismissModalViewControllerAnimated:YES];
 }
 
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
-{
-    MDContact *contact = [[MDContact alloc] init];
-    contact.firstName =  (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-    contact.middleName =  (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonMiddleNameProperty);
-    contact.lastName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
-    ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
-    NSMutableArray *phones = [NSMutableArray array];
-    for (int k = 0; k<ABMultiValueGetCount(phone); k++) {
-        NSString * personPhone = (__bridge_transfer NSString *)ABMultiValueCopyValueAtIndex(phone, k);
-        [phones addObject:personPhone];
-    }
-    [_contacts addObject:contact];
-    [self.tableView reloadData];
-    [peoplePicker dismissModalViewControllerAnimated:YES];
-    return NO;
-}
-
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+      shouldContinueAfterSelectingPerson:(ABRecordRef)person
 {
     RHPerson *rh_person = [_addressBook personForABRecordRef:person];
     BOOL hasManyPhoneNumber = [rh_person.phoneNumbers count] > 1;
     if (hasManyPhoneNumber) {
         return YES;
     } else {
-        [peoplePicker dismissModalViewControllerAnimated:YES];
+        [self.viewController dismissViewControllerAnimated:YES completion:nil];
         return NO;
     }
+}
+
+- (BOOL)hasUser:(MDUser *)anUser
+{
+    
+    NSInteger size = [_people count];
+    NSInteger i = 0;
+    MDUser *iter;
+    for(;i < size;i++) {
+        iter = (MDUser *)[_people objectAtIndex:i];
+        if ([anUser.username isEqualToString:iter.username]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+      shouldContinueAfterSelectingPerson:(ABRecordRef)person
+                                property:(ABPropertyID)property
+                              identifier:(ABMultiValueIdentifier)identifier
+{
+    RHPerson *aPerson = [_addressBook personForABRecordRef:person];
+    MDUser *invited = [MDUser userWithRHPerson:aPerson
+                                      property:property
+                                    identifier:identifier];
+    
+    if (![self hasUser:invited]) {
+        [_people addObject:invited];
+        [_tableView reloadData];
+        
+        [[[YaabUser sharedInstance] api] inviteForActivity:_activity
+                                                      user:invited
+                                                   success:^(MDUser *anUser){}
+                                                   failure:nil];
+    }
+    
+    [peoplePicker dismissModalViewControllerAnimated:YES];
+    return NO;
 }
 
 @end
