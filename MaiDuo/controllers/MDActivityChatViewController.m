@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 魏琮举. All rights reserved.
 //
 
-#import "MDActivityMesViewController.h"
+#import "MDActivityChatViewController.h"
 #import "MDChat.h"
 #import "MDUserManager.h"
 #import "MDHTTPAPI.h"
@@ -19,7 +19,7 @@
 #define kPageSize 10
 #define kDidReceiveChat @"didReceiveChat"
 
-@interface MDActivityMesViewController (){
+@interface MDActivityChatViewController (){
     NSUInteger _currentPageIndex;
     BOOL _loading;
     BOOL _noMore;
@@ -30,7 +30,7 @@
 @property (strong,nonatomic) NSMutableDictionary *dicAccessoryView;
 @end
 
-@implementation MDActivityMesViewController
+@implementation MDActivityChatViewController
 #pragma mark - Initialization
 - (UIButton *)sendButton
 {

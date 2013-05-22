@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MDActivityContentView.h"
 
-@interface MDActivityActView : MDActivityContentView <UITableViewDataSource, UITableViewDelegate> {
+@interface MDActivityMessageView : MDActivityContentView <UITableViewDataSource, UITableViewDelegate> {
     UITableView *_tableView;
     NSMutableArray *_source;
 }

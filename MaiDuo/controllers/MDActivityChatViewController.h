@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JSMessagesViewController.h"
 #import "MDActivity.h"
-@interface MDActivityMesViewController : JSMessagesViewController <JSMessagesViewDelegate, JSMessagesViewDataSource>
+@interface MDActivityChatViewController : JSMessagesViewController <JSMessagesViewDelegate, JSMessagesViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *messages;
 @property (strong, nonatomic) NSMutableArray *timestamps;

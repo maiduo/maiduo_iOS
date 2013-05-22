@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 魏琮举. All rights reserved.
 //
 
-#import "MDActivityActView.h"
+#import "MDActivityMessageView.h"
 
-@implementation MDActivityActView
+@implementation MDActivityMessageView
 
 - (id)initWithFrame:(CGRect)frame
 {

@@ -14,6 +14,7 @@
 		3D034FFA174A1DE500F325E6 /* NSNotificationCenterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D034FF9174A1DE500F325E6 /* NSNotificationCenterTest.m */; };
 		3D034FFB174A1E0F00F325E6 /* MDNotificationCenter.h in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8517460C23006A2903 /* MDNotificationCenter.h */; };
 		3D034FFC174A1E1500F325E6 /* MDNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8617460C23006A2903 /* MDNotificationCenter.m */; };
+		3D064725174C5F2C0092BBAC /* MDActivityContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D064724174C5F2C0092BBAC /* MDActivityContentView.m */; };
 		90153978172BDC2300DBB64B /* YaabUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* YaabUser.m */; };
 		902C91CB1742322800073241 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
 		902C91CC1742322800073241 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BC17217C8E005BC944 /* Foundation.framework */; };
@@ -28,7 +29,7 @@
 		904726F317426CBC000B0398 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342D817217C8E005BC944 /* SenTestingKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		90737B8717460C23006A2903 /* MDNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8617460C23006A2903 /* MDNotificationCenter.m */; };
 		9083C48C1736897100E87B4A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9083C48B1736897100E87B4A /* AddressBookUI.framework */; };
-		90B32B1E174BBBD500D7A1F4 /* MDActivityMesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B0E174BBBD500D7A1F4 /* MDActivityMesViewController.m */; };
+		90B32B1E174BBBD500D7A1F4 /* MDActivityChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B0E174BBBD500D7A1F4 /* MDActivityChatViewController.m */; };
 		90B32B1F174BBBD500D7A1F4 /* MDActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B10174BBBD500D7A1F4 /* MDActivityTableViewController.m */; };
 		90B32B20174BBBD500D7A1F4 /* MDCreateActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B13174BBBD500D7A1F4 /* MDCreateActivityViewController.m */; };
 		90B32B21174BBBD500D7A1F4 /* MDLatestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B15174BBBD500D7A1F4 /* MDLatestViewController.m */; };
@@ -60,10 +61,8 @@
 		90B32B71174BBC8400D7A1F4 /* YMessageContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B6A174BBC8400D7A1F4 /* YMessageContactViewController.m */; };
 		90B32B72174BBC8400D7A1F4 /* YMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B6C174BBC8400D7A1F4 /* YMessageViewController.m */; };
 		90B32B73174BBC8400D7A1F4 /* YPlainContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B6E174BBC8400D7A1F4 /* YPlainContact.m */; };
-		90B32B7F174BBDDF00D7A1F4 /* MDActivityActView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B76174BBDDF00D7A1F4 /* MDActivityActView.m */; };
+		90B32B7F174BBDDF00D7A1F4 /* MDActivityMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B76174BBDDF00D7A1F4 /* MDActivityMessageView.m */; };
 		90B32B80174BBDDF00D7A1F4 /* MDActivityContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B78174BBDDF00D7A1F4 /* MDActivityContactView.m */; };
-		90B32B81174BBDDF00D7A1F4 /* MDActivityContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B7A174BBDDF00D7A1F4 /* MDActivityContentView.m */; };
-		90B32B82174BBDDF00D7A1F4 /* MDActivityMesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B7C174BBDDF00D7A1F4 /* MDActivityMesView.m */; };
 		90B32B83174BBDDF00D7A1F4 /* MDCreateActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B7E174BBDDF00D7A1F4 /* MDCreateActivityView.m */; };
 		90E1F4E217242FF1009A578C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E1F4E117242FF1009A578C /* AddressBook.framework */; };
 		90F342BB17217C8E005BC944 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
@@ -101,6 +100,8 @@
 		213944C578514190A2BAC4A1 /* libPods-MaiDuo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D034FF7174A18F100F325E6 /* MDNotificationCenterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDNotificationCenterTest.m; sourceTree = "<group>"; };
 		3D034FF9174A1DE500F325E6 /* NSNotificationCenterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNotificationCenterTest.m; sourceTree = "<group>"; };
+		3D064723174C5F2C0092BBAC /* MDActivityContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityContentView.h; sourceTree = "<group>"; };
+		3D064724174C5F2C0092BBAC /* MDActivityContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityContentView.m; sourceTree = "<group>"; };
 		432379D17D2049AF901101B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8189D765038C4B9FB2F1D493 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		90153972172BDC2300DBB64B /* YaabUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YaabUser.h; path = MaiDuo/YaabUser.h; sourceTree = "<group>"; };
@@ -123,8 +124,8 @@
 		90737B8A1748CBAC006A2903 /* MDCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDCache.h; path = /Users/weicongju/maiduo_iOS/MaiDuo/main/MDCache.h; sourceTree = "<absolute>"; };
 		90737B8B1748CBAC006A2903 /* MDCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDCache.m; path = /Users/weicongju/maiduo_iOS/MaiDuo/main/MDCache.m; sourceTree = "<absolute>"; };
 		9083C48B1736897100E87B4A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
-		90B32B0D174BBBD500D7A1F4 /* MDActivityMesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivityMesViewController.h; path = controllers/MDActivityMesViewController.h; sourceTree = "<group>"; };
-		90B32B0E174BBBD500D7A1F4 /* MDActivityMesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDActivityMesViewController.m; path = controllers/MDActivityMesViewController.m; sourceTree = "<group>"; };
+		90B32B0D174BBBD500D7A1F4 /* MDActivityChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivityChatViewController.h; path = controllers/MDActivityChatViewController.h; sourceTree = "<group>"; };
+		90B32B0E174BBBD500D7A1F4 /* MDActivityChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDActivityChatViewController.m; path = controllers/MDActivityChatViewController.m; sourceTree = "<group>"; };
 		90B32B0F174BBBD500D7A1F4 /* MDActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivityTableViewController.h; path = controllers/MDActivityTableViewController.h; sourceTree = "<group>"; };
 		90B32B10174BBBD500D7A1F4 /* MDActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDActivityTableViewController.m; path = controllers/MDActivityTableViewController.m; sourceTree = "<group>"; };
 		90B32B11174BBBD500D7A1F4 /* MDCreateActivityDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDCreateActivityDelegate.h; path = controllers/MDCreateActivityDelegate.h; sourceTree = "<group>"; };
@@ -186,14 +187,10 @@
 		90B32B6C174BBC8400D7A1F4 /* YMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMessageViewController.m; sourceTree = "<group>"; };
 		90B32B6D174BBC8400D7A1F4 /* YPlainContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPlainContact.h; sourceTree = "<group>"; };
 		90B32B6E174BBC8400D7A1F4 /* YPlainContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPlainContact.m; sourceTree = "<group>"; };
-		90B32B75174BBDDF00D7A1F4 /* MDActivityActView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityActView.h; sourceTree = "<group>"; };
-		90B32B76174BBDDF00D7A1F4 /* MDActivityActView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityActView.m; sourceTree = "<group>"; };
+		90B32B75174BBDDF00D7A1F4 /* MDActivityMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityMessageView.h; sourceTree = "<group>"; };
+		90B32B76174BBDDF00D7A1F4 /* MDActivityMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityMessageView.m; sourceTree = "<group>"; };
 		90B32B77174BBDDF00D7A1F4 /* MDActivityContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityContactView.h; sourceTree = "<group>"; };
 		90B32B78174BBDDF00D7A1F4 /* MDActivityContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityContactView.m; sourceTree = "<group>"; };
-		90B32B79174BBDDF00D7A1F4 /* MDActivityContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityContentView.h; sourceTree = "<group>"; };
-		90B32B7A174BBDDF00D7A1F4 /* MDActivityContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityContentView.m; sourceTree = "<group>"; };
-		90B32B7B174BBDDF00D7A1F4 /* MDActivityMesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityMesView.h; sourceTree = "<group>"; };
-		90B32B7C174BBDDF00D7A1F4 /* MDActivityMesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityMesView.m; sourceTree = "<group>"; };
 		90B32B7D174BBDDF00D7A1F4 /* MDCreateActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCreateActivityView.h; sourceTree = "<group>"; };
 		90B32B7E174BBDDF00D7A1F4 /* MDCreateActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCreateActivityView.m; sourceTree = "<group>"; };
 		90E1F4E117242FF1009A578C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -312,8 +309,8 @@
 			isa = PBXGroup;
 			children = (
 				90B32B84174BC1D200D7A1F4 /* delegates */,
-				90B32B0D174BBBD500D7A1F4 /* MDActivityMesViewController.h */,
-				90B32B0E174BBBD500D7A1F4 /* MDActivityMesViewController.m */,
+				90B32B0D174BBBD500D7A1F4 /* MDActivityChatViewController.h */,
+				90B32B0E174BBBD500D7A1F4 /* MDActivityChatViewController.m */,
 				90B32B0F174BBBD500D7A1F4 /* MDActivityTableViewController.h */,
 				90B32B10174BBBD500D7A1F4 /* MDActivityTableViewController.m */,
 				90B32B12174BBBD500D7A1F4 /* MDCreateActivityViewController.h */,
@@ -418,16 +415,14 @@
 		90B32B74174BBDDF00D7A1F4 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				90B32B75174BBDDF00D7A1F4 /* MDActivityActView.h */,
-				90B32B76174BBDDF00D7A1F4 /* MDActivityActView.m */,
+				90B32B75174BBDDF00D7A1F4 /* MDActivityMessageView.h */,
+				90B32B76174BBDDF00D7A1F4 /* MDActivityMessageView.m */,
 				90B32B77174BBDDF00D7A1F4 /* MDActivityContactView.h */,
 				90B32B78174BBDDF00D7A1F4 /* MDActivityContactView.m */,
-				90B32B79174BBDDF00D7A1F4 /* MDActivityContentView.h */,
-				90B32B7A174BBDDF00D7A1F4 /* MDActivityContentView.m */,
-				90B32B7B174BBDDF00D7A1F4 /* MDActivityMesView.h */,
-				90B32B7C174BBDDF00D7A1F4 /* MDActivityMesView.m */,
 				90B32B7D174BBDDF00D7A1F4 /* MDCreateActivityView.h */,
 				90B32B7E174BBDDF00D7A1F4 /* MDCreateActivityView.m */,
+				3D064723174C5F2C0092BBAC /* MDActivityContentView.h */,
+				3D064724174C5F2C0092BBAC /* MDActivityContentView.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -729,7 +724,7 @@
 				90F342CB17217C8E005BC944 /* MDAppDelegate.m in Sources */,
 				90153978172BDC2300DBB64B /* YaabUser.m in Sources */,
 				90737B8717460C23006A2903 /* MDNotificationCenter.m in Sources */,
-				90B32B1E174BBBD500D7A1F4 /* MDActivityMesViewController.m in Sources */,
+				90B32B1E174BBBD500D7A1F4 /* MDActivityChatViewController.m in Sources */,
 				90B32B1F174BBBD500D7A1F4 /* MDActivityTableViewController.m in Sources */,
 				90B32B20174BBBD500D7A1F4 /* MDCreateActivityViewController.m in Sources */,
 				90B32B21174BBBD500D7A1F4 /* MDLatestViewController.m in Sources */,
@@ -759,11 +754,10 @@
 				90B32B71174BBC8400D7A1F4 /* YMessageContactViewController.m in Sources */,
 				90B32B72174BBC8400D7A1F4 /* YMessageViewController.m in Sources */,
 				90B32B73174BBC8400D7A1F4 /* YPlainContact.m in Sources */,
-				90B32B7F174BBDDF00D7A1F4 /* MDActivityActView.m in Sources */,
+				90B32B7F174BBDDF00D7A1F4 /* MDActivityMessageView.m in Sources */,
 				90B32B80174BBDDF00D7A1F4 /* MDActivityContactView.m in Sources */,
-				90B32B81174BBDDF00D7A1F4 /* MDActivityContentView.m in Sources */,
-				90B32B82174BBDDF00D7A1F4 /* MDActivityMesView.m in Sources */,
 				90B32B83174BBDDF00D7A1F4 /* MDCreateActivityView.m in Sources */,
+				3D064725174C5F2C0092BBAC /* MDActivityContentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

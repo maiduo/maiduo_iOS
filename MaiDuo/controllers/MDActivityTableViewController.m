@@ -8,21 +8,20 @@
 
 #import "MDActivityTableViewController.h"
 #import "AsyncImageView.h"
-#import "MDActivityActView.h"
+#import "MDActivityMessageView.h"
 #import "MDActivityContactView.h"
-#import "MDActivityMesView.h"
-#import "MDActivityMesViewController.h"
+#import "MDActivityChatViewController.h"
 
 @interface MDActivityTableViewController () {
-    MDActivityActView *_actView;
+    MDActivityMessageView *_messageView;
     MDActivityContactView *_contactView;
-    UIView *_mesView;
+    UIView *_chatView;
     UIView *_currentContentView;
 }
 
 @property (assign, nonatomic) MDActivityViewState viewState;
 @property (strong, nonatomic) UISegmentedControl* segmented;
-@property (strong, nonatomic) MDActivityMesViewController *mesVC;
+@property (strong, nonatomic) MDActivityChatViewController *chatViewController;
 
 @end
 
@@ -60,7 +59,7 @@
          forControlEvents:UIControlEventValueChanged];
     self.navigationItem.titleView = _segmented;
     
-    [self showViewState:MDActivityViewStateAct];
+    [self showViewState:MDActivityViewStateMessage];
 }
 
 - (void)showViewState:(MDActivityViewState)viewState
@@ -74,26 +73,26 @@
     UIBarButtonItem *rightBarButtonItem;
     
     switch (_viewState) {
-        case MDActivityViewStateAct:
-            if (_actView==nil) {
-                _actView = [[MDActivityActView alloc] initWithFrame:rectangle];
-                _actView.autoresizingMask = autoresizing;
-                _actView.viewController = self;
+        case MDActivityViewStateMessage:
+            if (_messageView==nil) {
+                _messageView = [[MDActivityMessageView alloc] initWithFrame:rectangle];
+                _messageView.autoresizingMask = autoresizing;
+                _messageView.viewController = self;
             }
-            _currentContentView = _actView;
-            rightBarButtonItem = [self barButtonItemMessage:_actView];
+            _currentContentView = _messageView;
+            rightBarButtonItem = [self barButtonItemMessage:_messageView];
             break;
-        case MDActivityViewStateMes:
-            if (_mesView==nil) {
-                self.mesVC = [[MDActivityMesViewController alloc] init];
+        case MDActivityViewStateChat:
+            if (_chatView==nil) {
+                self.chatViewController = [[MDActivityChatViewController alloc] init];
                 _mesVC.activity=self.activity;
-                _mesView=_mesVC.view;
-                _mesView.autoresizingMask = autoresizing;
+                _chatView=_mesVC.view;
+                _chatView.autoresizingMask = autoresizing;
             }
-            _currentContentView = _mesView;
+            _currentContentView = _chatView;
             rightBarButtonItem = nil;
             break;
-        case MDActivityViewStateCon:
+        case MDActivityViewStateContact:
             if (_contactView==nil) {
                 _contactView = [[MDActivityContactView alloc]
                                 initWithActivity:self.activity];
@@ -123,7 +122,7 @@
         return NO;
 }
 
-- (UIBarButtonItem *)barButtonItemMessage:(MDActivityActView *)view
+- (UIBarButtonItem *)barButtonItemMessage:(MDActivityMessageView *)view
 {
     return [[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemAdd

@@ -17,9 +17,9 @@
 #define CELL_IMAGE_VIEW 100
 
 typedef enum MDActivityViewState {
-    MDActivityViewStateAct,
-    MDActivityViewStateMes,
-    MDActivityViewStateCon
+    MDActivityViewStateMessage,
+    MDActivityViewStateChat,
+    MDActivityViewStateContact
 } MDActivityViewState;
 
 @interface MDActivityTableViewController : UIViewController {
