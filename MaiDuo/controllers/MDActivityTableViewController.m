@@ -85,8 +85,8 @@
         case MDActivityViewStateChat:
             if (_chatView==nil) {
                 self.chatViewController = [[MDActivityChatViewController alloc] init];
-                _mesVC.activity=self.activity;
-                _chatView=_mesVC.view;
+                self.chatViewController.activity=self.activity;
+                _chatView=self.chatViewController.view;
                 _chatView.autoresizingMask = autoresizing;
             }
             _currentContentView = _chatView;
