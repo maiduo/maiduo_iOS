@@ -193,7 +193,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //NSLog(@"scrollViewDidScroll");
-    if(scrollView.contentOffset.y < -15.0f && !_loading&&!_noMore){
+    if(scrollView.contentOffset.y <= -30.0f && !_loading&&!_noMore){
         _loading=YES;
         if(!_indicatorView){
             _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -202,6 +202,7 @@
         }
 		[self.tableView addSubview:_indicatorView];
         [_indicatorView startAnimating];
+        scrollView.contentInset=UIEdgeInsetsMake(35.0f, 0, 0, 0);
         
         _currentPageIndex++;
         [[[YaabUser sharedInstance] api] chatsWithActivity:self.activity
@@ -213,6 +214,8 @@
                                                            _noMore=YES;
                                                            _currentPageIndex--;
                                                            
+                                                       }else if(chats.count<kPageSize){
+                                                           _noMore=YES;
                                                        }else{
                                                            NSRange range = NSMakeRange(0, [chats count]);
                                                            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
@@ -222,11 +225,12 @@
                                                            [self.tableView reloadData];
                                                            
                                                            NSUInteger scrollToIndex=MIN(kPageSize, chats.count);
-                                                           NSIndexPath * ndxPath= [NSIndexPath indexPathForRow:scrollToIndex-1 inSection:0];
+                                                           NSIndexPath * ndxPath= [NSIndexPath indexPathForRow:scrollToIndex inSection:0];
                                                            [self.tableView scrollToRowAtIndexPath:ndxPath atScrollPosition:UITableViewScrollPositionTop  animated:NO];
                                                        }
                                                        [_indicatorView stopAnimating];
                                                        [_indicatorView removeFromSuperview];
+                                                       scrollView.contentInset=UIEdgeInsetsZero;
                                                        
                                                    } failure:^(NSError *error) {
                                                        _currentPageIndex--;
