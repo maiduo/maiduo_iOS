@@ -18,6 +18,7 @@
 
 - (BOOL)userSessionValid;
 - (MDUser*)getUserSession;
+- (void)logout;
 - (void)saveSessionWithUser:(MDUser *)aUser;
 + (MDUserManager *)sharedInstance;
 
