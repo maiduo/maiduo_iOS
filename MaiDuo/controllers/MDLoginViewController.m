@@ -23,6 +23,7 @@
 #define kOffSet         		160
 #define kViewTag				100
 @interface MDLoginViewController (){
+    MBProgressHUD *_HUD;
 }
 @property (nonatomic, retain) NSArray *dataArray;
 @property (nonatomic, retain) UITextField *txtUser;
@@ -181,19 +182,24 @@ static NSString *kViewKey = @"viewKey";
 {
     MDUser *user=[MDUserManager sharedInstance].user;
     MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate showHUDWithLabel:@"正在登录..."];    
+//    [appDelegate showHUDWithLabel:@"正在登录..."];
+    [self showHUDWithLabel:@"正在登录..."];
     user.username=_txtUser.text;
     user.password=_txtPass.text;
     user.deviceToken = [YaabUser sharedInstance].deviceToken;
     [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
         [[MDUserManager sharedInstance] saveSessionWithUser:user];
-        [appDelegate hideHUD];
+        //[appDelegate hideHUD];
+        [self hideHUD];
         [[YaabUser sharedInstance] addUser:user];
         [[YaabUser sharedInstance] addAPI:api user:user];
-        MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
-        [self.navigationController pushViewController:latestVC animated:YES];
+        [appDelegate.navigationController dismissModalViewControllerAnimated:YES];
+        [self.delegate loginViewControllerDidLogin:self];
+         
+//        MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
+//        [appDelegate.navigationController pushViewController:latestVC animated:YES];
     } failure:^(NSError *error) {
-        [appDelegate hideHUD];
+        [self hideHUD];
         [[error userInfo] enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             NSLog(@"%@", [[error userInfo] objectForKey:key]);
         }];
@@ -210,5 +216,21 @@ static NSString *kViewKey = @"viewKey";
     [self.navigationController
      pushViewController:[[MDRegisterViewController alloc] init]
      animated:YES];
+}
+
+
+-(void) showHUDWithLabel:(NSString*) text
+{
+    if(!_HUD){
+        _HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    }
+	[self.navigationController.view addSubview:_HUD];
+	_HUD.labelText = text;
+    [_HUD show:YES];
+}
+-(void) hideHUD
+{
+    [_HUD hide:YES];
+    [_HUD removeFromSuperview];
 }
 @end
