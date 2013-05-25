@@ -58,6 +58,7 @@
     
 
     self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size}];
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     [self.view addSubview: self.tableView];
