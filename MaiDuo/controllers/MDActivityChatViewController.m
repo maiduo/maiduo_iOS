@@ -127,8 +127,6 @@
         [self.dicAccessoryView removeObjectForKey:key];
         NSLog(@"fail send chat");
     }];
-    
-    
 }
 
 - (JSBubbleMessageStyle)messageStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -173,19 +171,20 @@
     }
     return photoUrl;
 }
+
 -(UIView*) accessoryViewForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *key=[NSString stringWithFormat:@"%d",indexPath.row];
     UIView *accessoryView=[self.dicAccessoryView objectForKey:key];
     return accessoryView;
 }
+
 - (NSDate *)timestampForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MDChat *chat=self.arrayChats[indexPath.row];
     return chat.createAt;
     //return [self.timestamps objectAtIndex:indexPath.row];
 }
-
 
 #pragma mark -
 #pragma mark UIScrollViewDelegate Methods

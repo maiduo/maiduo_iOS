@@ -27,6 +27,12 @@
     return self;
 }
 
+- (BOOL)becomeFirstResponder
+{
+    [super becomeFirstResponder];
+    return [_subject becomeFirstResponder];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
