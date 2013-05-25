@@ -18,7 +18,7 @@
 @interface MDAppDelegate() <MDLoginViewControllerDelegate>{
     MBProgressHUD *_HUD;
 }
-@property (strong,nonatomic) UINavigationController *navigationController;
+
 @end
 
 @implementation MDAppDelegate
@@ -54,9 +54,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         // FIXME 这里的逻辑应该是进入活动列表，并自动刷新。
         MDLatestViewController *latestViewController;
         latestViewController = [[MDLatestViewController alloc] init];
-        self.navigationController = [[UINavigationController alloc] init];
-        [self.navigationController pushViewController:latestViewController
-                                             animated:NO];
+        self.navigationController = [[UINavigationController alloc] initWithRootViewController:latestViewController];
+         
+//        [self.navigationController initWithRootViewController:latestViewController];
 //                                     initWithRootViewController:latestViewController];
 
     } else {
@@ -67,7 +67,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         self.navigationController = [[UINavigationController alloc]
                                      initWithRootViewController:loginViewController];
     }
-    
+ 
+ 
+
     
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
@@ -145,7 +147,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 - (void)loginViewControllerDidLogin:(MDLoginViewController *)loginViewController
 {
     MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
-    _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:latestVC];
+    [self.navigationController pushViewController:latestVC animated:YES];
+    //self.navigationController  = [[UINavigationController alloc] initWithRootViewController:latestVC];
 }
 
 -(void) showHUDWithLabel:(NSString*) text

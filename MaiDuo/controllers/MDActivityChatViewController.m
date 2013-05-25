@@ -192,7 +192,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //NSLog(@"scrollViewDidScroll");
-    if(scrollView.contentOffset.y < -15.0f && !_loading&&!_noMore){
+    if(scrollView.contentOffset.y < -30.0f && !_loading&&!_noMore){
         _loading=YES;
         if(!_indicatorView){
             _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -203,6 +203,7 @@
         [_indicatorView startAnimating];
         
         _currentPageIndex++;
+        scrollView.contentInset=(UIEdgeInsets){35,0,0,0};
         [[[YaabUser sharedInstance] api] chatsWithActivity:self.activity
                                                       page:_currentPageIndex
                                                   pageSize:kPageSize
@@ -221,17 +222,19 @@
                                                            [self.tableView reloadData];
                                                            
                                                            NSUInteger scrollToIndex=MIN(kPageSize, chats.count);
-                                                           NSIndexPath * ndxPath= [NSIndexPath indexPathForRow:scrollToIndex-1 inSection:0];
+                                                           NSIndexPath * ndxPath= [NSIndexPath indexPathForRow:scrollToIndex inSection:0];
                                                            [self.tableView scrollToRowAtIndexPath:ndxPath atScrollPosition:UITableViewScrollPositionTop  animated:NO];
                                                        }
                                                        [_indicatorView stopAnimating];
                                                        [_indicatorView removeFromSuperview];
+                                                       scrollView.contentInset=UIEdgeInsetsZero;
                                                        
                                                    } failure:^(NSError *error) {
                                                        _currentPageIndex--;
                                                        [_indicatorView stopAnimating];
                                                        [_indicatorView removeFromSuperview];
                                                        _loading=NO;
+                                                       scrollView.contentInset=UIEdgeInsetsZero;
                                                    }];
         
     }
