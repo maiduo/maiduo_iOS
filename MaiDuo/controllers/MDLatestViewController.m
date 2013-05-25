@@ -174,8 +174,12 @@
                 initWithStyle: UITableViewCellStyleSubtitle
                 reuseIdentifier: CellIdentifier];
         
+        UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6, 68, 68)];
+        bgImgView.image = [[UIImage imageNamed:@"img_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 7, 6, 6)];
+        [cell addSubview:bgImgView];
+        
         imageView = [[AsyncImageView alloc]
-                     initWithFrame: CGRectMake(0.0f, 0.0f, 80.0f, 80.0f)];
+                     initWithFrame: CGRectMake(11, 11, 58, 58)];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
         imageView.tag = IMAGE_VIEW_TAG;

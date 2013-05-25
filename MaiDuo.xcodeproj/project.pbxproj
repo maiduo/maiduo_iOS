@@ -76,6 +76,7 @@
 		90F342D117217C8E005BC944 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F342D017217C8E005BC944 /* Default-568h@2x.png */; };
 		917A66597970441388A256A2 /* libPods-MaiDuoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 024D33E43FE24742A8D24C76 /* libPods-MaiDuoTests.a */; };
 		AA151D6A17506E290098C64A /* UIViewFrameCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = AA151D6917506E290098C64A /* UIViewFrameCategory.m */; };
+		AA151D6C17509E240098C64A /* img_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA151D6B17509E240098C64A /* img_bg@2x.png */; };
 		AA9954F11740020600FF5BFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9954F01740020600FF5BFF /* SystemConfiguration.framework */; };
 		AA9954F31740020B00FF5BFF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9954F21740020B00FF5BFF /* MobileCoreServices.framework */; };
 		C8B4613E1748AE7B00CF14AA /* default_avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B4613D1748AE7B00CF14AA /* default_avatar.jpg */; };
@@ -216,6 +217,7 @@
 		9DBBFC670F454C7BB499B0A2 /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA151D6817506E280098C64A /* UIViewFrameCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewFrameCategory.h; sourceTree = "<group>"; };
 		AA151D6917506E290098C64A /* UIViewFrameCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewFrameCategory.m; sourceTree = "<group>"; };
+		AA151D6B17509E240098C64A /* img_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_bg@2x.png"; sourceTree = "<group>"; };
 		AA9954F01740020600FF5BFF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AA9954F21740020B00FF5BFF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -535,6 +537,7 @@
 		C8CEFB2E173A0DE90021D371 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				AA151D6B17509E240098C64A /* img_bg@2x.png */,
 				C8B4613D1748AE7B00CF14AA /* default_avatar.jpg */,
 				C8D1A44117431C4200398568 /* photo0@2x.png */,
 				C8D1A44217431C4200398568 /* photo1@2x.png */,
@@ -640,6 +643,7 @@
 				C8B4613E1748AE7B00CF14AA /* default_avatar.jpg in Resources */,
 				90B32B5E174BBC5500D7A1F4 /* PhotoBorder.png in Resources */,
 				90B32B5F174BBC5500D7A1F4 /* PhotoBorder@2x.png in Resources */,
+				AA151D6C17509E240098C64A /* img_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
