@@ -64,6 +64,14 @@
     [self.view addSubview: self.tableView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.tableView.indexPathForSelectedRow) {
+        [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    }
+}
+
 -(void) viewDidAppear:(BOOL)animated
 {
     if(activities.count==0){

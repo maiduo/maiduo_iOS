@@ -96,7 +96,7 @@
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        cell.contentView.layer.cornerRadius = 10;
+        cell.contentView.layer.cornerRadius = 7;
         cell.contentView.backgroundColor = [UIColor redColor];
         cell.textLabel.text = @"退出登陆";
         
