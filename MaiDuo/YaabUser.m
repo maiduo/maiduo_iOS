@@ -56,13 +56,13 @@
 -(void)addUser:(MDUser *)aUser
 {
     [self.users setValue:aUser
-                  forKey:[NSString stringWithFormat:@"%d", aUser.id]];
+                  forKey:[NSString stringWithFormat:@"%d", aUser.userId]];
     self.user = aUser;
 }
 
 -(MDHTTPAPI *)api
 {
-    return [self apiWithUserID:self.user.id];
+    return [self apiWithUserID:self.user.userId];
 }
 
 -(MDHTTPAPI *)apiWithUserID:(NSInteger)aUserID
@@ -73,7 +73,7 @@
 -(void)addAPI:(MDHTTPAPI *)aMDHTTPAPI user:(MDUser *)aUser
 {
     [self.apis setValue:aMDHTTPAPI
-                  forKey:[NSString stringWithFormat:@"%d", aUser.id]];
+                  forKey:[NSString stringWithFormat:@"%d", aUser.userId]];
 }
 
 +(YaabUser *)sharedInstance

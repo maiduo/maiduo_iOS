@@ -26,7 +26,7 @@
     BOOL valid = YES;
     MDUser *user = [self getUserSession];
     valid = user != nil;
-    valid = user.id > 0;
+    valid = user.userId > 0;
     
     return valid;
 }
@@ -54,7 +54,7 @@
 - (void)logout
 {
     MDUser *user = [self getUserSession];
-    user.id = 0;
+    user.userId = 0;
     [self saveSessionWithUser:user];
 }
 

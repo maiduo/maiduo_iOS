@@ -15,11 +15,11 @@
 /** MDUser
  */
 
-@interface MDUser : NSObject
+@interface MDUser : NSObject <NSCopying>
 {
 }
 
-@property (nonatomic, assign) NSInteger id;
+@property (nonatomic, assign) NSInteger userId;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *password;

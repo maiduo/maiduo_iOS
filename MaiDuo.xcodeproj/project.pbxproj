@@ -75,6 +75,7 @@
 		90F342CF17217C8E005BC944 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F342CE17217C8E005BC944 /* Default@2x.png */; };
 		90F342D117217C8E005BC944 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F342D017217C8E005BC944 /* Default-568h@2x.png */; };
 		917A66597970441388A256A2 /* libPods-MaiDuoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 024D33E43FE24742A8D24C76 /* libPods-MaiDuoTests.a */; };
+		AA151D6A17506E290098C64A /* UIViewFrameCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = AA151D6917506E290098C64A /* UIViewFrameCategory.m */; };
 		AA9954F11740020600FF5BFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9954F01740020600FF5BFF /* SystemConfiguration.framework */; };
 		AA9954F31740020B00FF5BFF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9954F21740020B00FF5BFF /* MobileCoreServices.framework */; };
 		C8B4613E1748AE7B00CF14AA /* default_avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B4613D1748AE7B00CF14AA /* default_avatar.jpg */; };
@@ -213,6 +214,8 @@
 		94844377963140799A16CD56 /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F6F32747884C9186FD3D23 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBBFC670F454C7BB499B0A2 /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA151D6817506E280098C64A /* UIViewFrameCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewFrameCategory.h; sourceTree = "<group>"; };
+		AA151D6917506E290098C64A /* UIViewFrameCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewFrameCategory.m; sourceTree = "<group>"; };
 		AA9954F01740020600FF5BFF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AA9954F21740020B00FF5BFF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -499,6 +502,8 @@
 				90B32B64174BBC8400D7A1F4 /* yaab */,
 				C8CEFB2E173A0DE90021D371 /* Resource */,
 				90F342C117217C8E005BC944 /* Supporting Files */,
+				AA151D6817506E280098C64A /* UIViewFrameCategory.h */,
+				AA151D6917506E290098C64A /* UIViewFrameCategory.m */,
 			);
 			path = MaiDuo;
 			sourceTree = "<group>";
@@ -758,6 +763,7 @@
 				90B32B80174BBDDF00D7A1F4 /* MDActivityContactView.m in Sources */,
 				90B32B83174BBDDF00D7A1F4 /* MDCreateActivityView.m in Sources */,
 				3D064725174C5F2C0092BBAC /* MDActivityContentView.m in Sources */,
+				AA151D6A17506E290098C64A /* UIViewFrameCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,15 +901,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: shenyang 22Miles (C34693JKW5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shenyang 22Miles (C34693JKW5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "50BC4AF0-593A-4CE4-9888-E171C38CC002";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50BC4AF0-593A-4CE4-9888-E171C38CC002";
+				PROVISIONING_PROFILE = "1C51BAF5-F000-4AC2-9320-8A523F7B9DF4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1C51BAF5-F000-4AC2-9320-8A523F7B9DF4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -912,14 +918,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: shenyang 22Miles (C34693JKW5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "50BC4AF0-593A-4CE4-9888-E171C38CC002";
+				PROVISIONING_PROFILE = "1C51BAF5-F000-4AC2-9320-8A523F7B9DF4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50BC4AF0-593A-4CE4-9888-E171C38CC002";
 				WRAPPER_EXTENSION = app;
 			};

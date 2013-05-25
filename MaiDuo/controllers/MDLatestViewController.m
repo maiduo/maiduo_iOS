@@ -238,10 +238,11 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                   willDecelerate:(BOOL)decelerate
 {
     [self.tableView egoRefreshScrollViewDidEndDragging:scrollView];
-    
 }
+
 #pragma mark -
 #pragma mark EGOTableViewDelegate Methods
+
 - (void)startLoadData:(id)sender
 {
     [_api activitiesSuccess:^(NSArray *anActivies) {
