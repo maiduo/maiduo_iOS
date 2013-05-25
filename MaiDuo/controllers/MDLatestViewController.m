@@ -170,6 +170,27 @@
         cell.detailTextLabel.numberOfLines = 2;
         cell.indentationLevel = 1;
         cell.indentationWidth = 80;
+        
+        UIView *adminView = [[UIView alloc] initWithFrame:CGRectMake(imageView.right-13, imageView.bottom-13, 20, 20)];
+        adminView.layer.cornerRadius = 10;
+        adminView.backgroundColor = [UIColor redColor];
+        adminView.tag = 88;
+        [cell addSubview:adminView];
+        
+        UILabel *adminLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, adminView.width, adminView.height)];
+        adminLabel.text = @"管";
+        adminLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        adminLabel.backgroundColor = [UIColor clearColor];
+        adminLabel.font = [UIFont systemFontOfSize:14];
+        adminLabel.textColor = [UIColor whiteColor];
+        adminLabel.textAlignment = UITextAlignmentCenter;
+        [adminView addSubview:adminLabel];
+    }
+    
+    if ([MDUserManager sharedInstance].user.userId==activity.owner.userId) {
+        [[cell viewWithTag:88] setHidden:NO];
+    } else {
+        [[cell viewWithTag:88] setHidden:YES];
     }
     
     imageView = (AsyncImageView *)[cell viewWithTag: IMAGE_VIEW_TAG];
@@ -195,12 +216,35 @@
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80.0;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MDActivity* activity = (MDActivity *)[activities
+                                          objectAtIndex:[indexPath row]];
+    if ([MDUserManager sharedInstance].user.userId==activity.owner.userId) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [activities removeObjectAtIndex:indexPath.row];
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - Table view delegate
@@ -237,7 +281,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)startLoadData:(id)sender
 {
     [_api activitiesSuccess:^(NSArray *anActivies) {
-        activities = anActivies;
+        activities = [anActivies mutableCopy];
         [self.tableView refreshTableView];
     } failure:^(NSError *error) {
         NSLog(@"Error");

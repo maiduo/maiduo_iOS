@@ -40,6 +40,11 @@
                                              action:@selector(backAction)];
 }
 
+- (BOOL)isUserSelf
+{
+    return [MDUserManager sharedInstance].user.userId==_user.userId;
+}
+
 - (void)backAction
 {
     if ([self.navigationController.viewControllers count]>1) {
@@ -51,13 +56,15 @@
 
 - (void)photoAction
 {
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"上传头像"
-                                                       delegate:self
-                                              cancelButtonTitle:@"取消"
-                                         destructiveButtonTitle:nil
-                                              otherButtonTitles:@"立即拍摄",
-                            @"选择照片", nil];
-    [sheet showInView:self.navigationController.view];
+    if ([self isUserSelf]) {
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"上传头像"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"取消"
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:@"立即拍摄",
+                                @"选择照片", nil];
+        [sheet showInView:self.navigationController.view];
+    }
 }
 
 - (void)logoutAction
@@ -69,7 +76,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    if ([self isUserSelf]) {
+        return 3;
+    } else {
+        return 2;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -163,6 +174,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (![self isUserSelf]) {
+        return;
+    }
     if (indexPath.section==1&&indexPath.row==0) {
         MDEditViewController *controller = [[MDEditViewController alloc] init];
         controller.value = _user.name;

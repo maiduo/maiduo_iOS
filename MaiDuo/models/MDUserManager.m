@@ -18,7 +18,7 @@
 {
     self = [super init];
     if (self) {
-        self.user=[[MDUser alloc] init];
+        self.user= [MDUser userWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:MDUserKey]];
     }
     return self;
 }
@@ -71,6 +71,7 @@
 
 - (void)saveSessionWithUser:(MDUser *)aUser
 {
+    _user = aUser;
     if(aUser){
         [[NSUserDefaults standardUserDefaults] setValue:[aUser dictionaryValue]
                                                  forKey:MDUserKey];

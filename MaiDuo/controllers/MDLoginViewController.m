@@ -60,7 +60,7 @@ static NSString *kViewKey = @"viewKey";
                           initWithTitle:@"注册"
                           style:UIBarButtonItemStyleBordered
                           target:self
-                          action:@selector(register)];
+                          action:@selector(regAction)];
     self.navigationItem.leftBarButtonItem = buttonItemRegister;
     
     self.dataArray = [NSArray arrayWithObjects:
@@ -205,7 +205,7 @@ static NSString *kViewKey = @"viewKey";
     // [_delegate loginViewControllerDidLogin:self];
 }
 
--(void)register
+-(void)regAction
 {
     [self.navigationController
      pushViewController:[[MDRegisterViewController alloc] initWithStyle:UITableViewStyleGrouped]
