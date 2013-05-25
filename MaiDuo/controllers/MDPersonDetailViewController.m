@@ -90,7 +90,7 @@
             return 1;
             break;
         case 1:
-            return 1;
+            return 2;
             break;
         default:
             return 1;
@@ -100,7 +100,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==[self numberOfSectionsInTableView:tableView]-1) {
+    if (indexPath.section==2) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.textLabel.textAlignment = UITextAlignmentCenter;
         cell.textLabel.backgroundColor = [UIColor clearColor];
@@ -121,8 +121,16 @@
         if (cell==nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
         }
+
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        if ([self isUserSelf]) {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        
+        cell.accessoryView = nil;
         if (indexPath.section==0) {
             cell.textLabel.text = @"用户头像";
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -140,8 +148,14 @@
             }
             cell.accessoryView = imgView;
         } else if (indexPath.section==1) {
-            cell.textLabel.text = @"姓名";
-            cell.detailTextLabel.text = _user.name;
+            if (indexPath.row==0) {
+                cell.textLabel.text = @"姓名";
+                cell.detailTextLabel.text = _user.name;
+            } else {
+                cell.textLabel.text = @"电话";
+                cell.detailTextLabel.text = _user.username;
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
         }
         
         return cell;
