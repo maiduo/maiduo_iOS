@@ -40,6 +40,7 @@
                                     service:(NSString *)aService;
 
 -(NSDictionary *)dictionaryForCreateActivity:(MDActivity *)anActivity;
+-(NSDictionary *)dictionaryForDeleteActivity:(MDActivity *)anActivity;
 -(NSDictionary *)dictionaryForInvite:(MDActivity *)anActivity
                                 user:(MDUser *)anUser;
 -(NSDictionary *)dictionaryForSendMessage:(MDMessage *)aMessage;
@@ -51,5 +52,7 @@
 -(NSDictionary *)dictionaryForChatsWithActivity:(MDActivity *)anActivity
                                            page:(NSInteger)aPage
                                        pageSize:(NSInteger)aPageSize;
+
+-(NSDictionary *)dictionaryForLogoutWithUser:(MDUser *)user;
 -(NSDictionary *)dictionaryForAccessToken;
 @end

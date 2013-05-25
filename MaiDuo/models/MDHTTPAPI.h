@@ -98,9 +98,13 @@
  @see [MDActivity activityWithSubject:description:]
  
  */
--(void)createActivity:(MDActivity *)activity
-              success:(void (^)(MDActivity *anActivity))success
+-(void)createActivity:(MDActivity *)anActivity
+              success:(void (^)())success
               failure:(void (^)(NSError *error))failure;
+
+- (void)deleteActivity:(MDActivity *)activity
+               success:(void (^)(MDActivity *anActivity))success
+               failure:(void (^)(NSError *error))failure;
 
 /** 发送消息
  
@@ -216,6 +220,8 @@
                   success:(void (^)(MDUser *anUser))success
                   failure:(void (^)(NSError *error))failure;
 
+- (void)logoutWithSuccess:(void (^)(MDUser *user))success
+                  failure:(void (^)(NSError *error))failure;
 
 /** 注册用户
  

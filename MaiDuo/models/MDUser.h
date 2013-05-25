@@ -32,6 +32,9 @@
 
 -(NSDictionary *)dictionaryValue;
 -(id)initWithUsername:(NSString *)anUsername password:(NSString *)aPassword;
+-(id)initWithUsername:(NSString *)anUsername
+                 name:(NSString *)aName
+             password:(NSString *)aPassword;
 -(BOOL)equal:(MDUser *)aUser;
 +(MDUser *)userWithDictionary:(NSDictionary *)aDictionary;
 +(MDUser *)userWithInvite:(NSString *)anUsername name:(NSString *)aName;

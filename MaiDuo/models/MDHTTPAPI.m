@@ -56,6 +56,7 @@
     };
     
     void (^blockFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self printError:error];
         if (nil != failure)
             failure(error);
     };
@@ -87,6 +88,29 @@
     dictionaryActivity = [self.factory dictionaryForCreateActivity:activity];
     
     [[AFMDClient sharedClient] postPath:@"activity/"
+                             parameters:dictionaryActivity
+                                success:blockSuccess
+                                failure:blockFailure];
+}
+
+- (void)deleteActivity:(MDActivity *)anActivity
+               success:(void (^)())success
+               failure:(void (^)(NSError *error))failure
+{
+    void (^blockSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id JSON) {
+        success();
+    };
+    
+    void (^blockFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self printError:error];
+        if (nil != failure)
+            failure(error);
+    };
+    
+    NSDictionary *dictionaryActivity;
+    dictionaryActivity = [self.factory dictionaryForCreateActivity:anActivity];
+    
+    [[AFMDClient sharedClient] deletePath:@"activity/"
                              parameters:dictionaryActivity
                                 success:blockSuccess
                                 failure:blockFailure];
@@ -278,6 +302,28 @@
                  success:blockSuccess
                  failure:blockFailure];
     [operation start];
+}
+
+- (void)logoutWithSuccess:(void (^)(MDUser *user))success
+                  failure:(void (^)(NSError *error))failure
+{
+//    NSDictionary *dictionaryInvite;
+//    dictionaryInvite = [_factory dictionaryForInvite:anActivity user:anUser];
+//    
+//    [[AFMDClient sharedClient] postPath:@"activity/invite/"
+//                             parameters:dictionaryInvite
+//                                success:^(AFHTTPRequestOperation *operation,
+//                                          id JSON)
+//     {
+//         success(anUser);
+//     }
+//                                failure:^(AFHTTPRequestOperation *operation,
+//                                          NSError *error)
+//     {
+//         [self printError:error];
+//         if (nil != failure)
+//             failure(error);
+//     }];
 }
 
 +(void)login:(MDUser *)user

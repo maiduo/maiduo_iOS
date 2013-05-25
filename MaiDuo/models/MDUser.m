@@ -49,6 +49,16 @@
     return self;
 }
 
+-(id)initWithUsername:(NSString *)anUsername
+                 name:(NSString *)aName
+             password:(NSString *)aPassword
+{
+    self = [self initWithUsername:anUsername password:aPassword];
+    self.name = aName;
+    
+    return self;
+}
+
 -(NSDictionary *)dictionaryValue
 {
     return [NSDictionary dictionaryWithObjectsAndKeys:
