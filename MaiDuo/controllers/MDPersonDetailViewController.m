@@ -62,8 +62,7 @@
 
 - (void)logoutAction
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:USER_LOGOUT
-                                                        object:self];
+    [[MDUserManager sharedInstance] logout];
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate

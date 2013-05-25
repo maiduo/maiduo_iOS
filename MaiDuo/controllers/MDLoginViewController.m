@@ -208,7 +208,7 @@ static NSString *kViewKey = @"viewKey";
 -(void)register
 {
     [self.navigationController
-     pushViewController:[[MDRegisterViewController alloc] init]
+     pushViewController:[[MDRegisterViewController alloc] initWithStyle:UITableViewStyleGrouped]
      animated:YES];
 }
 @end

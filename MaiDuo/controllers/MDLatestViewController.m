@@ -49,11 +49,6 @@
                                              target:self
                                              action:@selector(detailAction)];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(logoutAction:)
-                                                 name:USER_LOGOUT
-                                               object:nil];
-    
     _api = [[YaabUser sharedInstance] api];
     
 
@@ -99,23 +94,6 @@
      presentModalViewController:[[UINavigationController alloc]
                                  initWithRootViewController:controller]
      animated:YES];
-}
-
-- (void)logoutAction:(id)sender
-{
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        [self.navigationController popViewControllerAnimated:NO];
-        
-        MDLoginViewController *loginViewController;
-        loginViewController = [[MDLoginViewController alloc] init];
-        
-        [self.navigationController
-         presentModalViewController:[[UINavigationController alloc]
-                                     initWithRootViewController:loginViewController]
-         animated:YES];
-        
-        [[MDUserManager sharedInstance] logout];
-    }];
 }
 
 -(void)refresh
