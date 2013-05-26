@@ -27,7 +27,7 @@
     MDUser *user = [[MDUser alloc] initWithUsername:@"13000000000"
                                           password:nil];
     user.accessToken = @"0acc2d039fc04202bfc6e0a5aed5091f";
-    user.id = 2;
+    user.userId = 2;
     
     activity = [MDActivity activityWithID:2
                                   subject:@"Activity subject"
@@ -208,6 +208,34 @@
               operationSuccessed = NO;
               dispatch_semaphore_signal(semaphore);
           }];
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+    }
+    
+    GHAssertTrue(operationSuccessed, @"");
+}
+
+- (void)testUploadAvatar
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    
+    NSString *avatar_path = [[NSBundle mainBundle] pathForResource:@"avatar"
+                                                            ofType:@"jpg"];
+    NSData *data = [NSData dataWithContentsOfFile:avatar_path];
+    [api uploadAvatar:data
+             progress:^(NSUInteger bytesWritten, long long totalBytesWritten,
+                        long long totalBytesExpectedToWrite) {
+             }
+              success:^() {
+                  operationSuccessed = YES;
+                  dispatch_semaphore_signal(semaphore);
+    }
+              failure:^(NSError *error) {
+                  operationSuccessed = NO;
+                  dispatch_semaphore_signal(semaphore);
+    }];
     while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
                                  beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
