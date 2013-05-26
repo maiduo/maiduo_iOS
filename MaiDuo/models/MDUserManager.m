@@ -23,6 +23,7 @@
     }
     return self;
 }
+
 - (BOOL)userSessionValid
 {
     BOOL valid = YES;
@@ -32,6 +33,7 @@
     
     return valid;
 }
+
 - (MDUser*)getUserSession
 {
     static MDUser *session;
@@ -78,7 +80,7 @@
 {
     _user = aUser;
     if(aUser){
-        [[NSUserDefaults standardUserDefaults] setValue:[aUser dictionaryValue]
+        [[NSUserDefaults standardUserDefaults] setObject:[aUser dictionaryValue]
                                                  forKey:MDUserKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
