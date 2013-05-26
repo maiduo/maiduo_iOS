@@ -7,6 +7,8 @@
 //
 
 #import "MDRegisterViewController.h"
+#import "MDHTTPAPI.h"
+#import "MDLatestViewController.h"
 
 @interface MDRegisterViewController () {
     UITextField *_phoneText;
@@ -66,7 +68,19 @@
 
 - (void)doneAction
 {
-    
+    MDUser *user = [[MDUser alloc] init];
+    user.username = _phoneText.text;
+    user.name = _nameText.text;
+    user.password = _passText.text;
+    user.deviceToken = [YaabUser sharedInstance].deviceToken;
+    [MDHTTPAPI registerUser:user success:^(MDUser *user, MDHTTPAPI *api) {
+        [[MDUserManager sharedInstance] saveSessionWithUser:user];
+        [[YaabUser sharedInstance] addUser:user];
+        [[YaabUser sharedInstance] addAPI:api user:user];
+        [self.navigationController pushViewController:[[MDLatestViewController alloc] init] animated:YES];
+    } failure:^(NSError *error) {
+        NSLog(@"注册失败");
+    }];
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate

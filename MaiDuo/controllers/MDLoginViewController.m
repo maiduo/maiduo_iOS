@@ -193,10 +193,9 @@ static NSString *kViewKey = @"viewKey";
         [self hideHUD];
         [[YaabUser sharedInstance] addUser:user];
         [[YaabUser sharedInstance] addAPI:api user:user];
-        [self.delegate loginViewControllerDidLogin:self];
-         
-//        MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
-//        [appDelegate.navigationController pushViewController:latestVC animated:YES];
+        MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
+        [(UINavigationController *)appDelegate.window.rootViewController pushViewController:latestVC animated:YES];
+        
     } failure:^(NSError *error) {
         [self hideHUD];
         [[error userInfo] enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {

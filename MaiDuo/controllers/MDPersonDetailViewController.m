@@ -8,11 +8,9 @@
 
 #import "MDPersonDetailViewController.h"
 #import "MDUserManager.h"
-#import "MDHTTPAPI.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface MDPersonDetailViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MDEditViewControllerDelegate> {
-    MDHTTPAPI *_api;
 }
 
 @end
@@ -229,8 +227,9 @@
     [_api uploadAvatar:headData progress:^(NSUInteger bytesWritten,
                                            long long totalBytesWritten,
                                            long long totalBytesExpectedToWrite) {
-        NSLog(@"上传数据 %lld ", totalBytesWritten / totalBytesExpectedToWrite);
+        NSLog(@"上传数据 %.2f ", (double)totalBytesWritten / (double)totalBytesExpectedToWrite);
     } success:^{
+        [self.tableView reloadData];
         NSLog(@"上传头像完成。");
     } failure:^(NSError *error) {
         NSLog(@"上传头像失败。");
