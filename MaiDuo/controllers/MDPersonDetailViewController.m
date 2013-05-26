@@ -12,7 +12,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface MDPersonDetailViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MDEditViewControllerDelegate> {
-    MDHTTPAPI *_api;
 }
 
 @end
