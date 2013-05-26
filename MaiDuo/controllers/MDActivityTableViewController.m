@@ -220,6 +220,7 @@
                 _messageView = [[MDActivityMessageView alloc] initWithFrame:rectangle];
                 _messageView.autoresizingMask = autoresizing;
                 _messageView.viewController = self;
+                _messageView.activity = self.activity;
             }
             _currentContentView = _messageView;
             rightBarButtonItem = [self barButtonItemMessage:_messageView];

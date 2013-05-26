@@ -31,13 +31,13 @@
         
         _source = [NSMutableArray arrayWithObjects:nil];
         _message = [NSMutableArray array];
-        //        [[[YaabUser sharedInstance] api] messagesWithActivity:self.activity
-        //                                                         page:1
-        //                                                      success:^(NSArray *messages) {
-        //                                                       [_message addObjectsFromArray:messages];
-        //                                                       [_tableView reloadData];
-        //                                                }      failure:^(NSError *error) {
-        //                                                   }];
+        [[[YaabUser sharedInstance] api] messagesWithActivity:self.activity
+                                                         page:1
+                                                      success:^(NSArray *messages) {
+                                                          [_message addObjectsFromArray:messages];
+                                                          [_tableView reloadData];
+                                                      }      failure:^(NSError *error) {
+                                                      }];
     }
     return self;
 }
@@ -162,7 +162,7 @@
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
         
         static NSString* image_url;
-        image_url = @"http://img0.ddove.com/upload/20100707/071007321979.png";
+        image_url = @"http://a.img.youboy.com/20106/9/g3_3481169s.jpg";
         imageView.imageURL = [NSURL URLWithString:
                               [NSString stringWithFormat:image_url,
                                @"test"]];
@@ -181,7 +181,7 @@
 - (UITableViewCell *)createCellWithMoreImageTableView:(UITableView *)tableView
                                 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = @"image2";
+    NSString *CellIdentifier = [NSString stringWithFormat:@"%d",indexPath.row];
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -189,7 +189,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]
                 initWithStyle: UITableViewCellStyleSubtitle
-                reuseIdentifier: @"image2"];
+                reuseIdentifier: [NSString stringWithFormat:@"%d",indexPath.row]];
         cell.indentationWidth = 10;
         cell.indentationLevel = 1;
         
@@ -229,7 +229,7 @@
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView2];
         
         static NSString* image_url;
-        image_url = @"http://img0.ddove.com/upload/20100707/071007321979.png";
+        image_url = @"http://file.youboy.com/a/57/28/49/3/6665323s.jpg";
         imageView2.imageURL = [NSURL URLWithString:
                                [NSString stringWithFormat:image_url,
                                 @"test"]];
@@ -246,7 +246,7 @@
         imageView3 = (AsyncImageView *)[cell viewWithTag: 3];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView3];
         
-        image_url = @"http://img0.ddove.com/upload/20100707/071007321979.png";
+        image_url = @"http://pic.yoostrip.com/1000/396/396_3_140_120.jpg";
         imageView3.imageURL = [NSURL URLWithString:
                                [NSString stringWithFormat:image_url,
                                 @"test"]];
@@ -262,7 +262,7 @@
         imageView4 = (AsyncImageView *)[cell viewWithTag: 4];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView4];
         
-        image_url = @"http://img0.ddove.com/upload/20100707/071007321979.png";
+        image_url = @"http://v1.qzone.cc/avatar/201303/18/15/02/5146bc12cee67696.jpg!200x200.jpg";
         imageView4.imageURL = [NSURL URLWithString:
                                [NSString stringWithFormat:image_url,
                                 @"test"]];
@@ -345,7 +345,7 @@
         title.font = [UIFont boldSystemFontOfSize:20];
         title.numberOfLines = 0;
         title.lineBreakMode = UILineBreakModeCharacterWrap;
-        title.text = @"标题测试好覅；低挥发i换肤；aldhfi";
+        title.text = self.activity.subject;
         
         CGSize titleSize = [title.text sizeWithFont:title.font
                                   constrainedToSize:CGSizeMake(title.frame.size.width, MAXFLOAT)];
