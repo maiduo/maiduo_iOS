@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "AsyncImageView.h"
 #import "MDUser.h"
+#import "MDHTTPAPI.h"
 
 #define USER_LOGOUT @"user_logout"
 
 @interface MDPersonDetailViewController : UITableViewController {
-    
+    MDHTTPAPI *_api;
 }
 
 @property (nonatomic, strong) MDUser *user;

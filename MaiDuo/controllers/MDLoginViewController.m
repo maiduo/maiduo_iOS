@@ -193,8 +193,7 @@ static NSString *kViewKey = @"viewKey";
         [self hideHUD];
         [[YaabUser sharedInstance] addUser:user];
         [[YaabUser sharedInstance] addAPI:api user:user];
-        [appDelegate.navigationController dismissModalViewControllerAnimated:YES];
-        [self.delegate loginViewControllerDidLogin:self];
+        [(UINavigationController *)appDelegate.window.rootViewController pushViewController:[[MDLatestViewController alloc] init] animated:YES];
          
 //        MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
 //        [appDelegate.navigationController pushViewController:latestVC animated:YES];

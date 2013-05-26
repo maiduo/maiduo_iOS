@@ -243,8 +243,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [activities removeObjectAtIndex:indexPath.row];
-    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    MDActivity *item = [activities objectAtIndex:indexPath.row];
+    [_api deleteActivity:item success:^(MDActivity *anActivity) {
+        [activities removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
 }
 
 #pragma mark - Table view delegate
