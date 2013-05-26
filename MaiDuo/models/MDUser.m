@@ -29,7 +29,6 @@
     user.password = _password;
     user.name = _name;
     user.isActive = _isActive;
-    user.avatar = _avatar;
     user.deviceToken = _deviceToken;
     user.accessToken = _accessToken;
     user.refreshToken = _refreshToken;
@@ -75,6 +74,35 @@
         return YES;
     else
         return NO;
+}
+
+- (NSString *)avatar
+{
+    return [self avatarWithSize:SMALL_AVATAR];
+}
+
+- (NSString *)avatarWithSize:(AvatarSize)size
+{
+    NSString *aSize;
+    switch (size) {
+        case SMALL_AVATAR:
+            aSize = @"100";
+            break;
+        case MIDDLE_AVATAR:
+            aSize = @"200";
+            break;
+        case BIG_AVATAR:
+            aSize = @"400";
+            break;
+            
+        default:
+            break;
+    }
+    static NSString *noformat = @"http://himaiduo.com/media/user/avatar/%d/%d_%@.jpg";
+    NSString *avatarURL = [NSString stringWithFormat:noformat,
+                           self.userId % 1000, self.userId, aSize];
+    
+    return avatarURL;
 }
 
 +(MDUser *)userWithDictionary:(NSDictionary *)aDictionary
@@ -124,7 +152,6 @@
     user.username = username;
     user.name = name;
     user.userId = userID;
-    user.avatar = [JSON objectForKey:@"avatar"];
     
     return user;
 }

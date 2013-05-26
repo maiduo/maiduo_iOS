@@ -250,7 +250,6 @@
     NSString *docPath = [paths objectAtIndex:0];
     NSString *headPath = [docPath stringByAppendingString:@"/head.png"];
     [headData writeToFile:headPath atomically:YES];
-    _user.avatar = headPath;
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 
