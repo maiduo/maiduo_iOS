@@ -68,20 +68,22 @@
         
         case 1:
             NSLog(@"2");
-            return [self createCellWithMoreImageTableView:tableView
-                                    cellForRowAtIndexPath:indexPath];
+            return [self createCellWithTempUseLittleImageTableView:tableView
+                                             cellForRowAtIndexPath:indexPath];
             break;
             
         case 2:
             NSLog(@"3");
-            return [self createCellWithOneImageTableView:tableView
+            return [self createCellWithTempUseOrginImageTableView:tableView
                                    cellForRowAtIndexPath:indexPath];
             break;
             
         case 3:
             NSLog(@"4");
-            return [self createCellWithTextTableView:tableView
-                               cellForRowAtIndexPath:indexPath];
+            return [self createCellWithTempUseboxImageTableView:tableView
+                                          cellForRowAtIndexPath:indexPath];
+            
+
             break;
     }
 }
@@ -95,18 +97,19 @@
                         cellforRowAtIndexPath:indexPath];
             break;
         case 1:
-            cell = [self createCellWithMoreImageTableView:tableView
-                                    cellForRowAtIndexPath:indexPath];
+            
+            cell = [self createCellWithTempUseLittleImageTableView:tableView
+                                             cellForRowAtIndexPath:indexPath];
             break;
             
         case 2:
-            cell = [self createCellWithOneImageTableView:tableView
-                                   cellForRowAtIndexPath:indexPath];
+            cell = [self createCellWithTempUseOrginImageTableView:tableView
+                                          cellForRowAtIndexPath:indexPath];
             break;
             
         case 3:
-            cell = [self createCellWithTextTableView:tableView
-                               cellForRowAtIndexPath:indexPath];
+            cell = [self createCellWithTempUseboxImageTableView:tableView
+                                          cellForRowAtIndexPath:indexPath];
             break;
     }
     return cell.frame.size.height;
@@ -166,7 +169,6 @@
         imageView.imageURL = [NSURL URLWithString:
                               [NSString stringWithFormat:image_url,
                                @"test"]];
-        
         cell.frame = (CGRect){self.frame.origin,self.frame.size.width,titleSize.height + contentSize.height + pictureHeight + 10 + gapHeight * 5};
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -251,6 +253,7 @@
                                [NSString stringWithFormat:image_url,
                                 @"test"]];
         
+        
         AsyncImageView* imageView4;
         imageView4 = [[AsyncImageView alloc]
                       initWithFrame: CGRectMake(15 + 2 * pictureWidth + 2 * gapWidth, titleSize.height + contentSize.height + 10 + gapHeight * 2, (self.bounds.size.width - 30.0 -5.0*3)/4, 60.0f)];
@@ -328,20 +331,23 @@
 }
 
 
+
+
 -(UITableViewCell*) createTitleCellWith:(UITableView*)tableView
                   cellforRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"title"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%d",indexPath.row]];
     if (cell == nil) {
         float gapHeight = 20;
         float pictureWidth = 50;
         float pictureHeight = 50;
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"title"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                      reuseIdentifier:[NSString stringWithFormat:@"%d",indexPath.row]];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         UILabel * title = [[UILabel alloc]initWithFrame:(CGRect){10.0,20.0,(self.bounds.size.width - pictureWidth - 10),
             10}];
-        title.textColor = [UIColor blueColor];
+        title.textColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:0.6];
         title.font = [UIFont boldSystemFontOfSize:20];
         title.numberOfLines = 0;
         title.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -364,7 +370,7 @@
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
         
         static NSString* image_url;
-        image_url = @"http://img0.ddove.com/upload/20100707/071007321979.png";
+        image_url = [self.activity.owner avatarWithSize:BIG_AVATAR];
         imageView.imageURL = [NSURL URLWithString:
                               [NSString stringWithFormat:image_url,
                                @"test"]];
@@ -373,10 +379,242 @@
         cell.frame = (CGRect){CGPointZero,self.bounds.size.width,cellHeight};
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
     return cell;
     
+}
+
+#pragma mark -- 演示零时代码
+
+- (UITableViewCell *)createCellWithTempUseboxImageTableView:(UITableView *)tableView
+                                      cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = [NSString stringWithFormat:@"%d",indexPath.row];
+    UITableViewCell *cell = [tableView
+                             dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]
+                initWithStyle: UITableViewCellStyleSubtitle
+                reuseIdentifier: [NSString stringWithFormat:@"%d",indexPath.row]];
+        cell.indentationWidth = 10;
+        cell.indentationLevel = 1;
+        
+        float pictureWidth = (self.bounds.size.width - 30.0 -5.0*3)/4;
+        float gapWidth = 5;
+        float gapHeight = 15;
+        
+        UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(10.0, 10.0, self.bounds.size.width,50.0)];
+        title.text = @"一小时前";
+        title.font = [UIFont boldSystemFontOfSize:14];
+        title.textColor = [UIColor grayColor];
+        
+        CGSize titleSize = [title.text sizeWithFont:title.font
+                                  constrainedToSize:CGSizeMake(title.frame.size.width, MAXFLOAT)];
+        title.frame = (CGRect){10.0, 10.0,titleSize};
+        [cell addSubview:title];
+        
+        UILabel *content = [[UILabel alloc]initWithFrame:CGRectMake(10.0, 140.0, self.bounds.size.width - 20.0,80.0)];
+        content.lineBreakMode = UILineBreakModeCharacterWrap;
+        content.numberOfLines = 0;
+        content.text = @"拖着箱子去CodeJam:一生至少该有一次，为了CodeJam而忘记自己，拖着个箱子说走就走";
+        CGSize contentSize = [content.text sizeWithFont:content.font
+                                      constrainedToSize:CGSizeMake(content.frame.size.width, MAXFLOAT)];
+        content.frame = (CGRect){10.0, titleSize.height + 10 + gapHeight, contentSize};
+        
+        [cell addSubview:content];
+        
+        UIImageView* imageView2;
+        imageView2 = [[UIImageView alloc]
+                      initWithFrame: CGRectMake(15.0f, titleSize.height + contentSize.height + 10 + gapHeight * 2, pictureWidth, 60.0f)];
+        imageView2.contentMode = UIViewContentModeScaleAspectFill;
+        imageView2.clipsToBounds = YES;
+        imageView2.tag = 2;
+        
+        imageView2.image = [UIImage imageNamed:@"box1.jpg"];
+        [cell addSubview: imageView2];
+        imageView2 = (AsyncImageView *)[cell viewWithTag: 2];
+        
+        
+        UIImageView* imageView3;
+        imageView3 = [[AsyncImageView alloc]
+                      initWithFrame: CGRectMake(pictureWidth + 15.0 + gapWidth, titleSize.height + contentSize.height + 10 + gapHeight * 2, (self.bounds.size.width - 30.0 -5.0*3)/4, 60.0f)];
+        imageView3.contentMode = UIViewContentModeScaleAspectFill;
+        imageView3.clipsToBounds = YES;
+        imageView3.tag = 3;
+        imageView3.image = [UIImage imageNamed:@"box2.jpg"];
+        
+        [cell addSubview: imageView3];
+        imageView3 = (UIImageView *)[cell viewWithTag: 3];
+        
+        
+        cell.frame = (CGRect){self.frame.origin,self.frame.size.width, titleSize.height + contentSize.height + 60 + 10 + gapHeight * 5};
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    return cell;
+}
+
+- (UITableViewCell *)createCellWithTempUseOrginImageTableView:(UITableView *)tableView
+                                      cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = [NSString stringWithFormat:@"%d",indexPath.row];
+    UITableViewCell *cell = [tableView
+                             dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]
+                initWithStyle: UITableViewCellStyleSubtitle
+                reuseIdentifier: [NSString stringWithFormat:@"%d",indexPath.row]];
+        cell.indentationWidth = 10;
+        cell.indentationLevel = 1;
+        
+        float pictureWidth = (self.bounds.size.width - 30.0 -5.0*3)/4;
+        float gapWidth = 5;
+        float gapHeight = 15;
+        
+        UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(10.0, 10.0, self.bounds.size.width,50.0)];
+        title.text = @"18小时前";
+        title.font = [UIFont boldSystemFontOfSize:14];
+        title.textColor = [UIColor grayColor];
+        
+        CGSize titleSize = [title.text sizeWithFont:title.font
+                                  constrainedToSize:CGSizeMake(title.frame.size.width, MAXFLOAT)];
+        title.frame = (CGRect){10.0, 10.0,titleSize};
+        [cell addSubview:title];
+        
+        UILabel *content = [[UILabel alloc]initWithFrame:CGRectMake(10.0, 140.0, self.bounds.size.width - 20.0,80.0)];
+        content.lineBreakMode = UILineBreakModeCharacterWrap;
+        content.numberOfLines = 0;
+        content.text = @"我为你浅唱低吟，柔肠百转，剪一抹相思的暖，掬一抹思念的香。。。而你，却无动于衷！";
+        CGSize contentSize = [content.text sizeWithFont:content.font
+                                      constrainedToSize:CGSizeMake(content.frame.size.width, MAXFLOAT)];
+        content.frame = (CGRect){10.0, titleSize.height + 10 + gapHeight, contentSize};
+        
+        [cell addSubview:content];
+        
+        UIImageView* imageView2;
+        imageView2 = [[UIImageView alloc]
+                      initWithFrame: CGRectMake(15.0f, titleSize.height + contentSize.height + 10 + gapHeight * 2, pictureWidth, 60.0f)];
+        imageView2.contentMode = UIViewContentModeScaleAspectFill;
+        imageView2.clipsToBounds = YES;
+        imageView2.tag = 2;
+        
+        imageView2.image = [UIImage imageNamed:@"orgin1.jpg"];
+        [cell addSubview: imageView2];
+        imageView2 = (AsyncImageView *)[cell viewWithTag: 2];
+        
+        
+        UIImageView* imageView3;
+        imageView3 = [[UIImageView alloc]
+                      initWithFrame: CGRectMake(pictureWidth + 15.0 + gapWidth, titleSize.height + contentSize.height + 10 + gapHeight * 2, (self.bounds.size.width - 30.0 -5.0*3)/4, 60.0f)];
+        imageView3.contentMode = UIViewContentModeScaleAspectFill;
+        imageView3.clipsToBounds = YES;
+        imageView3.tag = 3;
+        imageView3.image = [UIImage imageNamed:@"orgin2.jpg"];
+        
+        [cell addSubview: imageView3];
+        imageView3 = (UIImageView *)[cell viewWithTag: 3];
+        
+        UIImageView* imageView4;
+        imageView4 = [[UIImageView alloc]
+                      initWithFrame: CGRectMake(pictureWidth *2 + 15.0 + gapWidth *2, titleSize.height + contentSize.height + 10 + gapHeight * 2, (self.bounds.size.width - 30.0 -5.0*3)/4, 60.0f)];
+        imageView4.contentMode = UIViewContentModeScaleAspectFill;
+        imageView4.clipsToBounds = YES;
+        imageView4.tag = 3;
+        imageView4.image = [UIImage imageNamed:@"orgin3.jpg"];
+        
+        [cell addSubview: imageView4];
+        imageView4 = (UIImageView *)[cell viewWithTag: 4];
+        
+        cell.frame = (CGRect){self.frame.origin,self.frame.size.width, titleSize.height + contentSize.height + 60 + 10 + gapHeight * 5};
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    return cell;
+}
+
+- (UITableViewCell *)createCellWithTempUseLittleImageTableView:(UITableView *)tableView
+                                        cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = [NSString stringWithFormat:@"%d",indexPath.row];
+    UITableViewCell *cell = [tableView
+                             dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]
+                initWithStyle: UITableViewCellStyleSubtitle
+                reuseIdentifier: [NSString stringWithFormat:@"%d",indexPath.row]];
+        cell.indentationWidth = 10;
+        cell.indentationLevel = 1;
+        
+        float pictureWidth = (self.bounds.size.width - 30.0 -5.0*3)/4;
+        float gapWidth = 5;
+        float gapHeight = 15;
+        
+        UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(10.0, 10.0, self.bounds.size.width,50.0)];
+        title.text = @"18小时前";
+        title.font = [UIFont boldSystemFontOfSize:14];
+        title.textColor = [UIColor grayColor];
+        
+        CGSize titleSize = [title.text sizeWithFont:title.font
+                                  constrainedToSize:CGSizeMake(title.frame.size.width, MAXFLOAT)];
+        title.frame = (CGRect){10.0, 10.0,titleSize};
+        [cell addSubview:title];
+        
+        UILabel *content = [[UILabel alloc]initWithFrame:CGRectMake(10.0, 140.0, self.bounds.size.width - 20.0,80.0)];
+        content.lineBreakMode = UILineBreakModeCharacterWrap;
+        content.numberOfLines = 0;
+        content.text = @"汉堡不够咸，我为自己带盐: 你只看到我的抬头，却没看到我的低头";
+        CGSize contentSize = [content.text sizeWithFont:content.font
+                                      constrainedToSize:CGSizeMake(content.frame.size.width, MAXFLOAT)];
+        content.frame = (CGRect){10.0, titleSize.height + 10 + gapHeight, contentSize};
+        
+        [cell addSubview:content];
+        
+        UIImageView* imageView2;
+        imageView2 = [[UIImageView alloc]
+                      initWithFrame: CGRectMake(15.0f, titleSize.height + contentSize.height + 10 + gapHeight * 2, pictureWidth, 60.0f)];
+        imageView2.contentMode = UIViewContentModeScaleAspectFill;
+        imageView2.clipsToBounds = YES;
+        imageView2.tag = 2;
+        
+        imageView2.image = [UIImage imageNamed:@"little1.jpg"];
+        [cell addSubview: imageView2];
+        imageView2 = (AsyncImageView *)[cell viewWithTag: 2];
+        
+        
+        UIImageView* imageView3;
+        imageView3 = [[UIImageView alloc]
+                      initWithFrame: CGRectMake(pictureWidth + 15.0 + gapWidth, titleSize.height + contentSize.height + 10 + gapHeight * 2, (self.bounds.size.width - 30.0 -5.0*3)/4, 60.0f)];
+        imageView3.contentMode = UIViewContentModeScaleAspectFill;
+        imageView3.clipsToBounds = YES;
+        imageView3.tag = 3;
+        imageView3.image = [UIImage imageNamed:@"little2.jpg"];
+        
+        [cell addSubview: imageView3];
+        imageView3 = (UIImageView *)[cell viewWithTag: 3];
+        
+        UIImageView* imageView4;
+        imageView4 = [[UIImageView alloc]
+                      initWithFrame: CGRectMake(pictureWidth *2 + 15.0 + gapWidth *2, titleSize.height + contentSize.height + 10 + gapHeight * 2, (self.bounds.size.width - 30.0 -5.0*3)/4, 60.0f)];
+        imageView4.contentMode = UIViewContentModeScaleAspectFill;
+        imageView4.clipsToBounds = YES;
+        imageView4.tag = 3;
+        imageView4.image = [UIImage imageNamed:@"little3.jpg"];
+        
+        [cell addSubview: imageView4];
+        imageView4 = (UIImageView *)[cell viewWithTag: 4];
+        
+        cell.frame = (CGRect){self.frame.origin,self.frame.size.width, titleSize.height + contentSize.height + 60 + 10 + gapHeight * 5};
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    return cell;
 }
 
 @end
