@@ -11,12 +11,28 @@
 #import "MDActivityMessageView.h"
 #import "MDActivityContactView.h"
 #import "MDActivityChatViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
+#define kActNumRect (CGRect){42,2,14,14}
+#define kActMesRect (CGRect){124,2,14,14}
+#define kChatNumRect (CGRect){176,2,14,14}
+#define kDidReceiveMessage @"didReceiveMessage"
+#define kDidReceiveChat @"didReceiveChat"
+#define kDidReceiveActivity @"didReceiveActivity"
 @interface MDActivityTableViewController () {
     MDActivityMessageView *_messageView;
     MDActivityContactView *_contactView;
     UIView *_chatView;
     UIView *_currentContentView;
+    
+    UILabel *_lblOtherNum;
+    UILabel *_lblMesNum;
+    UILabel *_lblChatNum;
+    
+    NSUInteger _otherNum;
+    NSUInteger _mesNum;
+    NSUInteger _chatNum;
+    
 }
 
 @property (assign, nonatomic) MDActivityViewState viewState;
@@ -50,6 +66,12 @@
 {
     [super viewDidLoad];
     
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNewActNum:) name:kDidReceiveActivity object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNewMesNum:) name:kDidReceiveMessage object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNewChatNum:) name:kDidReceiveChat object:nil];
+    
+    
     _segmented = [[UISegmentedControl alloc]
                   initWithItems:@[@"消息", @"聊天", @"通讯录"]];
     _segmented.segmentedControlStyle = UISegmentedControlSegmentCenter;
@@ -60,6 +82,126 @@
     self.navigationItem.titleView = _segmented;
     
     [self showViewState:MDActivityViewStateMessage];
+    
+}
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    UINavigationBar *navBar=self.navigationController.navigationBar;
+    if(!_lblOtherNum){
+        _lblOtherNum = [[UILabel alloc] initWithFrame:kActNumRect];
+        [self initLabel:_lblOtherNum];
+        _lblOtherNum.hidden=YES;
+    }
+    if(!_lblMesNum){
+        _lblMesNum = [[UILabel alloc] initWithFrame:kActMesRect];
+        [self initLabel:_lblMesNum];
+    }
+    if(!_lblChatNum){
+        _lblChatNum = [[UILabel alloc] initWithFrame:kChatNumRect];
+        [self initLabel:_lblChatNum];
+    }
+    
+    [_lblOtherNum sizeToFit];
+    [_lblMesNum sizeToFit];
+    [_lblChatNum sizeToFit];
+    [navBar addSubview:_lblOtherNum];
+    [navBar addSubview:_lblMesNum];
+    [navBar addSubview:_lblChatNum];
+}
+
+//-(void) viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    
+//    UINavigationBar *navBar=self.navigationController.navigationBar;
+//    if(!_lblOtherNum){
+//        _lblOtherNum = [[UILabel alloc] initWithFrame:kActNumRect];
+//        [self initLabel:_lblOtherNum];
+//    }
+//    if(!_lblChatNum){
+//        _lblChatNum = [[UILabel alloc] initWithFrame:kChatNumRect];
+//        [self initLabel:_lblChatNum];
+//    }
+//    
+//    _lblOtherNum.text=[NSString stringWithFormat:@" %d ",4];
+//    _lblChatNum.text=[NSString stringWithFormat:@" %d ",55];
+//    [_lblOtherNum sizeToFit];
+//    [_lblChatNum sizeToFit];
+//    [navBar addSubview:_lblOtherNum];
+//    [navBar addSubview:_lblChatNum];
+//}
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [_lblOtherNum removeFromSuperview];
+    [_lblMesNum removeFromSuperview];
+    [_lblChatNum removeFromSuperview];
+}
+-(void) viewDidUnload
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kDidReceiveActivity object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kDidReceiveMessage object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kDidReceiveChat object:nil];
+    [super viewDidUnload];
+}
+#pragma mark -
+#pragma mark Customer Methods
+
+//-(void) addNewActNum:(NSNotification*) note
+//{
+//    [self setLabel:_lblMesNum Num:++_otherNum];
+//}
+
+
+-(void) addNewMesNum:(NSNotification*) note
+{
+    //如果当前页面不是消息页面才加上消息提示
+    NSDictionary *dicInfo = note.userInfo;
+    MDMessage *mes = (MDMessage *)[dicInfo objectForKey:@"object"];
+    if(mes.activity.id==self.activity.id){
+        if(_segmented.selectedSegmentIndex!=MDActivityViewStateMessage){
+            [self setLabel:_lblMesNum Num:++_chatNum];
+        }
+    }else{
+        [self setLabel:_lblOtherNum Num:++_otherNum];
+    }
+}
+
+-(void) addNewChatNum:(NSNotification*) note
+{
+    //如果当前页面不是聊天页面才加上聊天提示
+    NSDictionary *dicInfo = note.userInfo;
+    MDChat *chat = (MDChat *)[dicInfo objectForKey:@"object"];
+    if(chat.activity.id==self.activity.id){
+        if(_segmented.selectedSegmentIndex!=MDActivityViewStateChat){
+            [self setLabel:_lblChatNum Num:++_chatNum];
+        }
+    }else{
+         [self setLabel:_lblOtherNum Num:++_otherNum];
+    }
+}
+
+- (void) setLabel:(UILabel*) label Num:(NSUInteger) num
+{
+    NSString *text=[NSString stringWithFormat:@" %d ",num];    
+    label.hidden=num==0?YES:NO;
+    label.text=text;
+    [label sizeToFit];
+}
+- (void) initLabel:(UILabel*) label
+{
+    label.layer.cornerRadius=7.0f;
+    
+    //lblNum.backgroundColor=[UIColor redColor];
+    label.backgroundColor=[UIColor colorWithRed:230/255.0 green:0 blue:25/255.0 alpha:1.0];
+    label.textColor=[UIColor whiteColor];
+    label.font=[UIFont systemFontOfSize:14.0f];
+    label.textAlignment=NSTextAlignmentCenter;
+    
+    
+    label.layer.shadowColor=[UIColor blackColor].CGColor;
+    label.layer.shadowOffset=CGSizeMake(5, 5);
 }
 
 - (void)showViewState:(MDActivityViewState)viewState
@@ -81,6 +223,8 @@
             }
             _currentContentView = _messageView;
             rightBarButtonItem = [self barButtonItemMessage:_messageView];
+            _mesNum=0;
+            _lblMesNum.hidden=YES;
             break;
         case MDActivityViewStateChat:
             if (_chatView==nil) {
@@ -91,6 +235,9 @@
             }
             _currentContentView = _chatView;
             rightBarButtonItem = nil;
+            _chatNum=0;
+            _lblChatNum.hidden=YES;
+            
             break;
         case MDActivityViewStateContact:
             if (_contactView==nil) {

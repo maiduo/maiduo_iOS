@@ -41,10 +41,10 @@
 
 -(MDUser *)addUser:(MDUser *)aUser
 {
-    if([self user:aUser.id] == nil)
+    if([self user:aUser.userId] == nil)
     {
         [_users setValue:aUser
-                  forKey:[NSString stringWithFormat:@"%d", aUser.id]];
+                  forKey:[NSString stringWithFormat:@"%d", aUser.userId]];
     }
     return aUser;
 }

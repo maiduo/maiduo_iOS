@@ -45,6 +45,16 @@
     return [self dictionaryWithDictionary:dictionary];
 }
 
+-(NSDictionary *)dictionaryForDeleteActivity:(MDActivity *)anActivity
+{
+    NSMutableDictionary *dictionary;
+    dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                  [NSString stringWithFormat:@"%d", anActivity.id], @"activity_id",
+                  nil];
+    
+    return [self dictionaryWithDictionary:dictionary];
+}
+
 -(NSDictionary *)dictionaryForInvite:(MDActivity *)anActivity
                                 user:(MDUser *)anUser
 {
@@ -114,6 +124,12 @@
     return [self dictionaryForChatsWithActivity:anActivity
                                            page:aPage
                                        pageSize:0];
+}
+
+-(NSDictionary *)dictionaryForLogoutWithUser:(MDUser *)user
+{
+    NSMutableArray *dictionary;
+//    dictionary = [NSMutableDictionary diction]
 }
 
 @end

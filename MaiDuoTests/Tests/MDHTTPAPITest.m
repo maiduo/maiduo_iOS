@@ -199,7 +199,7 @@
     
     [api inviteForActivity:activity
                       user:inviteUser
-          success:^(MDChat *aChat) {
+          success:^(MDUser *aChat) {
               operationSuccessed = YES;
               dispatch_semaphore_signal(semaphore);
           }

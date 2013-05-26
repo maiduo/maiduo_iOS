@@ -49,18 +49,22 @@
                                              target:self
                                              action:@selector(detailAction)];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(logoutAction:)
-                                                 name:USER_LOGOUT
-                                               object:nil];
-    
     _api = [[YaabUser sharedInstance] api];
     
 
     self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size}];
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     [self.view addSubview: self.tableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.tableView.indexPathForSelectedRow) {
+        [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -90,23 +94,6 @@
      presentModalViewController:[[UINavigationController alloc]
                                  initWithRootViewController:controller]
      animated:YES];
-}
-
-- (void)logoutAction:(id)sender
-{
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        [self.navigationController popViewControllerAnimated:NO];
-        
-        MDLoginViewController *loginViewController;
-        loginViewController = [[MDLoginViewController alloc] init];
-        
-        [self.navigationController
-         presentModalViewController:[[UINavigationController alloc]
-                                     initWithRootViewController:loginViewController]
-         animated:YES];
-        
-        [[MDUserManager sharedInstance] logout];
-    }];
 }
 
 -(void)refresh
@@ -165,8 +152,12 @@
                 initWithStyle: UITableViewCellStyleSubtitle
                 reuseIdentifier: CellIdentifier];
         
+        UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6, 68, 68)];
+        bgImgView.image = [[UIImage imageNamed:@"img_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 7, 6, 6)];
+        [cell addSubview:bgImgView];
+        
         imageView = [[AsyncImageView alloc]
-                     initWithFrame: CGRectMake(0.0f, 0.0f, 80.0f, 80.0f)];
+                     initWithFrame: CGRectMake(11, 11, 58, 58)];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
         imageView.tag = IMAGE_VIEW_TAG;
@@ -179,6 +170,27 @@
         cell.detailTextLabel.numberOfLines = 2;
         cell.indentationLevel = 1;
         cell.indentationWidth = 80;
+        
+        UIView *adminView = [[UIView alloc] initWithFrame:CGRectMake(imageView.right-13, imageView.bottom-13, 20, 20)];
+        adminView.layer.cornerRadius = 10;
+        adminView.backgroundColor = [UIColor redColor];
+        adminView.tag = 88;
+        [cell addSubview:adminView];
+        
+        UILabel *adminLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, adminView.width, adminView.height)];
+        adminLabel.text = @"管";
+        adminLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        adminLabel.backgroundColor = [UIColor clearColor];
+        adminLabel.font = [UIFont systemFontOfSize:14];
+        adminLabel.textColor = [UIColor whiteColor];
+        adminLabel.textAlignment = UITextAlignmentCenter;
+        [adminView addSubview:adminLabel];
+    }
+    
+    if ([MDUserManager sharedInstance].user.userId==activity.owner.userId) {
+        [[cell viewWithTag:88] setHidden:NO];
+    } else {
+        [[cell viewWithTag:88] setHidden:YES];
     }
     
     imageView = (AsyncImageView *)[cell viewWithTag: IMAGE_VIEW_TAG];
@@ -204,12 +216,35 @@
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80.0;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MDActivity* activity = (MDActivity *)[activities
+                                          objectAtIndex:[indexPath row]];
+    if ([MDUserManager sharedInstance].user.userId==activity.owner.userId) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [activities removeObjectAtIndex:indexPath.row];
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - Table view delegate
@@ -238,14 +273,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                   willDecelerate:(BOOL)decelerate
 {
     [self.tableView egoRefreshScrollViewDidEndDragging:scrollView];
-    
 }
+
 #pragma mark -
 #pragma mark EGOTableViewDelegate Methods
+
 - (void)startLoadData:(id)sender
 {
     [_api activitiesSuccess:^(NSArray *anActivies) {
-        activities = anActivies;
+        activities = [anActivies mutableCopy];
         [self.tableView refreshTableView];
     } failure:^(NSError *error) {
         NSLog(@"Error");
