@@ -7,6 +7,7 @@
 //
 
 #import "MDActivityContactView.h"
+#import "MDPersonDetailViewController.h"
 
 @implementation MDActivityContactView
 
@@ -106,9 +107,6 @@
     static NSString *identifier = @"MDActivityContactTableViewCell";
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:identifier];
-    
-    cell = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
-    
     if (nil == cell) {
         cell = [[UITableViewCell alloc]
                 initWithStyle:UITableViewCellStyleSubtitle
@@ -127,6 +125,16 @@
 heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 55;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    MDUser *person = (MDUser *)[_people objectAtIndex:[indexPath row]];
+    MDPersonDetailViewController *controller = [[MDPersonDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    controller.user = person;
+    [self.viewController.navigationController pushViewController:controller
+                                                        animated:YES];
 }
 
 #pragma mark ABPeoplePickerNavigationControllerDelegate
@@ -181,7 +189,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
         
         [[[YaabUser sharedInstance] api] inviteForActivity:_activity
                                                       user:invited
-                                                   success:^(MDUser *anUser){}
+                                                   success:^(MDUser *anUser){
+                                                       
+                                                   }
                                                    failure:nil];
     }
     

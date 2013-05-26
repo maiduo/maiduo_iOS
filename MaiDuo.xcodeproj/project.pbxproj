@@ -50,6 +50,7 @@
 		90A4726817509D1F007CF98D /* AFMDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B47174BBC5500D7A1F4 /* AFMDClient.m */; };
 		90A4726917509D30007CF98D /* YaabUser.h in Sources */ = {isa = PBXBuildFile; fileRef = 90153972172BDC2300DBB64B /* YaabUser.h */; };
 		90A4726A17509D30007CF98D /* YaabUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* YaabUser.m */; };
+		90A472A41750E82B007CF98D /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90A472A31750E82B007CF98D /* avatar.jpg */; };
 		90B32B1E174BBBD500D7A1F4 /* MDActivityChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B0E174BBBD500D7A1F4 /* MDActivityChatViewController.m */; };
 		90B32B1F174BBBD500D7A1F4 /* MDActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B10174BBBD500D7A1F4 /* MDActivityTableViewController.m */; };
 		90B32B20174BBBD500D7A1F4 /* MDCreateActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B13174BBBD500D7A1F4 /* MDCreateActivityViewController.m */; };
@@ -100,7 +101,7 @@
 		AA151D6C17509E240098C64A /* img_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA151D6B17509E240098C64A /* img_bg@2x.png */; };
 		AA9954F11740020600FF5BFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9954F01740020600FF5BFF /* SystemConfiguration.framework */; };
 		AA9954F31740020B00FF5BFF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9954F21740020B00FF5BFF /* MobileCoreServices.framework */; };
-		C8B4613E1748AE7B00CF14AA /* default_avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B4613D1748AE7B00CF14AA /* default_avatar.jpg */; };
+		C804DC5D1750DAA10031A53F /* default_avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C804DC5C1750DAA10031A53F /* default_avatar.jpg */; };
 		C8CEFB31173A0DFD0021D371 /* garbage_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */; };
 		C8CEFB32173A0DFD0021D371 /* garbage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CEFB30173A0DFD0021D371 /* garbage@2x.png */; };
 		C8D1A44317431C4200398568 /* photo0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D1A44117431C4200398568 /* photo0@2x.png */; };
@@ -145,6 +146,7 @@
 		90737B8517460C23006A2903 /* MDNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDNotificationCenter.h; sourceTree = "<group>"; };
 		90737B8617460C23006A2903 /* MDNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDNotificationCenter.m; sourceTree = "<group>"; };
 		9083C48B1736897100E87B4A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		90A472A31750E82B007CF98D /* avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = avatar.jpg; sourceTree = "<group>"; };
 		90B32B0D174BBBD500D7A1F4 /* MDActivityChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivityChatViewController.h; path = controllers/MDActivityChatViewController.h; sourceTree = "<group>"; };
 		90B32B0E174BBBD500D7A1F4 /* MDActivityChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDActivityChatViewController.m; path = controllers/MDActivityChatViewController.m; sourceTree = "<group>"; };
 		90B32B0F174BBBD500D7A1F4 /* MDActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivityTableViewController.h; path = controllers/MDActivityTableViewController.h; sourceTree = "<group>"; };
@@ -244,7 +246,7 @@
 		B653FAC110D24793B8E10EB8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75EEC2339FE4F518789FFDF /* libPods-MaiDuo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B78F4CAE91B54BC18739200C /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8B4613D1748AE7B00CF14AA /* default_avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_avatar.jpg; sourceTree = "<group>"; };
+		C804DC5C1750DAA10031A53F /* default_avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_avatar.jpg; sourceTree = "<group>"; };
 		C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "garbage_s@2x.png"; sourceTree = "<group>"; };
 		C8CEFB30173A0DFD0021D371 /* garbage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "garbage@2x.png"; sourceTree = "<group>"; };
 		C8D1A44117431C4200398568 /* photo0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo0@2x.png"; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 		902C91CE1742322800073241 /* MaiDuoTests */ = {
 			isa = PBXGroup;
 			children = (
+				90A472A21750E82B007CF98D /* Resources */,
 				902C91F1174235A500073241 /* Tests */,
 				902C91CF1742322800073241 /* Supporting Files */,
 				902C91EC174232E400073241 /* MDTestAppDelegate.h */,
@@ -327,6 +330,14 @@
 				90737B8617460C23006A2903 /* MDNotificationCenter.m */,
 			);
 			name = push;
+			sourceTree = "<group>";
+		};
+		90A472A21750E82B007CF98D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				90A472A31750E82B007CF98D /* avatar.jpg */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		90B32B0C174BBBC600D7A1F4 /* controllers */ = {
@@ -556,8 +567,8 @@
 		C8CEFB2E173A0DE90021D371 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C804DC5C1750DAA10031A53F /* default_avatar.jpg */,
 				AA151D6B17509E240098C64A /* img_bg@2x.png */,
-				C8B4613D1748AE7B00CF14AA /* default_avatar.jpg */,
 				C8D1A44117431C4200398568 /* photo0@2x.png */,
 				C8D1A44217431C4200398568 /* photo1@2x.png */,
 				C8CEFB2F173A0DFD0021D371 /* garbage_s@2x.png */,
@@ -644,6 +655,7 @@
 				902C91DB1742322800073241 /* Default.png in Resources */,
 				902C91DD1742322800073241 /* Default@2x.png in Resources */,
 				902C91DF1742322800073241 /* Default-568h@2x.png in Resources */,
+				90A472A41750E82B007CF98D /* avatar.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,10 +671,10 @@
 				C8CEFB32173A0DFD0021D371 /* garbage@2x.png in Resources */,
 				C8D1A44317431C4200398568 /* photo0@2x.png in Resources */,
 				C8D1A44417431C4200398568 /* photo1@2x.png in Resources */,
-				C8B4613E1748AE7B00CF14AA /* default_avatar.jpg in Resources */,
 				90B32B5E174BBC5500D7A1F4 /* PhotoBorder.png in Resources */,
 				90B32B5F174BBC5500D7A1F4 /* PhotoBorder@2x.png in Resources */,
 				AA151D6C17509E240098C64A /* img_bg@2x.png in Resources */,
+				C804DC5D1750DAA10031A53F /* default_avatar.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -853,7 +865,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuoTests/MaiDuoTests-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuoTests/MaiDuoTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -871,7 +883,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuoTests/MaiDuoTests-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuoTests/MaiDuoTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -941,15 +953,43 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */;
 			buildSettings = {
+<<<<<<< HEAD
 
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+=======
+				CODE_SIGN_IDENTITY = "iPhone Developer: shenyang 22Miles (C34693JKW5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shenyang 22Miles (C34693JKW5)";
+>>>>>>> 5c4671bed31b084008bc7f87f4167a99d102b20d
+=======
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
+>>>>>>> c600595286c744191566cce31a043b8407165617
+>>>>>>> master
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+				PROVISIONING_PROFILE = "1C51BAF5-F000-4AC2-9320-8A523F7B9DF4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1C51BAF5-F000-4AC2-9320-8A523F7B9DF4";
+>>>>>>> 5c4671bed31b084008bc7f87f4167a99d102b20d
+=======
+				PROVISIONING_PROFILE = "50BC4AF0-593A-4CE4-9888-E171C38CC002";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50BC4AF0-593A-4CE4-9888-E171C38CC002";
+>>>>>>> c600595286c744191566cce31a043b8407165617
+>>>>>>> master
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -958,13 +998,39 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */;
 			buildSettings = {
+<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+=======
+				CODE_SIGN_IDENTITY = "iPhone Developer: shenyang 22Miles (C34693JKW5)";
+=======
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
+>>>>>>> c600595286c744191566cce31a043b8407165617
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
+>>>>>>> 5c4671bed31b084008bc7f87f4167a99d102b20d
+>>>>>>> master
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+				PROVISIONING_PROFILE = "1C51BAF5-F000-4AC2-9320-8A523F7B9DF4";
+=======
+				PROVISIONING_PROFILE = "50BC4AF0-593A-4CE4-9888-E171C38CC002";
+>>>>>>> c600595286c744191566cce31a043b8407165617
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50BC4AF0-593A-4CE4-9888-E171C38CC002";
+>>>>>>> 5c4671bed31b084008bc7f87f4167a99d102b20d
+>>>>>>> master
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
