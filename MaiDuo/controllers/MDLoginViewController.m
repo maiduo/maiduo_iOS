@@ -143,7 +143,7 @@ static NSString *kViewKey = @"viewKey";
 		_txtUser.clearButtonMode = UITextFieldViewModeWhileEditing;
 		_txtUser.tag = kViewTag;
 		_txtUser.delegate = self;
-        _txtUser.text=@"13000000000";
+        //_txtUser.text=@"13000000000";
 	}
 	return _txtUser;
 }
@@ -163,7 +163,7 @@ static NSString *kViewKey = @"viewKey";
 		_txtPass.clearButtonMode = UITextFieldViewModeWhileEditing;
 		_txtPass.tag = kViewTag;
 		_txtPass.delegate = self;
-        _txtPass.text=@"13000000000";
+        //_txtPass.text=@"13000000000";
 	}
 	return _txtPass;
 }
@@ -193,7 +193,7 @@ static NSString *kViewKey = @"viewKey";
         [self hideHUD];
         [[YaabUser sharedInstance] addUser:user];
         [[YaabUser sharedInstance] addAPI:api user:user];
-        [appDelegate.navigationController dismissModalViewControllerAnimated:YES];
+        //[appDelegate.navigationController dismissModalViewControllerAnimated:YES];
         [self.delegate loginViewControllerDidLogin:self];
          
 //        MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];

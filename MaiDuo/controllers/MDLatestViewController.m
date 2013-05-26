@@ -52,7 +52,7 @@
     _api = [[YaabUser sharedInstance] api];
     
 
-    self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size}];
+    self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size.width,self.view.bounds.size.height-44}];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
