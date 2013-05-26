@@ -73,7 +73,7 @@
 {
     _user = aUser;
     if(aUser){
-        [[NSUserDefaults standardUserDefaults] setValue:[aUser dictionaryValue]
+        [[NSUserDefaults standardUserDefaults] setObject:[aUser dictionaryValue]
                                                  forKey:MDUserKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
