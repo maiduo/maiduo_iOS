@@ -227,9 +227,11 @@ static NSString *kViewKey = @"viewKey";
 	_HUD.labelText = text;
     [_HUD show:YES];
 }
+
 -(void) hideHUD
 {
     [_HUD hide:YES];
     [_HUD removeFromSuperview];
 }
+
 @end

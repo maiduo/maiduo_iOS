@@ -8,9 +8,12 @@
 
 #import "MDPersonDetailViewController.h"
 #import "MDUserManager.h"
+#import "MDHTTPAPI.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface MDPersonDetailViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MDEditViewControllerDelegate>
+@interface MDPersonDetailViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MDEditViewControllerDelegate> {
+    MDHTTPAPI *_api;
+}
 
 @end
 
@@ -20,7 +23,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        _api = [[MDHTTPAPI alloc] initWithUser:[MDUserManager sharedInstance].user];
     }
     return self;
 }

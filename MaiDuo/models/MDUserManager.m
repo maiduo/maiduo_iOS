@@ -22,6 +22,7 @@
     }
     return self;
 }
+
 - (BOOL)userSessionValid
 {
     BOOL valid = YES;
@@ -31,6 +32,7 @@
     
     return valid;
 }
+
 - (MDUser*)getUserSession
 {
     static MDUser *session;
