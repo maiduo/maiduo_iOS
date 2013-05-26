@@ -15,11 +15,11 @@
 /** MDUser
  */
 
-@interface MDUser : NSObject
+@interface MDUser : NSObject <NSCopying>
 {
 }
 
-@property (nonatomic, assign) NSInteger id;
+@property (nonatomic, assign) NSInteger userId;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *password;
@@ -32,6 +32,9 @@
 
 -(NSDictionary *)dictionaryValue;
 -(id)initWithUsername:(NSString *)anUsername password:(NSString *)aPassword;
+-(id)initWithUsername:(NSString *)anUsername
+                 name:(NSString *)aName
+             password:(NSString *)aPassword;
 -(BOOL)equal:(MDUser *)aUser;
 +(MDUser *)userWithDictionary:(NSDictionary *)aDictionary;
 +(MDUser *)userWithInvite:(NSString *)anUsername name:(NSString *)aName;

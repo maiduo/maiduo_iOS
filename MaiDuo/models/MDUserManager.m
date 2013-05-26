@@ -7,6 +7,7 @@
 //
 
 #import "MDUserManager.h"
+#import "MDLoginViewController.h"
 #define MDUserKey @"MDUser"
 #define NameKey @"MDName"
 #define PwdKey @"MDPwd"
@@ -17,7 +18,7 @@
 {
     self = [super init];
     if (self) {
-        self.user=[[MDUser alloc] init];
+        self.user= [MDUser userWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:MDUserKey]];
     }
     return self;
 }
@@ -26,7 +27,7 @@
     BOOL valid = YES;
     MDUser *user = [self getUserSession];
     valid = user != nil;
-    valid = user.id > 0;
+    valid = user.userId > 0;
     
     return valid;
 }
@@ -54,12 +55,23 @@
 - (void)logout
 {
     MDUser *user = [self getUserSession];
-    user.id = 0;
+    user.userId = 0;
     [self saveSessionWithUser:user];
+    UINavigationController *navC = (UINavigationController *)[[UIApplication sharedApplication].delegate window].rootViewController;
+    if (navC.modalViewController) {
+        navC.viewControllers = @[[[MDLoginViewController alloc] initWithStyle:UITableViewStyleGrouped]];
+        [navC dismissModalViewControllerAnimated:YES];
+    } else {
+        NSMutableArray *controllers = [navC.viewControllers mutableCopy];
+        [controllers insertObject:[[MDLoginViewController alloc] initWithStyle:UITableViewStyleGrouped] atIndex:0];
+        navC.viewControllers = controllers;
+        [navC popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (void)saveSessionWithUser:(MDUser *)aUser
 {
+    _user = aUser;
     if(aUser){
         [[NSUserDefaults standardUserDefaults] setValue:[aUser dictionaryValue]
                                                  forKey:MDUserKey];

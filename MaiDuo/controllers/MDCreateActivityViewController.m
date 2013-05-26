@@ -13,6 +13,7 @@
 @end
 
 @implementation MDCreateActivityViewController
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -30,6 +31,12 @@
                              self.view.bounds.size.height);
     _createActivityView = [[MDCreateActivityView alloc]initWithFrame:rect];
     self.view = _createActivityView;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.view becomeFirstResponder];
 }
 
 - (void)didClickConfirm:(id)sender

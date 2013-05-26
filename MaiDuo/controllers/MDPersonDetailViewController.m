@@ -10,7 +10,7 @@
 #import "MDUserManager.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface MDPersonDetailViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface MDPersonDetailViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MDEditViewControllerDelegate>
 
 @end
 
@@ -28,12 +28,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (!_user) {
+        _user = [[MDUserManager sharedInstance].user copy];
+    }
+    
     self.title = @"个人资料";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
                                              initWithTitle:@"返回"
                                              style:UIBarButtonItemStylePlain
                                              target:self
                                              action:@selector(backAction)];
+}
+
+- (BOOL)isUserSelf
+{
+    return [MDUserManager sharedInstance].user.userId==_user.userId;
 }
 
 - (void)backAction
@@ -47,26 +56,31 @@
 
 - (void)photoAction
 {
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"上传头像"
-                                                       delegate:self
-                                              cancelButtonTitle:@"取消"
-                                         destructiveButtonTitle:nil
-                                              otherButtonTitles:@"立即拍摄",
-                            @"选择照片", nil];
-    [sheet showInView:self.navigationController.view];
+    if ([self isUserSelf]) {
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"上传头像"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"取消"
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:@"立即拍摄",
+                                @"选择照片", nil];
+        [sheet showInView:self.navigationController.view];
+    }
 }
 
 - (void)logoutAction
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:USER_LOGOUT
-                                                        object:self];
+    [[MDUserManager sharedInstance] logout];
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    if ([self isUserSelf]) {
+        return 3;
+    } else {
+        return 2;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -76,7 +90,7 @@
             return 1;
             break;
         case 1:
-            return 2;
+            return 1;
             break;
         default:
             return 1;
@@ -92,7 +106,7 @@
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        cell.contentView.layer.cornerRadius = 10;
+        cell.contentView.layer.cornerRadius = 7;
         cell.contentView.backgroundColor = [UIColor redColor];
         cell.textLabel.text = @"退出登陆";
         
@@ -119,25 +133,15 @@
             imgView.backgroundColor = [UIColor grayColor];
             imgView.contentMode = UIViewContentModeScaleAspectFill;
             [imgView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoAction)]];
-            if ([[MDUserManager sharedInstance].user.avatar hasPrefix:@"/"]) {
-                [imgView setImageURL:[NSURL fileURLWithPath:[MDUserManager sharedInstance].user.avatar]];
+            if ([_user.avatar hasPrefix:@"/"]) {
+                [imgView setImageURL:[NSURL fileURLWithPath:_user.avatar]];
             } else {
-                [imgView setImageURL:[NSURL URLWithString:[MDUserManager sharedInstance].user.avatar]];
+                [imgView setImageURL:[NSURL URLWithString:_user.avatar]];
             }
-            
-            
             cell.accessoryView = imgView;
         } else if (indexPath.section==1) {
-            switch (indexPath.row) {
-                case 0:
-                    cell.textLabel.text = @"姓名";
-                    cell.detailTextLabel.text = [MDUserManager sharedInstance].user.username;
-                    break;
-                default:
-                    cell.textLabel.text = @"电话";
-                    cell.detailTextLabel.text = [MDUserManager sharedInstance].user.phone;
-                    break;
-            }
+            cell.textLabel.text = @"姓名";
+            cell.detailTextLabel.text = _user.name;
         }
         
         return cell;
@@ -170,11 +174,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row==1) {
-        //todo编辑用户信息
+    if (![self isUserSelf]) {
+        return;
+    }
+    if (indexPath.section==1&&indexPath.row==0) {
+        MDEditViewController *controller = [[MDEditViewController alloc] init];
+        controller.value = _user.name;
+        controller.title = @"姓名";
+        controller.hint = @"不要超过10个字";
+        controller.key = @"name";
+        controller.delegate = self;
+        [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.row==2) {
         //todo退出登陆
-        
     }
 }
 
@@ -193,8 +205,67 @@
     NSString *docPath = [paths objectAtIndex:0];
     NSString *headPath = [docPath stringByAppendingString:@"/head.png"];
     [headData writeToFile:headPath atomically:YES];
-    [MDUserManager sharedInstance].user.avatar = headPath;
+    _user.avatar = headPath;
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 
+#pragma mark - MDEditViewControllerDelegate
+
+- (void)editViewControllerDidEdit:(MDEditViewController *)controller text:(NSString *)text
+{
+    if ([controller.key isEqualToString:@"name"]) {
+        _user.name = text;
+        [self.tableView reloadData];
+    }
+}
+
 @end
+
+@implementation MDEditViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.navigationItem.backBarButtonItem.title = @"返回";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction)];
+    
+    _textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, self.view.width-20, 39)];
+    _textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _textField.borderStyle = UITextBorderStyleRoundedRect;
+    _textField.delegate = self;
+    _textField.returnKeyType = UIReturnKeyDone;
+    _textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    _textField.text = _value;
+    [self.view addSubview:_textField];
+    
+    UILabel *hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(_textField.left, _textField.bottom+10, _textField.width, 16)];
+    hintLabel.font = [UIFont systemFontOfSize:16];
+    hintLabel.backgroundColor = [UIColor clearColor];
+    hintLabel.text = _hint;
+    [self.view addSubview:hintLabel];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_textField becomeFirstResponder];
+}
+
+#pragma mark - Actions
+
+- (void)doneAction
+{
+    [_delegate editViewControllerDidEdit:self text:_textField.text];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self doneAction];
+    return YES;
+}
+
+@end
+

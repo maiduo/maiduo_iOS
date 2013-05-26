@@ -21,6 +21,6 @@ UITableViewDelegate, MDCreateActivityDelegate> {
     MDHTTPAPI *_api;
 }
 
--(void)refresh;
+- (void)refresh;
 
 @end

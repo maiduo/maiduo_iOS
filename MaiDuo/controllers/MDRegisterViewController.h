@@ -8,11 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MDRegisterViewController : UIViewController
-                                    <UITableViewDataSource,
-                                    UITableViewDelegate,
-                                    UITextFieldDelegate>
+@interface MDRegisterViewController : UITableViewController <UITextFieldDelegate>
 
-@property (nonatomic, retain) UITableView *myTableView;
-@property (nonatomic, retain) NSArray *myPlaceHolder;
+- (UITextField *)createTextField;
+
 @end
