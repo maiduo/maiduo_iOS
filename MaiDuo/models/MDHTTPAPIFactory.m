@@ -67,6 +67,11 @@
     return [self dictionaryWithDictionary:dictionary];
 }
 
+-(NSDictionary *)dictionaryForUploadAvatar
+{
+    return [self dictionaryWithDictionary:[NSMutableDictionary dictionary]];
+}
+
 -(NSDictionary *)dictionaryForSendMessage:(MDMessage *)aMessage
 {
     NSMutableDictionary *dictionary;

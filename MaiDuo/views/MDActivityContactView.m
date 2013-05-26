@@ -107,7 +107,6 @@
     static NSString *identifier = @"MDActivityContactTableViewCell";
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:identifier];
-        
     if (nil == cell) {
         cell = [[UITableViewCell alloc]
                 initWithStyle:UITableViewCellStyleSubtitle

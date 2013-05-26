@@ -223,6 +223,13 @@
 - (void)logoutWithSuccess:(void (^)(MDUser *user))success
                   failure:(void (^)(NSError *error))failure;
 
+- (void)uploadAvatar:(NSData *)avatar
+            progress:(void (^)(NSUInteger bytesWritten,
+                            long long totalBytesWritten,
+                            long long totalBytesExpectedToWrite))progress
+             success:(void (^)())success
+             failure:(void (^)(NSError *error))failure;
+
 /** 注册用户
  
  [MDUser deviceToken] 如果存在，同时登记设备Token。

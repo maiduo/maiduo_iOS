@@ -162,13 +162,15 @@
 }
 - (NSString *)photoForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *photoUrl=[NSString stringWithFormat:@"photo%d",indexPath.row%2];
+//    NSString *photoUrl=[NSString stringWithFormat:@"photo%d",indexPath.row%2];
+//    MDChat *chat=self.arrayChats[indexPath.row];
+//    if([chat.user.username isEqualToString:[[MDUserManager sharedInstance] getUserSession].username]){
+//        photoUrl=@"photo0";
+//    }else{
+//        photoUrl=@"photo1";
+//    }
     MDChat *chat=self.arrayChats[indexPath.row];
-    if([chat.user.username isEqualToString:[[MDUserManager sharedInstance] getUserSession].username]){
-        photoUrl=@"photo0";
-    }else{
-        photoUrl=@"photo1";
-    }
+    NSString *photoUrl=chat.user.avatar?chat.user.avatar:@"";
     return photoUrl;
 }
 

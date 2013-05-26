@@ -326,6 +326,49 @@
 //     }];
 }
 
+- (void)uploadAvatar:(NSData *)anAvatar
+            progress:(void (^)(NSUInteger bytesWritten,
+                               long long totalBytesWritten,
+                               long long totalBytesExpectedToWrite))progress
+             success:(void (^)())success
+             failure:(void (^)(NSError *error))failure
+{
+    AFHTTPClient *client = [AFMDClient sharedClient];
+    NSMutableURLRequest *request;
+    NSDictionary *dictionaryAvatar;
+    dictionaryAvatar = [_factory dictionaryForUploadAvatar];
+    request = [client multipartFormRequestWithMethod:@"PUT"
+                                                 path:@"profile/"
+                                           parameters:dictionaryAvatar
+                            constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                                [formData appendPartWithFileData:anAvatar
+                                                            name:@"avatar"
+                                                        fileName:@"avatar.png"
+                                                        mimeType:@"image/png"];
+                                
+                            }];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
+                                         initWithRequest:request];
+    [operation setUploadProgressBlock:^(NSUInteger bytesWritten,
+                                        long long totalBytesWritten,
+                                        long long totalBytesExpectedToWrite) {
+        progress(bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+    }];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation,
+                                               id responseObject) {
+        success();
+    }
+                                     failure:^(AFHTTPRequestOperation *operation,
+                                               NSError *error) {
+                                         [self printError:error];
+        if (nil != failure)
+            failure(error);
+                                     }];
+    
+    [client enqueueHTTPRequestOperation:operation];
+}
+
 +(void)login:(MDUser *)user
     success:(void (^)(MDUser *user, MDHTTPAPI *api))success
     failure:(void (^)(NSError *error))failure
