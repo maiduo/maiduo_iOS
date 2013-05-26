@@ -52,7 +52,7 @@
     _api = [[YaabUser sharedInstance] api];
     
 
-    self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size}];
+    self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size.width,self.view.bounds.size.height-44}];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
@@ -243,8 +243,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [activities removeObjectAtIndex:indexPath.row];
-    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    MDActivity *item = [activities objectAtIndex:indexPath.row];
+    [_api deleteActivity:item success:^(MDActivity *anActivity) {
+        [activities removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
 }
 
 #pragma mark - Table view delegate

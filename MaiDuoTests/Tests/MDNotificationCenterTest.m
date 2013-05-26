@@ -30,7 +30,7 @@
 -(void)testReceiveMessage
 {
     MDUser *user = [[MDUser alloc] init];
-    user.id = 1;
+    user.userId = 1;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(pullReceiveChat:)

@@ -43,6 +43,7 @@
 -(NSDictionary *)dictionaryForDeleteActivity:(MDActivity *)anActivity;
 -(NSDictionary *)dictionaryForInvite:(MDActivity *)anActivity
                                 user:(MDUser *)anUser;
+-(NSDictionary *)dictionaryForUploadAvatar;
 -(NSDictionary *)dictionaryForSendMessage:(MDMessage *)aMessage;
 -(NSDictionary *)dictionaryForSendChat:(MDChat *)aChat;
 -(NSDictionary *)dictionaryForMessagesWithActivity:(MDActivity *)anActivity

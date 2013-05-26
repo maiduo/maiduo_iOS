@@ -16,13 +16,27 @@
 
 @implementation MDPersonDetailViewController
 
+- (id)init
+{
+    self = [super init];
+    if (self) {        
+    }
+    
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        [self setup];
     }
     return self;
+}
+
+- (void)setup
+{
+    _api = [[YaabUser sharedInstance] api];
 }
 
 - (void)viewDidLoad
@@ -90,7 +104,7 @@
             return 1;
             break;
         case 1:
-            return 1;
+            return 2;
             break;
         default:
             return 1;
@@ -100,7 +114,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==[self numberOfSectionsInTableView:tableView]-1) {
+    if (indexPath.section==2) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.textLabel.textAlignment = UITextAlignmentCenter;
         cell.textLabel.backgroundColor = [UIColor clearColor];
@@ -121,8 +135,16 @@
         if (cell==nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
         }
+
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        if ([self isUserSelf]) {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        
+        cell.accessoryView = nil;
         if (indexPath.section==0) {
             cell.textLabel.text = @"用户头像";
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -140,8 +162,14 @@
             }
             cell.accessoryView = imgView;
         } else if (indexPath.section==1) {
-            cell.textLabel.text = @"姓名";
-            cell.detailTextLabel.text = _user.name;
+            if (indexPath.row==0) {
+                cell.textLabel.text = @"姓名";
+                cell.detailTextLabel.text = _user.name;
+            } else {
+                cell.textLabel.text = @"电话";
+                cell.detailTextLabel.text = _user.username;
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
         }
         
         return cell;
@@ -194,8 +222,25 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *headImg = [info objectForKey:UIImagePickerControllerEditedImage]; //头像文件
-    NSData *headData = UIImagePNGRepresentation(headImg); //二进制数据
+    UIImage *avatar = [info objectForKey:UIImagePickerControllerEditedImage]; //头像文件
+    CGSize destinationSize = CGSizeMake(400.0f, 400.0f);
+    UIGraphicsBeginImageContext(destinationSize);
+    [avatar drawInRect:CGRectMake(0, 0, destinationSize.width,
+                                  destinationSize.height)];
+    UIImage *smallAvatar = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    NSData *headData = UIImageJPEGRepresentation(smallAvatar, 0.5);
+    // NSData *headData = UIImagePNGRepresentation(smallAvatar); //二进制数据
+    [_api uploadAvatar:headData progress:^(NSUInteger bytesWritten,
+                                           long long totalBytesWritten,
+                                           long long totalBytesExpectedToWrite) {
+        NSLog(@"上传数据 %lld ", totalBytesWritten / totalBytesExpectedToWrite);
+    } success:^{
+        NSLog(@"上传头像完成。");
+    } failure:^(NSError *error) {
+        NSLog(@"上传头像失败。");
+    }];
     //todo 调用上传接口上传头像
     
     [picker dismissModalViewControllerAnimated:YES];    
@@ -205,7 +250,6 @@
     NSString *docPath = [paths objectAtIndex:0];
     NSString *headPath = [docPath stringByAppendingString:@"/head.png"];
     [headData writeToFile:headPath atomically:YES];
-    _user.avatar = headPath;
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 

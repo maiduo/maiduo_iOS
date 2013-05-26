@@ -63,13 +63,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         MDLoginViewController *loginViewController;
         loginViewController = [[MDLoginViewController alloc]
                                initWithStyle:UITableViewStyleGrouped];
-        loginViewController.delegate = self;
         self.navigationController = [[UINavigationController alloc]
                                      initWithRootViewController:loginViewController];
     }
- 
- 
-
     
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
@@ -142,13 +138,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-- (void)loginViewControllerDidLogin:(MDLoginViewController *)loginViewController
-{
-    MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
-    [self.navigationController pushViewController:latestVC animated:YES];
-    //self.navigationController  = [[UINavigationController alloc] initWithRootViewController:latestVC];
 }
 
 -(void) showHUDWithLabel:(NSString*) text
