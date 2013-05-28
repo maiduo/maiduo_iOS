@@ -7,7 +7,6 @@
 //
 
 #import "MDUserManager.h"
-#import "MDLoginViewController.h"
 #import "MDAppDelegate.h"
 #define MDUserKey @"MDUser"
 #define NameKey @"MDName"
@@ -60,20 +59,6 @@
     MDUser *user = [self getUserSession];
     user.userId = 0;
     [self saveSessionWithUser:user];
-    UINavigationController *navC = (UINavigationController *)[[UIApplication sharedApplication].delegate window].rootViewController;
-    MDLoginViewController *loginVC=[[MDLoginViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    loginVC.delegate=[UIApplication sharedApplication].delegate;
-    if (navC.modalViewController) {
-        navC.viewControllers = @[loginVC];
-        [navC dismissModalViewControllerAnimated:YES];
-    } else {
-        NSMutableArray *controllers = [navC.viewControllers mutableCopy];
-        
-        [controllers insertObject:loginVC atIndex:0];
-        
-        navC.viewControllers = controllers;
-        [navC popToRootViewControllerAnimated:YES];
-    }
 }
 
 - (void)saveSessionWithUser:(MDUser *)aUser
