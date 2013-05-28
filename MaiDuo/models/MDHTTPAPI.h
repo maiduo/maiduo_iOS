@@ -224,6 +224,7 @@
                   failure:(void (^)(NSError *error))failure;
 
 - (void)uploadAvatar:(NSData *)avatar
+                user:(MDUser *)anUser
             progress:(void (^)(NSUInteger bytesWritten,
                             long long totalBytesWritten,
                             long long totalBytesExpectedToWrite))progress

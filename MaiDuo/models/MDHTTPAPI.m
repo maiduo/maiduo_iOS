@@ -327,6 +327,7 @@
 }
 
 - (void)uploadAvatar:(NSData *)anAvatar
+                user:(MDUser *)anUser
             progress:(void (^)(NSUInteger bytesWritten,
                                long long totalBytesWritten,
                                long long totalBytesExpectedToWrite))progress
@@ -334,22 +335,39 @@
              failure:(void (^)(NSError *error))failure
 {
     AFHTTPClient *client = [AFMDClient sharedClient];
+    AFHTTPClient *qiniu_client;
+    
     NSMutableURLRequest *request;
     NSDictionary *dictionaryAvatar;
+    __block NSString *upload_token;
     dictionaryAvatar = [_factory dictionaryForUploadAvatar];
-    request = [client multipartFormRequestWithMethod:@"PUT"
-                                                 path:@"profile/"
-                                           parameters:dictionaryAvatar
-                            constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                                [formData appendPartWithFileData:anAvatar
-                                                            name:@"avatar"
-                                                        fileName:@"avatar.png"
-                                                        mimeType:@"image/png"];
-                                
-                            }];
+
+    qiniu_client = [AFHTTPClient clientWithBaseURL:
+                    [NSURL URLWithString: @"http://up.qiniu.com/"]];
+    
+    void (^formBlock)(id<AFMultipartFormData>) =
+        ^(id<AFMultipartFormData> form) {
+        [form appendPartWithFileData:anAvatar
+                                name:@"file"
+                            fileName:@"avatar.jpg"
+                            mimeType:@"image/jpg"];
+    };
+    
+    NSInteger uid = anUser.userId;
+    NSString *key = [NSString stringWithFormat:@"%d/%d/%d.jpg", uid % 1000,
+                     uid % 1000, uid];
+    NSDictionary *dictionaryQiNiu = [NSDictionary
+                                     dictionaryWithObjectsAndKeys: upload_token,
+                                     @"token", key, @"key", nil];
+    
+    request = [qiniu_client multipartFormRequestWithMethod:@"POST"
+                                                 path:@""
+                                           parameters:dictionaryQiNiu
+                            constructingBodyWithBlock:formBlock];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
                                          initWithRequest:request];
+    
     [operation setUploadProgressBlock:^(NSUInteger bytesWritten,
                                         long long totalBytesWritten,
                                         long long totalBytesExpectedToWrite) {
@@ -365,8 +383,17 @@
         if (nil != failure)
             failure(error);
                                      }];
-    
-    [client enqueueHTTPRequestOperation:operation];
+    [client putPath:@"profile/"
+         parameters:dictionaryAvatar
+            success:^(AFHTTPRequestOperation *operation, id JSON) {
+                upload_token = [JSON valueForKey:@"upload_token"];
+                [client enqueueHTTPRequestOperation:operation];
+            }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                if (nil != failure)
+                    failure(error);
+            }
+     ];
 }
 
 +(void)login:(MDUser *)user

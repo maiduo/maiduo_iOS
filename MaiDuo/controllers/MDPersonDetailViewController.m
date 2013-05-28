@@ -225,13 +225,17 @@
     UIGraphicsEndImageContext();
     NSData *headData = UIImageJPEGRepresentation(smallAvatar, 0.5);
     // NSData *headData = UIImagePNGRepresentation(smallAvatar); //二进制数据
-    [_api uploadAvatar:headData progress:^(NSUInteger bytesWritten,
+    [_api uploadAvatar:headData
+                  user:_user
+              progress:^(NSUInteger bytesWritten,
                                            long long totalBytesWritten,
                                            long long totalBytesExpectedToWrite) {
         NSLog(@"上传数据 %lld ", totalBytesWritten / totalBytesExpectedToWrite);
-    } success:^{
+    }
+               success:^{
         NSLog(@"上传头像完成。");
-    } failure:^(NSError *error) {
+    }
+               failure:^(NSError *error) {
         NSLog(@"上传头像失败。");
     }];
     //todo 调用上传接口上传头像
