@@ -10,7 +10,7 @@
 #import "EGOTableView.h"
 #import "MDLatestViewController.h"
 #import "MDActivityTableViewController.h"
-#import "MDSendMessageViewController.h"
+#import "MDWriteMessageViewController.h"
 #import "AsyncImageView.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AFNetworking/AFNetworking.h>

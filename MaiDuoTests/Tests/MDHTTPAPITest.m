@@ -13,6 +13,7 @@
     BOOL operationSuccessed;
     
     MDHTTPAPI *api;
+    MDUser *user;
     MDHTTPAPIFactory *factory;
     MDActivity *activity;
 }
@@ -24,7 +25,7 @@
 {
     condition = [[NSCondition alloc] init];
     operationSuccessed = NO;
-    MDUser *user = [[MDUser alloc] initWithUsername:@"13000000000"
+    user = [[MDUser alloc] initWithUsername:@"13000000000"
                                           password:nil];
     user.accessToken = @"0acc2d039fc04202bfc6e0a5aed5091f";
     user.userId = 2;
@@ -225,6 +226,7 @@
                                                             ofType:@"jpg"];
     NSData *data = [NSData dataWithContentsOfFile:avatar_path];
     [api uploadAvatar:data
+                 user:user
              progress:^(NSUInteger bytesWritten, long long totalBytesWritten,
                         long long totalBytesExpectedToWrite) {
              }
