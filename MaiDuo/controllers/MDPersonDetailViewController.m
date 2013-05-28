@@ -10,6 +10,7 @@
 #import "MDUserManager.h"
 #import "MDHTTPAPI.h"
 #import <QuartzCore/QuartzCore.h>
+#import "MDLoginViewController.h"
 
 @interface MDPersonDetailViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MDEditViewControllerDelegate> {
 }
@@ -77,6 +78,22 @@
 - (void)logoutAction
 {
     [[MDUserManager sharedInstance] logout];
+    
+    // TODO
+    UINavigationController *navC = (UINavigationController *)[[UIApplication sharedApplication].delegate window].rootViewController;
+    MDLoginViewController *loginVC=[[MDLoginViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    loginVC.delegate=[UIApplication sharedApplication].delegate;
+    if (navC.modalViewController) {
+        navC.viewControllers = @[loginVC];
+        [navC dismissModalViewControllerAnimated:YES];
+    } else {
+        NSMutableArray *controllers = [navC.viewControllers mutableCopy];
+        
+        [controllers insertObject:loginVC atIndex:0];
+        
+        navC.viewControllers = controllers;
+        [navC popToRootViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
