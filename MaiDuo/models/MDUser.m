@@ -98,10 +98,13 @@
         default:
             break;
     }
-    static NSString *noformat = @"http://himaiduo.com/media/user/avatar/%d/%d_%@.jpg";
-    NSString *avatarURL = [NSString stringWithFormat:noformat,
-                           self.userId % 1000, self.userId, aSize];
+//    static NSString *noformat = @"http://himaiduo.com/media/user/avatar/%d/%d_%@.jpg";
+    NSString *noformat;
+    noformat = @"http://maiduo-test.qiniudn.com/%d/%d.jpg?imageView/2/w/%@/h/%@";
     
+    NSString *avatarURL = [NSString stringWithFormat:noformat,
+                           self.userId % 1000, self.userId, aSize, aSize];
+    NSLog(avatarURL);
     return avatarURL;
 }
 
