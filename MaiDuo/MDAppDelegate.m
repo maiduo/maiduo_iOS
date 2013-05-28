@@ -8,7 +8,7 @@
 
 #import "MDAppDelegate.h"
 #import "MDLatestViewController.h"
-#import "MDSendMessageViewController.h"
+#import "MDWriteMessageViewController.h"
 #import "MDLoginViewController.h"
 #import "MDHTTPAPI.h"
 #import "iToast.h"

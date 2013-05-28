@@ -58,7 +58,7 @@
 		90B32B22174BBBD500D7A1F4 /* MDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B17174BBBD500D7A1F4 /* MDLoginViewController.m */; };
 		90B32B23174BBBD500D7A1F4 /* MDPersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B19174BBBD500D7A1F4 /* MDPersonDetailViewController.m */; };
 		90B32B24174BBBD500D7A1F4 /* MDRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B1B174BBBD500D7A1F4 /* MDRegisterViewController.m */; };
-		90B32B25174BBBD500D7A1F4 /* MDSendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B1D174BBBD500D7A1F4 /* MDSendMessageViewController.m */; };
+		90B32B25174BBBD500D7A1F4 /* MDWriteMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B1D174BBBD500D7A1F4 /* MDWriteMessageViewController.m */; };
 		90B32B3B174BBBF600D7A1F4 /* MDActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B28174BBBF600D7A1F4 /* MDActivity.m */; };
 		90B32B3C174BBBF600D7A1F4 /* MDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B2A174BBBF600D7A1F4 /* MDCache.m */; };
 		90B32B3D174BBBF600D7A1F4 /* MDChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B2C174BBBF600D7A1F4 /* MDChat.m */; };
@@ -170,8 +170,8 @@
 		90B32B19174BBBD500D7A1F4 /* MDPersonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDPersonDetailViewController.m; path = controllers/MDPersonDetailViewController.m; sourceTree = "<group>"; };
 		90B32B1A174BBBD500D7A1F4 /* MDRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDRegisterViewController.h; path = controllers/MDRegisterViewController.h; sourceTree = "<group>"; };
 		90B32B1B174BBBD500D7A1F4 /* MDRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDRegisterViewController.m; path = controllers/MDRegisterViewController.m; sourceTree = "<group>"; };
-		90B32B1C174BBBD500D7A1F4 /* MDSendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDSendMessageViewController.h; path = controllers/MDSendMessageViewController.h; sourceTree = "<group>"; };
-		90B32B1D174BBBD500D7A1F4 /* MDSendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDSendMessageViewController.m; path = controllers/MDSendMessageViewController.m; sourceTree = "<group>"; };
+		90B32B1C174BBBD500D7A1F4 /* MDWriteMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDWriteMessageViewController.h; path = controllers/MDWriteMessageViewController.h; sourceTree = "<group>"; };
+		90B32B1D174BBBD500D7A1F4 /* MDWriteMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDWriteMessageViewController.m; path = controllers/MDWriteMessageViewController.m; sourceTree = "<group>"; };
 		90B32B27174BBBF600D7A1F4 /* MDActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivity.h; path = models/MDActivity.h; sourceTree = "<group>"; };
 		90B32B28174BBBF600D7A1F4 /* MDActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDActivity.m; path = models/MDActivity.m; sourceTree = "<group>"; };
 		90B32B29174BBBF600D7A1F4 /* MDCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDCache.h; path = models/MDCache.h; sourceTree = "<group>"; };
@@ -374,8 +374,8 @@
 				90B32B19174BBBD500D7A1F4 /* MDPersonDetailViewController.m */,
 				90B32B1A174BBBD500D7A1F4 /* MDRegisterViewController.h */,
 				90B32B1B174BBBD500D7A1F4 /* MDRegisterViewController.m */,
-				90B32B1C174BBBD500D7A1F4 /* MDSendMessageViewController.h */,
-				90B32B1D174BBBD500D7A1F4 /* MDSendMessageViewController.m */,
+				90B32B1C174BBBD500D7A1F4 /* MDWriteMessageViewController.h */,
+				90B32B1D174BBBD500D7A1F4 /* MDWriteMessageViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -825,7 +825,7 @@
 				90B32B22174BBBD500D7A1F4 /* MDLoginViewController.m in Sources */,
 				90B32B23174BBBD500D7A1F4 /* MDPersonDetailViewController.m in Sources */,
 				90B32B24174BBBD500D7A1F4 /* MDRegisterViewController.m in Sources */,
-				90B32B25174BBBD500D7A1F4 /* MDSendMessageViewController.m in Sources */,
+				90B32B25174BBBD500D7A1F4 /* MDWriteMessageViewController.m in Sources */,
 				90B32B3B174BBBF600D7A1F4 /* MDActivity.m in Sources */,
 				90B32B3D174BBBF600D7A1F4 /* MDChat.m in Sources */,
 				90B32B3E174BBBF600D7A1F4 /* MDContact.m in Sources */,
@@ -985,13 +985,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1DA8DF86-0CEE-4277-B5E6-A27F56C0F495";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1DA8DF86-0CEE-4277-B5E6-A27F56C0F495";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1000,13 +1002,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AC7E067CD2BF413FABCFBE54 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wenbiao Wong (ZZ9S4YMZNL)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MaiDuo/MaiDuo-Prefix.pch";
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1DA8DF86-0CEE-4277-B5E6-A27F56C0F495";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1DA8DF86-0CEE-4277-B5E6-A27F56C0F495";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -6,6 +6,7 @@ pod 'AFNetworking'
 pod 'JSMessagesViewController', :git => 'https://github.com/maiduo/MessagesTableViewController.git'
 pod 'EGOTableViewPullRefresh'
 pod 'MBProgressHUD'
+pod 'GMGridView'
 
 target :MaiDuoTests do
     pod 'GHUnitIOS'

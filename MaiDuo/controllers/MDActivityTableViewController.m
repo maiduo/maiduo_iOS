@@ -11,6 +11,7 @@
 #import "MDActivityMessageView.h"
 #import "MDActivityContactView.h"
 #import "MDActivityChatViewController.h"
+#import "MDWriteMessageViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define kActNumRect (CGRect){42,2,14,14}
@@ -265,7 +266,7 @@
         return [[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                 target:view
-                action:@selector(rightBarAction)];
+                action:@selector(rightBarAction:)];
     } else
         return NO;
 }
@@ -274,12 +275,22 @@
 {
     return [[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-            target:view
-            action:@selector(rightBarAction)];
+            target:self
+            action:@selector(didActiveWriteMessage:)];
 }
 
 - (void)segmentedChanged:(id)sender forEvent:(UIEvent *)event
 {
     [self showViewState:_segmented.selectedSegmentIndex];
+}
+
+- (void)didActiveWriteMessage:(id)sender
+{
+    UINavigationController *naviCtrl;
+    MDWriteMessageViewController *msgCtrl;
+    msgCtrl = [[MDWriteMessageViewController alloc] init];
+    naviCtrl = [[UINavigationController alloc]
+                initWithRootViewController:msgCtrl];
+    [self presentModalViewController:naviCtrl animated:YES];
 }
 @end
