@@ -51,6 +51,8 @@
 		90A4726917509D30007CF98D /* YaabUser.h in Sources */ = {isa = PBXBuildFile; fileRef = 90153972172BDC2300DBB64B /* YaabUser.h */; };
 		90A4726A17509D30007CF98D /* YaabUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* YaabUser.m */; };
 		90A472A41750E82B007CF98D /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90A472A31750E82B007CF98D /* avatar.jpg */; };
+		90A472A91754EA8E007CF98D /* MDUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A472A81754EA8E007CF98D /* MDUITextView.m */; };
+		90A472AC1754FFE0007CF98D /* MDWriteMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A472AB1754FFDF007CF98D /* MDWriteMessageView.m */; };
 		90B32B1E174BBBD500D7A1F4 /* MDActivityChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B0E174BBBD500D7A1F4 /* MDActivityChatViewController.m */; };
 		90B32B1F174BBBD500D7A1F4 /* MDActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B10174BBBD500D7A1F4 /* MDActivityTableViewController.m */; };
 		90B32B20174BBBD500D7A1F4 /* MDCreateActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B13174BBBD500D7A1F4 /* MDCreateActivityViewController.m */; };
@@ -155,6 +157,10 @@
 		90737B8617460C23006A2903 /* MDNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDNotificationCenter.m; sourceTree = "<group>"; };
 		9083C48B1736897100E87B4A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		90A472A31750E82B007CF98D /* avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = avatar.jpg; sourceTree = "<group>"; };
+		90A472A71754EA8E007CF98D /* MDUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUITextView.h; sourceTree = "<group>"; };
+		90A472A81754EA8E007CF98D /* MDUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUITextView.m; sourceTree = "<group>"; };
+		90A472AA1754FFDF007CF98D /* MDWriteMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDWriteMessageView.h; sourceTree = "<group>"; };
+		90A472AB1754FFDF007CF98D /* MDWriteMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDWriteMessageView.m; sourceTree = "<group>"; };
 		90B32B0D174BBBD500D7A1F4 /* MDActivityChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivityChatViewController.h; path = controllers/MDActivityChatViewController.h; sourceTree = "<group>"; };
 		90B32B0E174BBBD500D7A1F4 /* MDActivityChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDActivityChatViewController.m; path = controllers/MDActivityChatViewController.m; sourceTree = "<group>"; };
 		90B32B0F174BBBD500D7A1F4 /* MDActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivityTableViewController.h; path = controllers/MDActivityTableViewController.h; sourceTree = "<group>"; };
@@ -422,6 +428,8 @@
 				90B32B57174BBC5500D7A1F4 /* RHPerson+RHPersonCategory.m */,
 				90B32B58174BBC5500D7A1F4 /* UIView+Animation.h */,
 				90B32B59174BBC5500D7A1F4 /* UIView+Animation.m */,
+				90A472A71754EA8E007CF98D /* MDUITextView.h */,
+				90A472A81754EA8E007CF98D /* MDUITextView.m */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -474,6 +482,8 @@
 				90B32B7E174BBDDF00D7A1F4 /* MDCreateActivityView.m */,
 				3D064723174C5F2C0092BBAC /* MDActivityContentView.h */,
 				3D064724174C5F2C0092BBAC /* MDActivityContentView.m */,
+				90A472AA1754FFDF007CF98D /* MDWriteMessageView.h */,
+				90A472AB1754FFDF007CF98D /* MDWriteMessageView.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -852,6 +862,8 @@
 				90B32B83174BBDDF00D7A1F4 /* MDCreateActivityView.m in Sources */,
 				3D064725174C5F2C0092BBAC /* MDActivityContentView.m in Sources */,
 				AA151D6A17506E290098C64A /* UIViewFrameCategory.m in Sources */,
+				90A472A91754EA8E007CF98D /* MDUITextView.m in Sources */,
+				90A472AC1754FFE0007CF98D /* MDWriteMessageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

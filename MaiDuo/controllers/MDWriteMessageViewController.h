@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MDWriteMessageView.h"
+#import "MDUser.h"
+#import "MDUserManager.h"
 
 @interface MDWriteMessageViewController : UIViewController {
+    UIImageView *_avatar;
+    UIToolbar *_toolbar;
+    NSMutableArray *_assets;
+    MDWriteMessageView *_writeMessage;
+    MDUser *_user;
 }
+
+-(id) initWithUser:(MDUser *)anUser;
 @end

@@ -13,6 +13,7 @@
 #import "MDHTTPAPI.h"
 #import "iToast.h"
 #import "MBProgressHUD.h"
+#import "MDWriteMessageViewController.h"
 
 
 @interface MDAppDelegate() <MDLoginViewControllerDelegate>{
@@ -46,26 +47,28 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
                    initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    if ([_userManager userSessionValid]) {
-        // 只需要登陆一次
-        // API使用user.accessToken保存用户状态
-        
-        // 直接进入活动列表并刷新
-        // FIXME 这里的逻辑应该是进入活动列表，并自动刷新。
-        MDLatestViewController *latestViewController;
-        latestViewController = [[MDLatestViewController alloc] init];
-        self.navigationController = [[UINavigationController alloc] initWithRootViewController:latestViewController];
-         
-//        [self.navigationController initWithRootViewController:latestViewController];
-//                                     initWithRootViewController:latestViewController];
-
-    } else {
-        MDLoginViewController *loginViewController;
-        loginViewController = [[MDLoginViewController alloc]
-                               initWithStyle:UITableViewStyleGrouped];
-        self.navigationController = [[UINavigationController alloc]
-                                     initWithRootViewController:loginViewController];
-    }
+//    if ([_userManager userSessionValid]) {
+//        // 只需要登陆一次
+//        // API使用user.accessToken保存用户状态
+//        
+//        // 直接进入活动列表并刷新
+//        // FIXME 这里的逻辑应该是进入活动列表，并自动刷新。
+//        MDLatestViewController *latestViewController;
+//        latestViewController = [[MDLatestViewController alloc] init];
+//        self.navigationController = [[UINavigationController alloc] initWithRootViewController:latestViewController];
+//         
+////        [self.navigationController initWithRootViewController:latestViewController];
+////                                     initWithRootViewController:latestViewController];
+//
+//    } else {
+//        MDLoginViewController *loginViewController;
+//        loginViewController = [[MDLoginViewController alloc]
+//                               initWithStyle:UITableViewStyleGrouped];
+//        self.navigationController = [[UINavigationController alloc]
+//                                     initWithRootViewController:loginViewController];
+//    }
+    
+    self.navigationController = [[UINavigationController alloc]initWithRootViewController:[[MDWriteMessageViewController alloc]initWithUser:[[MDUserManager sharedInstance] getUserSession]]];
     
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
