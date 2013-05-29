@@ -76,25 +76,6 @@
     {
         [[self viewWithTag:999] setAlpha:0];
     }
-    
-    CGFloat actualFontSize;
-    
-//    CGSize size = [self.text sizeWithFont:self.font minFontSize:14.0f actualFontSize:&actualFontSize forWidth:self.bounds.size.width lineBreakMode:NSLineBrea];
-    
-    
-//    NSLog(@"%f %f", self.bounds.size.width, self.bounds.size.height);
-    CGSize size = [self.text sizeWithFont:self.font constrainedToSize:CGSizeMake(self.bounds.size.width, self.bounds.size.height + 100) lineBreakMode:UILineBreakModeCharacterWrap];
-    NSLog(@"%f %f", size.width, size.height);
-    
-//    CGRect rect = self.bounds;
-    CGRect rect = CGRectMake(self.bounds.origin.x, self.bounds.origin.y,
-                             self.bounds.size.width, size.height);
-    self.frame = rect;
-}
-
-- (void)setText:(NSString *)text {
-    [super setText:text];
-    [self textChanged:nil];
 }
 
 - (void)drawRect:(CGRect)rect

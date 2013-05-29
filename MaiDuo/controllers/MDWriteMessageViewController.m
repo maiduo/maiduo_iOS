@@ -7,7 +7,7 @@
 //
 
 #import "MDWriteMessageViewController.h"
-#import <GMGridView/GMGridView.h>
+#import "MDAddonViewController.h"
 #import <UIImageView+AFNetworking.h>
 
 #define TOOL_BAR_HEIGHT 44
@@ -73,12 +73,13 @@
     
     NSLog(@"%f", text_field_height);
     
-    _writeMessage = [[MDWriteMessageView alloc]
+    _textField = [[MDUITextView alloc]
                      initWithFrame:CGRectMake(text_field_x, edge,
                                               text_field_width,
                                               text_field_height)];
-    [self.view addSubview: _writeMessage];
-    _writeMessage.text = @"Hi\n\n\n\n\n\nend.";
+    [self.view addSubview: _textField];
+    _textField.placeholder = @"想说点什么呢？";
+//    _textField.text = @"Hi\n\n\n\n\n\nend.";
     
     id center = [NSNotificationCenter defaultCenter];
 	[center addObserver:self
@@ -119,11 +120,11 @@
                         CGRectValue].size.height;
     
     NSInteger navigationBarHeight = self.navigationController.navigationBar.height;
-    CGRect newRect = _writeMessage.frame;
+    CGRect newRect = _textField.frame;
     newRect.size.height = self.view.frame.size.height - kbHeight - 10
                           - navigationBarHeight;
     
-    _writeMessage.frame = newRect;
+    _textField.frame = newRect;
     
     [UIView animateWithDuration:0.25 animations:^{
         CGPoint center = _toolbar.center;
@@ -142,6 +143,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.navigationController
+     pushViewController:[[MDAddonViewController alloc] init] animated:YES];
 }
 
 - (void)didTapClose:(id)sender

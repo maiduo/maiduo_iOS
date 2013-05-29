@@ -1,26 +1,24 @@
 //
-//  MDWriteMessageView.h
+//  MDAddonViewController.h
 //  MaiDuo
 //
-//  Created by 魏琮举 on 13-5-28.
+//  Created by 魏琮举 on 13-5-29.
 //  Copyright (c) 2013年 魏琮举. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <GMGridView/GMGridView.h>
-#import "MDUITextView.h"
 
 #define INTERFACE_IS_PAD     ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 #define INTERFACE_IS_PHONE   ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 
-@interface MDWriteMessageView : UIScrollView<GMGridViewDataSource,
+@interface MDAddonViewController : UIViewController<GMGridViewDataSource,
 GMGridViewActionDelegate, GMGridViewSortingDelegate,
-GMGridViewTransformationDelegate> {
+GMGridViewTransformationDelegate, UIImagePickerControllerDelegate> {
     CGSize _cellSize;
 }
 
-@property (strong) MDUITextView *textField;
 @property (strong) GMGridView *gridView;
 @property (strong) NSMutableArray *assets;
-@property (strong, setter = setText:) NSString *text;
+
 @end

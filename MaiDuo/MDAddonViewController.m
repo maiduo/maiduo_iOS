@@ -1,38 +1,38 @@
 //
-//  MDWriteMessageView.m
+//  MDAddonViewController.m
 //  MaiDuo
 //
-//  Created by 魏琮举 on 13-5-28.
+//  Created by 魏琮举 on 13-5-29.
 //  Copyright (c) 2013年 魏琮举. All rights reserved.
 //
 
-#import "MDWriteMessageView.h"
+#import "MDAddonViewController.h"
 
-@implementation MDWriteMessageView
+@interface MDAddonViewController ()
 
-- (id)initWithFrame:(CGRect)frame
+@end
+
+@implementation MDAddonViewController
+
+- (id)init
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self) {
-        [self setup];
         [self setupGridView];
     }
     return self;
 }
 
-- (void)setup
+- (void)viewDidLoad
 {
-    _textField = [[MDUITextView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 100)];
-    _textField.placeholder = @"想说些什么？";
-    _textField.scrollEnabled = NO;
-    
-    [self addSubview: _textField];
-    
-    self.pagingEnabled = YES;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(textChanged:)
-                                                 name:UITextViewTextDidChangeNotification
-                                               object:nil];
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)setupGridView
@@ -41,73 +41,47 @@
                        imageWithContentsOfFile:[[NSBundle mainBundle]
                                                 pathForResource:@"default_avatar"
                                                 ofType:@"jpg"]];
-    _assets = [NSMutableArray arrayWithArray: @[asset1,asset1,asset1,asset1]];
+    _assets = [NSMutableArray arrayWithArray: @[asset1,asset1,asset1,asset1,
+               asset1,asset1,asset1,asset1]];
     
-    NSInteger spacing = INTERFACE_IS_PHONE ? 10 : 15;
+    NSInteger spacing = INTERFACE_IS_PHONE ? 4 : 15;
     
-    _cellSize = CGSizeMake(70.0f, 70.0f);
-    CGRect msgFrame = self.frame;
-    CGRect tfFrame  = self.textField.frame;
-    CGFloat gridHeight = msgFrame.size.height - tfFrame.size.height - 1;
-    CGRect gridFrame = CGRectMake(0, tfFrame.origin.y + 1,
-                                  msgFrame.size.width, gridHeight);
-    
-    NSLog(@"Text field height %f", self.textField.frame.size.height);
-    
-    
-    _gridView = [[GMGridView alloc] initWithFrame:gridFrame];
-    _gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
-    UIViewAutoresizingFlexibleHeight;
+    _cellSize = CGSizeMake(75.0f, 75.0f);
+
+    _gridView = [[GMGridView alloc] initWithFrame:self.view.bounds];
+    _gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight;
     _gridView.backgroundColor = [UIColor clearColor];
-//    [self addSubview:_gridView];
-    
     _gridView.style = GMGridViewStyleSwap;
-//    _gridView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
     _gridView.itemSpacing = spacing;
     _gridView.minEdgeInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
-    _gridView.centerGrid = YES;
+    _gridView.centerGrid = NO;
     _gridView.actionDelegate = self;
     _gridView.sortingDelegate = self;
     _gridView.transformDelegate = self;
     _gridView.dataSource = self;
-    _gridView.scrollEnabled = NO;
+    
+    [self.view addSubview:_gridView];
+    
+    UIBarButtonItem *buttonOpenImagePicker;
+    buttonOpenImagePicker = [[UIBarButtonItem alloc]
+                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                 target:self
+                 action:@selector(willOpenImagePicker:)];
+    self.navigationItem.rightBarButtonItem = buttonOpenImagePicker;
+    self.navigationItem.title = @"消息内容";
 }
 
-- (void)setupPosition
+- (void)willOpenImagePicker:(id)sender
 {
+    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    picker.delegate = self;
+    NSArray *mediaYypes = [UIImagePickerController
+                            availableMediaTypesForSourceType:picker.sourceType];
+    picker.mediaTypes = mediaYypes;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
+    [self presentModalViewController:picker animated:YES];
 }
-
-- (void)setText:(NSString *)text
-{
-    _text = text;
-    self.textField.text = text;
-    [self setupPosition];
-}
-
-- (void)textChanged:(NSNotification *)notification
-{
-    self.contentSize = _textField.contentSize;
-    
-    CGRect msgFrame = self.frame;
-    CGRect tfFrame  = self.textField.frame;
-    CGFloat gridHeight = msgFrame.size.height - tfFrame.size.height - 1;
-    CGRect gridFrame = CGRectMake(0, tfFrame.origin.y + 1,
-                                  msgFrame.size.width, gridHeight);
-    
-    _gridView.frame = gridFrame;
-    
-    NSLog(@"Text did change.");
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 //////////////////////////////////////////////////////////////
 #pragma mark GMGridViewDataSource
@@ -169,7 +143,7 @@ sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication]
     }
     
     [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    
+    NSLog(@"%f %f %f %f", cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
     return cell;
 }
 
@@ -364,8 +338,29 @@ didEndTransformingCell:(GMGridViewCell *)cell
 
 - (void)GMGridView:(GMGridView *)gridView didEnterFullSizeForCell:(UIView *)cell
 {
-    
 }
 
+#pragma mark UIImagePickerControllerDelegate
 
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    if ([mediaType isEqualToString:@"public.image"]) {
+        
+        //取得圖片
+//        image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    }
+    
+    if ([mediaType isEqualToString:@"public.movie"]) {
+        
+        //取得影片位置
+//        videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
+    }
+    
+    
+    //已動畫方式返回先前畫面
+    [picker dismissModalViewControllerAnimated:YES];
+}
 @end
