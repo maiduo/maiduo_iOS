@@ -35,7 +35,7 @@ pod install
 
 鼓励并欢迎大家对开源项目作出贡献，贡献包括但不限于代码、创意、BUG提交以及讨论。
 
-如果你想贡献代码，先[fork](https://github.com/maiduo/maiduo_iOS/fork)项目，如果你是第一次使用github或者git，可以阅读这篇文章。[Fork + Pull模式](http://www.worldhello.net/gotgithub/04-work-with-others/010-fork-and-pull.html)
+你想贡献代码，先[fork](https://github.com/maiduo/maiduo_iOS/fork)项目，如果你是第一次使用github或者git，可以阅读[Fork + Pull模式](http://www.worldhello.net/gotgithub/04-work-with-others/010-fork-and-pull.html)这篇文章。
 
 你也可以把你的创意通过[New issue](https://github.com/maiduo/maiduo_iOS/issues/new)发表出来，帮助开发人员实现它。
 
