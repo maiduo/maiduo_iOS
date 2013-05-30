@@ -8,14 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <GMGridView/GMGridView.h>
+#import <QBImagePickerController/QBImagePickerController.h>
 
 #define INTERFACE_IS_PAD     ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 #define INTERFACE_IS_PHONE   ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 
 @interface MDAddonViewController : UIViewController<GMGridViewDataSource,
 GMGridViewActionDelegate, GMGridViewSortingDelegate,
-GMGridViewTransformationDelegate, UIImagePickerControllerDelegate> {
+GMGridViewTransformationDelegate, QBImagePickerControllerDelegate> {
     CGSize _cellSize;
+    ALAssetsLibrary *_library;
 }
 
 @property (strong) GMGridView *gridView;

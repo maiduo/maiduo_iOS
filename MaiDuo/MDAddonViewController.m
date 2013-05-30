@@ -41,8 +41,11 @@
                        imageWithContentsOfFile:[[NSBundle mainBundle]
                                                 pathForResource:@"default_avatar"
                                                 ofType:@"jpg"]];
-    _assets = [NSMutableArray arrayWithArray: @[asset1,asset1,asset1,asset1,
-               asset1,asset1,asset1,asset1]];
+    
+    _assets = [NSMutableArray array];
+    for (NSInteger i = 0; i < 50; i++)
+        [_assets addObject:@"assets-library://asset/asset.PNG?id=0FA66916-F06B-45ED-80D3-50FAD6B6DB0E&ext=PNG"];
+    _library = [[ALAssetsLibrary alloc] init];
     
     NSInteger spacing = INTERFACE_IS_PHONE ? 4 : 15;
     
@@ -73,14 +76,19 @@
 
 - (void)willOpenImagePicker:(id)sender
 {
-    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    QBImagePickerController *picker = [[QBImagePickerController alloc] init];
     picker.delegate = self;
-    NSArray *mediaYypes = [UIImagePickerController
-                            availableMediaTypesForSourceType:picker.sourceType];
-    picker.mediaTypes = mediaYypes;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.filterType = QBImagePickerFilterTypeAllPhotos;
+    picker.showsCancelButton = YES;
+    picker.fullScreenLayoutEnabled = YES;
+    picker.allowsMultipleSelection = YES;
     
-    [self presentModalViewController:picker animated:YES];
+    picker.limitsMaximumNumberOfSelection = YES;
+    picker.maximumNumberOfSelection = 20;
+    
+    UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:picker];
+    
+    [self presentModalViewController:navigation animated:YES];
 }
 
 //////////////////////////////////////////////////////////////
@@ -129,21 +137,37 @@ sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication]
                                     statusBarOrientation]];
     
     GMGridViewCell *cell = [gridView dequeueReusableCell];
+    NSString *reference = [_assets objectAtIndex:index];
     
     if (!cell)
     {
         cell = [[GMGridViewCell alloc] init];
         cell.deleteButtonIcon = [UIImage imageNamed:@"close_x.png"];
         cell.deleteButtonOffset = CGPointMake(-15, -15);
-        
-        UIImageView *image = [[UIImageView alloc]
-                              initWithImage: [_assets objectAtIndex:index]];
-        image.frame = CGRectMake(0.0f, 0.0f, _cellSize.width, _cellSize.height);
-        cell.contentView = image;
     }
     
+    __block UIImageView *image_view;
+    //        imageView.frame = CGRectMake(0.0f, 0.0f, _cellSize.width, _cellSize.height);
+
+    ALAssetsLibraryAssetForURLResultBlock result_block = ^(ALAsset *asset)
+    {
+        image_view = [[UIImageView alloc]
+                      initWithImage:[UIImage
+                                     imageWithCGImage:asset.thumbnail]];
+        cell.contentView = image_view;
+    };
+    
+    ALAssetsLibraryAccessFailureBlock failure_block = ^(NSError *error)
+    {
+    };
+    //        NSLog(@"asset library url %@", reference);
+    NSURL *asset_url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@", reference]];
+    [_library assetForURL:asset_url
+              resultBlock:result_block
+             failureBlock:failure_block];
+    
     [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    NSLog(@"%f %f %f %f", cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
+//    NSLog(@"%f %f %f %f", cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
     return cell;
 }
 
@@ -253,6 +277,8 @@ sizeInFullSizeForCell:(GMGridViewCell *)cell
              atIndex:(NSInteger)index
 inInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
+    return _cellSize;
+    
     if (INTERFACE_IS_PHONE)
     {
         if (UIInterfaceOrientationIsLandscape(orientation))
@@ -342,25 +368,27 @@ didEndTransformingCell:(GMGridViewCell *)cell
 
 #pragma mark UIImagePickerControllerDelegate
 
-- (void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (void)imagePickerController:(QBImagePickerController *)imagePickerController
+didFinishPickingMediaWithInfo:(id)info
 {
-    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
-    
-    if ([mediaType isEqualToString:@"public.image"]) {
-        
-        //取得圖片
-//        image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if(imagePickerController.allowsMultipleSelection) {
+        NSArray *infoArray = (NSArray *)info;
+
+        [infoArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx,
+                                                BOOL *stop) {
+            NSString *asset;
+            asset = [obj objectForKey:@"UIImagePickerControllerReferenceURL"];
+            [self.assets addObject:asset];
+            
+            [_gridView insertObjectAtIndex:self.assets.count - 1
+                             withAnimation:GMGridViewItemAnimationFade|
+             GMGridViewItemAnimationScroll];
+        }];
     }
     
-    if ([mediaType isEqualToString:@"public.movie"]) {
+    [imagePickerController dismissViewControllerAnimated:YES completion:^{
+        [_gridView reloadData];
         
-        //取得影片位置
-//        videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
-    }
-    
-    
-    //已動畫方式返回先前畫面
-    [picker dismissModalViewControllerAnimated:YES];
+    }];
 }
 @end
