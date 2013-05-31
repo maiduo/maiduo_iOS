@@ -71,15 +71,13 @@
     
     [self.view addSubview:_avatar];
     
-    NSLog(@"%f", text_field_height);
-    
     _textField = [[MDUITextView alloc]
                      initWithFrame:CGRectMake(text_field_x, edge,
                                               text_field_width,
                                               text_field_height)];
+    _textField.font = [UIFont systemFontOfSize:16.0f];
     [self.view addSubview: _textField];
     _textField.placeholder = @"想说点什么呢？";
-//    _textField.text = @"Hi\n\n\n\n\n\nend.";
     
     id center = [NSNotificationCenter defaultCenter];
 	[center addObserver:self
@@ -98,8 +96,6 @@
     // Toolbar
     _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, view_height - TOOL_BAR_HEIGHT - 44, view_width, TOOL_BAR_HEIGHT)];
     [self.view addSubview: _toolbar];
-    NSLog(@"toolbar %f %f %f %f",  _toolbar.frame.origin.x, _toolbar.frame.origin.y,
-          _toolbar.frame.size.width, _toolbar.frame.size.height);
     
     UIBarButtonItem *camera;
     camera = [[UIBarButtonItem alloc]
@@ -111,6 +107,32 @@
                                target:nil
                                action:nil];
     _toolbar.items = @[camera,flexItem,];
+    
+    // 导航栏进度条
+    static NSString *uploading = @"正在上传中...";
+    static NSInteger padding = 5;
+    UIFont *font = [UIFont systemFontOfSize:13];
+    CGSize size = [uploading sizeWithFont:font];
+    _navigationProgressBar = [[UIView alloc]
+                              initWithFrame:CGRectMake(0, padding, 160,44)];
+    _navigationProgressBar.center = self.navigationController.view.center;
+    _navigationProgressLabel = [[UILabel alloc]
+                                initWithFrame:CGRectMake((_navigationProgressBar.width - size.width)/2, padding, size.width, size.height)];
+    _navigationProgressLabel.backgroundColor = [UIColor clearColor];
+    _navigationProgressLabel.font = font;
+    _navigationProgressLabel.textColor = [UIColor whiteColor];
+    _navigationProgressLabel.shadowColor = [UIColor colorWithWhite:0.1
+                                                             alpha:0.7];
+
+    _navigationProgressLabel.text = uploading;
+    
+    [_navigationProgressBar addSubview: _navigationProgressLabel];
+    
+    _navigationProgress = [[UIProgressView alloc]
+                           initWithProgressViewStyle:UIProgressViewStyleBar];
+    CGRect progress_frame = _navigationProgress.frame;
+    _navigationProgress.frame = CGRectMake(0, _navigationProgressLabel.frame.origin.y + _navigationProgressLabel.frame.size.height + padding, progress_frame.size.width, progress_frame.size.height);
+    [_navigationProgressBar addSubview:_navigationProgress];
 }
 
 - (void) keyboardWillShow:(NSNotification *)notification
@@ -138,6 +160,16 @@
     NSDictionary *info = [notification userInfo];
     CGFloat kbHeight = [[info objectForKey:UIKeyboardFrameEndUserInfoKey]
                         CGRectValue].size.height;
+}
+
+- (void)enableNavigationProgress
+{
+    
+}
+
+- (void)disableNavigationProgress
+{
+    
 }
 
 - (void)viewDidLoad

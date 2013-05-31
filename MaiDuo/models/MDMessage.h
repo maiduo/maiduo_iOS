@@ -23,6 +23,7 @@ enum {
 @property(nonatomic, assign) NSInteger id;
 @property(strong) MDActivity *activity;
 @property(strong) MDUser *user;
+@property(assign) BOOL stash;
 @property(nonatomic, strong) NSString* body;
 @property(nonatomic, assign) MessageType type;
 

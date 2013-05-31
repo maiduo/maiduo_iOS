@@ -16,6 +16,11 @@
     UIToolbar *_toolbar;
     MDUITextView *_textField;
     MDUser *_user;
+    
+    UIView *_navigationTitle;
+    UIProgressView *_navigationProgress;
+    UIView *_navigationProgressBar;
+    UILabel *_navigationProgressLabel;
 }
 
 -(id) initWithUser:(MDUser *)anUser;
