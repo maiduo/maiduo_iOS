@@ -7,12 +7,16 @@
 //
 
 #import "MDAddonViewController.h"
-
-@interface MDAddonViewController ()
-
+#import "MDAppDelegate.h"
+@interface MDAddonViewController (){
+    UINavigationController *_navigationPicker;
+}
+ 
 @end
 
 @implementation MDAddonViewController
+
+ 
 
 - (id)init
 {
@@ -37,14 +41,14 @@
 
 - (void)setupGridView
 {
-    UIImage *asset1 = [UIImage
-                       imageWithContentsOfFile:[[NSBundle mainBundle]
-                                                pathForResource:@"default_avatar"
-                                                ofType:@"jpg"]];
+//    UIImage *asset1 = [UIImage
+//                       imageWithContentsOfFile:[[NSBundle mainBundle]
+//                                                pathForResource:@"default_avatar"
+//                                                ofType:@"jpg"]];
     
     _assets = [NSMutableArray array];
-    for (NSInteger i = 0; i < 50; i++)
-        [_assets addObject:@"assets-library://asset/asset.PNG?id=0FA66916-F06B-45ED-80D3-50FAD6B6DB0E&ext=PNG"];
+//    for (NSInteger i = 0; i < 50; i++)
+//        [_assets addObject:@"assets-library://asset/asset.PNG?id=0FA66916-F06B-45ED-80D3-50FAD6B6DB0E&ext=PNG"];
     _library = [[ALAssetsLibrary alloc] init];
     
     NSInteger spacing = INTERFACE_IS_PHONE ? 4 : 15;
@@ -77,6 +81,13 @@
 - (void)willOpenImagePicker:(id)sender
 {
     QBImagePickerController *picker = [[QBImagePickerController alloc] init];
+    
+    NSMutableOrderedSet *selectedAssets=[[NSMutableOrderedSet alloc] init];
+    [_assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [selectedAssets addObject:obj];
+    }];
+    
+ 
     picker.delegate = self;
     picker.filterType = QBImagePickerFilterTypeAllPhotos;
     picker.showsCancelButton = YES;
@@ -86,9 +97,14 @@
     picker.limitsMaximumNumberOfSelection = YES;
     picker.maximumNumberOfSelection = 20;
     
-    UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:picker];
     
-    [self presentModalViewController:navigation animated:YES];
+    if(!_navigationPicker){
+        _navigationPicker = [[UINavigationController alloc] initWithRootViewController:picker];
+    }
+    
+ 
+     MDAppDelegate *delegate = (MDAppDelegate*)[UIApplication sharedApplication].delegate;
+    [delegate.navigationController presentModalViewController:_navigationPicker animated:YES];
 }
 
 //////////////////////////////////////////////////////////////
@@ -132,9 +148,9 @@ sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView
             cellForItemAtIndex:(NSInteger)index
 {
-    CGSize size = [self GMGridView:gridView
-sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication]
-                                    statusBarOrientation]];
+//    CGSize size = [self GMGridView:gridView
+//sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication]
+//                                    statusBarOrientation]];
     
     GMGridViewCell *cell = [gridView dequeueReusableCell];
     NSString *reference = [_assets objectAtIndex:index];
@@ -367,10 +383,15 @@ didEndTransformingCell:(GMGridViewCell *)cell
 }
 
 #pragma mark UIImagePickerControllerDelegate
-
+- (void)imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController
+{
+    MDAppDelegate *delegate = (MDAppDelegate*)[UIApplication sharedApplication].delegate;
+    [delegate.navigationController dismissModalViewControllerAnimated:YES];
+}
 - (void)imagePickerController:(QBImagePickerController *)imagePickerController
 didFinishPickingMediaWithInfo:(id)info
 {
+    [_assets removeAllObjects];
     if(imagePickerController.allowsMultipleSelection) {
         NSArray *infoArray = (NSArray *)info;
 
@@ -380,9 +401,9 @@ didFinishPickingMediaWithInfo:(id)info
             asset = [obj objectForKey:@"UIImagePickerControllerReferenceURL"];
             [self.assets addObject:asset];
             
-            [_gridView insertObjectAtIndex:self.assets.count - 1
-                             withAnimation:GMGridViewItemAnimationFade|
-             GMGridViewItemAnimationScroll];
+//            [_gridView insertObjectAtIndex:self.assets.count - 1
+//                             withAnimation:GMGridViewItemAnimationFade|
+//             GMGridViewItemAnimationScroll];
         }];
     }
     
