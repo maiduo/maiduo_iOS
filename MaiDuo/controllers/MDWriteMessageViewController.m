@@ -9,6 +9,7 @@
 #import "MDWriteMessageViewController.h"
 #import "MDAddonViewController.h"
 #import <UIImageView+AFNetworking.h>
+#import <QuartzCore/QuartzCore.h>
 
 #define TOOL_BAR_HEIGHT 44
 #define TOOL_BAR_NORMAL_FRAME CGRectMake(0, 156, 320, TOOL_BAR_HEIGHT)
@@ -133,6 +134,25 @@
     CGRect progress_frame = _navigationProgress.frame;
     _navigationProgress.frame = CGRectMake(0, _navigationProgressLabel.frame.origin.y + _navigationProgressLabel.frame.size.height + padding, progress_frame.size.width, progress_frame.size.height);
     [_navigationProgressBar addSubview:_navigationProgress];
+    
+    NSString *photos_text = @"13";
+    CGSize photo_text_size = [photos_text sizeWithFont:[UIFont systemFontOfSize:14]];
+    
+    _photos = [[UILabel alloc] initWithFrame:CGRectMake(30, _toolbar.frame.origin.y, photo_text_size.width + 12, 20)];
+    _photos.backgroundColor=[UIColor colorWithRed:170/255
+                                            green:176/255
+                                             blue:198/255
+                                            alpha:0.5];
+    _photos.textColor=[UIColor whiteColor];
+    _photos.font=[UIFont systemFontOfSize:14.0f];
+    _photos.text = photos_text;
+    _photos.textAlignment=NSTextAlignmentCenter;
+    _photos.layer.shadowColor=[UIColor blackColor].CGColor;
+    _photos.layer.shadowOffset=CGSizeMake(5, 5);
+    _photos.layer.cornerRadius=10.0f;
+    
+    [self.view addSubview:_photos];
+//    CGRect camera_rect = camera
 }
 
 - (void) keyboardWillShow:(NSNotification *)notification

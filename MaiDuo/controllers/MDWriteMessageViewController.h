@@ -21,6 +21,7 @@
     UIProgressView *_navigationProgress;
     UIView *_navigationProgressBar;
     UILabel *_navigationProgressLabel;
+    UILabel *_photos;
 }
 
 -(id) initWithUser:(MDUser *)anUser;
