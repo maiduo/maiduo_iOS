@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MDUITextView.h"
+#import "MDUser.h"
+#import "MDUserManager.h"
 
 @interface MDWriteMessageViewController : UIViewController {
+    UIImageView *_avatar;
+    UIToolbar *_toolbar;
+    MDUITextView *_textField;
+    MDUser *_user;
+    
+    UIView *_navigationTitle;
+    UIProgressView *_navigationProgress;
+    UIView *_navigationProgressBar;
+    UILabel *_navigationProgressLabel;
+    UILabel *_photos;
 }
+
+-(id) initWithUser:(MDUser *)anUser;
 @end

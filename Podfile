@@ -7,6 +7,7 @@ pod 'JSMessagesViewController', :git => 'https://github.com/maiduo/MessagesTable
 pod 'EGOTableViewPullRefresh'
 pod 'MBProgressHUD'
 pod 'GMGridView'
+pod 'QBImagePickerController', :git => 'https://github.com/knight31/QBImagePickerController'
 
 target :MaiDuoTests do
     pod 'GHUnitIOS'

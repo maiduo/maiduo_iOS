@@ -13,6 +13,8 @@
 #import "MDHTTPAPI.h"
 #import "iToast.h"
 #import "MBProgressHUD.h"
+#import "MDWriteMessageViewController.h"
+#import "MDAddonViewController.h"
 
 
 @interface MDAppDelegate() <MDLoginViewControllerDelegate>{
@@ -52,10 +54,14 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         
         // 直接进入活动列表并刷新
         // FIXME 这里的逻辑应该是进入活动列表，并自动刷新。
-        MDLatestViewController *latestViewController;
-        latestViewController = [[MDLatestViewController alloc] init];
-        self.navigationController = [[UINavigationController alloc] initWithRootViewController:latestViewController];
-         
+        
+        self.navigationController = [[UINavigationController alloc]initWithRootViewController:[[MDWriteMessageViewController alloc]initWithUser:[[MDUserManager sharedInstance] getUserSession]]];
+//        self.navigationController = [[UINavigationController alloc]initWithRootViewController:[[MDAddonViewController alloc] init]];
+//
+//        MDLatestViewController *latestViewController;
+//        latestViewController = [[MDLatestViewController alloc] init];
+//        self.navigationController = [[UINavigationController alloc] initWithRootViewController:latestViewController];
+        
 //        [self.navigationController initWithRootViewController:latestViewController];
 //                                     initWithRootViewController:latestViewController];
 

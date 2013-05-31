@@ -14,6 +14,7 @@
 		3D034FFC174A1E1500F325E6 /* MDNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8617460C23006A2903 /* MDNotificationCenter.m */; };
 		3D064725174C5F2C0092BBAC /* MDActivityContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D064724174C5F2C0092BBAC /* MDActivityContentView.m */; };
 		90153978172BDC2300DBB64B /* YaabUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* YaabUser.m */; };
+		9025FB5417564FB200197D8B /* MDAddonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9025FB5317564FB200197D8B /* MDAddonViewController.m */; };
 		902C91CB1742322800073241 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
 		902C91CC1742322800073241 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BC17217C8E005BC944 /* Foundation.framework */; };
 		902C91CD1742322800073241 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BE17217C8E005BC944 /* CoreGraphics.framework */; };
@@ -51,6 +52,7 @@
 		90A4726917509D30007CF98D /* YaabUser.h in Sources */ = {isa = PBXBuildFile; fileRef = 90153972172BDC2300DBB64B /* YaabUser.h */; };
 		90A4726A17509D30007CF98D /* YaabUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* YaabUser.m */; };
 		90A472A41750E82B007CF98D /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90A472A31750E82B007CF98D /* avatar.jpg */; };
+		90A472A91754EA8E007CF98D /* MDUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A472A81754EA8E007CF98D /* MDUITextView.m */; };
 		90B32B1E174BBBD500D7A1F4 /* MDActivityChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B0E174BBBD500D7A1F4 /* MDActivityChatViewController.m */; };
 		90B32B1F174BBBD500D7A1F4 /* MDActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B10174BBBD500D7A1F4 /* MDActivityTableViewController.m */; };
 		90B32B20174BBBD500D7A1F4 /* MDCreateActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B13174BBBD500D7A1F4 /* MDCreateActivityViewController.m */; };
@@ -138,6 +140,8 @@
 		8189D765038C4B9FB2F1D493 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		90153972172BDC2300DBB64B /* YaabUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YaabUser.h; path = MaiDuo/YaabUser.h; sourceTree = "<group>"; };
 		90153973172BDC2300DBB64B /* YaabUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YaabUser.m; path = MaiDuo/YaabUser.m; sourceTree = "<group>"; };
+		9025FB5217564FB200197D8B /* MDAddonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDAddonViewController.h; sourceTree = "<group>"; };
+		9025FB5317564FB200197D8B /* MDAddonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDAddonViewController.m; sourceTree = "<group>"; };
 		902C91CA1742322800073241 /* MaiDuoTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaiDuoTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		902C91D01742322800073241 /* MaiDuoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MaiDuoTests-Info.plist"; sourceTree = "<group>"; };
 		902C91D21742322800073241 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -155,6 +159,8 @@
 		90737B8617460C23006A2903 /* MDNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDNotificationCenter.m; sourceTree = "<group>"; };
 		9083C48B1736897100E87B4A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		90A472A31750E82B007CF98D /* avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = avatar.jpg; sourceTree = "<group>"; };
+		90A472A71754EA8E007CF98D /* MDUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUITextView.h; sourceTree = "<group>"; };
+		90A472A81754EA8E007CF98D /* MDUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUITextView.m; sourceTree = "<group>"; };
 		90B32B0D174BBBD500D7A1F4 /* MDActivityChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivityChatViewController.h; path = controllers/MDActivityChatViewController.h; sourceTree = "<group>"; };
 		90B32B0E174BBBD500D7A1F4 /* MDActivityChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDActivityChatViewController.m; path = controllers/MDActivityChatViewController.m; sourceTree = "<group>"; };
 		90B32B0F174BBBD500D7A1F4 /* MDActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivityTableViewController.h; path = controllers/MDActivityTableViewController.h; sourceTree = "<group>"; };
@@ -239,8 +245,6 @@
 		90F342CE17217C8E005BC944 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		90F342D017217C8E005BC944 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		90F342D817217C8E005BC944 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		90F342F61721A706005BC944 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
-		90F342F71721A706005BC944 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		94844377963140799A16CD56 /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F6F32747884C9186FD3D23 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBBFC670F454C7BB499B0A2 /* libPods-MaiDuoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaiDuoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -376,6 +380,8 @@
 				90B32B1B174BBBD500D7A1F4 /* MDRegisterViewController.m */,
 				90B32B1C174BBBD500D7A1F4 /* MDWriteMessageViewController.h */,
 				90B32B1D174BBBD500D7A1F4 /* MDWriteMessageViewController.m */,
+				9025FB5217564FB200197D8B /* MDAddonViewController.h */,
+				9025FB5317564FB200197D8B /* MDAddonViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -422,6 +428,8 @@
 				90B32B57174BBC5500D7A1F4 /* RHPerson+RHPersonCategory.m */,
 				90B32B58174BBC5500D7A1F4 /* UIView+Animation.h */,
 				90B32B59174BBC5500D7A1F4 /* UIView+Animation.m */,
+				90A472A71754EA8E007CF98D /* MDUITextView.h */,
+				90A472A81754EA8E007CF98D /* MDUITextView.m */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -489,7 +497,6 @@
 		90F342AE17217C8E005BC944 = {
 			isa = PBXGroup;
 			children = (
-				90F342F51721A706005BC944 /* AsyncImageView */,
 				90F342C017217C8E005BC944 /* MaiDuo */,
 				90F342C917217C8E005BC944 /* MDAppDelegate.h */,
 				90F342CA17217C8E005BC944 /* MDAppDelegate.m */,
@@ -568,16 +575,6 @@
 				90F342D017217C8E005BC944 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		90F342F51721A706005BC944 /* AsyncImageView */ = {
-			isa = PBXGroup;
-			children = (
-				90F342F61721A706005BC944 /* AsyncImageView.h */,
-				90F342F71721A706005BC944 /* AsyncImageView.m */,
-			);
-			name = AsyncImageView;
-			path = MaiDuo/AsyncImageView;
 			sourceTree = "<group>";
 		};
 		C8CEFB2E173A0DE90021D371 /* Resource */ = {
@@ -852,6 +849,8 @@
 				90B32B83174BBDDF00D7A1F4 /* MDCreateActivityView.m in Sources */,
 				3D064725174C5F2C0092BBAC /* MDActivityContentView.m in Sources */,
 				AA151D6A17506E290098C64A /* UIViewFrameCategory.m in Sources */,
+				90A472A91754EA8E007CF98D /* MDUITextView.m in Sources */,
+				9025FB5417564FB200197D8B /* MDAddonViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,8 +995,8 @@
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1DA8DF86-0CEE-4277-B5E6-A27F56C0F495";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1DA8DF86-0CEE-4277-B5E6-A27F56C0F495";
+				PROVISIONING_PROFILE = "50BC4AF0-593A-4CE4-9888-E171C38CC002";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50BC4AF0-593A-4CE4-9888-E171C38CC002";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1013,8 +1012,8 @@
 				INFOPLIST_FILE = "MaiDuo/MaiDuo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1DA8DF86-0CEE-4277-B5E6-A27F56C0F495";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1DA8DF86-0CEE-4277-B5E6-A27F56C0F495";
+				PROVISIONING_PROFILE = "50BC4AF0-593A-4CE4-9888-E171C38CC002";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50BC4AF0-593A-4CE4-9888-E171C38CC002";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
