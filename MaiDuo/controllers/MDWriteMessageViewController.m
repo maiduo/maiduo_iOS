@@ -95,7 +95,10 @@
     
     
     // Toolbar
-    _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, view_height - TOOL_BAR_HEIGHT - 44, view_width, TOOL_BAR_HEIGHT)];
+#define TOOLBAR_Y view_height - TOOL_BAR_HEIGHT - 44
+    _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, TOOLBAR_Y,
+                                                           view_width,
+                                                           TOOL_BAR_HEIGHT)];
     [self.view addSubview: _toolbar];
     
     UIBarButtonItem *camera;
@@ -142,7 +145,7 @@
     _photos.backgroundColor=[UIColor colorWithRed:170/255
                                             green:176/255
                                              blue:198/255
-                                            alpha:0.5];
+                                            alpha:0.7];
     _photos.textColor=[UIColor whiteColor];
     _photos.font=[UIFont systemFontOfSize:14.0f];
     _photos.text = photos_text;

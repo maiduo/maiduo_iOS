@@ -205,6 +205,30 @@
                                 failure:blockFailure];
 }
 
+-(void)updateStashOfMessage:(MDMessage *)message
+                    success:(void (^)(MDMessage *))success
+                    failure:(void (^)(NSError *error))failure
+{
+    void (^blockSuccess)(AFHTTPRequestOperation *, id) =
+        ^(AFHTTPRequestOperation *operation, id JSON) {
+        success([MDMessage messageWithJSON:JSON]);
+    };
+    
+    void (^blockFailure)(AFHTTPRequestOperation *, NSError *) =
+        ^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (nil != failure)
+            failure(error);
+    };
+    
+    NSDictionary *dictionaryMessage;
+    dictionaryMessage = [self.factory dictionaryForUpdateStashOfMessage:message];
+    
+    [[AFMDClient sharedClient] putPath:@"message/"
+                             parameters:dictionaryMessage
+                                success:blockSuccess
+                                failure:blockFailure];
+}
+
 -(void)messagesWithActivity:(MDActivity *)activity
                     success:(void (^)(NSArray *))success
                     failure:(void (^)(NSError *error))failure

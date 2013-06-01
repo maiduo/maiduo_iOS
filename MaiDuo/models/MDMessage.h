@@ -26,6 +26,7 @@ enum {
 @property(assign) BOOL stash;
 @property(nonatomic, strong) NSString* body;
 @property(nonatomic, assign) MessageType type;
+@property(strong) NSMutableArray *addons;
 
 +(MDMessage *)messageWithJSON:(id)JSON;
 +(NSArray *)messagesWithJSON:(id)JSON;

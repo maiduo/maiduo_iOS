@@ -45,6 +45,7 @@
                                 user:(MDUser *)anUser;
 -(NSDictionary *)dictionaryForUploadAvatar;
 -(NSDictionary *)dictionaryForSendMessage:(MDMessage *)aMessage;
+-(NSDictionary *)dictionaryForUpdateStashOfMessage:(MDMessage *)aMessage;
 -(NSDictionary *)dictionaryForSendChat:(MDChat *)aChat;
 -(NSDictionary *)dictionaryForMessagesWithActivity:(MDActivity *)anActivity
                                               page:(NSInteger)aPage;

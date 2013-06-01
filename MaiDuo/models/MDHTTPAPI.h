@@ -131,6 +131,10 @@
            success:(void (^)(MDMessage *))success
            failure:(void (^)(NSError *error))failure;
 
+-(void)updateStashOfMessage:(MDMessage *)message
+             success:(void (^)(MDMessage *))success
+             failure:(void (^)(NSError *error))failure;
+
 /** 查询活动下所有的消息
  
  @param activity MDActivity对象必须包含`id`属性。

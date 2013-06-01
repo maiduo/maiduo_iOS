@@ -8,6 +8,7 @@ pod 'EGOTableViewPullRefresh'
 pod 'MBProgressHUD'
 pod 'GMGridView'
 pod 'QBImagePickerController', :git => 'https://github.com/knight31/QBImagePickerController'
+pod 'FMDB'
 
 target :MaiDuoTests do
     pod 'GHUnitIOS'

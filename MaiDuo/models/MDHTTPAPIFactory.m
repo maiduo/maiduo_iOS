@@ -83,6 +83,20 @@
     return [self dictionaryWithDictionary:dictionary];
 }
 
+-(NSDictionary *)dictionaryForUpdateStashOfMessage:(MDMessage *)aMessage
+{
+    NSMutableDictionary *dictionary;
+    NSString *stash;
+    if (aMessage.stash)
+        stash = @"1";
+    else
+        stash = @"0";
+    dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                  [NSString stringWithFormat:@"%d", aMessage.id], @"message_id",
+                  stash, @"stash", nil];
+    return [self dictionaryWithDictionary:dictionary];
+}
+
 -(NSDictionary *)dictionaryForSendChat:(MDChat *)aChat
 {
     NSMutableDictionary *dictionary;

@@ -13,6 +13,7 @@
 		3D034FFB174A1E0F00F325E6 /* MDNotificationCenter.h in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8517460C23006A2903 /* MDNotificationCenter.h */; };
 		3D034FFC174A1E1500F325E6 /* MDNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8617460C23006A2903 /* MDNotificationCenter.m */; };
 		3D064725174C5F2C0092BBAC /* MDActivityContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D064724174C5F2C0092BBAC /* MDActivityContentView.m */; };
+		901440B11759DAD200924CEC /* MDMessageAddon.m in Sources */ = {isa = PBXBuildFile; fileRef = 901440B01759DAD200924CEC /* MDMessageAddon.m */; };
 		90153978172BDC2300DBB64B /* YaabUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* YaabUser.m */; };
 		9025FB5417564FB200197D8B /* MDAddonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9025FB5317564FB200197D8B /* MDAddonViewController.m */; };
 		902C91CB1742322800073241 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
@@ -138,6 +139,8 @@
 		3D064724174C5F2C0092BBAC /* MDActivityContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityContentView.m; sourceTree = "<group>"; };
 		432379D17D2049AF901101B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8189D765038C4B9FB2F1D493 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		901440AF1759DAD200924CEC /* MDMessageAddon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDMessageAddon.h; path = models/MDMessageAddon.h; sourceTree = "<group>"; };
+		901440B01759DAD200924CEC /* MDMessageAddon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDMessageAddon.m; path = models/MDMessageAddon.m; sourceTree = "<group>"; };
 		90153972172BDC2300DBB64B /* YaabUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YaabUser.h; path = MaiDuo/YaabUser.h; sourceTree = "<group>"; };
 		90153973172BDC2300DBB64B /* YaabUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YaabUser.m; path = MaiDuo/YaabUser.m; sourceTree = "<group>"; };
 		9025FB5217564FB200197D8B /* MDAddonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDAddonViewController.h; sourceTree = "<group>"; };
@@ -407,6 +410,8 @@
 				90B32B38174BBBF600D7A1F4 /* MDUser.m */,
 				90B32B39174BBBF600D7A1F4 /* MDUserManager.h */,
 				90B32B3A174BBBF600D7A1F4 /* MDUserManager.m */,
+				901440AF1759DAD200924CEC /* MDMessageAddon.h */,
+				901440B01759DAD200924CEC /* MDMessageAddon.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -851,6 +856,7 @@
 				AA151D6A17506E290098C64A /* UIViewFrameCategory.m in Sources */,
 				90A472A91754EA8E007CF98D /* MDUITextView.m in Sources */,
 				9025FB5417564FB200197D8B /* MDAddonViewController.m in Sources */,
+				901440B11759DAD200924CEC /* MDMessageAddon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
