@@ -105,7 +105,7 @@
     camera = [[UIBarButtonItem alloc]
               initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
               target:self
-              action:@selector(photo:)];
+              action:@selector(didTapCamera:)];
     UIBarButtonItem *flexItem=[[UIBarButtonItem alloc]
                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                target:nil
@@ -208,6 +208,11 @@
 }
 
 - (void)didTapPublish:(id)sender
+{
+    
+}
+
+- (void)didTapCamera:(id)sender
 {
     
 }
