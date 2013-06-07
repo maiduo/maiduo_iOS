@@ -58,8 +58,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 //        self.navigationController = [[UINavigationController alloc]initWithRootViewController:[[MDWriteMessageViewController alloc]initWithUser:[[MDUserManager sharedInstance] getUserSession]]];
 //        self.navigationController = [[UINavigationController alloc]initWithRootViewController:[[MDAddonViewController alloc] init]];
 //
+        MDUser *user = [_userManager getUserSession];
         MDLatestViewController *latestViewController;
-        latestViewController = [[MDLatestViewController alloc] init];
+        latestViewController = [[MDLatestViewController alloc] initWithUser:user];
         self.navigationController = [[UINavigationController alloc] initWithRootViewController:latestViewController];
 
     } else {

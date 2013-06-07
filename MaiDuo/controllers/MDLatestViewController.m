@@ -23,6 +23,15 @@
 
 @implementation MDLatestViewController
 
+- (id)initWithUser:(MDUser *)anUser
+{
+    self = [self init];
+    if (self) {
+        self.user = anUser;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -152,12 +161,8 @@
                 initWithStyle: UITableViewCellStyleSubtitle
                 reuseIdentifier: CellIdentifier];
         
-        UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6, 68, 68)];
-        bgImgView.image = [[UIImage imageNamed:@"img_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 7, 6, 6)];
-        [cell addSubview:bgImgView];
-        
         imageView = [[AsyncImageView alloc]
-                     initWithFrame: CGRectMake(11, 11, 58, 58)];
+                     initWithFrame: CGRectMake(0, 0, 80, 80)];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
         imageView.tag = IMAGE_VIEW_TAG;
@@ -170,27 +175,16 @@
         cell.detailTextLabel.numberOfLines = 2;
         cell.indentationLevel = 1;
         cell.indentationWidth = 80;
-        
-        UIView *adminView = [[UIView alloc] initWithFrame:CGRectMake(imageView.right-13, imageView.bottom-13, 20, 20)];
-        adminView.layer.cornerRadius = 10;
-        adminView.backgroundColor = [UIColor redColor];
-        adminView.tag = 88;
-        [cell addSubview:adminView];
-        
-        UILabel *adminLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, adminView.width, adminView.height)];
-        adminLabel.text = @"管";
-        adminLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        adminLabel.backgroundColor = [UIColor clearColor];
-        adminLabel.font = [UIFont systemFontOfSize:14];
-        adminLabel.textColor = [UIColor whiteColor];
-        adminLabel.textAlignment = UITextAlignmentCenter;
-        [adminView addSubview:adminLabel];
-    }
-    
-    if ([MDUserManager sharedInstance].user.userId==activity.owner.userId) {
-        [[cell viewWithTag:88] setHidden:NO];
-    } else {
-        [[cell viewWithTag:88] setHidden:YES];
+
+        // 原本打算在头像右下角放置一个Icon代表拥有权限，但是找不到合适的Icon。
+//        if ([self.user equal:activity.owner]) {
+//            UIImageView *icon_key;
+//            icon_key = [[UIImageView alloc]
+//                        initWithImage:[UIImage imageNamed:@"111-user.png"]];
+//            icon_key.frame = CGRectMake(imageView.right-12-5,
+//                                        imageView.bottom-10-5, 12, 10);
+//            [cell addSubview:icon_key];
+//        }
     }
     
     imageView = (AsyncImageView *)[cell viewWithTag: IMAGE_VIEW_TAG];

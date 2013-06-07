@@ -88,6 +88,8 @@
 		90B32B7F174BBDDF00D7A1F4 /* MDActivityMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B76174BBDDF00D7A1F4 /* MDActivityMessageView.m */; };
 		90B32B80174BBDDF00D7A1F4 /* MDActivityContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B78174BBDDF00D7A1F4 /* MDActivityContactView.m */; };
 		90B32B83174BBDDF00D7A1F4 /* MDCreateActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B7E174BBDDF00D7A1F4 /* MDCreateActivityView.m */; };
+		90BE5B2C1761D6B70001E489 /* 30-key.png in Resources */ = {isa = PBXBuildFile; fileRef = 90BE5B2B1761D6B70001E489 /* 30-key.png */; };
+		90BE5B2E1761D82B0001E489 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 90BE5B2D1761D82B0001E489 /* 111-user.png */; };
 		90E1F4E217242FF1009A578C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E1F4E117242FF1009A578C /* AddressBook.framework */; };
 		90F342BB17217C8E005BC944 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
 		90F342BD17217C8E005BC944 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BC17217C8E005BC944 /* Foundation.framework */; };
@@ -230,6 +232,8 @@
 		90B32B78174BBDDF00D7A1F4 /* MDActivityContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityContactView.m; sourceTree = "<group>"; };
 		90B32B7D174BBDDF00D7A1F4 /* MDCreateActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCreateActivityView.h; sourceTree = "<group>"; };
 		90B32B7E174BBDDF00D7A1F4 /* MDCreateActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCreateActivityView.m; sourceTree = "<group>"; };
+		90BE5B2B1761D6B70001E489 /* 30-key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "30-key.png"; sourceTree = "<group>"; };
+		90BE5B2D1761D82B0001E489 /* 111-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user.png"; sourceTree = "<group>"; };
 		90E1F4E117242FF1009A578C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		90F342B717217C8E005BC944 /* MaiDuo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaiDuo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F342BA17217C8E005BC944 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -580,6 +584,8 @@
 		C8CEFB2E173A0DE90021D371 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				90BE5B2D1761D82B0001E489 /* 111-user.png */,
+				90BE5B2B1761D6B70001E489 /* 30-key.png */,
 				C9C6974E1751C17A003DDDAA /* box1.jpg */,
 				C9C6974F1751C17A003DDDAA /* box2.jpg */,
 				C9C697501751C17A003DDDAA /* little1.jpg */,
@@ -704,6 +710,8 @@
 				C9C6975B1751C17A003DDDAA /* orgin1.jpg in Resources */,
 				C9C6975C1751C17A003DDDAA /* orgin2.jpg in Resources */,
 				C9C6975D1751C17A003DDDAA /* orgin3.jpg in Resources */,
+				90BE5B2C1761D6B70001E489 /* 30-key.png in Resources */,
+				90BE5B2E1761D82B0001E489 /* 111-user.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

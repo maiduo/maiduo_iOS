@@ -21,6 +21,9 @@ UITableViewDelegate, MDCreateActivityDelegate> {
     MDHTTPAPI *_api;
 }
 
+@property (strong) MDUser *user;
+
+- (id)initWithUser:(MDUser *)anUser;
 - (void)refresh;
 
 @end
