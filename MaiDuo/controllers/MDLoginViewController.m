@@ -12,7 +12,6 @@
 #import "MDLoginViewController.h"
 #import "MDRegisterViewController.h"
 #import "MDLatestViewController.h"
-#import "MDUserManager.h"
 #import "MBProgressHUD.h"
 #import "MDAppDelegate.h"
 
@@ -180,7 +179,7 @@ static NSString *kViewKey = @"viewKey";
 #pragma mark Customer methods
 -(void) login
 {
-    MDUser *user=[MDUserManager sharedInstance].user;
+    MDUser *user=[MaiDuo sharedInstance].user;
     MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
 //    [appDelegate showHUDWithLabel:@"正在登录..."];
     [self showHUDWithLabel:@"正在登录..."];
@@ -188,12 +187,9 @@ static NSString *kViewKey = @"viewKey";
     user.password=_txtPass.text;
     user.deviceToken = [MaiDuo sharedInstance].deviceToken;
     [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
-        [[MDUserManager sharedInstance] saveSessionWithUser:user];
+        [[MaiDuo sharedInstance] saveUser:user];
         //[appDelegate hideHUD];
         [self hideHUD];
-        [[MaiDuo sharedInstance] addUser:user];
-        [[MaiDuo sharedInstance] addAPI:api user:user];
-//        [self.delegate loginViewControllerDidLogin:self];
         MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
         [self.navigationController pushViewController:latestVC animated:YES];
         

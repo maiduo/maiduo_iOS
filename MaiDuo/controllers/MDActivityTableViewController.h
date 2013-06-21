@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "MDActivity.h"
-#import "MDUserManager.h"
 
 #define VIEW_STATE_ACTIVITY 0
 #define VIEW_STATE_MESSAGE  1

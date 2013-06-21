@@ -8,7 +8,6 @@
 
 #import "MDActivityChatViewController.h"
 #import "MDChat.h"
-#import "MDUserManager.h"
 #import "MDHTTPAPI.h"
 #import "MaiDuo.h"
 #import "MDAppDelegate.h"
@@ -38,13 +37,28 @@
     // The button's frame is set automatically for you
     return [UIButton defaultSendButton];
 }
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self setup];
     }
     return self;
+}
+
+- (void)setup
+{
+    _maiduo = [MaiDuo sharedInstance];
 }
 
 - (void)viewDidLoad
@@ -65,7 +79,7 @@
     self.dicAccessoryView=[NSMutableDictionary dictionary];
     MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate showHUDWithLabel:@"正在获取聊天..."];
-    [[[MaiDuo sharedInstance] api] chatsWithActivity:self.activity
+    [_maiduo.api chatsWithActivity:self.activity
                                                   page:_currentPageIndex
                                               pageSize:kPageSize
                                                success:^(NSArray *chats) {
@@ -102,7 +116,9 @@
 #pragma mark - Messages view delegate
 - (void)sendPressed:(UIButton *)sender withText:(NSString *)text
 {
-    MDChat *chat=[MDChat chatWithText:text activity:self.activity user:[[MDUserManager sharedInstance] getUserSession]];
+    MDChat *chat=[MDChat chatWithText:text
+                             activity:self.activity
+                                 user:_maiduo.user];
     [JSMessageSoundEffect playMessageSentSound];
     [self.arrayChats addObject:chat];
     UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -114,7 +130,7 @@
     
     //MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
     //[appDelegate showHUDWithLabel:@"正在发送..."];
-    [[[MaiDuo sharedInstance] api] sendChat:chat success:^(MDChat *chat) {
+    [_maiduo.api sendChat:chat success:^(MDChat *chat) {
         //[appDelegate hideHUD];
         [indicatorView stopAnimating];
         [indicatorView removeFromSuperview];
@@ -132,9 +148,9 @@
 - (JSBubbleMessageStyle)messageStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MDChat *chat=self.arrayChats[indexPath.row];
-    if([chat.user.username isEqualToString:[[MDUserManager sharedInstance] getUserSession].username]){
+    if ([chat.user equal:_maiduo.user]) {
         return JSBubbleMessageStyleOutgoingDefault;
-    }else{
+    } else {
         return JSBubbleMessageStyleIncomingDefault;
     }
     //return (indexPath.row % 2) ? JSBubbleMessageStyleIncomingDefault : JSBubbleMessageStyleOutgoingDefault;
@@ -199,7 +215,7 @@
         
         _currentPageIndex++;
         scrollView.contentInset=(UIEdgeInsets){35,0,0,0};
-        [[[MaiDuo sharedInstance] api] chatsWithActivity:self.activity
+        [_maiduo.api chatsWithActivity:self.activity
                                                       page:_currentPageIndex
                                                   pageSize:kPageSize
                                                    success:^(NSArray *chats) {

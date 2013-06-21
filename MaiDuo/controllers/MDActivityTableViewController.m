@@ -49,7 +49,7 @@
     self = [self init];
     if (self) {
         self.activity = anActivity;
-        _user = [[MDUserManager sharedInstance] getUserSession];
+        _user = [MaiDuo sharedInstance];
     }
     
     return self;

@@ -13,14 +13,12 @@
 #import <RHAddressBook/RHAddressBook.h>
 #import <RHAddressBook/RHPerson.h>
 #import "MDActivity.h"
-#import "MDUserManager.h"
 #import "MDUserAssembler.h"
 
 @interface MDActivityContactView : MDActivityContentView <UITableViewDelegate,
 UITableViewDataSource, ABPeoplePickerNavigationControllerDelegate> {
     UITableView *_tableView;
     MDActivity *_activity;
-    MDUser *_user;
     NSMutableArray *_people;
     NSMutableArray *_invitations;
     RHAddressBook *_addressBook;

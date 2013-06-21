@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MDUser.h"
+#import "MDUserFactory.h"
 #import "MDHTTPAPI.h"
 
 @interface MaiDuo : NSObject
@@ -18,18 +19,15 @@
 @property (nonatomic, strong) NSString *deviceToken;
 @property (nonatomic, strong) MDUser *user;
 @property (strong) NSMutableDictionary *users;
-@property (strong) NSMutableDictionary *apis;
+@property (strong) MDHTTPAPI *api;
 @property (strong) NSString *service;
--(void)setDeviceToken:(NSString *)deviceToken;
--(NSString *)getDeviceTokenWithData:(NSData *)nsdataToken;
 
--(MDUser *)userWithID:(NSInteger)aUserID;
--(void)addUser:(MDUser *)aUser;
+- (void)setDeviceToken:(NSString *)deviceToken;
+- (NSString *)getDeviceTokenWithData:(NSData *)nsdataToken;
 
--(MDHTTPAPI *)apiWithUserID:(NSInteger)aUserID;
--(MDHTTPAPI *)api;
--(void)addAPI:(MDHTTPAPI *)aMDHTTPAPI user:(MDUser *)aUser;
+- (void)addUser:(MDUser *)aUser;
+- (void)saveUser:(MDUser *)aUser;
 
-+(MaiDuo *)sharedInstance;
++ (MaiDuo *)sharedInstance;
 
 @end

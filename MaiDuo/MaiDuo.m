@@ -8,6 +8,8 @@
 
 #import "MaiDuo.h"
 
+#define STORAGE_USER_KEY @"CURRENT_USER"
+
 @implementation MaiDuo
 @synthesize deviceToken=_deviceToken;
 
@@ -15,24 +17,26 @@
 {
     self = [super init];
     if (self) {
-        [[NSUserDefaults standardUserDefaults]
-         registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
-                           @"deviceToken", @"0", nil]];
-        
-        
-        self.user=[[MDUser alloc] init];
-        self.users = [NSMutableDictionary dictionary];
-        self.apis = [NSMutableDictionary dictionary];
-        self.service = @"dev";
-
+        [self setup];
     }
     return self;
 }
 
 -(void)setup
 {
+    self.service = @"dev";
     _storage = [NSUserDefaults standardUserDefaults];
-    [MDUser userWithDictionary:[_storage objectForKey:@"currentUser"]];
+    [_storage registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
+                                @"deviceToken", @"0", nil]];
+    
+    self.users = [NSMutableDictionary dictionary];
+    MDUserFactory *factory = [[MDUserFactory alloc] init];
+    
+    NSDictionary *dictionaryUser = [_storage objectForKey: STORAGE_USER_KEY];
+    if (dictionaryUser) {
+        self.user = [factory userWithDictionary:dictionaryUser];
+        self.api  = [[MDHTTPAPI alloc] initWithUser:self.user];
+    }
 }
 
 -(void)setDeviceToken:(NSString *)deviceToken
@@ -47,14 +51,9 @@
 	token = [token stringByTrimmingCharactersInSet:
                 [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
 	token = [token stringByReplacingOccurrencesOfString:@" "
-                                                   withString:@""];
+                                             withString:@""];
     
     return token;
-}
-
--(MDUser *)userWithID:(NSInteger)aUserID
-{
-    return [self.users objectForKey:[NSString stringWithFormat:@"%d", aUserID]];
 }
 
 -(void)addUser:(MDUser *)aUser
@@ -64,20 +63,16 @@
     self.user = aUser;
 }
 
--(MDHTTPAPI *)api
+- (void)saveUser:(MDUser *)aUser
 {
-    return [self apiWithUserID:self.user.userId];
-}
-
--(MDHTTPAPI *)apiWithUserID:(NSInteger)aUserID
-{
-    return [self.apis objectForKey:[NSString stringWithFormat:@"%d", aUserID]];
-}
-
--(void)addAPI:(MDHTTPAPI *)aMDHTTPAPI user:(MDUser *)aUser
-{
-    [self.apis setValue:aMDHTTPAPI
-                  forKey:[NSString stringWithFormat:@"%d", aUser.userId]];
+    self.user = aUser;
+    self.api  = [[MDHTTPAPI alloc] initWithUser:self.user];
+    
+    if (aUser){
+        [[NSUserDefaults standardUserDefaults] setObject:[aUser dictionaryValue]
+                                                  forKey:STORAGE_USER_KEY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 +(MaiDuo *)sharedInstance

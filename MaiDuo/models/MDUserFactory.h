@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MDUser.h"
 
 @interface MDUserFactory : NSObject
+
+- (MDUser *)userWithDictionary:(NSDictionary *)aDictionary;
 
 @end

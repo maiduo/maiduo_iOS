@@ -46,8 +46,6 @@
 		90A4726217509D03007CF98D /* MDMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B36174BBBF600D7A1F4 /* MDMessage.m */; };
 		90A4726317509D03007CF98D /* MDUser.h in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B37174BBBF600D7A1F4 /* MDUser.h */; };
 		90A4726417509D03007CF98D /* MDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B38174BBBF600D7A1F4 /* MDUser.m */; };
-		90A4726517509D03007CF98D /* MDUserManager.h in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B39174BBBF600D7A1F4 /* MDUserManager.h */; };
-		90A4726617509D03007CF98D /* MDUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B3A174BBBF600D7A1F4 /* MDUserManager.m */; };
 		90A4726717509D1F007CF98D /* AFMDClient.h in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B46174BBC5500D7A1F4 /* AFMDClient.h */; };
 		90A4726817509D1F007CF98D /* AFMDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B47174BBC5500D7A1F4 /* AFMDClient.m */; };
 		90A4726917509D30007CF98D /* MaiDuo.h in Sources */ = {isa = PBXBuildFile; fileRef = 90153972172BDC2300DBB64B /* MaiDuo.h */; };
@@ -69,7 +67,6 @@
 		90B32B40174BBBF600D7A1F4 /* MDHTTPAPIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B32174BBBF600D7A1F4 /* MDHTTPAPIFactory.m */; };
 		90B32B42174BBBF600D7A1F4 /* MDMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B36174BBBF600D7A1F4 /* MDMessage.m */; };
 		90B32B43174BBBF600D7A1F4 /* MDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B38174BBBF600D7A1F4 /* MDUser.m */; };
-		90B32B44174BBBF600D7A1F4 /* MDUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B3A174BBBF600D7A1F4 /* MDUserManager.m */; };
 		90B32B5A174BBC5500D7A1F4 /* AFMDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B47174BBC5500D7A1F4 /* AFMDClient.m */; };
 		90B32B5B174BBC5500D7A1F4 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B4A174BBC5500D7A1F4 /* AsyncImageView.m */; };
 		90B32B5C174BBC5500D7A1F4 /* EGOTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B4C174BBC5500D7A1F4 /* EGOTableView.m */; };
@@ -194,8 +191,6 @@
 		90B32B36174BBBF600D7A1F4 /* MDMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDMessage.m; path = models/MDMessage.m; sourceTree = "<group>"; };
 		90B32B37174BBBF600D7A1F4 /* MDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDUser.h; path = models/MDUser.h; sourceTree = "<group>"; };
 		90B32B38174BBBF600D7A1F4 /* MDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDUser.m; path = models/MDUser.m; sourceTree = "<group>"; };
-		90B32B39174BBBF600D7A1F4 /* MDUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDUserManager.h; path = models/MDUserManager.h; sourceTree = "<group>"; };
-		90B32B3A174BBBF600D7A1F4 /* MDUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDUserManager.m; path = models/MDUserManager.m; sourceTree = "<group>"; };
 		90B32B46174BBC5500D7A1F4 /* AFMDClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFMDClient.h; sourceTree = "<group>"; };
 		90B32B47174BBC5500D7A1F4 /* AFMDClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMDClient.m; sourceTree = "<group>"; };
 		90B32B49174BBC5500D7A1F4 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
@@ -414,8 +409,6 @@
 				90B32B36174BBBF600D7A1F4 /* MDMessage.m */,
 				90B32B37174BBBF600D7A1F4 /* MDUser.h */,
 				90B32B38174BBBF600D7A1F4 /* MDUser.m */,
-				90B32B39174BBBF600D7A1F4 /* MDUserManager.h */,
-				90B32B3A174BBBF600D7A1F4 /* MDUserManager.m */,
 				3D578C761774567A00A6F992 /* MDUserFactory.h */,
 				3D578C771774567A00A6F992 /* MDUserFactory.m */,
 			);
@@ -812,8 +805,6 @@
 				90A4726217509D03007CF98D /* MDMessage.m in Sources */,
 				90A4726317509D03007CF98D /* MDUser.h in Sources */,
 				90A4726417509D03007CF98D /* MDUser.m in Sources */,
-				90A4726517509D03007CF98D /* MDUserManager.h in Sources */,
-				90A4726617509D03007CF98D /* MDUserManager.m in Sources */,
 				902C91D51742322800073241 /* main.m in Sources */,
 				902C91EE174232E400073241 /* MDTestAppDelegate.m in Sources */,
 				902C91F6174235A500073241 /* MDHTTPAPITest.m in Sources */,
@@ -851,7 +842,6 @@
 				90B32B40174BBBF600D7A1F4 /* MDHTTPAPIFactory.m in Sources */,
 				90B32B42174BBBF600D7A1F4 /* MDMessage.m in Sources */,
 				90B32B43174BBBF600D7A1F4 /* MDUser.m in Sources */,
-				90B32B44174BBBF600D7A1F4 /* MDUserManager.m in Sources */,
 				90B32B5A174BBC5500D7A1F4 /* AFMDClient.m in Sources */,
 				90B32B5B174BBC5500D7A1F4 /* AsyncImageView.m in Sources */,
 				90B32B5C174BBC5500D7A1F4 /* EGOTableView.m in Sources */,

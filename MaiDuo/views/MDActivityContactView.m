@@ -25,11 +25,10 @@
         _activity = anActivity;
         _people = [NSMutableArray arrayWithArray:anActivity.users];
         _invitations = [NSMutableArray arrayWithArray:anActivity.invitation];
-        _user = [[MDUserManager sharedInstance] getUserSession];
         
         [self setupAddressBook];
         
-        if([_user equal:_activity.owner]) {
+        if ([[MaiDuo sharedInstance].user equal:_activity.owner]) {
             [_people addObjectsFromArray: _invitations];
         }
     }
@@ -131,8 +130,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MDUser *person = (MDUser *)[_people objectAtIndex:[indexPath row]];
-    MDPersonDetailViewController *controller = [[MDPersonDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    controller.user = person;
+    MDPersonDetailViewController *controller;
+    controller = [[MDPersonDetailViewController alloc] initWithUser:person];
     [self.viewController.navigationController pushViewController:controller
                                                         animated:YES];
 }

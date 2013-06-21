@@ -187,7 +187,7 @@
         [adminView addSubview:adminLabel];
     }
     
-    if ([MDUserManager sharedInstance].user.userId==activity.owner.userId) {
+    if ([[MaiDuo sharedInstance].user equal: activity.owner]) {
         [[cell viewWithTag:88] setHidden:NO];
     } else {
         [[cell viewWithTag:88] setHidden:YES];
@@ -229,7 +229,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MDActivity* activity = (MDActivity *)[activities
                                           objectAtIndex:[indexPath row]];
-    if ([MDUserManager sharedInstance].user.userId==activity.owner.userId) {
+    if ([[MaiDuo sharedInstance].user equal: activity.owner]) {
         return YES;
     } else {
         return NO;

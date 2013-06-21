@@ -10,4 +10,18 @@
 
 @implementation MDUserFactory
 
+- (MDUser *)userWithDictionary:(NSDictionary *)aDictionary
+{
+    MDUser *user = [[MDUser alloc] init];
+    if (nil != [aDictionary objectForKey:@"id"]) {
+        user.userId = [[aDictionary objectForKey:@"id"] intValue];
+    }
+    user.username = [aDictionary objectForKey:@"username"];
+    user.accessToken = [aDictionary objectForKey:@"accessToken"];
+    user.deviceToken = [aDictionary objectForKey:@"deviceToken"];
+    user.name = [aDictionary objectForKey:@"first_name"];
+    
+    return user;
+}
+
 @end

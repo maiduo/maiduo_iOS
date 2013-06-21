@@ -7,7 +7,6 @@
 //
 
 #import "MDPersonDetailViewController.h"
-#import "MDUserManager.h"
 #import "MDHTTPAPI.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MDLoginViewController.h"
@@ -19,6 +18,17 @@
 
 @implementation MDPersonDetailViewController
 
+- (id)init
+{
+    self = [self init];
+    
+    if (self) {
+        [self setup];
+    }
+    
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -28,17 +38,26 @@
     return self;
 }
 
+- (id)initWithUser:(MDUser *)anUser
+{
+    self = [self initWithStyle:UITableViewStyleGrouped];
+    if (self) {
+        _user = anUser;
+        [self setup];
+    }
+    return self;
+}
+
 - (void)setup
 {
-    _api = [[MaiDuo sharedInstance] api];
+    _maiduo = [MaiDuo sharedInstance];
+    _api = _maiduo.api;
+    _user = _maiduo.user;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (!_user) {
-        _user = [[MDUserManager sharedInstance].user copy];
-    }
     
     self.title = @"个人资料";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
@@ -46,11 +65,6 @@
                                              style:UIBarButtonItemStylePlain
                                              target:self
                                              action:@selector(backAction)];
-}
-
-- (BOOL)isUserSelf
-{
-    return [MDUserManager sharedInstance].user.userId==_user.userId;
 }
 
 - (void)backAction
@@ -64,20 +78,19 @@
 
 - (void)photoAction
 {
-    if ([self isUserSelf]) {
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"上传头像"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"取消"
-                                             destructiveButtonTitle:nil
-                                                  otherButtonTitles:@"立即拍摄",
-                                @"选择照片", nil];
-        [sheet showInView:self.navigationController.view];
-    }
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"上传头像"
+                                                       delegate:self
+                                              cancelButtonTitle:@"取消"
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:@"立即拍摄",
+                            @"选择照片", nil];
+    [sheet showInView:self.navigationController.view];
 }
 
 - (void)logoutAction
 {
-    [[MDUserManager sharedInstance] logout];
+    // TODO 登出
+    // [[MDUserManager sharedInstance] logout];
     
     // TODO
     UINavigationController *navC = (UINavigationController *)[[UIApplication sharedApplication].delegate window].rootViewController;
@@ -94,6 +107,11 @@
         navC.viewControllers = controllers;
         [navC popToRootViewControllerAnimated:YES];
     }
+}
+
+- (BOOL)isUserSelf
+{
+    return YES;
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate

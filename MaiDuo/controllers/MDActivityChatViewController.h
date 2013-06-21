@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "JSMessagesViewController.h"
 #import "MDActivity.h"
-@interface MDActivityChatViewController : JSMessagesViewController <JSMessagesViewDelegate, JSMessagesViewDataSource>
+#import "MaiDuo.h"
+
+@interface MDActivityChatViewController : JSMessagesViewController <JSMessagesViewDelegate, JSMessagesViewDataSource> {
+    MaiDuo *_maiduo;
+}
 
 @property (strong, nonatomic) NSMutableArray *messages;
 @property (strong, nonatomic) NSMutableArray *timestamps;

@@ -10,14 +10,17 @@
 #import "AsyncImageView.h"
 #import "MDUser.h"
 #import "MDHTTPAPI.h"
+#import "MaiDuo.h"
 
 #define USER_LOGOUT @"user_logout"
 
 @interface MDPersonDetailViewController : UITableViewController {
     MDHTTPAPI *_api;
+    MaiDuo *_maiduo;
+    MDUser *_user;
 }
 
-@property (nonatomic, strong) MDUser *user;
+- (id)initWithUser:(MDUser *)anUser;
 
 @end
 
