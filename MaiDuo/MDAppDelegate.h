@@ -11,13 +11,12 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AFNetworking.h>
-#import "MDUserManager.h"
 #import "MDNotificationCenter.h"
 
 @interface MDAppDelegate : UIResponder <UIApplicationDelegate> {
-    MaiDuo *_user;
     MDNotificationCenter *_notification;
-    MDUserManager *_userManager;
+    MDUser *_user;
+    MaiDuo *_maiduo;
 }
 
 @property (strong, nonatomic) UIWindow *window;

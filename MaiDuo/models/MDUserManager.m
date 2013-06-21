@@ -14,25 +14,6 @@
 #define DeviceTokenKey @"MDDeviceToken"
 @implementation MDUserManager
 
--(id)init
-{
-    self = [super init];
-    if (self) {
-        self.user= ];
-    }
-    return self;
-}
-
-- (BOOL)userSessionValid
-{
-    BOOL valid = YES;
-    MDUser *user = [self getUserSession];
-    valid = user != nil;
-    valid = user.userId > 0;
-    
-    return valid;
-}
-
 - (MDUser*)getUserSession
 {
     static MDUser *session;

@@ -29,10 +29,12 @@
      (UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|
       UIRemoteNotificationTypeSound)];
     
-    _userManager = [MDUserManager sharedInstance];
+    _maiduo = [MaiDuo sharedInstance];
+    _user = [_maiduo user];
+    
     if (nil == _notification) {
         _notification = [MDNotificationCenter
-                         notificationCenterWithUser:[_userManager getUserSession]
+                         notificationCenterWithUser:_user
                          delegate:nil];
     }
 }
@@ -46,7 +48,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
                    initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    if ([_userManager userSessionValid]) {
+    if ([_user isValid]) {
         // 只需要登陆一次
         // API使用user.accessToken保存用户状态
         
@@ -70,19 +72,19 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     
-    _user = [MaiDuo sharedInstance];
+    _maiduo = [MaiDuo sharedInstance];
     return YES;
 }
 
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    NSString *token = [_user getDeviceTokenWithData:deviceToken];
+    NSString *token = [_maiduo getDeviceTokenWithData:deviceToken];
     
-    if ([token isEqualToString:[_user deviceToken]])
+    if ([token isEqualToString:[_maiduo deviceToken]])
         return;
 
-    [_user setDeviceToken:token];
+    [_maiduo setDeviceToken:token];
     
     NSString *registerTokenURL;
     registerTokenURL = @"https://himaiduo.com/aps/device/";

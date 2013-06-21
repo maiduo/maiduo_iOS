@@ -41,6 +41,7 @@ enum {
 -(BOOL)equal:(MDUser *)aUser;
 - (NSString *)avatar;
 - (NSString *)avatarWithSize:(AvatarSize)size;
+- (BOOL)isValid;
 +(MDUser *)userWithDictionary:(NSDictionary *)aDictionary;
 +(MDUser *)userWithInvite:(NSString *)anUsername name:(NSString *)aName;
 

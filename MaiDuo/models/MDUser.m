@@ -107,6 +107,15 @@
     return avatarURL;
 }
 
+- (BOOL)isValid
+{
+    BOOL valid = YES;
+    valid = self != nil;
+    valid = self.userId > 0;
+    
+    return valid;
+}
+
 +(MDUser *)userWithDictionary:(NSDictionary *)aDictionary
 {
     MDUser *user = [[MDUser alloc]init];
