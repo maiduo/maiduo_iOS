@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 魏琮举. All rights reserved.
 //
 
-#import "YaabUser.h"
+#import "MaiDuo.h"
 #import "iToast.h"
 #import "MDHTTPAPI.h"
 #import "MDLoginViewController.h"
@@ -186,13 +186,13 @@ static NSString *kViewKey = @"viewKey";
     [self showHUDWithLabel:@"正在登录..."];
     user.username=_txtUser.text;
     user.password=_txtPass.text;
-    user.deviceToken = [YaabUser sharedInstance].deviceToken;
+    user.deviceToken = [MaiDuo sharedInstance].deviceToken;
     [MDHTTPAPI login:user success:^(MDUser *user, MDHTTPAPI *api) {
         [[MDUserManager sharedInstance] saveSessionWithUser:user];
         //[appDelegate hideHUD];
         [self hideHUD];
-        [[YaabUser sharedInstance] addUser:user];
-        [[YaabUser sharedInstance] addAPI:api user:user];
+        [[MaiDuo sharedInstance] addUser:user];
+        [[MaiDuo sharedInstance] addAPI:api user:user];
 //        [self.delegate loginViewControllerDidLogin:self];
         MDLatestViewController *latestVC = [[MDLatestViewController alloc] init];
         [self.navigationController pushViewController:latestVC animated:YES];

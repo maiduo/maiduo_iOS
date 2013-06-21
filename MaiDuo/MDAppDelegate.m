@@ -70,7 +70,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     
-    _user = [YaabUser sharedInstance];
+    _user = [MaiDuo sharedInstance];
     return YES;
 }
 

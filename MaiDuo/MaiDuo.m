@@ -1,16 +1,14 @@
 //
-//  YaabUser.m
+//  MaiDuo.m
 //  Yaab
 //
 //  Created by 魏琮举 on 13-4-26.
 //
 //
 
-#import "YaabUser.h"
-#import "pinyin.h"
-#import "RHPerson+RHPersonCategory.h"
+#import "MaiDuo.h"
 
-@implementation YaabUser
+@implementation MaiDuo
 @synthesize deviceToken=_deviceToken;
 
 -(id)init
@@ -21,7 +19,7 @@
          registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
                            @"deviceToken", @"0", nil]];
         
-        nsUser = [NSUserDefaults standardUserDefaults];
+        
         self.user=[[MDUser alloc] init];
         self.users = [NSMutableDictionary dictionary];
         self.apis = [NSMutableDictionary dictionary];
@@ -31,10 +29,16 @@
     return self;
 }
 
+-(void)setup
+{
+    _storage = [NSUserDefaults standardUserDefaults];
+    [MDUser userWithDictionary:[_storage objectForKey:@"currentUser"]];
+}
+
 -(void)setDeviceToken:(NSString *)deviceToken
 {
     _deviceToken = deviceToken;
-    [nsUser setObject:deviceToken forKey:@"deviceToken"];
+    [_storage setObject:deviceToken forKey:@"deviceToken"];
 }
 
 -(NSString *)getDeviceTokenWithData:(NSData *)nsdataToken
@@ -76,11 +80,11 @@
                   forKey:[NSString stringWithFormat:@"%d", aUser.userId]];
 }
 
-+(YaabUser *)sharedInstance
++(MaiDuo *)sharedInstance
 {
-    static YaabUser *_instance;
+    static MaiDuo *_instance;
     if (nil == _instance) {
-        _instance = [[YaabUser alloc] init];
+        _instance = [[MaiDuo alloc] init];
     }
     return _instance;
 }

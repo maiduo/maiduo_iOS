@@ -13,7 +13,9 @@
 		3D034FFB174A1E0F00F325E6 /* MDNotificationCenter.h in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8517460C23006A2903 /* MDNotificationCenter.h */; };
 		3D034FFC174A1E1500F325E6 /* MDNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90737B8617460C23006A2903 /* MDNotificationCenter.m */; };
 		3D064725174C5F2C0092BBAC /* MDActivityContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D064724174C5F2C0092BBAC /* MDActivityContentView.m */; };
-		90153978172BDC2300DBB64B /* YaabUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* YaabUser.m */; };
+		3D578C781774567A00A6F992 /* MDUserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D578C771774567A00A6F992 /* MDUserFactory.m */; };
+		3D578C7C1774571400A6F992 /* MDUserAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D578C7B1774571400A6F992 /* MDUserAssembler.m */; };
+		90153978172BDC2300DBB64B /* MaiDuo.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* MaiDuo.m */; };
 		902C91CB1742322800073241 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BA17217C8E005BC944 /* UIKit.framework */; };
 		902C91CC1742322800073241 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BC17217C8E005BC944 /* Foundation.framework */; };
 		902C91CD1742322800073241 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F342BE17217C8E005BC944 /* CoreGraphics.framework */; };
@@ -48,8 +50,8 @@
 		90A4726617509D03007CF98D /* MDUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B3A174BBBF600D7A1F4 /* MDUserManager.m */; };
 		90A4726717509D1F007CF98D /* AFMDClient.h in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B46174BBC5500D7A1F4 /* AFMDClient.h */; };
 		90A4726817509D1F007CF98D /* AFMDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B47174BBC5500D7A1F4 /* AFMDClient.m */; };
-		90A4726917509D30007CF98D /* YaabUser.h in Sources */ = {isa = PBXBuildFile; fileRef = 90153972172BDC2300DBB64B /* YaabUser.h */; };
-		90A4726A17509D30007CF98D /* YaabUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* YaabUser.m */; };
+		90A4726917509D30007CF98D /* MaiDuo.h in Sources */ = {isa = PBXBuildFile; fileRef = 90153972172BDC2300DBB64B /* MaiDuo.h */; };
+		90A4726A17509D30007CF98D /* MaiDuo.m in Sources */ = {isa = PBXBuildFile; fileRef = 90153973172BDC2300DBB64B /* MaiDuo.m */; };
 		90A472A41750E82B007CF98D /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90A472A31750E82B007CF98D /* avatar.jpg */; };
 		90B32B1E174BBBD500D7A1F4 /* MDActivityChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B0E174BBBD500D7A1F4 /* MDActivityChatViewController.m */; };
 		90B32B1F174BBBD500D7A1F4 /* MDActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B32B10174BBBD500D7A1F4 /* MDActivityTableViewController.m */; };
@@ -134,10 +136,14 @@
 		3D034FF9174A1DE500F325E6 /* NSNotificationCenterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNotificationCenterTest.m; sourceTree = "<group>"; };
 		3D064723174C5F2C0092BBAC /* MDActivityContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDActivityContentView.h; sourceTree = "<group>"; };
 		3D064724174C5F2C0092BBAC /* MDActivityContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDActivityContentView.m; sourceTree = "<group>"; };
+		3D578C761774567A00A6F992 /* MDUserFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDUserFactory.h; path = models/MDUserFactory.h; sourceTree = "<group>"; };
+		3D578C771774567A00A6F992 /* MDUserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDUserFactory.m; path = models/MDUserFactory.m; sourceTree = "<group>"; };
+		3D578C7A1774571400A6F992 /* MDUserAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUserAssembler.h; sourceTree = "<group>"; };
+		3D578C7B1774571400A6F992 /* MDUserAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUserAssembler.m; sourceTree = "<group>"; };
 		432379D17D2049AF901101B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8189D765038C4B9FB2F1D493 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		90153972172BDC2300DBB64B /* YaabUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YaabUser.h; path = MaiDuo/YaabUser.h; sourceTree = "<group>"; };
-		90153973172BDC2300DBB64B /* YaabUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YaabUser.m; path = MaiDuo/YaabUser.m; sourceTree = "<group>"; };
+		90153972172BDC2300DBB64B /* MaiDuo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaiDuo.h; path = MaiDuo/MaiDuo.h; sourceTree = "<group>"; };
+		90153973172BDC2300DBB64B /* MaiDuo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaiDuo.m; path = MaiDuo/MaiDuo.m; sourceTree = "<group>"; };
 		902C91CA1742322800073241 /* MaiDuoTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaiDuoTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		902C91D01742322800073241 /* MaiDuoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MaiDuoTests-Info.plist"; sourceTree = "<group>"; };
 		902C91D21742322800073241 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -301,6 +307,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D578C791774570200A6F992 /* addressbook */ = {
+			isa = PBXGroup;
+			children = (
+				3D578C7A1774571400A6F992 /* MDUserAssembler.h */,
+				3D578C7B1774571400A6F992 /* MDUserAssembler.m */,
+			);
+			path = addressbook;
+			sourceTree = "<group>";
+		};
 		902C91CE1742322800073241 /* MaiDuoTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +416,8 @@
 				90B32B38174BBBF600D7A1F4 /* MDUser.m */,
 				90B32B39174BBBF600D7A1F4 /* MDUserManager.h */,
 				90B32B3A174BBBF600D7A1F4 /* MDUserManager.m */,
+				3D578C761774567A00A6F992 /* MDUserFactory.h */,
+				3D578C771774567A00A6F992 /* MDUserFactory.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -493,8 +510,8 @@
 				90F342C017217C8E005BC944 /* MaiDuo */,
 				90F342C917217C8E005BC944 /* MDAppDelegate.h */,
 				90F342CA17217C8E005BC944 /* MDAppDelegate.m */,
-				90153972172BDC2300DBB64B /* YaabUser.h */,
-				90153973172BDC2300DBB64B /* YaabUser.m */,
+				90153972172BDC2300DBB64B /* MaiDuo.h */,
+				90153973172BDC2300DBB64B /* MaiDuo.m */,
 				902C91CE1742322800073241 /* MaiDuoTests */,
 				90F342B917217C8E005BC944 /* Frameworks */,
 				90F342B817217C8E005BC944 /* Products */,
@@ -542,6 +559,7 @@
 		90F342C017217C8E005BC944 /* MaiDuo */ = {
 			isa = PBXGroup;
 			children = (
+				3D578C791774570200A6F992 /* addressbook */,
 				90B32B45174BBC5500D7A1F4 /* extensions */,
 				90B32B26174BBBEC00D7A1F4 /* models */,
 				90B32B74174BBDDF00D7A1F4 /* views */,
@@ -776,8 +794,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90A4726917509D30007CF98D /* YaabUser.h in Sources */,
-				90A4726A17509D30007CF98D /* YaabUser.m in Sources */,
+				90A4726917509D30007CF98D /* MaiDuo.h in Sources */,
+				90A4726A17509D30007CF98D /* MaiDuo.m in Sources */,
 				90A4726717509D1F007CF98D /* AFMDClient.h in Sources */,
 				90A4726817509D1F007CF98D /* AFMDClient.m in Sources */,
 				90A4725717509D03007CF98D /* MDActivity.h in Sources */,
@@ -814,7 +832,7 @@
 			files = (
 				90F342C717217C8E005BC944 /* main.m in Sources */,
 				90F342CB17217C8E005BC944 /* MDAppDelegate.m in Sources */,
-				90153978172BDC2300DBB64B /* YaabUser.m in Sources */,
+				90153978172BDC2300DBB64B /* MaiDuo.m in Sources */,
 				90737B8717460C23006A2903 /* MDNotificationCenter.m in Sources */,
 				90B32B1E174BBBD500D7A1F4 /* MDActivityChatViewController.m in Sources */,
 				90B32B1F174BBBD500D7A1F4 /* MDActivityTableViewController.m in Sources */,
@@ -852,6 +870,8 @@
 				90B32B83174BBDDF00D7A1F4 /* MDCreateActivityView.m in Sources */,
 				3D064725174C5F2C0092BBAC /* MDActivityContentView.m in Sources */,
 				AA151D6A17506E290098C64A /* UIViewFrameCategory.m in Sources */,
+				3D578C781774567A00A6F992 /* MDUserFactory.m in Sources */,
+				3D578C7C1774571400A6F992 /* MDUserAssembler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

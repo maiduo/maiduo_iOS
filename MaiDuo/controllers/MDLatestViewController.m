@@ -49,7 +49,7 @@
                                              target:self
                                              action:@selector(detailAction)];
     
-    _api = [[YaabUser sharedInstance] api];
+    _api = [[MaiDuo sharedInstance] api];
     
 
     self.tableView=[[EGOTableView alloc] initWithFrame:(CGRect){CGPointZero,self.view.bounds.size.width,self.view.bounds.size.height-44}];

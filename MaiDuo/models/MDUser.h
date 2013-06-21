@@ -7,10 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RHAddressBook/RHAddressBook.h>
-#import <RHAddressBook/RHPerson.h>
-#import <AddressBook/AddressBook.h>
-#import "RHPerson+RHPersonCategory.h"
 
 enum {
     SMALL_AVATAR,
@@ -47,9 +43,7 @@ enum {
 - (NSString *)avatarWithSize:(AvatarSize)size;
 +(MDUser *)userWithDictionary:(NSDictionary *)aDictionary;
 +(MDUser *)userWithInvite:(NSString *)anUsername name:(NSString *)aName;
-+(MDUser *)userWithRHPerson:(RHPerson *)aPerson
-                   property:(ABPropertyID)property
-                 identifier:(ABMultiValueIdentifier)identifier;
+
 +(MDUser *)userWithJSON:(id)JSON;
 +(NSArray *)usersWithJSON:(id)JSON;
 @end

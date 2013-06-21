@@ -14,6 +14,7 @@
 #import <RHAddressBook/RHPerson.h>
 #import "MDActivity.h"
 #import "MDUserManager.h"
+#import "MDUserAssembler.h"
 
 @interface MDActivityContactView : MDActivityContentView <UITableViewDelegate,
 UITableViewDataSource, ABPeoplePickerNavigationControllerDelegate> {

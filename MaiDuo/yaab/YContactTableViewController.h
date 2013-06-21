@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YaabUser.h"
+#import "MaiDuo.h"
 #import "RHPerson+RHPersonCategory.h"
 
 @interface YContactTableViewController : UITableViewController {

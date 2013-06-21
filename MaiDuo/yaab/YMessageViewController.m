@@ -71,7 +71,7 @@
     [self setupAddressBook];
 	[self.view setBackgroundColor:[UIColor whiteColor]];
 	[self.navigationItem setTitle:@"新活动"];
-    user = [YaabUser sharedInstance];
+    user = [MaiDuo sharedInstance];
     msg = [[YMessage alloc] init];
 	
 	tokenFieldView = [[TITokenFieldView alloc] initWithFrame:TokenFieldViewFrame];

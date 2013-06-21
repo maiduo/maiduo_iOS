@@ -179,15 +179,16 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
                               identifier:(ABMultiValueIdentifier)identifier
 {
     RHPerson *aPerson = [_addressBook personForABRecordRef:person];
-    MDUser *invited = [MDUser userWithRHPerson:aPerson
-                                      property:property
-                                    identifier:identifier];
+    MDUserAssembler *assembler = [[MDUserAssembler alloc] init];
+    MDUser *invited = [assembler userWithRHPerson:aPerson
+                                         property:property
+                                       identifier:identifier];
     
     if (![self hasUser:invited]) {
         [_people addObject:invited];
         [_tableView reloadData];
         
-        [[[YaabUser sharedInstance] api] inviteForActivity:_activity
+        [[[MaiDuo sharedInstance] api] inviteForActivity:_activity
                                                       user:invited
                                                    success:^(MDUser *anUser){
                                                        

@@ -30,7 +30,7 @@
 
 - (void)setup
 {
-    _api = [[YaabUser sharedInstance] api];
+    _api = [[MaiDuo sharedInstance] api];
 }
 
 - (void)viewDidLoad

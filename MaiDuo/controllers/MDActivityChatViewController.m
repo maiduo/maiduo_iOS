@@ -10,7 +10,7 @@
 #import "MDChat.h"
 #import "MDUserManager.h"
 #import "MDHTTPAPI.h"
-#import "YaabUser.h"
+#import "MaiDuo.h"
 #import "MDAppDelegate.h"
 
 #define chatIDKey @"chat_id"
@@ -65,7 +65,7 @@
     self.dicAccessoryView=[NSMutableDictionary dictionary];
     MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate showHUDWithLabel:@"正在获取聊天..."];
-    [[[YaabUser sharedInstance] api] chatsWithActivity:self.activity
+    [[[MaiDuo sharedInstance] api] chatsWithActivity:self.activity
                                                   page:_currentPageIndex
                                               pageSize:kPageSize
                                                success:^(NSArray *chats) {
@@ -114,7 +114,7 @@
     
     //MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
     //[appDelegate showHUDWithLabel:@"正在发送..."];
-    [[[YaabUser sharedInstance] api] sendChat:chat success:^(MDChat *chat) {
+    [[[MaiDuo sharedInstance] api] sendChat:chat success:^(MDChat *chat) {
         //[appDelegate hideHUD];
         [indicatorView stopAnimating];
         [indicatorView removeFromSuperview];
@@ -206,7 +206,7 @@
         
         _currentPageIndex++;
         scrollView.contentInset=(UIEdgeInsets){35,0,0,0};
-        [[[YaabUser sharedInstance] api] chatsWithActivity:self.activity
+        [[[MaiDuo sharedInstance] api] chatsWithActivity:self.activity
                                                       page:_currentPageIndex
                                                   pageSize:kPageSize
                                                    success:^(NSArray *chats) {

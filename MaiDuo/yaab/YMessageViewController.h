@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <TITokenField/TITokenField.h>
-#import <YaabUser.h>
+#import <MaiDuo.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import <YMessage.h>
 #import <YPlainContact.h>
@@ -17,7 +17,7 @@
     
     TITokenFieldView * tokenFieldView;
     UITextView * messageView;
-    YaabUser *user;
+    MaiDuo *user;
     YMessage *msg;
     RHAddressBook *addressBook;
     ABAddressBookRef addressBookRef;

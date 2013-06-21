@@ -9,7 +9,7 @@
 //<<<<<<< HEAD:MaiDuo/main/MDActivityActView.m
 //#import "MDActivityActView.h"
 #import "AsyncImageView.h"
-#import "YaabUser.h"
+#import "MaiDuo.h"
 #import "MDActivityMessageView.h"
 
 
@@ -31,7 +31,7 @@
         
         _source = [NSMutableArray arrayWithObjects:nil];
         _message = [NSMutableArray array];
-        [[[YaabUser sharedInstance] api] messagesWithActivity:self.activity
+        [[[MaiDuo sharedInstance] api] messagesWithActivity:self.activity
                                                          page:1
                                                       success:^(NSArray *messages) {
                                                           [_message addObjectsFromArray:messages];

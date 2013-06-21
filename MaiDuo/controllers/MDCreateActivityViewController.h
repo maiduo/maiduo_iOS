@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MDHTTPAPI.h"
-#import "YaabUser.h"
+#import "MaiDuo.h"
 #import "MDCreateActivityView.h"
 #import "MDLatestViewController.h"
 #import "MDAppDelegate.h"

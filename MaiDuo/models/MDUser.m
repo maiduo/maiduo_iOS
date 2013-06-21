@@ -104,7 +104,6 @@
     
     NSString *avatarURL = [NSString stringWithFormat:noformat,
                            self.userId % 1000, self.userId, aSize, aSize];
-    NSLog(avatarURL);
     return avatarURL;
 }
 
@@ -131,19 +130,7 @@
     return user;
 }
 
-+(MDUser *)userWithRHPerson:(RHPerson *)aPerson
-                   property:(ABPropertyID)property
-                 identifier:(ABMultiValueIdentifier)identifier
-{
-    NSString *mobile = [[aPerson getMultiValueForPropertyID:property]
-                        valueAtIndex:identifier];
-    
-    mobile = [[[[mobile stringByReplacingOccurrencesOfString:@")" withString:@""]
-              stringByReplacingOccurrencesOfString:@"(" withString:@""]
-              stringByReplacingOccurrencesOfString:@"-" withString:@""]
-              stringByReplacingOccurrencesOfString:@" " withString:@""];
-    return [MDUser userWithInvite:mobile name:[aPerson getFullName]];
-}
+
 
 +(MDUser *)userWithJSON:(id)JSON
 {

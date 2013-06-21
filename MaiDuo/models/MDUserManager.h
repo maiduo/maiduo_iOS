@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "MDUser.h"
-#import "YaabUser.h"
+#import "MaiDuo.h"
 
-/** 用户状态管理 - 这里和YaabUser干了同样的事情，下次重构解决。
+/** 用户状态管理 - 这里和MaiDuo干了同样的事情，下次重构解决。
  */
 @interface MDUserManager : NSObject
 

@@ -18,7 +18,7 @@
 {
     self = [super init];
     if (self) {
-        self.user= [MDUser userWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:MDUserKey]];
+        self.user= ];
     }
     return self;
 }
@@ -44,10 +44,10 @@
                                   objectForKey:MDUserKey];
     if(dictionaryUser){
         session = [MDUser userWithDictionary:dictionaryUser];
-        [[YaabUser sharedInstance]
+        [[MaiDuo sharedInstance]
          addAPI:[[MDHTTPAPI alloc] initWithUser:session]
            user:session];
-        [[YaabUser sharedInstance] setUser:session];
+        [[MaiDuo sharedInstance] setUser:session];
         return session;
     }else{
         return nil;

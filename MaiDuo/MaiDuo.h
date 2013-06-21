@@ -1,5 +1,5 @@
 //
-//  YaabUser.h
+//  MaiDuo.h
 //  Yaab
 //
 //  Created by 魏琮举 on 13-4-26.
@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RHAddressBook/AddressBook.h>
 #import "MDUser.h"
 #import "MDHTTPAPI.h"
 
-@interface YaabUser : NSObject
+@interface MaiDuo : NSObject
 {
-    NSUserDefaults *nsUser;
+    NSUserDefaults *_storage;
 }
 
 @property (nonatomic, strong) NSString *deviceToken;
@@ -31,6 +30,6 @@
 -(MDHTTPAPI *)api;
 -(void)addAPI:(MDHTTPAPI *)aMDHTTPAPI user:(MDUser *)aUser;
 
-+(YaabUser *)sharedInstance;
++(MaiDuo *)sharedInstance;
 
 @end

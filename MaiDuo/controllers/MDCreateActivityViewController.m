@@ -48,7 +48,7 @@
     MDAppDelegate *app = [[UIApplication sharedApplication] delegate];
     [app showHUDWithLabel:@"发送数据 ..."];
     
-    MDHTTPAPI *api = [[YaabUser sharedInstance] api];
+    MDHTTPAPI *api = [[MaiDuo sharedInstance] api];
     [api createActivity:activity success:^(MDActivity *anActivity) {
         [app hideHUD];
         [self.navigationController popViewControllerAnimated:YES];

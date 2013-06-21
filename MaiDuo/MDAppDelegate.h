@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <YaabUser.h>
+#import <MaiDuo.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AFNetworking.h>
@@ -15,7 +15,7 @@
 #import "MDNotificationCenter.h"
 
 @interface MDAppDelegate : UIResponder <UIApplicationDelegate> {
-    YaabUser *_user;
+    MaiDuo *_user;
     MDNotificationCenter *_notification;
     MDUserManager *_userManager;
 }
