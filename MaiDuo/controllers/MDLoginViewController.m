@@ -179,7 +179,7 @@ static NSString *kViewKey = @"viewKey";
 #pragma mark Customer methods
 -(void) login
 {
-    MDUser *user=[MaiDuo sharedInstance].user;
+    MDUser *user=[[MDUser alloc] init];
     MDAppDelegate *appDelegate=(MDAppDelegate*)[UIApplication sharedApplication].delegate;
 //    [appDelegate showHUDWithLabel:@"正在登录..."];
     [self showHUDWithLabel:@"正在登录..."];

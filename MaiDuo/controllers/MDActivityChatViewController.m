@@ -42,7 +42,7 @@
 {
     self = [super init];
     if (self) {
-        [self setup];
+        _maiduo = [MaiDuo sharedInstance];
     }
     return self;
 }
@@ -51,14 +51,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [self setup];
+        _maiduo = [MaiDuo sharedInstance];
     }
     return self;
-}
-
-- (void)setup
-{
-    _maiduo = [MaiDuo sharedInstance];
 }
 
 - (void)viewDidLoad
@@ -180,6 +175,7 @@
 {
     MDChat *chat=self.arrayChats[indexPath.row];
     NSString *photoUrl=chat.user.avatar?chat.user.avatar:@"";
+    NSLog(photoUrl);
     return photoUrl;
 }
 
