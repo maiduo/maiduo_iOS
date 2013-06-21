@@ -266,7 +266,7 @@
         return [[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                 target:view
-                action:@selector(rightBarAction:)];
+                action:@selector(rightBarAction)];
     } else
         return NO;
 }

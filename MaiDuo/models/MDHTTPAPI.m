@@ -15,7 +15,7 @@
 {
     self = [super init];
     if (self) {
-        url = @"https://himaiduo.com/api/";
+        //url = @"https://himaiduo.com/api/";
         _cache = [MDCache sharedInstance];
     }
     

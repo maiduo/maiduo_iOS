@@ -54,7 +54,7 @@
 
 @interface MDHTTPAPI : NSObject
 {
-    NSString *url;
+    //NSString *url;
     MDCache *_cache;
 }
 

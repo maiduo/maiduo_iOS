@@ -87,8 +87,8 @@
         navC.viewControllers = @[loginVC];
         [navC dismissModalViewControllerAnimated:YES];
     } else {
-        NSMutableArray *controllers = [navC.viewControllers mutableCopy];
-        
+        NSMutableArray *controllers = [navC.viewControllers  mutableCopy];
+    
         [controllers insertObject:loginVC atIndex:0];
         
         navC.viewControllers = controllers;
