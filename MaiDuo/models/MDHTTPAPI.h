@@ -99,11 +99,11 @@
  
  */
 -(void)createActivity:(MDActivity *)anActivity
-              success:(void (^)())success
+              success:(void (^)(MDActivity *anActivity))success
               failure:(void (^)(NSError *error))failure;
 
 - (void)deleteActivity:(MDActivity *)activity
-               success:(void (^)(MDActivity *anActivity))success
+               success:(void (^)())success
                failure:(void (^)(NSError *error))failure;
 
 /** 发送消息
