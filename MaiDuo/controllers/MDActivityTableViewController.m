@@ -12,6 +12,7 @@
 #import "MDActivityContactView.h"
 #import "MDActivityChatViewController.h"
 #import "MDWriteMessageViewController.h"
+#import "MDAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define kActNumRect (CGRect){42,2,14,14}
@@ -286,11 +287,11 @@
 
 - (void)didActiveWriteMessage:(id)sender
 {
-    UINavigationController *naviCtrl;
-    MDWriteMessageViewController *msgCtrl;
-    msgCtrl = [[MDWriteMessageViewController alloc] init];
-    naviCtrl = [[UINavigationController alloc]
-                initWithRootViewController:msgCtrl];
-    [self presentModalViewController:naviCtrl animated:YES];
+    //UINavigationController *naviCtrl;
+//    MDWriteMessageViewController *msgCtrl = [[MDWriteMessageViewController alloc] initWithNibName:@"MDWriteMessageViewController" bundle:nil];
+    MDWriteMessageViewController *msgCtrl = [[MDWriteMessageViewController alloc] init];
+//    naviCtrl = [[UINavigationController alloc]
+//                initWithRootViewController:msgCtrl];
+    [[MDAppDelegate sharedInstance].navigationController pushViewController:msgCtrl animated:YES];
 }
 @end

@@ -22,7 +22,10 @@
 @end
 
 @implementation MDAppDelegate
-
++(instancetype) sharedInstance
+{
+    return (MDAppDelegate*)[UIApplication sharedApplication].delegate;
+}
 - (void)setUp
 {
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:

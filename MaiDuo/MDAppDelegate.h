@@ -19,8 +19,10 @@
     MaiDuo *_maiduo;
 }
 
+
 @property (strong, nonatomic) UIWindow *window;
 @property (strong,nonatomic) UINavigationController *navigationController;
++(instancetype) sharedInstance;
 -(void) showHUDWithLabel:(NSString*) text;
 -(void) hideHUD;
 @end
